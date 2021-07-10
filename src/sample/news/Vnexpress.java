@@ -34,6 +34,7 @@ public class Vnexpress {
         this.content = content;
     }
 
+    // override for listview display the title
     @Override
     public String toString() {
         return title;
