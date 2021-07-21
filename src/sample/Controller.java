@@ -2,12 +2,15 @@ package sample;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.image.Image;
 import javafx.scene.control.ListCell;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import org.jsoup.Jsoup;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
@@ -17,8 +20,10 @@ import org.jsoup.select.Elements;
 import sample.news.Vnexpress;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class Controller {
+public class Controller implements Initializable {
     @FXML
     private TextArea titleNewspaper;
 
@@ -27,7 +32,15 @@ public class Controller {
     @FXML
     private TextArea contentTextArea;
 
-    public void initialize() {
+    //Delare webview
+    @FXML
+    private WebView newsScene;
+
+    private WebEngine engine;
+
+
+    @Override
+    public void initialize(URL url1, ResourceBundle resourceBundle) {
         try {
 //            Vnexpress new1 = new Vnexpress("Java IO Tutorial","http");
 //            Vnexpress new2 = new Vnexpress("1 IO Tutorial","http");
@@ -84,22 +97,21 @@ public class Controller {
             });
             vnexpressListView.getItems().setAll(newList);
             vnexpressListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+            engine = newsScene.getEngine(); //initialise the engine web view
+
         } catch (Exception e) {
             System.out.println(e);
         }
     }
-    public String returnContent(String url) throws Exception{
-        Document doc = Jsoup.connect(url).get();
-        Elements body = doc.getElementsByClass("sidebar-1");
-        if (body.size() > 0 && body.first().childrenSize() >= 3) return body.first().child(2).text();
-        return "";
+    // Function load page
+    public void loadPage(String url) throws Exception{
+        engine.load(url);
     }
     @FXML
     public void handleClickView() throws Exception{
         Vnexpress news = (Vnexpress) vnexpressListView.getSelectionModel().getSelectedItem();
         if (news == null) return;
 //        System.out.println("The select item is " + news);
-        String content = returnContent(news.getUrl());
-        contentTextArea.setText(content);
+        loadPage(news.getUrl());
     }
 }

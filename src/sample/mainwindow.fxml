@@ -1,17 +1,15 @@
-<?import javafx.geometry.Insets?>
+<?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.ListView?>
-<BorderPane fx:controller="sample.Controller"
-            xmlns:fx="http://javafx.com/fxml">
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.web.WebView?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="sample.Controller">
     <left>
-        <ListView fx:id="vnexpressListView" onMouseClicked="#handleClickView" onKeyPressed="#handleClickView" minWidth="350">
+        <ListView fx:id="vnexpressListView" onMouseClicked="#handleClickView" prefHeight="606.0" prefWidth="392.0">
         </ListView>
     </left>
-    <center>
-        <TextArea fx:id="contentTextArea" wrapText="true"></TextArea>
-    </center>
+   <center>
+      <WebView fx:id="newsScene" prefHeight="606.0" prefWidth="1522.0" BorderPane.alignment="CENTER" />
+   </center>
 </BorderPane>
