@@ -8,10 +8,10 @@
 <BorderPane fx:controller="sample.Controller"
             xmlns:fx="http://javafx.com/fxml">
     <left>
-        <ListView fx:id="vnexpressListView" onMouseClicked="#handleClickView">
+        <ListView fx:id="vnexpressListView" onMouseClicked="#handleClickView" onKeyPressed="#handleClickView" minWidth="350">
         </ListView>
     </left>
     <center>
-        <TextArea fx:id="contentTextArea"></TextArea>
+        <TextArea fx:id="contentTextArea" wrapText="true"></TextArea>
     </center>
 </BorderPane>

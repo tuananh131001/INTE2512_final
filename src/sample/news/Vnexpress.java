@@ -1,13 +1,17 @@
 package sample.news;
 
+import javafx.scene.image.Image;
+
 public class Vnexpress {
     private String title;
     private String url;
     private String content;
+    private Image image;
 
-    public Vnexpress(String title, String url) {
+    public Vnexpress(String title, String url, Image image) {
         this.title = title;
         this.url = url;
+        this.image = image;
     }
 
     public String getTitle() {
@@ -28,6 +32,10 @@ public class Vnexpress {
 
     public String getContent() {
         return content;
+    }
+
+    public Image getImage(){
+        return image;
     }
 
     public void setContent(String content) {
