@@ -18,8 +18,8 @@ public class Vnexpress extends News {
         super();
     }
     @Override
-    protected ArrayList<Vnexpress> crawlVnexpress() throws IOException {
-        ArrayList<Vnexpress> newsList = new ArrayList<>();
+    protected ArrayList<News> crawlNews() throws IOException {
+        ArrayList<News> newsList = new ArrayList<>();
 
         //crawl from these site
         String[] urls = {"https://vnexpress.net",
@@ -47,27 +47,16 @@ public class Vnexpress extends News {
                 image = new Image(imageurl);
             }
             // Create object Vnexpress and add to list newsList
-            newsList.add(new Vnexpress(name,url, image));
+            newsList.add(new Vnexpress(name, url, image));
         }
         return newsList;
-    }
-
-
-    public String getTitle() {
-        return title;
-    }
-
-
-    public String getUrl() {
-        return this.articleUrl;
-    }
-
-    public Image getImage(){
-        return imageArticle;
     }
 
     @Override
     public String toString() {
         return title;
     }
+
+    @Override
+    public String getNewsName(){ return "Vnexpress";}
 }

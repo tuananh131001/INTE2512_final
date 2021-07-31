@@ -10,6 +10,7 @@ public abstract class News {
     protected String title;
     protected String articleUrl;
     protected Image imageArticle;
+    protected String newsName;
 
     public News(String title, String articleUrl, Image imageArticle) {
         this.title = title;
@@ -20,5 +21,19 @@ public abstract class News {
     public News() {
     }
 
-    protected abstract ArrayList<Vnexpress> crawlVnexpress() throws IOException;
+    public Image getImage(){
+        return imageArticle;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getUrl() {
+        return this.articleUrl;
+    }
+
+    public abstract String getNewsName();
+
+    protected abstract ArrayList<News> crawlNews() throws IOException;
 }

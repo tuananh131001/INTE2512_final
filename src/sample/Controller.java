@@ -16,6 +16,7 @@ import javafx.scene.control.TextArea;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import sample.news.Tuoitre;
 import sample.news.Vnexpress;
 
 import java.net.URL;
@@ -29,7 +30,7 @@ public class Controller implements Initializable {
     private TextArea titleNewspaper;
 
     @FXML
-    private ListView<Vnexpress> vnexpressListView;
+    private ListView<News> listView;
     @FXML
     private TextArea contentTextArea;
 
@@ -38,7 +39,7 @@ public class Controller implements Initializable {
     private WebView newsScene;
 
     private WebEngine engine;
-    private List<Vnexpress> newsList;
+    private List<News> newsList;
 
     @Override
     public void initialize(URL url1, ResourceBundle resourceBundle) {
@@ -47,14 +48,15 @@ public class Controller implements Initializable {
 //            Vnexpress new2 = new Vnexpress("1 IO Tutorial","http");
 //            Vnexpress new3 = new Vnexpress("2 IO Tutorial","http");
             News articlesVnexpress = new Vnexpress();
-            newsList = articlesVnexpress.crawlVnexpress();
-
+            newsList = articlesVnexpress.crawlNews();
+            News articlesTuoitre = new Tuoitre();
+            newsList.addAll(articlesTuoitre.crawlNews());
 
             // Function to update image next to cell of dat article
-            vnexpressListView.setCellFactory(param -> new ListCell<Vnexpress>() {
+            listView.setCellFactory(param -> new ListCell<News>() {
                 private ImageView imageView = new ImageView();
                 @Override
-                public void updateItem(Vnexpress page, boolean empty) {
+                public void updateItem(News page, boolean empty) {
                     super.updateItem(page, empty);
                     if (empty) {
                         setText(null);
@@ -66,13 +68,13 @@ public class Controller implements Initializable {
                             imageView.setFitWidth(70);
                         }
                         setGraphic(imageView);
-                        setText(page.getTitle());
+                        setText("<" + page.getNewsName() + "> " + page.getTitle());
                         setWrapText(true);
                     }
                 }
             });
-            vnexpressListView.getItems().setAll(newsList);
-            vnexpressListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+            listView.getItems().setAll(newsList);
+            listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
             engine = newsScene.getEngine(); //initialise the engine web view
 
         } catch (Exception e) {
@@ -85,7 +87,7 @@ public class Controller implements Initializable {
     }
     @FXML
     public void handleClickView() throws Exception{
-        Vnexpress news = (Vnexpress) vnexpressListView.getSelectionModel().getSelectedItem();
+        News news = (News) listView.getSelectionModel().getSelectedItem();
         if (news == null) return;
 //        System.out.println("The select item is " + news);
         loadPage(news.getUrl());
