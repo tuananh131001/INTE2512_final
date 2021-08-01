@@ -46,7 +46,7 @@ public class Controller implements Initializable {
             Vnexpress vnexpress = new Vnexpress();
 //            ArrayList<Category> vnexpressCategoryList = vnexpress.srapeWebsite();
 //            newsList = vnexpressCategoryList.get(0).getArticleList();
-            Category vnexpressCategory = vnexpress.srapeWebsiteCategory("Thoi Su");
+            Category vnexpressCategory = vnexpress.srapeWebsiteCategory("Politics");
             newsList = vnexpressCategory.getArticleList();
             // Function to update image next to cell of dat article
             vnexpressListView.setCellFactory(param -> new ListCell<Article>() {

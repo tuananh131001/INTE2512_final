@@ -10,7 +10,7 @@ public interface News {
 
     public String findTime(String url) throws IOException;
 
-    public ArrayList<Article> scrapeArticle(String[] urls, int urlPosition) throws IOException;
+    public ArrayList<Article> scrapeArticle(String url) throws IOException;
 
     public default ArrayList<Category> createCategory() {
         ArrayList<Category> category = new ArrayList<Category>();
