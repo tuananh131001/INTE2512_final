@@ -50,44 +50,47 @@ public class Controller implements Initializable {
             newsList = vnexpressCategory.getArticleList();
             // Function to update image next to cell of dat article
             vnexpressListView.setCellFactory(param -> new ListCell<Article>() {
-            private ImageView imageView = new ImageView();
-            @Override
-            public void updateItem(Article page, boolean empty) {
-                super.updateItem(page, empty);
-                if (empty) {
-                    setText(null);
-                    setGraphic(null);
-                } else {
-                    if (page.getImageArticle() != null) {
-                        HBox box= new HBox();
-                        box.setSpacing(10) ;
+                private ImageView imageView = new ImageView();
 
-                        imageView.setFitHeight(50);
-                        imageView.setFitWidth(50);
+                @Override
+                public void updateItem(Article page, boolean empty) {
+                    super.updateItem(page, empty);
+                    if (empty) {
+                        setText(null);
+                        setGraphic(null);
+                    } else {
+                        if (page.getImageArticle() != null) {
+                            HBox box = new HBox();
+                            box.setSpacing(10);
 
-                        imageView.setImage(page.getImageArticle());
+                            imageView.setFitHeight(50);
+                            imageView.setFitWidth(50);
 
+                            imageView.setImage(page.getImageArticle());
+
+                        }
+                        setGraphic(imageView);
+                        setText(page.getTitleArticle());
+                        setWrapText(true);
                     }
-                    setGraphic(imageView);
-                    setText(page.getTitleArticle());
-                    setWrapText(true);
                 }
-            }
-        });
-        vnexpressListView.getItems().setAll(newsList);
-        vnexpressListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        engine = newsScene.getEngine(); //initialise the engine web view
+            });
+            vnexpressListView.getItems().setAll(newsList);
+            vnexpressListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+            engine = newsScene.getEngine(); //initialise the engine web view
 
         } catch (Exception e) {
             System.out.println(e);
         }
     }
+
     // Function load page
-    public void loadPage(String url) throws Exception{
+    public void loadPage(String url) throws Exception {
         engine.load(url);
     }
+
     @FXML
-    public void handleClickView() throws Exception{
+    public void handleClickView() throws Exception {
         Article news = (Article) vnexpressListView.getSelectionModel().getSelectedItem();
         if (news == null) return;
 //        System.out.println("The select item is " + news);

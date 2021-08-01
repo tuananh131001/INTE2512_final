@@ -91,8 +91,8 @@ public class Vnexpress implements News {
             if (articleElement.parent().child(0).child(0).childrenSize() >= 1
                     && articleElement.parent().child(0).child(0).child(0).childrenSize() >= 2) {
                 String imageurl = articleElement.parent().child(0).child(0).child(0).child(1).attr("src");
-                if (!imageurl.contains("vnexpress")) continue;
-                image = new Image(imageurl);
+                if (imageurl.contains("vnexpress"))
+                    image = new Image(imageurl);
             }
             Article article = new Article(image, titleArticle, urlArticle, timeArticle);
             System.out.println(article.getTitleArticle());
