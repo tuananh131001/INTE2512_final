@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public interface News {
     public ArrayList<Category> srapeWebsite() throws IOException;
+    public Category srapeWebsiteCategory(String nameCategory) throws IOException;
     public String findTime(String url) throws IOException;
     public default ArrayList<Category> createCategory(){
         ArrayList<Category> category = new ArrayList<Category>();
@@ -20,5 +21,6 @@ public interface News {
         category.add( new Category("Others"));
         return category;
     }
+    public ArrayList<Article> scrapeArticle(String[] urls,int urlPosition) throws IOException ;
 
 }

@@ -44,8 +44,10 @@ public class Controller implements Initializable {
     public void initialize(URL url1, ResourceBundle resourceBundle) {
         try {
             Vnexpress vnexpress = new Vnexpress();
-            ArrayList<Category> vnexpressCategoryList = vnexpress.srapeWebsite();
-            newsList = vnexpressCategoryList.get(0).getArticleList();
+//            ArrayList<Category> vnexpressCategoryList = vnexpress.srapeWebsite();
+//            newsList = vnexpressCategoryList.get(0).getArticleList();
+            Category vnexpressCategory = vnexpress.srapeWebsiteCategory("Thoi Su");
+            newsList = vnexpressCategory.getArticleList();
             // Function to update image next to cell of dat article
             vnexpressListView.setCellFactory(param -> new ListCell<Article>() {
             private ImageView imageView = new ImageView();
