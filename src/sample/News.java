@@ -1,24 +1,29 @@
 package sample;
 
-import javafx.scene.image.Image;
-import sample.news.Vnexpress;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
-public abstract class News {
-    protected String title;
-    protected String articleUrl;
-    protected Image imageArticle;
+public interface News {
+    public ArrayList<Category> srapeWebsite() throws IOException;
 
-    public News(String title, String articleUrl, Image imageArticle) {
-        this.title = title;
-        this.articleUrl = articleUrl;
-        this.imageArticle = imageArticle;
+    public Category srapeWebsiteCategory(String nameCategory) throws IOException;
+
+    public String findTime(String url) throws IOException;
+
+    public ArrayList<Article> scrapeArticle(String[] urls, int urlPosition) throws IOException;
+
+    public default ArrayList<Category> createCategory() {
+        ArrayList<Category> category = new ArrayList<Category>();
+        category.add(new Category("New"));
+        category.add(new Category("Covid"));
+        category.add(new Category("Politics"));
+        category.add(new Category("Business"));
+        category.add(new Category("Technology"));
+        category.add(new Category("Health"));
+        category.add(new Category("Sports"));
+        category.add(new Category("Entertainment"));
+        category.add(new Category("World"));
+        category.add(new Category("Others"));
+        return category;
     }
-
-    public News() {
-    }
-
-    protected abstract ArrayList<Vnexpress> crawlVnexpress() throws IOException;
 }
