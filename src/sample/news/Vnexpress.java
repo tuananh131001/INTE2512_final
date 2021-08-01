@@ -39,7 +39,12 @@ public class Vnexpress implements News {
             for (Element articleElement : articleElementList) {
                 String urlArticle = articleElement.children().first().attr("href"); //Link of the article
                 String titleArticle = articleElement.children().first().attr("title"); // Title of the article
-                String timeArticle = findTime(urlArticle);
+                String timeArticle;
+                if (!urlArticle.contains("video")) {
+                    timeArticle = findTime(urlArticle);
+                } else {
+                    timeArticle = null;
+                }
                 Image image = null;
 
                 if (articleElement.parent().child(0).child(0).childrenSize() >= 1
@@ -48,8 +53,8 @@ public class Vnexpress implements News {
                     if (!imageurl.contains("vnexpress")) continue;
                     image = new Image(imageurl);
                 }
-                Article article = new Article(image, titleArticle, urlArticle, timeArticle);
-                System.out.println(article);
+                Article article = new Article(image, titleArticle, urlArticle, timeArticle );
+                System.out.println(article.getTitleArticle());
 
                 articleList.add(article);
             }
