@@ -3,6 +3,7 @@ package sample;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -15,6 +16,7 @@ import javafx.fxml.FXML;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import sample.news.Tuoitre;
 import sample.news.Vnexpress;
 
 import java.net.URL;
@@ -23,6 +25,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Function;
+import javafx.scene.text.TextAlignment;
 
 public class Controller implements Initializable {
     @FXML
@@ -38,16 +41,23 @@ public class Controller implements Initializable {
     private WebView newsScene;
 
     private WebEngine engine;
-    private List<Article> newsList;
+    private ArrayList<Article> newsList;
 
     @Override
     public void initialize(URL url1, ResourceBundle resourceBundle) {
         try {
-            Vnexpress vnexpress = new Vnexpress();
 //            ArrayList<Category> vnexpressCategoryList = vnexpress.srapeWebsite();
 //            newsList = vnexpressCategoryList.get(0).getArticleList();
-            Category vnexpressCategory = vnexpress.srapeWebsiteCategory("Politics");
-            newsList = vnexpressCategory.getArticleList();
+
+//            Vnexpress vnexpress = new Vnexpress();
+//            Category vnexpressCategory = vnexpress.scrapeWebsiteCategory("Politics");
+//            newsList = vnexpressCategory.getArticleList();
+            newsList = new ArrayList<Article>();
+            Tuoitre tuoitre = new Tuoitre();
+            ArrayList <Category> tuoitreCategories = tuoitre.scrapeWebsite();
+            for (Category category : tuoitreCategories) {
+                newsList.addAll(category.getArticleList());
+            }
             // Function to update image next to cell of dat article
             vnexpressListView.setCellFactory(param -> new ListCell<Article>() {
                 private ImageView imageView = new ImageView();
@@ -55,6 +65,7 @@ public class Controller implements Initializable {
                 @Override
                 public void updateItem(Article page, boolean empty) {
                     super.updateItem(page, empty);
+
                     if (empty) {
                         setText(null);
                         setGraphic(null);
@@ -62,16 +73,24 @@ public class Controller implements Initializable {
                         if (page.getImageArticle() != null) {
                             HBox box = new HBox();
                             box.setSpacing(10);
-
                             imageView.setFitHeight(50);
                             imageView.setFitWidth(50);
 
                             imageView.setImage(page.getImageArticle());
 
                         }
+
+                        setMinWidth(param.getWidth());
+                        setMaxWidth(param.getWidth());
+                        setPrefWidth(param.getWidth());
+
+                        setPadding(new Insets(0, 0, 5, 0));
+
+                        setWrapText(true);
+                        setTextAlignment(TextAlignment.JUSTIFY);
+
                         setGraphic(imageView);
                         setText(page.getTitleArticle());
-                        setWrapText(true);
                     }
                 }
             });

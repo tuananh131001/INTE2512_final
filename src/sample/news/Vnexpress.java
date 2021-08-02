@@ -17,7 +17,7 @@ import java.util.Scanner;
 
 public class Vnexpress implements News {
     @Override
-    public ArrayList<Category> srapeWebsite() throws IOException {
+    public ArrayList<Category> scrapeWebsite() throws IOException {
         ArrayList<Category> categoryList = createCategory();
         //crawl from these site
         String[] urls = {"https://vnexpress.net",
@@ -40,11 +40,10 @@ public class Vnexpress implements News {
 
         }
         return categoryList;
-
     }
 
     @Override
-    public Category srapeWebsiteCategory(String categoryName) throws IOException {
+    public Category scrapeWebsiteCategory(String categoryName) throws IOException {
         File vnexpressUrlFile = new File("src/sample/vnexpressUrl.txt");
         Scanner urlScanner = new Scanner(vnexpressUrlFile);
         HashMap<String, String> vnexpressUrls = new HashMap<String, String>();

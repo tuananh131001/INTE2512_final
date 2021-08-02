@@ -6,7 +6,7 @@
 
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="sample.Controller">
     <left>
-        <ListView fx:id="vnexpressListView" onMouseClicked="#handleClickView" prefHeight="606.0" prefWidth="392.0">
+        <ListView fx:id="vnexpressListView" onMouseClicked="#handleClickView">
         </ListView>
     </left>
    <center>
