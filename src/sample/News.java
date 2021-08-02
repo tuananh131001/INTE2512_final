@@ -2,11 +2,12 @@ package sample;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public interface News {
-    public ArrayList<Category> srapeWebsite() throws IOException;
+    public ArrayList<Category> scrapeWebsite() throws IOException;
 
-    public Category srapeWebsiteCategory(String nameCategory) throws IOException;
+    public Category scrapeWebsiteCategory(String nameCategory) throws IOException;
 
     public String findTime(String url) throws IOException;
 
