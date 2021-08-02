@@ -16,15 +16,18 @@ import javafx.fxml.FXML;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import sample.news.Thanhnien;
 import sample.news.Tuoitre;
 import sample.news.Vnexpress;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Function;
+
 import javafx.scene.text.TextAlignment;
 
 public class Controller implements Initializable {
@@ -52,12 +55,12 @@ public class Controller implements Initializable {
 //            Vnexpress vnexpress = new Vnexpress();
 //            Category vnexpressCategory = vnexpress.scrapeWebsiteCategory("Politics");
 //            newsList = vnexpressCategory.getArticleList();
-            newsList = new ArrayList<Article>();
-            Tuoitre tuoitre = new Tuoitre();
-            ArrayList <Category> tuoitreCategories = tuoitre.scrapeWebsite();
-            for (Category category : tuoitreCategories) {
-                newsList.addAll(category.getArticleList());
-            }
+//            newsList = new ArrayList<Article>();
+//            Tuoitre tuoitre = new Tuoitre();
+//            ArrayList <Category> tuoitreCategories = tuoitre.scrapeWebsite();
+            Thanhnien thanhnien = new Thanhnien();
+            Category thanhnienCategory = thanhnien.scrapeWebsiteCategory("Politics", new File("src/sample/vnexpressurl.txt"));
+            newsList = thanhnienCategory.getArticleList();
             // Function to update image next to cell of dat article
             vnexpressListView.setCellFactory(param -> new ListCell<Article>() {
                 private ImageView imageView = new ImageView();
