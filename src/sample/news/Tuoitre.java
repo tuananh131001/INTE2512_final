@@ -16,49 +16,6 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Tuoitre implements News {
-    @Override
-    public ArrayList<Category> scrapeWebsite() throws IOException {
-        ArrayList<Category> categoryList = createCategory(); //new category list includes World New Politics etc
-
-        File urlfile = new File("src/sample/tuoitreurl.txt"); //reads a txt file for all urls
-        Scanner urlScanner = new Scanner(urlfile);
-        HashMap<String, String> urls = new HashMap<String, String>();
-
-        //scans the file
-        while (urlScanner.hasNextLine()) {
-            String[] url = urlScanner.nextLine().split("\\|");
-            urls.put(url[1], url[0]);
-        }
-
-        //Find and all article element in listArticle
-        for (Category category : categoryList) {
-            String url = urls.get(category.getCategoryName());
-            ArrayList<Article> articleList = scrapeArticle(url);
-            category.setArticleList(articleList);
-        }
-        return categoryList;
-
-    }
-
-    @Override
-    public Category scrapeWebsiteCategory(String categoryName) throws IOException {
-        File urlfile = new File("src/sample/tuoitreurl.txt");
-        Scanner urlScanner = new Scanner(urlfile);
-        HashMap<String, String> urls = new HashMap<String, String>();
-        while (urlScanner.hasNextLine()) {
-            String[] url = urlScanner.nextLine().split("\\|");
-            urls.put(url[1], url[0]);
-        }
-        System.out.println(urls);
-        //crawl from these site
-        String url = urls.get(categoryName);
-        if (url == null) return null;
-        Category category = new Category(categoryName);
-        ArrayList<Article> articleList = scrapeArticle(urls.get(categoryName));
-        category.setArticleList(articleList);
-
-        return category;
-    }
 
     @Override
     public String findTime(String url) throws IOException {
