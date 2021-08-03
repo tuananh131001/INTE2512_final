@@ -8,9 +8,12 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -36,8 +39,8 @@ import javafx.scene.text.TextAlignment;
 public class Controller implements Initializable {
     @FXML
     private TextArea titleNewspaper;
-
-
+    @FXML
+    private MenuBar menuBar;
     @FXML
     private TextArea contentTextArea;
     @FXML
@@ -52,6 +55,20 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL url1, ResourceBundle resourceBundle) {
         try {
+            Menu neww = new Menu("New");
+            Menu covid = new Menu("Covid");
+            Menu politics = new Menu("Politics");
+            Menu business = new Menu("Business");
+            Menu technology = new Menu("Technology");
+            Menu health = new Menu("Health");
+            Menu sports = new Menu("Sports");
+            Menu entertainment = new Menu("Entertainment");
+            Menu world = new Menu("World");
+            Menu others = new Menu("Others");
+
+            menuBar.getMenus().addAll(neww,covid,politics,business,technology,health,sports,entertainment,world,others);
+            menuBar.setStyle("-fx-font-size: 14");
+
 //            ArrayList<Category> vnexpressCategoryList = vnexpress.srapeWebsite();
 //            newsList = vnexpressCategoryList.get(0).getArticleList();
 
@@ -64,22 +81,44 @@ public class Controller implements Initializable {
             Thanhnien thanhnien = new Thanhnien();
             Category thanhnienCategory = thanhnien.scrapeWebsiteCategory("Politics", new File("src/sample/vnexpressurl.txt"));
             newsList = thanhnienCategory.getArticleList();
+            vboxApp.setSpacing(5);
+            vboxApp.setPadding(new Insets(30, 70, 30, 70));
+
             for(Article article : newsList) {
                 HBox hbox = new HBox();
+                hbox.setSpacing(10);
+                hbox.setStyle("-fx-background-color: #ebe9e9;");
+
                 if (article.getImageArticle() != null) {
                     ImageView imageView = new ImageView(article.getImageArticle());
                     imageView.setFitHeight(100);
                     imageView.setFitWidth(100);
 
                     hbox.getChildren().add(imageView);
-
                 }
-                Label label = new Label(article.getTitleArticle());
-                label.setFont(new Font("Arial", 24));
+                else {
+                    Label replaceImage = new Label("no image");
+                    replaceImage.setStyle("-fx-alignment: CENTER; -fx-background-color: #dddfe1; -fx-pref-width: 100; -fx-pref-height: 100;");
+                    hbox.getChildren().add(replaceImage);
+                }
 
-                vboxApp.setPadding(new Insets(30));
+                VBox vboxArticle = new VBox();
+                vboxArticle.setSpacing(3);
 
-                hbox.getChildren().add(label);
+                Label labelArticle = new Label(article.getTitleArticle());
+                labelArticle.setFont(new Font("Arial", 18));
+                Label labelSource = new Label(article.getSource());
+                labelSource.setFont(new Font("Arial", 12));
+                Label labelTime = new Label(article.getTimeArticle());
+                labelTime.setFont(new Font("Arial", 12));
+
+                Button viewButton = new Button();
+                viewButton.setText("View");
+                viewButton.setStyle("-fx-font-size: 10; -fx-underline: true;");
+
+                vboxArticle.getChildren().addAll(labelArticle,labelSource,labelTime, viewButton);
+
+                hbox.getChildren().add(vboxArticle);
                 vboxApp.getChildren().add(hbox);
             }
             // Function to update image next to cell of dat article

@@ -48,7 +48,7 @@ public class Tuoitre implements News {
                     image = new Image(imageurl);
                 }
                 String date = article.getElementsByTag("Pubdate").first().ownText();
-                newsList.add(new Article(image, name, articleUrl, date));
+                newsList.add(new Article(image, name, articleUrl, date,"Tuoi Tre"));
             }
         } catch (Exception e){
             System.out.println(e);
