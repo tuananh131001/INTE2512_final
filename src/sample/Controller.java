@@ -93,7 +93,6 @@ public class Controller implements Initializable {
                     ImageView imageView = new ImageView(article.getImageArticle());
                     imageView.setFitHeight(100);
                     imageView.setFitWidth(100);
-
                     hbox.getChildren().add(imageView);
                 }
                 else {
