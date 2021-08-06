@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.web.WebView?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="sample.Controller">
-    <left>
-        <ListView fx:id="vnexpressListView" onMouseClicked="#handleClickView">
-        </ListView>
-    </left>
+<?import javafx.scene.control.ScrollBar?>
+
+<?import javafx.scene.control.MenuBar?>
+<BorderPane prefHeight="566.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <top>
+      <MenuBar fx:id="menuBar" prefHeight="20" />
+   </top>
    <center>
-      <WebView fx:id="newsScene" prefHeight="606.0" prefWidth="1522.0" BorderPane.alignment="CENTER" />
+      <VBox fx:id="vboxApp" prefHeight="467.0" prefWidth="538.0" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>

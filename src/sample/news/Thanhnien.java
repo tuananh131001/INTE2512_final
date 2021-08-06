@@ -46,7 +46,7 @@ public class Thanhnien implements News {
                 System.out.println("No image " + articleElement);
             }
 
-            Article article = new Article(image, titleArticle, urlArticle, date);
+            Article article = new Article(image, titleArticle, urlArticle, date, "Thanh Nien");
 
             articleList.add(article);
         }
