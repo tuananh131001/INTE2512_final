@@ -41,7 +41,6 @@ public class Vnexpress implements News {
             try{
                 image = new Image(imageurl);
             } catch (IllegalArgumentException e){
-                System.out.println("No image " + articleElement);
             }
             Article article = new Article(image, titleArticle, urlArticle, date, "VnExpress");
 

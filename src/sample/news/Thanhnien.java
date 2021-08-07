@@ -34,16 +34,15 @@ public class Thanhnien implements News {
         articleElementList.addAll(doc.getElementsByTag("item"));
         // Loop into article Element
         for (Element articleElement : articleElementList) {
-            String urlArticle = articleElement.child(2).ownText(); //Link of the article
             String titleArticle = articleElement.child(0).ownText(); // Title of the article
             String date = articleElement.getElementsByTag("Pubdate").first().ownText();
             Image image = null;
             Document description = Jsoup.parse(articleElement.child(1).ownText());
+            String urlArticle = description.getElementsByTag("a").attr("href"); //Link of the article
             String imageurl = description.getElementsByTag("img").attr("src");
             try{
                 image = new Image(imageurl);
             } catch (IllegalArgumentException e){
-                System.out.println("No image " + articleElement);
             }
 
             Article article = new Article(image, titleArticle, urlArticle, date, "Thanh Nien");

@@ -2,21 +2,25 @@ package sample;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.stage.Stage;
 import org.jsoup.Jsoup;
 import javafx.fxml.FXML;
 import org.jsoup.nodes.Document;
@@ -27,11 +31,9 @@ import sample.news.Tuoitre;
 import sample.news.Vnexpress;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.function.Function;
 
 import javafx.scene.text.TextAlignment;
@@ -46,10 +48,13 @@ public class Controller implements Initializable {
     @FXML
     private VBox vboxApp;
     //Delare webview
-//    @FXML
-//    private WebView newsScene;
-//
-//    private WebEngine engine;
+    @FXML
+    private WebView newsScene;
+    @FXML
+    private StackPane stackPane;
+
+    private WebEngine engine;
+
     private ArrayList<Article> newsList;
 
     @Override
@@ -66,6 +71,9 @@ public class Controller implements Initializable {
             Menu world = new Menu("World");
             Menu others = new Menu("Others");
 
+            newsScene = new WebView();
+            engine = newsScene.getEngine();
+
             menuBar.getMenus().addAll(neww,covid,politics,business,technology,health,sports,entertainment,world,others);
             menuBar.setStyle("-fx-font-size: 14");
 
@@ -76,11 +84,13 @@ public class Controller implements Initializable {
 //            Category vnexpressCategory = vnexpress.scrapeWebsiteCategory("Politics");
 //            newsList = vnexpressCategory.getArticleList();
 //            newsList = new ArrayList<Article>();
-//            Tuoitre tuoitre = new Tuoitre();
-//            ArrayList <Category> tuoitreCategories = tuoitre.scrapeWebsite();
             Thanhnien thanhnien = new Thanhnien();
-            Category thanhnienCategory = thanhnien.scrapeWebsiteCategory("Politics", new File("src/sample/vnexpressurl.txt"));
+            Category thanhnienCategory = thanhnien.scrapeWebsiteCategory("Politics", new File("src/sample/thanhnienurl.txt"));
             newsList = thanhnienCategory.getArticleList();
+            Tuoitre tuoitre = new Tuoitre();
+            ArrayList <Category> tuoitreCategories = tuoitre.scrapeWebsite(new File("src/sample/tuoitreurl.txt"));
+            for (Category cat : tuoitreCategories)
+                newsList.addAll(cat.getArticleList());
             vboxApp.setSpacing(5);
             vboxApp.setPadding(new Insets(30, 70, 30, 70));
 
@@ -112,9 +122,35 @@ public class Controller implements Initializable {
                 labelTime.setFont(new Font("Arial", 12));
 
                 Button viewButton = new Button();
+                try {
+                    viewButton.setOnAction(event -> {
+                        try {
+                            Element element = Jsoup.connect(article.getSourceArticle()).get();
+                            engine.loadContent(element.toString());
+
+                            BorderPane border = new BorderPane(); // make a pane for news and exit button
+
+                            Button exit = new Button();
+                            exit.setText("exit");
+                            exit.setOnAction(actionEvent -> stackPane.getChildren().remove(1));
+                            exit.setMaxWidth(Double.MAX_VALUE);
+
+                            border.setTop(exit);
+
+                            border.setCenter(newsScene); //set center as news scene
+
+                            stackPane.getChildren().add(border); //add the whole thing on top of the application
+                            // Hide this current window (if this is what you want)
+//                                ((Node)(event.getSource())).getScene().getWindow().hide();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    });
+                } catch (Exception e){
+                    System.out.println(e);
+                }
                 viewButton.setText("View");
                 viewButton.setStyle("-fx-font-size: 10; -fx-underline: true;");
-
                 vboxArticle.getChildren().addAll(labelArticle,labelSource,labelTime, viewButton);
 
                 hbox.getChildren().add(vboxArticle);

@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.ScrollBar?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.ScrollPane?>
-
-<BorderPane prefHeight="566.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
-   <top>
-      <MenuBar fx:id="menuBar" prefHeight="20" />
-   </top>
-   <center>
-      <ScrollPane fx:id="scrollPaneFilters" >
-         <VBox fx:id="vboxApp" BorderPane.alignment="CENTER" />
-      </ScrollPane>
-   </center>
-</BorderPane>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<StackPane fx:id="stackPane" prefHeight="566.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <BorderPane>
+      <top>
+         <MenuBar fx:id="menuBar" prefHeight="20" BorderPane.alignment="CENTER">
+            <effect>
+               <Glow />
+            </effect></MenuBar>
+      </top>
+      <center>
+         <ScrollPane fx:id="scrollPaneFilters" snapToPixel="false" BorderPane.alignment="CENTER">
+            <VBox fx:id="vboxApp" BorderPane.alignment="CENTER" />
+         </ScrollPane>
+      </center>
+   </BorderPane>
+</StackPane>
