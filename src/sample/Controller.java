@@ -141,7 +141,6 @@ public class Controller implements Initializable {
                 viewButton.setOnAction(event -> {
                     try {
                         double scrollvalue = scrollPaneFilters.getVvalue();
-                        System.out.println("before add :" + scrollvalue);
 //                            Element element = Jsoup.connect(article.getSourceArticle()).get(); //getting element to show news
 
 //                            engine.loadContent(Jsoup.connect(article.getSourceArticle()).get().toString());
@@ -153,9 +152,7 @@ public class Controller implements Initializable {
                         Button exit = new Button(); //setup exit button
                         exit.setText("exit");
                         exit.setOnAction(actionEvent -> {
-                            System.out.println("before remove: " + scrollPaneFilters.getVvalue());
                             stackPane.getChildren().remove(1);
-                            System.out.println("after remove: " + scrollPaneFilters.getVvalue());
                         }); //lambda to remove current news pane
 
                         exit.setMaxWidth(Double.MAX_VALUE); //set exit button to match the window's widtd
@@ -165,7 +162,6 @@ public class Controller implements Initializable {
                         border.setCenter(newsScene); //set center as news scene
 
                         stackPane.getChildren().add(border); //add the whole thing on top of the application
-                        System.out.println("after add : " + scrollPaneFilters.getVvalue());
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

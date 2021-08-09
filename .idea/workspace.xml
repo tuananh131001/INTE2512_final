@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="more things changed">
+    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="removed ads&#10;this should remove pesky block on top of Vnexpress pages now">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/news/Vnexpress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Vnexpress.java" afterDir="false" />
@@ -247,7 +247,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628507319022</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="removed ads&#10;this should remove pesky block on top of Vnexpress pages now">
+      <created>1628515544708</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1628515544708</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -270,7 +277,8 @@
     <MESSAGE value="big changes&#10;made scrapeContent for Vnexpress" />
     <MESSAGE value="added comments for Vnexpress" />
     <MESSAGE value="more things changed" />
-    <option name="LAST_COMMIT_MESSAGE" value="more things changed" />
+    <MESSAGE value="removed ads&#10;this should remove pesky block on top of Vnexpress pages now" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed ads&#10;this should remove pesky block on top of Vnexpress pages now" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

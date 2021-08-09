@@ -100,7 +100,6 @@ public class Vnexpress implements News {
         for (Element remove : ads){
             remove.remove();
         }
-
         //return clean content
         return content;
     }
