@@ -90,8 +90,6 @@ public class Controller implements Initializable {
 
             //setting up application
 
-
-
 //            ArrayList<Category> vnexpressCategoryList = vnexpress.srapeWebsite();
 //            newsList = vnexpressCategoryList.get(0).getArticleList();
 
@@ -114,47 +112,6 @@ public class Controller implements Initializable {
             page.setPageCount(5);
             page.setCurrentPageIndex(0);
             page.setPageFactory(pageIndex -> createPage(pageIndex,newsList));
-            //DO NOT CHANGE BEYOND THIS POINT
-
-            // Function to update image next to cell of dat article
-//            vnexpressListView.setCellFactory(param -> new ListCell<Article>() {
-//                private ImageView imageView = new ImageView();
-//
-//                @Override
-//                public void updateItem(Article page, boolean empty) {
-//                    super.updateItem(page, empty);
-//
-//                    if (empty) {
-//                        setText(null);
-//                        setGraphic(null);
-//                    } else {
-//                        if (page.getImageArticle() != null) {
-//                            HBox box = new HBox();
-//                            box.setSpacing(10);
-//                            imageView.setFitHeight(50);
-//                            imageView.setFitWidth(50);
-//
-//                            imageView.setImage(page.getImageArticle());
-//
-//                        }
-//
-//                        setMinWidth(param.getWidth());
-//                        setMaxWidth(param.getWidth());
-//                        setPrefWidth(param.getWidth());
-//
-//                        setPadding(new Insets(0, 0, 5, 0));
-//
-//                        setWrapText(true);
-//                        setTextAlignment(TextAlignment.JUSTIFY);
-//
-//                        setGraphic(imageView);
-//                        setText(page.getTitleArticle());
-//                    }
-//                }
-//            });
-//            vnexpressListView.getItems().setAll(newsList);
-//            vnexpressListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-//            engine = newsScene.getEngine(); //initialise the engine web view
 
         } catch (Exception e) {
             System.out.println(e);
@@ -200,9 +157,6 @@ public class Controller implements Initializable {
             try {
                 viewButton.setOnAction(event -> {
                     try {
-//                            Element element = Jsoup.connect(article.getSourceArticle()).get(); //getting element to show news
-
-//                            engine.loadContent(Jsoup.connect(article.getSourceArticle()).get().toString());
                         Element content = article.getContent();
                         if (content != null) engine.loadContent(article.getContent().toString());
 
@@ -233,16 +187,4 @@ public class Controller implements Initializable {
         }
         return articleList;
     }
-//    // Function load page
-//    public void loadPage(String url) throws Exception {
-//        engine.load(url);
-//    }
-
-//    @FXML
-//    public void handleClickView() throws Exception {
-//        Article news = (Article) vnexpressListView.getSelectionModel().getSelectedItem();
-//        if (news == null) return;
-////        System.out.println("The select item is " + news);
-//        loadPage(news.getSourceArticle());
-//    }
 }
