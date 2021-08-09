@@ -13,9 +13,12 @@
             </effect></MenuBar>
       </top>
       <center>
-         <ScrollPane fx:id="scrollPaneFilters" BorderPane.alignment="CENTER">
-            <VBox fx:id="vboxApp" BorderPane.alignment="CENTER" />
+         <ScrollPane fx:id="scrollPaneFilters" fitToHeight="true" fitToWidth="true">
+            <Pagination fx:id="page" BorderPane.alignment="BOTTOM_CENTER"/>
          </ScrollPane>
       </center>
+      <bottom>
+
+      </bottom>
    </BorderPane>
 </StackPane>

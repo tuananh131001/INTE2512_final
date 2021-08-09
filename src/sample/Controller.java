@@ -49,6 +49,8 @@ public class Controller implements Initializable {
     private TextArea contentTextArea;
     @FXML
     private VBox vboxApp;
+    @FXML
+    private Pagination page;
     //Delare webview
     @FXML
     private WebView newsScene;
@@ -64,6 +66,7 @@ public class Controller implements Initializable {
         try {
             newsList = new ArrayList<Article>(); // LAM ON DUNG BO DONG NAY PLEASEEEEEEEEEEEEEEEE
             ArrayList<Category> categories = new ArrayList<>();
+
 
             //making menus for menuBar
             Menu neww = new Menu("New");
@@ -86,8 +89,8 @@ public class Controller implements Initializable {
             engine = newsScene.getEngine();
 
             //setting up application
-            vboxApp.setSpacing(5);
-            vboxApp.setPadding(new Insets(30, 70, 30, 70));
+
+
 
 //            ArrayList<Category> vnexpressCategoryList = vnexpress.srapeWebsite();
 //            newsList = vnexpressCategoryList.get(0).getArticleList();
@@ -108,71 +111,11 @@ public class Controller implements Initializable {
 //            for (Category cat : categories)
 //                newsList.addAll(cat.getArticleList());
 
-
+            page.setPageCount(5);
+            page.setCurrentPageIndex(0);
+            page.setPageFactory(pageIndex -> createPage(pageIndex,newsList));
             //DO NOT CHANGE BEYOND THIS POINT
-            for(Article article : newsList) {
-                HBox hbox = new HBox();
-                hbox.setSpacing(10);
-                hbox.setStyle("-fx-background-color: #ebe9e9;");
 
-                if (article.getImageArticle() != null) {
-                    ImageView imageView = new ImageView(article.getImageArticle());
-                    imageView.setFitHeight(100);
-                    imageView.setFitWidth(100);
-                    hbox.getChildren().add(imageView);
-                }
-                else {
-                    Label replaceImage = new Label("no image");
-                    replaceImage.setStyle("-fx-alignment: CENTER; -fx-background-color: #dddfe1; -fx-pref-width: 100; -fx-pref-height: 100;");
-                    hbox.getChildren().add(replaceImage);
-                }
-
-                VBox vboxArticle = new VBox();
-                vboxArticle.setSpacing(3);
-
-                Label labelArticle = new Label(article.getTitleArticle());
-                labelArticle.setFont(new Font("Arial", 18));
-                Label labelSource = new Label(article.getSource());
-                labelSource.setFont(new Font("Arial", 12));
-                Label labelTime = new Label(article.getTimeArticle());
-                labelTime.setFont(new Font("Arial", 12));
-
-                Button viewButton = new Button();
-                viewButton.setOnAction(event -> {
-                    try {
-                        double scrollvalue = scrollPaneFilters.getVvalue();
-//                            Element element = Jsoup.connect(article.getSourceArticle()).get(); //getting element to show news
-
-//                            engine.loadContent(Jsoup.connect(article.getSourceArticle()).get().toString());
-                        Element content = article.getContent();
-                        if (content != null) engine.loadContent(article.getContent().toString());
-
-                        BorderPane border = new BorderPane(); // make a pane for news and exit button
-
-                        Button exit = new Button(); //setup exit button
-                        exit.setText("exit");
-                        exit.setOnAction(actionEvent -> {
-                            stackPane.getChildren().remove(1);
-                        }); //lambda to remove current news pane
-
-                        exit.setMaxWidth(Double.MAX_VALUE); //set exit button to match the window's widtd
-
-                        border.setTop(exit); //set button at top of borderpane
-
-                        border.setCenter(newsScene); //set center as news scene
-
-                        stackPane.getChildren().add(border); //add the whole thing on top of the application
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                });
-                viewButton.setText("View");
-                viewButton.setStyle("-fx-font-size: 10; -fx-underline: true;");
-                vboxArticle.getChildren().addAll(labelArticle,labelSource,labelTime, viewButton);
-
-                hbox.getChildren().add(vboxArticle);
-                vboxApp.getChildren().add(hbox);
-            }
             // Function to update image next to cell of dat article
 //            vnexpressListView.setCellFactory(param -> new ListCell<Article>() {
 //                private ImageView imageView = new ImageView();
@@ -218,6 +161,78 @@ public class Controller implements Initializable {
         }
     }
 
+    public VBox createPage(int pageIndex, ArrayList<Article> articles) {
+        VBox articleList = new VBox();
+        articleList.setSpacing(5);
+        articleList.setPadding(new Insets(30, 70, 30, 70));
+        int range = (pageIndex+1)*10-10;
+        for (int i = range; i < range+10;i++) {
+            Article article = articles.get(i);
+            HBox hbox = new HBox();
+            hbox.setSpacing(10);
+            hbox.setStyle("-fx-background-color: #ebe9e9;");
+
+            if (article.getImageArticle() != null) {
+                ImageView imageView = new ImageView(article.getImageArticle());
+                imageView.setFitHeight(100);
+                imageView.setFitWidth(100);
+                hbox.getChildren().add(imageView);
+            }
+            else {
+                Label replaceImage = new Label("no image");
+                replaceImage.setStyle("-fx-alignment: CENTER; -fx-background-color: #dddfe1; -fx-pref-width: 100; -fx-pref-height: 100;");
+                hbox.getChildren().add(replaceImage);
+            }
+
+            VBox vboxArticle = new VBox();
+            vboxArticle.setSpacing(3);
+
+            Label labelArticle = new Label(article.getTitleArticle());
+            labelArticle.setFont(new Font("Arial", 18));
+            Label labelSource = new Label(article.getSource());
+            labelSource.setFont(new Font("Arial", 12));
+            Label labelTime = new Label(article.getTimeArticle());
+            labelTime.setFont(new Font("Arial", 12));
+
+            Button viewButton = new Button("View");
+            viewButton.setStyle("-fx-font-size: 10; -fx-underline: true;");
+            vboxArticle.getChildren().addAll(labelArticle,labelSource,labelTime, viewButton);
+            try {
+                viewButton.setOnAction(event -> {
+                    try {
+//                            Element element = Jsoup.connect(article.getSourceArticle()).get(); //getting element to show news
+
+//                            engine.loadContent(Jsoup.connect(article.getSourceArticle()).get().toString());
+                        Element content = article.getContent();
+                        if (content != null) engine.loadContent(article.getContent().toString());
+
+                        BorderPane border = new BorderPane(); // make a pane for news and exit button
+                        border.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(0), Insets.EMPTY)));
+
+                        Button exit = new Button("<< Go back"); //setup exit button
+                        exit.setOnAction(actionEvent -> {
+                            stackPane.getChildren().remove(1);
+                        }); //lambda to remove current news pane
+
+                        //exit.setMaxWidth(Double.MAX_VALUE); //set exit button to match the window's width
+                        border.setTop(exit); //set button at top of borderpane
+                        exit.setAlignment(Pos.TOP_CENTER);
+                        border.setCenter(newsScene); //set center as news scene
+
+                        stackPane.getChildren().add(border); //add the whole thing on top of the application
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
+            } catch (Exception e){
+                System.out.println(e);
+            }
+
+            hbox.getChildren().add(vboxArticle);
+            articleList.getChildren().add(hbox);
+        }
+        return articleList;
+    }
 //    // Function load page
 //    public void loadPage(String url) throws Exception {
 //        engine.load(url);
