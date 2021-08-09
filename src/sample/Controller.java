@@ -138,37 +138,38 @@ public class Controller implements Initializable {
                 labelTime.setFont(new Font("Arial", 12));
 
                 Button viewButton = new Button();
-                try {
-                    viewButton.setOnAction(event -> {
-                        try {
+                viewButton.setOnAction(event -> {
+                    try {
+                        double scrollvalue = scrollPaneFilters.getVvalue();
+                        System.out.println("before add :" + scrollvalue);
 //                            Element element = Jsoup.connect(article.getSourceArticle()).get(); //getting element to show news
 
 //                            engine.loadContent(Jsoup.connect(article.getSourceArticle()).get().toString());
-                            Element content = article.getContent();
-                            if (content != null) engine.loadContent(article.getContent().toString());
-                            
-                            BorderPane border = new BorderPane(); // make a pane for news and exit button
+                        Element content = article.getContent();
+                        if (content != null) engine.loadContent(article.getContent().toString());
 
-                            Button exit = new Button(); //setup exit button
-                            exit.setText("exit");
-                            exit.setOnAction(actionEvent -> {
-                                stackPane.getChildren().remove(1);
-                            }); //lambda to remove current news pane
+                        BorderPane border = new BorderPane(); // make a pane for news and exit button
 
-                            exit.setMaxWidth(Double.MAX_VALUE); //set exit button to match the window's widtd
+                        Button exit = new Button(); //setup exit button
+                        exit.setText("exit");
+                        exit.setOnAction(actionEvent -> {
+                            System.out.println("before remove: " + scrollPaneFilters.getVvalue());
+                            stackPane.getChildren().remove(1);
+                            System.out.println("after remove: " + scrollPaneFilters.getVvalue());
+                        }); //lambda to remove current news pane
 
-                            border.setTop(exit); //set button at top of borderpane
+                        exit.setMaxWidth(Double.MAX_VALUE); //set exit button to match the window's widtd
 
-                            border.setCenter(newsScene); //set center as news scene
+                        border.setTop(exit); //set button at top of borderpane
 
-                            stackPane.getChildren().add(border); //add the whole thing on top of the application
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    });
-                } catch (Exception e){
-                    System.out.println(e);
-                }
+                        border.setCenter(newsScene); //set center as news scene
+
+                        stackPane.getChildren().add(border); //add the whole thing on top of the application
+                        System.out.println("after add : " + scrollPaneFilters.getVvalue());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
                 viewButton.setText("View");
                 viewButton.setStyle("-fx-font-size: 10; -fx-underline: true;");
                 vboxArticle.getChildren().addAll(labelArticle,labelSource,labelTime, viewButton);

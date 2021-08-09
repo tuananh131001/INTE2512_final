@@ -95,6 +95,12 @@ public class Vnexpress implements News {
             remove.clearAttributes();
         }
 
+        //attempt to remove all ads
+        Elements ads = content.getElementsByAttributeValueMatching("class", "ads");
+        for (Element remove : ads){
+            remove.remove();
+        }
+
         //return clean content
         return content;
     }
