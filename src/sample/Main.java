@@ -14,7 +14,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("mainwindow.fxml"));
-        primaryStage.setTitle("Vnexpress");
+        primaryStage.setTitle("nicesu application verry pretty cute hihi");
         primaryStage.setScene(new Scene(root, 1200, 800));
         primaryStage.show();
 

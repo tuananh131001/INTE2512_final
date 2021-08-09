@@ -13,7 +13,7 @@
             </effect></MenuBar>
       </top>
       <center>
-         <ScrollPane fx:id="scrollPaneFilters" snapToPixel="false" BorderPane.alignment="CENTER">
+         <ScrollPane fx:id="scrollPaneFilters" BorderPane.alignment="CENTER">
             <VBox fx:id="vboxApp" BorderPane.alignment="CENTER" />
          </ScrollPane>
       </center>

@@ -151,8 +151,11 @@ public class Controller implements Initializable {
 
                             Button exit = new Button(); //setup exit button
                             exit.setText("exit");
-                            exit.setOnAction(actionEvent -> stackPane.getChildren().remove(1)); //lambda to remove current news pane
-                            exit.setMaxWidth(Double.MAX_VALUE);
+                            exit.setOnAction(actionEvent -> {
+                                stackPane.getChildren().remove(1);
+                            }); //lambda to remove current news pane
+
+                            exit.setMaxWidth(Double.MAX_VALUE); //set exit button to match the window's widtd
 
                             border.setTop(exit); //set button at top of borderpane
 
