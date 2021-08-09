@@ -15,6 +15,8 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -37,6 +39,7 @@ import java.util.*;
 import java.util.function.Function;
 
 import javafx.scene.text.TextAlignment;
+import javafx.scene.media.Media;
 
 public class Controller implements Initializable {
     @FXML
@@ -66,7 +69,6 @@ public class Controller implements Initializable {
         try {
             newsList = new ArrayList<Article>(); // LAM ON DUNG BO DONG NAY PLEASEEEEEEEEEEEEEEEE
             ArrayList<Category> categories = new ArrayList<>();
-
 
             //making menus for menuBar
             Menu neww = new Menu("New");
@@ -100,7 +102,7 @@ public class Controller implements Initializable {
 
 //            ArrayList<Category> categories =
             newsList.addAll(vnexpress.scrapeWebsiteCategory("New", new File("src/sample/vnexpressurl.txt")).getArticleList());
-//            newsList.addAll(tuoitre.scrapeWebsiteCategory("New", new File("src/sample/tuoitreurl.txt")).getArticleList());
+            newsList.addAll(tuoitre.scrapeWebsiteCategory("New", new File("src/sample/tuoitreurl.txt")).getArticleList());
 
 //            Category thanhnienCategory = thanhnien.scrapeWebsiteCategory("Politics", new File("src/sample/thanhnienurl.txt"));
 //            newsList = thanhnienCategory.getArticleList();
@@ -109,9 +111,10 @@ public class Controller implements Initializable {
 //            for (Category cat : categories)
 //                newsList.addAll(cat.getArticleList());
 
-            page.setPageCount(5);
+            page.setPageCount((newsList.size()+9)/10);
             page.setCurrentPageIndex(0);
             page.setPageFactory(pageIndex -> createPage(pageIndex,newsList));
+
 
         } catch (Exception e) {
             System.out.println(e);
@@ -123,7 +126,7 @@ public class Controller implements Initializable {
         articleList.setSpacing(5);
         articleList.setPadding(new Insets(30, 70, 30, 70));
         int range = (pageIndex+1)*10-10;
-        for (int i = range; i < range+10;i++) {
+        for (int i = range; i < range+10 && i < articles.size();i++) {
             Article article = articles.get(i);
             HBox hbox = new HBox();
             hbox.setSpacing(10);
