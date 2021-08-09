@@ -3,6 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
+
 <StackPane fx:id="stackPane" prefHeight="566.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <BorderPane>
       <top>
@@ -12,9 +13,12 @@
             </effect></MenuBar>
       </top>
       <center>
-         <ScrollPane fx:id="scrollPaneFilters" snapToPixel="false" BorderPane.alignment="CENTER">
-            <VBox fx:id="vboxApp" BorderPane.alignment="CENTER" />
+         <ScrollPane fx:id="scrollPaneFilters" fitToHeight="true" fitToWidth="true">
+            <Pagination fx:id="page" BorderPane.alignment="BOTTOM_CENTER"/>
          </ScrollPane>
       </center>
+      <bottom>
+
+      </bottom>
    </BorderPane>
 </StackPane>

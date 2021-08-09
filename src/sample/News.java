@@ -58,6 +58,7 @@ public interface News {
         //Find and all article element in listArticle
         for (Category category : categoryList) {
             String url = urls.get(category.getCategoryName());
+            if (url == null) continue;
             ArrayList<Article> articleList = scrapeArticle(url);
             category.setArticleList(articleList);
         }

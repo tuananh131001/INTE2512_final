@@ -20,8 +20,7 @@ public class Vnexpress implements News {
     public String findTime(String url) throws IOException {
         Document doc = Jsoup.connect(url).get();
         Elements date = doc.getElementsByClass("date");
-        String time = date.first().text();
-        return time;
+        return date.first().text();
     }
 
     @Override
@@ -31,23 +30,78 @@ public class Vnexpress implements News {
         Document doc = Jsoup.connect(url).get();
         articleElementList.addAll(doc.getElementsByTag("item"));
         // Loop into article Element
-        for (Element articleElement : articleElementList) {
-            String urlArticle = articleElement.child(3).ownText(); //Link of the article
-            String titleArticle = articleElement.child(0).ownText(); // Title of the article
-            String date = articleElement.getElementsByTag("Pubdate").first().ownText();
-            Image image = null;
-            Document description = Jsoup.parse(articleElement.child(1).ownText());
-            String imageurl = description.getElementsByTag("img").attr("src");
-            try{
-                image = new Image(imageurl);
-            } catch (IllegalArgumentException e){
+        try {
+            for (Element articleElement : articleElementList) {
+                String urlArticle = articleElement.child(3).ownText(); //Link of the article
+                String titleArticle = articleElement.child(0).ownText(); // Title of the article
+                String date = articleElement.getElementsByTag("Pubdate").first().ownText();
+                Image image = null;
+                Document description = Jsoup.parse(articleElement.child(1).ownText());
+                String imageurl = description.getElementsByTag("img").attr("src");
+                if (imageurl != null && !imageurl.equals("")) image = new Image(imageurl);
+                Article article = new Article(image, titleArticle, urlArticle, date, "VnExpress", scrapeContent(urlArticle));
+                articleList.add(article);
             }
-            Article article = new Article(image, titleArticle, urlArticle, date, "VnExpress");
-
-            articleList.add(article);
+        } catch (Exception e){
+            System.out.println(e);
         }
         return articleList;
     }
+    public Element scrapeContent(String url) throws IOException {
+        //connect to url
+        Document content = Jsoup.parse(Jsoup.connect(url).get().toString());
 
+        //removing all elements with such class name
+        String[] classesToRemove = {
+                "section header",
+                "section top-header",
+                "parent",
+                "sidebar-2",
+                "social_pin",
+                "section page-detail middle-detail",
+                "section page-detail bottom-detail",
+                "footer container",
+                "list-news",
+                "footer-content  width_common",
+                "box_brief_info"
+        };
+        for (String className : classesToRemove) {
+            Elements remove = content.getElementsByClass(className);
+            remove.remove();
+        }
+
+        //removing all elements with such ids
+        String[] idToRemove = {
+                "to_top"
+        };
+        for (String idName : idToRemove){
+            Element remove = content.getElementById(idName);
+            remove.remove();
+        }
+
+        //removing all elements with such tagname
+        String[] tagnameToRemove ={
+                "header",
+                "footer"
+        };
+        for (String tagname : tagnameToRemove){
+            Elements remove = content.getElementsByTag(tagname);
+            remove.remove();
+        }
+
+        //remove all hyperlinks while keeping its content
+        Elements hrefs = content.getElementsByAttribute("href");
+        for (Element remove : hrefs){
+            remove.clearAttributes();
+        }
+
+        //attempt to remove all ads
+        Elements ads = content.getElementsByAttributeValueMatching("class", "ads");
+        for (Element remove : ads){
+            remove.remove();
+        }
+        //return clean content
+        return content;
+    }
 
 }
