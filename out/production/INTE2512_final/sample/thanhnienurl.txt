@@ -1,0 +1,3 @@
+https://thanhnien.vn/rss/home.rss|New
+https://thanhnien.vn/rss/thoi-su.rss|Politics
+https://thanhnien.vn/rss/the-gioi.rss|World

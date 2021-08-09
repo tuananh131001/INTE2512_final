@@ -13,9 +13,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
-public class Vnexpress implements News {
+public class Thanhnien implements News {
+
     @Override
     public String findTime(String url) throws IOException {
         Document doc = Jsoup.connect(url).get();
@@ -32,17 +34,18 @@ public class Vnexpress implements News {
         articleElementList.addAll(doc.getElementsByTag("item"));
         // Loop into article Element
         for (Element articleElement : articleElementList) {
-            String urlArticle = articleElement.child(3).ownText(); //Link of the article
             String titleArticle = articleElement.child(0).ownText(); // Title of the article
             String date = articleElement.getElementsByTag("Pubdate").first().ownText();
             Image image = null;
             Document description = Jsoup.parse(articleElement.child(1).ownText());
+            String urlArticle = description.getElementsByTag("a").attr("href"); //Link of the article
             String imageurl = description.getElementsByTag("img").attr("src");
             try{
                 image = new Image(imageurl);
             } catch (IllegalArgumentException e){
             }
-            Article article = new Article(image, titleArticle, urlArticle, date, "VnExpress");
+
+            Article article = new Article(image, titleArticle, urlArticle, date, "Thanh Nien");
 
             articleList.add(article);
         }
