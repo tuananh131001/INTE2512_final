@@ -1,5 +1,8 @@
 package sample;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Element;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -64,6 +67,10 @@ public interface News {
         }
         return categoryList;
 
+    }
+
+    public default Element scrapeContent(String url) throws IOException {
+        return Jsoup.parse(Jsoup.connect(url).get().toString());
     }
 
 }

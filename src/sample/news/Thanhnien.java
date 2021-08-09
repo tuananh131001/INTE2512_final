@@ -45,7 +45,7 @@ public class Thanhnien implements News {
             } catch (IllegalArgumentException e){
             }
 
-            Article article = new Article(image, titleArticle, urlArticle, date, "Thanh Nien");
+            Article article = new Article(image, titleArticle, urlArticle, date, "Thanh Nien", scrapeContent(urlArticle));
 
             articleList.add(article);
         }

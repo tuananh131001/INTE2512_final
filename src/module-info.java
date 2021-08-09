@@ -4,6 +4,7 @@ module JavaFxApplication {
     requires javafx.graphics;
     requires javafx.web;
     requires org.jsoup;
+    requires javafx.media;
 
     opens sample;
 }

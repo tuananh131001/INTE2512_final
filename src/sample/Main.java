@@ -17,7 +17,6 @@ public class Main extends Application {
         primaryStage.setTitle("nicesu application verry pretty cute hihi");
         primaryStage.setScene(new Scene(root, 1200, 800));
         primaryStage.show();
-
         //code to close all windows when main windows exits
         primaryStage.setOnCloseRequest(e -> Platform.exit());
     }

@@ -47,6 +47,8 @@ public class Vnexpress implements News {
         }
         return articleList;
     }
+
+    @Override
     public Element scrapeContent(String url) throws IOException {
         //connect to url
         Document content = Jsoup.parse(Jsoup.connect(url).get().toString());
