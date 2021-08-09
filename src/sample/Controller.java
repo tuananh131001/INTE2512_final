@@ -187,3 +187,4 @@ public class Controller implements Initializable {
         }
         return articleList;
     }
+}
