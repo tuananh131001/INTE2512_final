@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.scene.image.Image;
+import org.jsoup.nodes.Element;
 
 public class Article {
     protected Image imageArticle;
@@ -8,6 +9,7 @@ public class Article {
     protected String sourceArticle;
     protected String timeArticle;
     protected String source;
+    protected Element content;
 
     public Article(Image imageArticle, String titleArticle, String sourceArticle, String timeArticle, String source) {
         this.imageArticle = imageArticle;
@@ -15,6 +17,14 @@ public class Article {
         this.sourceArticle = sourceArticle;
         this.timeArticle = timeArticle;
         this.source = source;
+    }
+    public Article(Image imageArticle, String titleArticle, String sourceArticle, String timeArticle, String source, Element content) {
+        this.imageArticle = imageArticle;
+        this.titleArticle = titleArticle;
+        this.sourceArticle = sourceArticle;
+        this.timeArticle = timeArticle;
+        this.source = source;
+        this.content = content;
     }
 
     public Image getImageArticle() {
@@ -32,4 +42,6 @@ public class Article {
     public String getTimeArticle(){ return timeArticle; }
 
     public String getSource() { return source; }
+
+    public Element getContent() { return content; }
 }
