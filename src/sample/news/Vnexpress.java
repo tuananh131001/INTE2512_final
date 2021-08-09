@@ -20,8 +20,7 @@ public class Vnexpress implements News {
     public String findTime(String url) throws IOException {
         Document doc = Jsoup.connect(url).get();
         Elements date = doc.getElementsByClass("date");
-        String time = date.first().text();
-        return time;
+        return date.first().text();
     }
 
     @Override
@@ -49,8 +48,12 @@ public class Vnexpress implements News {
         return articleList;
     }
     public Element scrapeContent(String url) throws IOException {
-        Element content = Jsoup.parse(Jsoup.connect(url).get().toString());
+        //connect to url
+        Document content = Jsoup.parse(Jsoup.connect(url).get().toString());
+
+        //removing all elements with such class name
         String[] classesToRemove = {
+                "section header",
                 "section top-header",
                 "parent",
                 "sidebar-2",
@@ -66,6 +69,8 @@ public class Vnexpress implements News {
             Elements remove = content.getElementsByClass(className);
             remove.remove();
         }
+
+        //removing all elements with such ids
         String[] idToRemove = {
                 "to_top"
         };
@@ -73,6 +78,24 @@ public class Vnexpress implements News {
             Element remove = content.getElementById(idName);
             remove.remove();
         }
+
+        //removing all elements with such tagname
+        String[] tagnameToRemove ={
+                "header",
+                "footer"
+        };
+        for (String tagname : tagnameToRemove){
+            Elements remove = content.getElementsByTag(tagname);
+            remove.remove();
+        }
+
+        //remove all hyperlinks while keeping its content
+        Elements hrefs = content.getElementsByAttribute("href");
+        for (Element remove : hrefs){
+            remove.clearAttributes();
+        }
+
+        //return clean content
         return content;
     }
 
