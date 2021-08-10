@@ -91,7 +91,7 @@ public class Controller implements Initializable {
             hbox.setSpacing(10);
             for(String button : classesToRemove){
                 Button button1 = new Button(button);
-                button1.setStyle("-fx-text-fill: #0000ff");
+                button1.setStyle("-fx-text-fill: rgb(46,17,191)");
                 hbox.getChildren().add(button1);
                 button1.setOnAction(myHandler);
             }
@@ -111,11 +111,9 @@ public class Controller implements Initializable {
             if (currentCategory.equals(category)) return;
             currentCategory = category;
             try {
-                newsList.addAll(vnexpress.scrapeWebsiteCategory(category, new File("src/sample/vnexpressurl.txt")).getArticleList());
-//                ArrayList<Article> tuoiTreArticleList = (tuoitre.scrapeWebsiteCategory(category, new File("src/sample/vnexpressurl.txt")).getArticleList());
-//                ArrayList<Article> thanhNienArticleList = (thanhnien.scrapeWebsiteCategory(category, new File("src/sample/vnexpressurl.txt")).getArticleList());
-//                newsList.addAll(tuoiTreArticleList);
-//                newsList.addAll(thanhNienArticleList);
+                newsList = vnexpress.scrapeWebsiteCategory(category, new File("src/sample/vnexpressurl.txt")).getArticleList();
+//                newsList.addAll(tuoitre.scrapeWebsiteCategory(category, new File("src/sample/tuoitreurl.txt")).getArticleList());
+//                newsList.addAll(thanhnien.scrapeWebsiteCategory(category, new File("src/sample/thanhnienurl.txt")).getArticleList());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -164,8 +162,16 @@ public class Controller implements Initializable {
             try {
                 viewButton.setOnAction(event -> {
                     try {
-                        Element content = article.getContent();
-                        if (content != null) engine.loadContent(article.getContent().toString());
+                        Element content = null;
+                        switch (article.getSource()) {
+                            case "Thanh Nien":
+                                content = thanhnien.scrapeContent(article.getSourceArticle());
+                            case "Tuoi Tre":
+                                content = tuoitre.scrapeContent(article.getSourceArticle());
+                            case "VnExpress":
+                                content = vnexpress.scrapeContent(article.getSourceArticle());
+                        }
+                        if (content != null) engine.loadContent(content.toString());
 
                         BorderPane border = new BorderPane(); // make a pane for news and exit button
                         border.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(0), Insets.EMPTY)));

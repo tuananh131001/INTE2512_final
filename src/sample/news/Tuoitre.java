@@ -18,14 +18,6 @@ import java.util.Scanner;
 public class Tuoitre implements News {
 
     @Override
-    public String findTime(String url) throws IOException {
-        Document doc = Jsoup.connect(url).get();
-        Elements date = doc.getElementsByClass("date");
-        String time = date.first().text();
-        return time;
-    }
-
-    @Override
     public ArrayList<Article> scrapeArticle(String url) throws IOException {
         if (url == null) return new ArrayList<>();
         ArrayList<Article> newsList = new ArrayList<>(); //initialize return variable
@@ -48,7 +40,7 @@ public class Tuoitre implements News {
                     image = new Image(imageurl);
                 }
                 String date = article.getElementsByTag("Pubdate").first().ownText();
-                newsList.add(new Article(image, name, articleUrl, date,"Tuoi Tre", scrapeContent(articleUrl)));
+                newsList.add(new Article(image, name, articleUrl, date,"Tuoi Tre"));
             }
         } catch (Exception e){
             System.out.println(e);

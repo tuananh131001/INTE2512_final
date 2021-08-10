@@ -1,7 +1,9 @@
 package sample;
 
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,9 +12,12 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public interface News {
-    public String findTime(String url) throws IOException;
 
-    public ArrayList<Article> scrapeArticle(String url) throws IOException;
+    HashMap<String, Category> categories = new HashMap<>();
+
+    public default ArrayList<Article> scrapeArticle(String url) throws IOException{
+        return new ArrayList<>();
+    }
 
     public default ArrayList<Category> createCategory() {
         ArrayList<Category> category = new ArrayList<Category>();
@@ -30,6 +35,8 @@ public interface News {
     }
 
     public default Category scrapeWebsiteCategory(String categoryName,File urlfile) throws IOException {
+        Category category = categories.get(categoryName);
+        if (category != null) return category;
         Scanner urlScanner = new Scanner(urlfile);
         HashMap<String, String> urls = new HashMap<String, String>();
         while (urlScanner.hasNextLine()) {
@@ -38,11 +45,11 @@ public interface News {
         }
         //crawl from these site
         String url = urls.get(categoryName);
-        if (url == null) return null;
-        Category category = new Category(categoryName);
-        ArrayList<Article> articleList = scrapeArticle(urls.get(categoryName));
+        if (url == null) return category;
+        category = new Category(categoryName);
+        ArrayList<Article> articleList = scrapeArticle(url);
         category.setArticleList(articleList);
-
+        categories.put(categoryName, category);
         return category;
     }
 

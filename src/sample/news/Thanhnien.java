@@ -19,14 +19,6 @@ import java.util.Scanner;
 public class Thanhnien implements News {
 
     @Override
-    public String findTime(String url) throws IOException {
-        Document doc = Jsoup.connect(url).get();
-        Elements date = doc.getElementsByClass("date");
-        String time = date.first().text();
-        return time;
-    }
-
-    @Override
     public ArrayList<Article> scrapeArticle(String url) throws IOException {
         Elements articleElementList = new Elements(); // Create list of element
         ArrayList<Article> articleList = new ArrayList<>(); //Create list of article
@@ -45,7 +37,7 @@ public class Thanhnien implements News {
             } catch (IllegalArgumentException e){
             }
 
-            Article article = new Article(image, titleArticle, urlArticle, date, "Thanh Nien", scrapeContent(urlArticle));
+            Article article = new Article(image, titleArticle, urlArticle, date, "Thanh Nien");
 
             articleList.add(article);
         }
