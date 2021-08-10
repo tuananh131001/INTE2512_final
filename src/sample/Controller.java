@@ -72,7 +72,7 @@ public class Controller implements Initializable {
                     "New",
                     "Covid",
                     "Politics",
-                    "Bussiness",
+                    "Business",
                     "Technology",
                     "Health",
                     "Sports",
@@ -80,8 +80,10 @@ public class Controller implements Initializable {
                     "World",
                     "Others",
             };
+            hbox.setSpacing(10);
             for(String button : classesToRemove){
                 Button button1 = new Button(button);
+                button1.setStyle("-fx-text-fill: #0000ff");
                 hbox.getChildren().add(button1);
                 button1.setOnAction(myHandler);
             }
