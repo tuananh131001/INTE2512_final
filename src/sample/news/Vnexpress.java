@@ -39,7 +39,7 @@ public class Vnexpress implements News {
                 Document description = Jsoup.parse(articleElement.child(1).ownText());
                 String imageurl = description.getElementsByTag("img").attr("src");
                 if (imageurl != null && !imageurl.equals("")) image = new Image(imageurl);
-                Article article = new Article(image, titleArticle, urlArticle, date, "VnExpress", scrapeContent(urlArticle));
+                Article article = new Article(image, titleArticle, urlArticle, date, "VnExpress");
                 articleList.add(article);
             }
         } catch (Exception e){
@@ -65,7 +65,7 @@ public class Vnexpress implements News {
                 "footer container",
                 "list-news",
                 "footer-content  width_common",
-                "box_brief_info"
+                "box_brief_info",
         };
         for (String className : classesToRemove) {
             Elements remove = content.getElementsByClass(className);
@@ -98,7 +98,7 @@ public class Vnexpress implements News {
         }
 
         //attempt to remove all ads
-        Elements ads = content.getElementsByAttributeValueMatching("class", "ads");
+        Elements ads = content.getElementsByAttributeValueMatching("class", "ads|flexbox");
         for (Element remove : ads){
             remove.remove();
         }
