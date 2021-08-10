@@ -12,6 +12,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.fxml.FXML;
@@ -49,6 +50,15 @@ public class Controller implements Initializable {
 
     protected ArrayList<Article> newsList;
 
+    //initializing website scrapers
+    Vnexpress vnexpress;
+
+    Tuoitre tuoitre;
+
+    Thanhnien thanhnien;
+
+    private String currentCategory = "";
+
     @Override
     public void initialize(URL url1, ResourceBundle resourceBundle) {
         try {
@@ -60,10 +70,17 @@ public class Controller implements Initializable {
             engine = newsScene.getEngine();
 
             //initializing website scrapers
-//            Vnexpress vnexpress = new Vnexpress();
-//            Tuoitre tuoitre = new Tuoitre();
-//            Thanhnien thanhnien = new Thanhnien();
-            //initializing website scrapers
+            vnexpress = new Vnexpress();
+
+            tuoitre = new Tuoitre();
+
+            thanhnien = new Thanhnien();
+
+            //make pagination to invisible until a category is clicked
+            page.setVisible(false);
+            Text intro = new Text("Choose one of the above categories to start watching news!");
+            intro.setFont(new Font("Arial", 30));
+            stackPane.getChildren().add(intro);
 
 //            ArrayList<Category> categories =
 //            ArrayList<Category> categories =
@@ -83,14 +100,13 @@ public class Controller implements Initializable {
             hbox.setSpacing(10);
             for(String button : classesToRemove){
                 Button button1 = new Button(button);
-                button1.setStyle("-fx-text-fill: #0000ff");
+                button1.setStyle("-fx-text-fill: rgb(46,17,191)");
                 hbox.getChildren().add(button1);
                 button1.setOnAction(myHandler);
             }
             borderPane.setTop(hbox);
 
             // ref: https://stackoverflow.com/questions/25409044/javafx-multiple-buttons-to-same-handler
-
 
         } catch (Exception e) {
             System.out.println(e);
@@ -100,18 +116,17 @@ public class Controller implements Initializable {
     final EventHandler<ActionEvent> myHandler = new EventHandler<ActionEvent>(){
         @Override
         public void handle(ActionEvent event) {
-            Vnexpress vnexpress = new Vnexpress();
-            Tuoitre tuoitre = new Tuoitre();
-            Thanhnien thanhnien = new Thanhnien();
-
+            if (currentCategory.equals("")) {
+                page.setVisible(true);
+                stackPane.getChildren().remove(1);
+            }
+            String category = ((Button) event.getSource()).getText();
+            if (currentCategory.equals(category)) return;
+            currentCategory = category;
             try {
-                ArrayList<Article> vnexpressArticleList = (vnexpress.scrapeWebsiteCategory(((Button) event.getSource()).getText() , new File("src/sample/vnexpressurl.txt")).getArticleList());
-//                ArrayList<Article> tuoiTreArticleList = (tuoitre.scrapeWebsiteCategory(((Button) event.getSource()).getText() , new File("src/sample/vnexpressurl.txt")).getArticleList());
-//                ArrayList<Article> thanhNienArticleList = (thanhnien.scrapeWebsiteCategory(((Button) event.getSource()).getText() , new File("src/sample/vnexpressurl.txt")).getArticleList());
-
-                newsList = vnexpressArticleList;
-//                newsList.addAll(tuoiTreArticleList);
-//                newsList.addAll(thanhNienArticleList);
+                newsList = vnexpress.scrapeWebsiteCategory(category, new File("src/sample/vnexpressurl.txt")).getArticleList();
+                newsList.addAll(tuoitre.scrapeWebsiteCategory(category, new File("src/sample/tuoitreurl.txt")).getArticleList());
+                newsList.addAll(thanhnien.scrapeWebsiteCategory(category, new File("src/sample/thanhnienurl.txt")).getArticleList());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -160,8 +175,22 @@ public class Controller implements Initializable {
             try {
                 viewButton.setOnAction(event -> {
                     try {
-                        Element content = article.getContent();
-                        if (content != null) engine.loadContent(article.getContent().toString());
+                        Element content = null;
+                        switch (article.getSource()) {
+                            case "Thanh Nien": {
+                                content = thanhnien.scrapeContent(article.getSourceArticle());
+                                break;
+                            }
+                            case "Tuoi Tre":{
+                                content = tuoitre.scrapeContent(article.getSourceArticle());
+                                break;
+                            }
+                            case "VnExpress": {
+                                content = vnexpress.scrapeContent(article.getSourceArticle());
+                                break;
+                            }
+                        }
+                        if (content != null) engine.loadContent(content.toString());
 
                         BorderPane border = new BorderPane(); // make a pane for news and exit button
                         border.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(0), Insets.EMPTY)));

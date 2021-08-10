@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="add category button bar for Vnexpress">
+    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="blazing fast">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/News.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/News.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/news/Thanhnien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Thanhnien.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/news/Tuoitre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Tuoitre.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/news/Vnexpress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Vnexpress.java" afterDir="false" />
+    </list>
+    <list id="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" name="classes" comment="">
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Category.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Category.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Controller$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Controller$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/vnexpressUrl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/vnexpressUrl.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/vnexpressUrl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/vnexpressUrl.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/News.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/News.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Thanhnien.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Thanhnien.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Tuoitre.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Tuoitre.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Vnexpress.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Vnexpress.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +26,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -24,49 +34,36 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="test" />
+        <entry key="$PROJECT_DIR$" value="tuananh" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="1w8SNsuX09OMD6qAvXTEtHMbgsT" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
-    <property name="NEW_TOOLWINDOW_STRIPE_DEFAULTS" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/jfoenix-9.0.10.jar" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.13351136" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="11" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="sample.Main" />
-      <module name="INTE2512_final" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="sample.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="DjangoTestsConfigurationType">
       <module name="JavaFxApplication" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -86,19 +83,6 @@
       <option name="USE_OPTIONS" value="false" />
       <option name="OPTIONS" value="" />
       <method v="2" />
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="JavaFxApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="JavaFxApplication" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
     </configuration>
     <configuration default="true" type="PyBehaveRunConfigurationType" factoryName="Behave">
       <module name="JavaFxApplication" />
@@ -194,29 +178,184 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="16" />
+      <option name="MAIN_CLASS_NAME" value="sample.Main" />
+      <module name="INTE2512_final" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sample.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="JavaFxApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="JavaFxApplication" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task id="LOCAL-00001" summary="add category button bar for Vnexpress">
-      <created>1628579005190</created>
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="max ping" />
+      <changelist id="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" name="classes" comment="" />
+      <created>1627838686824</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1627838686824</updated>
+      <workItem from="1627838691033" duration="6156000" />
+      <workItem from="1627982121303" duration="1363000" />
+      <workItem from="1628013897043" duration="3501000" />
+      <workItem from="1628017416973" duration="232000" />
+      <workItem from="1628017680423" duration="168000" />
+      <workItem from="1628017932411" duration="8394000" />
+      <workItem from="1628327789398" duration="6516000" />
+      <workItem from="1628579519399" duration="161000" />
+      <workItem from="1628592189850" duration="4494000" />
+    </task>
+    <task id="LOCAL-00001" summary="made things scrollable">
+      <created>1628237732360</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1628579005190</updated>
+      <updated>1628237732360</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="big changes&#10;made scrapeContent for Vnexpress">
+      <created>1628504127158</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1628504127159</updated>
+    </task>
+    <task id="LOCAL-00003" summary="added comments for Vnexpress">
+      <created>1628506037350</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1628506037350</updated>
+    </task>
+    <task id="LOCAL-00004" summary="more things changed">
+      <created>1628507319022</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1628507319022</updated>
+    </task>
+    <task id="LOCAL-00005" summary="removed ads&#10;this should remove pesky block on top of Vnexpress pages now">
+      <created>1628515544708</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1628515544708</updated>
+    </task>
+    <task id="LOCAL-00006" summary="max ping">
+      <created>1628519139552</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1628519139552</updated>
+    </task>
+    <task id="LOCAL-00007" summary="clean code">
+      <created>1628519313639</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1628519313639</updated>
+    </task>
+    <task id="LOCAL-00008" summary="clean code">
+      <created>1628519325095</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1628519325095</updated>
+    </task>
+    <task id="LOCAL-00009" summary="better pagination&#10;added Tuoitre loading to test strain on computer">
+      <created>1628521214634</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1628521214634</updated>
+    </task>
+    <task id="LOCAL-00010" summary="prevented multiple button clicks to reload the same category">
+      <created>1628588651265</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1628588651265</updated>
+    </task>
+    <task id="LOCAL-00011" summary="prevented multiple button clicks to reload the same category">
+      <created>1628588720220</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1628588720220</updated>
+    </task>
+    <task id="LOCAL-00012" summary="blazing fast">
+      <created>1628592219288</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1628592219288</updated>
+    </task>
+    <task id="LOCAL-00013" summary="blazing fast">
+      <created>1628594375083</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1628594375083</updated>
+    </task>
+    <task id="LOCAL-00014" summary="blazing fast">
+      <created>1628594612039</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1628594612039</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="duy" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -224,16 +363,30 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add category button bar for Vnexpress" />
-    <option name="LAST_COMMIT_MESSAGE" value="add category button bar for Vnexpress" />
+    <MESSAGE value="made things scrollable" />
+    <MESSAGE value="big changes&#10;made scrapeContent for Vnexpress" />
+    <MESSAGE value="added comments for Vnexpress" />
+    <MESSAGE value="more things changed" />
+    <MESSAGE value="removed ads&#10;this should remove pesky block on top of Vnexpress pages now" />
+    <MESSAGE value="max ping" />
+    <MESSAGE value="clean code" />
+    <MESSAGE value="better pagination&#10;added Tuoitre loading to test strain on computer" />
+    <MESSAGE value="prevented multiple button clicks to reload the same category" />
+    <MESSAGE value="blazing fast" />
+    <option name="LAST_COMMIT_MESSAGE" value="blazing fast" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/Controller.java</url>
-          <line>102</line>
-          <option name="timeStamp" value="9" />
+          <line>50</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/Controller.java</url>
+          <line>178</line>
+          <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
