@@ -45,8 +45,8 @@ public interface News {
         }
         //crawl from these site
         String url = urls.get(categoryName);
-        if (url == null) return category;
         category = new Category(categoryName);
+        if (url == null) return category;
         ArrayList<Article> articleList = scrapeArticle(url);
         category.setArticleList(articleList);
         categories.put(categoryName, category);
