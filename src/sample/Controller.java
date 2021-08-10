@@ -49,6 +49,15 @@ public class Controller implements Initializable {
 
     protected ArrayList<Article> newsList;
 
+    //initializing website scrapers
+    Vnexpress vnexpress;
+
+    Tuoitre tuoitre;
+
+    Thanhnien thanhnien;
+
+    private String currentCategory = "";
+
     @Override
     public void initialize(URL url1, ResourceBundle resourceBundle) {
         try {
@@ -59,10 +68,9 @@ public class Controller implements Initializable {
             newsScene = new WebView();
             engine = newsScene.getEngine();
 
-            //initializing website scrapers
-//            Vnexpress vnexpress = new Vnexpress();
-//            Tuoitre tuoitre = new Tuoitre();
-//            Thanhnien thanhnien = new Thanhnien();
+            vnexpress = new Vnexpress();
+            tuoitre = new Tuoitre();
+            thanhnien = new Thanhnien();
             //initializing website scrapers
 
 //            ArrayList<Category> categories =
@@ -99,16 +107,13 @@ public class Controller implements Initializable {
     final EventHandler<ActionEvent> myHandler = new EventHandler<ActionEvent>(){
         @Override
         public void handle(ActionEvent event) {
-            Vnexpress vnexpress = new Vnexpress();
-            Tuoitre tuoitre = new Tuoitre();
-            Thanhnien thanhnien = new Thanhnien();
-
+            String category = ((Button) event.getSource()).getText();
+            if (currentCategory.equals(category)) return;
+            currentCategory = category;
             try {
-                ArrayList<Article> vnexpressArticleList = (vnexpress.scrapeWebsiteCategory(((Button) event.getSource()).getText() , new File("src/sample/vnexpressurl.txt")).getArticleList());
-//                ArrayList<Article> tuoiTreArticleList = (tuoitre.scrapeWebsiteCategory(((Button) event.getSource()).getText() , new File("src/sample/vnexpressurl.txt")).getArticleList());
-//                ArrayList<Article> thanhNienArticleList = (thanhnien.scrapeWebsiteCategory(((Button) event.getSource()).getText() , new File("src/sample/vnexpressurl.txt")).getArticleList());
-
-                newsList = vnexpressArticleList;
+                newsList.addAll(vnexpress.scrapeWebsiteCategory(category, new File("src/sample/vnexpressurl.txt")).getArticleList());
+//                ArrayList<Article> tuoiTreArticleList = (tuoitre.scrapeWebsiteCategory(category, new File("src/sample/vnexpressurl.txt")).getArticleList());
+//                ArrayList<Article> thanhNienArticleList = (thanhnien.scrapeWebsiteCategory(category, new File("src/sample/vnexpressurl.txt")).getArticleList());
 //                newsList.addAll(tuoiTreArticleList);
 //                newsList.addAll(thanhNienArticleList);
             } catch (IOException e) {
