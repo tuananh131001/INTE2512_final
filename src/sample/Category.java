@@ -19,9 +19,9 @@ public class Category {
         this.categoryUrl = "";
     }
 
-    public void setArticleList(ArrayList<Article> articleList) {
-        this.articleList = articleList;
-    }
+    public void setArticleList(ArrayList<Article> articleList) { this.articleList = articleList; }
+
+    public void setCategoryName(String categoryName){ this.categoryName = categoryName; }
 
     public String getCategoryName() { return categoryName;}
 

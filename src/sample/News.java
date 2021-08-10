@@ -1,7 +1,9 @@
 package sample;
 
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,12 +11,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public interface News {
-    public String findTime(String url) throws IOException;
+public class News {
 
-    public ArrayList<Article> scrapeArticle(String url) throws IOException;
+    private HashMap<String, Category> categories = new HashMap<>();
 
-    public default ArrayList<Category> createCategory() {
+    public ArrayList<Article> scrapeArticle(String url) throws IOException{
+        return new ArrayList<>();
+    }
+
+    public ArrayList<Category> createCategory() {
         ArrayList<Category> category = new ArrayList<Category>();
         category.add(new Category("New"));
         category.add(new Category("Covid"));
@@ -29,7 +34,9 @@ public interface News {
         return category;
     }
 
-    public default Category scrapeWebsiteCategory(String categoryName,File urlfile) throws IOException {
+    public Category scrapeWebsiteCategory(String categoryName,File urlfile) throws IOException {
+        Category category = categories.get(categoryName);
+        if (category != null) return category;
         Scanner urlScanner = new Scanner(urlfile);
         HashMap<String, String> urls = new HashMap<String, String>();
         while (urlScanner.hasNextLine()) {
@@ -38,15 +45,15 @@ public interface News {
         }
         //crawl from these site
         String url = urls.get(categoryName);
-        if (url == null) return null;
-        Category category = new Category(categoryName);
-        ArrayList<Article> articleList = scrapeArticle(urls.get(categoryName));
+        category = new Category(categoryName);
+        if (url == null) return category;
+        ArrayList<Article> articleList = scrapeArticle(url);
         category.setArticleList(articleList);
-
+        categories.put(categoryName, category);
         return category;
     }
 
-    public default ArrayList<Category> scrapeWebsite(File urlfile) throws IOException {
+    public ArrayList<Category> scrapeWebsite(File urlfile) throws IOException {
         ArrayList<Category> categoryList = createCategory(); //new category list includes World New Politics etc
 
         Scanner urlScanner = new Scanner(urlfile);
@@ -69,7 +76,7 @@ public interface News {
 
     }
 
-    public default Element scrapeContent(String url) throws IOException {
+    public Element scrapeContent(String url) throws IOException {
         return Jsoup.parse(Jsoup.connect(url).get().toString());
     }
 
