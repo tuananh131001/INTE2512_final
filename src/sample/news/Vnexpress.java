@@ -16,12 +16,6 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Vnexpress implements News {
-    @Override
-    public String findTime(String url) throws IOException {
-        Document doc = Jsoup.connect(url).get();
-        Elements date = doc.getElementsByClass("date");
-        return date.first().text();
-    }
 
     @Override
     public ArrayList<Article> scrapeArticle(String url) throws IOException {

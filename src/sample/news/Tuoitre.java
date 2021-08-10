@@ -17,13 +17,6 @@ import java.util.Scanner;
 
 public class Tuoitre implements News {
 
-    @Override
-    public String findTime(String url) throws IOException {
-        Document doc = Jsoup.connect(url).get();
-        Elements date = doc.getElementsByClass("date");
-        String time = date.first().text();
-        return time;
-    }
 
     @Override
     public ArrayList<Article> scrapeArticle(String url) throws IOException {

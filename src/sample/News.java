@@ -12,11 +12,6 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public interface News {
-    public default String findTime(String url) throws IOException{
-        Document doc = Jsoup.connect(url).get();
-        Elements date = doc.getElementsByClass("date");
-        return date.first().text();
-    }
 
     public default ArrayList<Article> scrapeArticle(String url) throws IOException{
         return new ArrayList<>();
