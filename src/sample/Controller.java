@@ -1,33 +1,21 @@
 package sample;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-import javafx.stage.Stage;
-import org.jsoup.Jsoup;
 import javafx.fxml.FXML;
-import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import sample.news.Thanhnien;
 import sample.news.Tuoitre;
 import sample.news.Vnexpress;
@@ -36,10 +24,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
-import java.util.function.Function;
-
-import javafx.scene.text.TextAlignment;
-import javafx.scene.media.Media;
 
 public class Controller implements Initializable {
     @FXML
@@ -47,79 +31,95 @@ public class Controller implements Initializable {
     @FXML
     private TextArea titleNewspaper;
     @FXML
-    private MenuBar menuBar;
-    @FXML
     private TextArea contentTextArea;
     @FXML
     private VBox vboxApp;
-    @FXML
-    private Pagination page;
+
     //Delare webview
     @FXML
     private WebView newsScene;
     @FXML
     private StackPane stackPane;
+    @FXML
+    private BorderPane borderPane;
+    @FXML
+    public Pagination page;
 
     private WebEngine engine;
 
-    private ArrayList<Article> newsList;
+    protected ArrayList<Article> newsList;
 
     @Override
     public void initialize(URL url1, ResourceBundle resourceBundle) {
         try {
             newsList = new ArrayList<Article>(); // LAM ON DUNG BO DONG NAY PLEASEEEEEEEEEEEEEEEE
-            ArrayList<Category> categories = new ArrayList<>();
 
-            //making menus for menuBar
-            Menu neww = new Menu("New");
-            Menu covid = new Menu("Covid");
-            Menu politics = new Menu("Politics");
-            Menu business = new Menu("Business");
-            Menu technology = new Menu("Technology");
-            Menu health = new Menu("Health");
-            Menu sports = new Menu("Sports");
-            Menu entertainment = new Menu("Entertainment");
-            Menu world = new Menu("World");
-            Menu others = new Menu("Others");
-
-            //adding menus into menubar
-            menuBar.getMenus().addAll(neww,covid,politics,business,technology,health,sports,entertainment,world,others);
-            menuBar.setStyle("-fx-font-size: 14");
 
             //init web engine
             newsScene = new WebView();
             engine = newsScene.getEngine();
 
-            //setting up application
-
-//            ArrayList<Category> vnexpressCategoryList = vnexpress.srapeWebsite();
-//            newsList = vnexpressCategoryList.get(0).getArticleList();
-
             //initializing website scrapers
-            Vnexpress vnexpress = new Vnexpress();
-            Tuoitre tuoitre = new Tuoitre();
-            Thanhnien thanhnien = new Thanhnien();
+//            Vnexpress vnexpress = new Vnexpress();
+//            Tuoitre tuoitre = new Tuoitre();
+//            Thanhnien thanhnien = new Thanhnien();
+            //initializing website scrapers
 
 //            ArrayList<Category> categories =
-            newsList.addAll(vnexpress.scrapeWebsiteCategory("New", new File("src/sample/vnexpressurl.txt")).getArticleList());
-            newsList.addAll(tuoitre.scrapeWebsiteCategory("New", new File("src/sample/tuoitreurl.txt")).getArticleList());
+//            ArrayList<Category> categories =
+            HBox hbox = new HBox();
+            String[] classesToRemove = {
+                    "New",
+                    "Covid",
+                    "Politics",
+                    "Business",
+                    "Technology",
+                    "Health",
+                    "Sports",
+                    "Entertainment",
+                    "World",
+                    "Others",
+            };
+            hbox.setSpacing(10);
+            for(String button : classesToRemove){
+                Button button1 = new Button(button);
+                button1.setStyle("-fx-text-fill: #0000ff");
+                hbox.getChildren().add(button1);
+                button1.setOnAction(myHandler);
+            }
+            borderPane.setTop(hbox);
 
-//            Category thanhnienCategory = thanhnien.scrapeWebsiteCategory("Politics", new File("src/sample/thanhnienurl.txt"));
-//            newsList = thanhnienCategory.getArticleList();
-//            ArrayList <Category> tuoitreCategories = tuoitre.scrapeWebsite(new File("src/sample/tuoitreurl.txt"));
-
-//            for (Category cat : categories)
-//                newsList.addAll(cat.getArticleList());
-
-            page.setPageCount((newsList.size()+9)/10);
-            page.setCurrentPageIndex(0);
-            page.setPageFactory(pageIndex -> createPage(pageIndex,newsList));
+            // ref: https://stackoverflow.com/questions/25409044/javafx-multiple-buttons-to-same-handler
 
 
         } catch (Exception e) {
             System.out.println(e);
         }
     }
+    // ref: https://stackoverflow.com/questions/25409044/javafx-multiple-buttons-to-same-handler
+    final EventHandler<ActionEvent> myHandler = new EventHandler<ActionEvent>(){
+        @Override
+        public void handle(ActionEvent event) {
+            Vnexpress vnexpress = new Vnexpress();
+            Tuoitre tuoitre = new Tuoitre();
+            Thanhnien thanhnien = new Thanhnien();
+
+            try {
+                ArrayList<Article> vnexpressArticleList = (vnexpress.scrapeWebsiteCategory(((Button) event.getSource()).getText() , new File("src/sample/vnexpressurl.txt")).getArticleList());
+//                ArrayList<Article> tuoiTreArticleList = (tuoitre.scrapeWebsiteCategory(((Button) event.getSource()).getText() , new File("src/sample/vnexpressurl.txt")).getArticleList());
+//                ArrayList<Article> thanhNienArticleList = (thanhnien.scrapeWebsiteCategory(((Button) event.getSource()).getText() , new File("src/sample/vnexpressurl.txt")).getArticleList());
+
+                newsList = vnexpressArticleList;
+//                newsList.addAll(tuoiTreArticleList);
+//                newsList.addAll(thanhNienArticleList);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            page.setPageCount((newsList.size()+9)/10);
+            page.setCurrentPageIndex(0);
+            page.setPageFactory(pageIndex -> createPage(pageIndex,newsList));
+        }
+    };
 
     public VBox createPage(int pageIndex, ArrayList<Article> articles) {
         VBox articleList = new VBox();
