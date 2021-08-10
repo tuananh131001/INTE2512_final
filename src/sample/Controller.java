@@ -115,7 +115,6 @@ public class Controller implements Initializable {
             page.setCurrentPageIndex(0);
             page.setPageFactory(pageIndex -> createPage(pageIndex,newsList));
 
-
         } catch (Exception e) {
             System.out.println(e);
         }
