@@ -11,15 +11,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public interface News {
+public class News {
 
-    HashMap<String, Category> categories = new HashMap<>();
+    private HashMap<String, Category> categories = new HashMap<>();
 
-    public default ArrayList<Article> scrapeArticle(String url) throws IOException{
+    public ArrayList<Article> scrapeArticle(String url) throws IOException{
         return new ArrayList<>();
     }
 
-    public default ArrayList<Category> createCategory() {
+    public ArrayList<Category> createCategory() {
         ArrayList<Category> category = new ArrayList<Category>();
         category.add(new Category("New"));
         category.add(new Category("Covid"));
@@ -34,7 +34,7 @@ public interface News {
         return category;
     }
 
-    public default Category scrapeWebsiteCategory(String categoryName,File urlfile) throws IOException {
+    public Category scrapeWebsiteCategory(String categoryName,File urlfile) throws IOException {
         Category category = categories.get(categoryName);
         if (category != null) return category;
         Scanner urlScanner = new Scanner(urlfile);
@@ -53,7 +53,7 @@ public interface News {
         return category;
     }
 
-    public default ArrayList<Category> scrapeWebsite(File urlfile) throws IOException {
+    public ArrayList<Category> scrapeWebsite(File urlfile) throws IOException {
         ArrayList<Category> categoryList = createCategory(); //new category list includes World New Politics etc
 
         Scanner urlScanner = new Scanner(urlfile);
@@ -76,7 +76,7 @@ public interface News {
 
     }
 
-    public default Element scrapeContent(String url) throws IOException {
+    public Element scrapeContent(String url) throws IOException {
         return Jsoup.parse(Jsoup.connect(url).get().toString());
     }
 

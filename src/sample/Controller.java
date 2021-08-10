@@ -12,6 +12,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.fxml.FXML;
@@ -68,10 +69,18 @@ public class Controller implements Initializable {
             newsScene = new WebView();
             engine = newsScene.getEngine();
 
-            vnexpress = new Vnexpress();
-            tuoitre = new Tuoitre();
-            thanhnien = new Thanhnien();
             //initializing website scrapers
+            vnexpress = new Vnexpress();
+
+            tuoitre = new Tuoitre();
+
+            thanhnien = new Thanhnien();
+
+            //make pagination to invisible until a category is clicked
+            page.setVisible(false);
+            Text intro = new Text("Choose one of the above categories to start watching news!");
+            intro.setFont(new Font("Arial", 30));
+            stackPane.getChildren().add(intro);
 
 //            ArrayList<Category> categories =
 //            ArrayList<Category> categories =
@@ -107,13 +116,17 @@ public class Controller implements Initializable {
     final EventHandler<ActionEvent> myHandler = new EventHandler<ActionEvent>(){
         @Override
         public void handle(ActionEvent event) {
+            if (currentCategory.equals("")) {
+                page.setVisible(true);
+                stackPane.getChildren().remove(1);
+            }
             String category = ((Button) event.getSource()).getText();
             if (currentCategory.equals(category)) return;
             currentCategory = category;
             try {
                 newsList = vnexpress.scrapeWebsiteCategory(category, new File("src/sample/vnexpressurl.txt")).getArticleList();
-//                newsList.addAll(tuoitre.scrapeWebsiteCategory(category, new File("src/sample/tuoitreurl.txt")).getArticleList());
-//                newsList.addAll(thanhnien.scrapeWebsiteCategory(category, new File("src/sample/thanhnienurl.txt")).getArticleList());
+                newsList.addAll(tuoitre.scrapeWebsiteCategory(category, new File("src/sample/tuoitreurl.txt")).getArticleList());
+                newsList.addAll(thanhnien.scrapeWebsiteCategory(category, new File("src/sample/thanhnienurl.txt")).getArticleList());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -164,12 +177,18 @@ public class Controller implements Initializable {
                     try {
                         Element content = null;
                         switch (article.getSource()) {
-                            case "Thanh Nien":
+                            case "Thanh Nien": {
                                 content = thanhnien.scrapeContent(article.getSourceArticle());
-                            case "Tuoi Tre":
+                                break;
+                            }
+                            case "Tuoi Tre":{
                                 content = tuoitre.scrapeContent(article.getSourceArticle());
-                            case "VnExpress":
+                                break;
+                            }
+                            case "VnExpress": {
                                 content = vnexpress.scrapeContent(article.getSourceArticle());
+                                break;
+                            }
                         }
                         if (content != null) engine.loadContent(content.toString());
 

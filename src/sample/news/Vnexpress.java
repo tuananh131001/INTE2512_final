@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class Vnexpress implements News {
+public class Vnexpress extends News {
 
     @Override
     public ArrayList<Article> scrapeArticle(String url) throws IOException {

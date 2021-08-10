@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class Tuoitre implements News {
+public class Tuoitre extends News {
 
     @Override
     public ArrayList<Article> scrapeArticle(String url) throws IOException {

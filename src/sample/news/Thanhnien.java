@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Thanhnien implements News {
+public class Thanhnien extends News {
 
     @Override
     public ArrayList<Article> scrapeArticle(String url) throws IOException {
