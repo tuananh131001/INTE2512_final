@@ -5,7 +5,9 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -14,8 +16,11 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("mainwindow.fxml"));
+
+        Scene scene = new Scene(root, 1200, 800);
+        primaryStage.setScene(scene);
+        scene.setFill(Color.TRANSPARENT);
         primaryStage.setTitle("nicesu application verry pretty cute hihi");
-        primaryStage.setScene(new Scene(root, 1200, 800));
         primaryStage.show();
         //code to close all windows when main windows exits
         primaryStage.setOnCloseRequest(e -> Platform.exit());

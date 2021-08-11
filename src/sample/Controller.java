@@ -1,7 +1,6 @@
 package sample;
 
 import javafx.animation.*;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -132,7 +131,7 @@ public class Controller implements Initializable {
             hbox.setSpacing(10);
             for(String button : classesToRemove){
                 Button button1 = new Button(button);
-                button1.setStyle("-fx-text-fill: rgb(46,17,191)");
+                button1.getStylesheets().add("sample/custombutton.css");
                 hbox.getChildren().add(button1);
                 button1.setOnAction(myHandler);
             }
