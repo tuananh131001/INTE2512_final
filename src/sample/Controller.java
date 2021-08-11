@@ -1,7 +1,6 @@
 package sample;
 
 import javafx.animation.*;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -132,13 +131,12 @@ public class Controller implements Initializable {
             hbox.setSpacing(10);
             for(String button : classesToRemove){
                 Button button1 = new Button(button);
-                button1.setStyle("-fx-text-fill: rgb(46,17,191)");
+                button1.getStylesheets().add("sample/custombutton.css");
                 hbox.getChildren().add(button1);
                 button1.setOnAction(myHandler);
             }
             borderPane.setTop(hbox);
 
-            // ref: https://stackoverflow.com/questions/25409044/javafx-multiple-buttons-to-same-handler
 
         } catch (Exception e) {
             System.out.println(e);
@@ -164,6 +162,7 @@ public class Controller implements Initializable {
                 newsList = (ArrayList<Article>) vnexpress.scrapeWebsiteCategory(category, new File("src/sample/vnexpressurl.txt")).getArticleList().clone();
                 newsList.addAll(tuoitre.scrapeWebsiteCategory(category, new File("src/sample/tuoitreurl.txt")).getArticleList());
                 newsList.addAll(thanhnien.scrapeWebsiteCategory(category, new File("src/sample/thanhnienurl.txt")).getArticleList());
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -215,21 +214,26 @@ public class Controller implements Initializable {
                 viewButton.setOnAction(event -> {
                     try {
                         Element content = null;
+
                         switch (article.getSource()) {
                             case "Thanh Nien": {
+
                                 content = thanhnien.scrapeContent(article.getSourceArticle());
                                 break;
                             }
                             case "Tuoi Tre":{
+
                                 content = tuoitre.scrapeContent(article.getSourceArticle());
                                 break;
                             }
                             case "VnExpress": {
+
                                 content = vnexpress.scrapeContent(article.getSourceArticle());
                                 break;
                             }
                         }
                         if (content != null) engine.loadContent(content.toString());
+
                         BorderPane border = new BorderPane(); // make a pane for news and exit button
                         border.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(0), Insets.EMPTY)));
 

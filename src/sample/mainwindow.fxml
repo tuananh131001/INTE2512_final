@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
 
-<StackPane fx:id="stackPane" prefHeight="566.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<StackPane fx:id="stackPane" prefHeight="566.0" prefWidth="710.0" styleClass="mainWindow" stylesheets="@styles/mainwindow.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <BorderPane fx:id="borderPane">
       <top>
-         <MenuBar fx:id="menuBar" prefHeight="20" BorderPane.alignment="CENTER">
+         <MenuBar fx:id="menuBar" prefHeight="32.0" prefWidth="710.0" BorderPane.alignment="CENTER">
             <effect>
                <Glow />
             </effect></MenuBar>
