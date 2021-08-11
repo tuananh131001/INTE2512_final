@@ -22,7 +22,6 @@ public class Vnexpress extends News {
         // Loop into article Element
         try {
             for (Element articleElement : articleElementList) {
-                if (count >= 10) break;
                 String urlArticle = articleElement.child(3).ownText(); //Link of the article
                 String titleArticle = articleElement.child(0).ownText(); // Title of the article
                 String date = articleElement.getElementsByTag("Pubdate").first().ownText();
@@ -32,7 +31,7 @@ public class Vnexpress extends News {
                 if (imageurl != null && !imageurl.equals("")) image = new Image(imageurl);
                 Article article = new Article(image, titleArticle, urlArticle, date, "VnExpress");
                 articleList.add(article);
-                ++count;
+                if (articleList.size() >= 10) break;
             }
         } catch (Exception e){
             System.out.println(e);

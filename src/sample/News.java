@@ -14,7 +14,6 @@ import java.util.Scanner;
 public abstract class News {
 
     private HashMap<String, Category> categories = new HashMap<>();
-    protected int count = 0;
 
     public ArrayList<Article> scrapeArticle(String url) throws IOException{
         return new ArrayList<>();

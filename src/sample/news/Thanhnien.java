@@ -21,7 +21,6 @@ public class Thanhnien extends News {
         articleElementList.addAll(doc.getElementsByTag("item"));
         // Loop into article Element
         for (Element articleElement : articleElementList) {
-            if (count >= 10) break;
             String titleArticle = articleElement.child(0).ownText(); // Title of the article
             String date = articleElement.getElementsByTag("Pubdate").first().ownText();
             Image image = null;
@@ -34,7 +33,7 @@ public class Thanhnien extends News {
             }
             Article article = new Article(image, titleArticle, urlArticle, date, "Thanh Nien");
             articleList.add(article);
-            ++count;
+            if (articleList.size() >= 10) break;
         }
         return articleList;
     }

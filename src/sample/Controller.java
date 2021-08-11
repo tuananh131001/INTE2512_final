@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.animation.*;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -14,6 +16,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.util.Duration;
 import org.jsoup.nodes.Element;
 import sample.news.Thanhnien;
 import sample.news.Tuoitre;
@@ -58,6 +61,11 @@ public class Controller implements Initializable {
 
     private String currentCategory = "";
 
+    Animation scrollAnimation = new Timeline();
+
+    double scrollDestination;
+    double scrollDirection;
+
     @Override
     public void initialize(URL url1, ResourceBundle resourceBundle) {
         try {
@@ -81,8 +89,37 @@ public class Controller implements Initializable {
             intro.setFont(new Font("Arial", 30));
             stackPane.getChildren().add(intro);
 
-//            ArrayList<Category> categories =
-//            ArrayList<Category> categories =
+            //attempt to make the scrollbar a bit faster and smoother
+            final double SPEED = 0.004;
+            scrollPaneFilters.getContent().setOnScroll(scrollEvent -> {
+                double deltaY = scrollEvent.getDeltaY() * SPEED;
+                //if we're scrolling in a different direction, set the destination as new destination. Otherwise add the previous destination to the current animation
+                if (scrollDestination == 0 || scrollDirection*deltaY < 0) {
+                    scrollDestination = scrollPaneFilters.getVvalue() - deltaY;
+                }
+                else if (scrollAnimation != null){
+                    scrollAnimation.pause(); //pause previous animation to prevent weird stuff happening
+                    scrollDestination -= deltaY;
+                }
+                //save current direction
+                scrollDirection = deltaY;
+
+                //setup animation for scroll
+                scrollAnimation = new Timeline(
+                        new KeyFrame(Duration.seconds(0.15),
+                        new KeyValue(scrollPaneFilters.vvalueProperty(), scrollDestination)));
+
+                //reset destination and direction after finish scrolling
+                scrollAnimation.setOnFinished(e -> {
+                    scrollDestination = 0;
+                    scrollDirection = 0;
+                });
+
+                //plays the scroll animation
+                scrollAnimation.play();
+            });
+
+            //create a menu of categories
             HBox hbox = new HBox();
             String[] classesToRemove = {
                     "New",
@@ -115,20 +152,27 @@ public class Controller implements Initializable {
     final EventHandler<ActionEvent> myHandler = new EventHandler<ActionEvent>(){
         @Override
         public void handle(ActionEvent event) {
+            //if a category is chosen, add pagination back in and remove intro text
             if (currentCategory.equals("")) {
                 page.setVisible(true);
                 stackPane.getChildren().remove(1);
             }
+
+            //if the same button is pressed twice, do nothing
             String category = ((Button) event.getSource()).getText();
             if (currentCategory.equals(category)) return;
             currentCategory = category;
+
+            //scrape all articles of the chosen category
             try {
-                newsList = vnexpress.scrapeWebsiteCategory(category, new File("src/sample/vnexpressurl.txt")).getArticleList();
+                newsList = (ArrayList<Article>) vnexpress.scrapeWebsiteCategory(category, new File("src/sample/vnexpressurl.txt")).getArticleList().clone();
                 newsList.addAll(tuoitre.scrapeWebsiteCategory(category, new File("src/sample/tuoitreurl.txt")).getArticleList());
                 newsList.addAll(thanhnien.scrapeWebsiteCategory(category, new File("src/sample/thanhnienurl.txt")).getArticleList());
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            //setting up pagination
             page.setPageCount((newsList.size()+9)/10);
             page.setCurrentPageIndex(0);
             page.setPageFactory(pageIndex -> createPage(pageIndex,newsList));
@@ -138,7 +182,7 @@ public class Controller implements Initializable {
     public VBox createPage(int pageIndex, ArrayList<Article> articles) {
         VBox articleList = new VBox();
         articleList.setSpacing(5);
-        articleList.setPadding(new Insets(30, 70, 30, 70));
+        articleList.setPadding(new Insets(5, 30, 30, 30));
         int range = (pageIndex+1)*10-10;
         for (int i = range; i < range+10 && i < articles.size();i++) {
             Article article = articles.get(i);
