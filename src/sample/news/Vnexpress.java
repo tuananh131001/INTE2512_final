@@ -6,14 +6,10 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import sample.Article;
-import sample.Category;
 import sample.News;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Scanner;
 
 public class Vnexpress extends News {
 
@@ -26,6 +22,7 @@ public class Vnexpress extends News {
         // Loop into article Element
         try {
             for (Element articleElement : articleElementList) {
+                if (count >= 10) break;
                 String urlArticle = articleElement.child(3).ownText(); //Link of the article
                 String titleArticle = articleElement.child(0).ownText(); // Title of the article
                 String date = articleElement.getElementsByTag("Pubdate").first().ownText();
@@ -35,6 +32,7 @@ public class Vnexpress extends News {
                 if (imageurl != null && !imageurl.equals("")) image = new Image(imageurl);
                 Article article = new Article(image, titleArticle, urlArticle, date, "VnExpress");
                 articleList.add(article);
+                ++count;
             }
         } catch (Exception e){
             System.out.println(e);
@@ -60,6 +58,8 @@ public class Vnexpress extends News {
                 "list-news",
                 "footer-content  width_common",
                 "box_brief_info",
+                "cohoi_block",
+                "tab_content"
         };
         for (String className : classesToRemove) {
             Elements remove = content.getElementsByClass(className);
@@ -69,6 +69,7 @@ public class Vnexpress extends News {
         //removing all elements with such ids
         String[] idToRemove = {
                 "to_top"
+
         };
         for (String idName : idToRemove){
             Element remove = content.getElementById(idName);

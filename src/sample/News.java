@@ -11,9 +11,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class News {
+public abstract class News {
 
     private HashMap<String, Category> categories = new HashMap<>();
+    protected int count = 0;
 
     public ArrayList<Article> scrapeArticle(String url) throws IOException{
         return new ArrayList<>();

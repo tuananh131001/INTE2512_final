@@ -6,15 +6,10 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import sample.Article;
-import sample.Category;
 import sample.News;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
 
 public class Thanhnien extends News {
 
@@ -26,6 +21,7 @@ public class Thanhnien extends News {
         articleElementList.addAll(doc.getElementsByTag("item"));
         // Loop into article Element
         for (Element articleElement : articleElementList) {
+            if (count >= 10) break;
             String titleArticle = articleElement.child(0).ownText(); // Title of the article
             String date = articleElement.getElementsByTag("Pubdate").first().ownText();
             Image image = null;
@@ -36,10 +32,9 @@ public class Thanhnien extends News {
                 image = new Image(imageurl);
             } catch (IllegalArgumentException e){
             }
-
             Article article = new Article(image, titleArticle, urlArticle, date, "Thanh Nien");
-
             articleList.add(article);
+            ++count;
         }
         return articleList;
     }
