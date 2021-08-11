@@ -115,20 +115,27 @@ public class Controller implements Initializable {
     final EventHandler<ActionEvent> myHandler = new EventHandler<ActionEvent>(){
         @Override
         public void handle(ActionEvent event) {
+            //if a category is chosen, add pagination back in and remove intro text
             if (currentCategory.equals("")) {
                 page.setVisible(true);
                 stackPane.getChildren().remove(1);
             }
+
+            //if the same button is pressed twice, do nothing
             String category = ((Button) event.getSource()).getText();
             if (currentCategory.equals(category)) return;
             currentCategory = category;
+
+            //scrape all articles of the chosen category
             try {
-                newsList = vnexpress.scrapeWebsiteCategory(category, new File("src/sample/vnexpressurl.txt")).getArticleList();
+                newsList = (ArrayList<Article>) vnexpress.scrapeWebsiteCategory(category, new File("src/sample/vnexpressurl.txt")).getArticleList().clone();
                 newsList.addAll(tuoitre.scrapeWebsiteCategory(category, new File("src/sample/tuoitreurl.txt")).getArticleList());
                 newsList.addAll(thanhnien.scrapeWebsiteCategory(category, new File("src/sample/thanhnienurl.txt")).getArticleList());
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            //setting up pagination
             page.setPageCount((newsList.size()+9)/10);
             page.setCurrentPageIndex(0);
             page.setPageFactory(pageIndex -> createPage(pageIndex,newsList));
