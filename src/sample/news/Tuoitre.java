@@ -6,14 +6,10 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import sample.Article;
-import sample.Category;
 import sample.News;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Scanner;
 
 public class Tuoitre extends News {
 
@@ -31,6 +27,7 @@ public class Tuoitre extends News {
         //for each article, get its url, description and url
         try {
             for (Element article : listArticle) {
+                if (count >= 10) break;
                 String name = article.child(0).ownText();
                 String articleUrl = article.child(1).ownText();
                 Image image = null;
@@ -41,6 +38,7 @@ public class Tuoitre extends News {
                 }
                 String date = article.getElementsByTag("Pubdate").first().ownText();
                 newsList.add(new Article(image, name, articleUrl, date,"Tuoi Tre"));
+                ++count;
             }
         } catch (Exception e){
             System.out.println(e);
