@@ -26,21 +26,12 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
     @FXML
     public ScrollPane scrollPaneFilters;
-    @FXML
-    private TextArea titleNewspaper;
-    @FXML
-    private TextArea contentTextArea;
-    @FXML
-    private VBox vboxApp;
-
-    //Delare webview
-    @FXML
-    private WebView newsScene;
     @FXML
     private StackPane stackPane;
     @FXML
@@ -50,19 +41,22 @@ public class Controller implements Initializable {
 
     private WebEngine engine;
 
+    private WebView newsScene;
+
+    //current article list being viewed
     protected ArrayList<Article> newsList;
 
     //initializing website scrapers
     Vnexpress vnexpress;
-
     Tuoitre tuoitre;
-
     Thanhnien thanhnien;
 
+    //save current category to make sure the we dont load the same category twice, after hashmap update this is not relevant anymore (still reduces loading time, just not noticeable)
     private String currentCategory = "";
 
+    //makes scroll smooth af
     Animation scrollAnimation = new Timeline();
-
+    //makes for the above thing to work
     double scrollDestination;
     double scrollDirection;
 
@@ -70,7 +64,6 @@ public class Controller implements Initializable {
     public void initialize(URL url1, ResourceBundle resourceBundle) {
         try {
             newsList = new ArrayList<Article>(); // LAM ON DUNG BO DONG NAY PLEASEEEEEEEEEEEEEEEE
-
 
             //init web engine
             newsScene = new WebView();
@@ -82,6 +75,9 @@ public class Controller implements Initializable {
             tuoitre = new Tuoitre();
 
             thanhnien = new Thanhnien();
+
+            //apply scroll skin for news scene
+            newsScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/scrollstyle.css")).toExternalForm());
 
             //make pagination to invisible until a category is clicked
             page.setVisible(false);
@@ -234,7 +230,6 @@ public class Controller implements Initializable {
                             }
                         }
                         if (content != null) engine.loadContent(content.toString());
-
                         BorderPane border = new BorderPane(); // make a pane for news and exit button
                         border.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(0), Insets.EMPTY)));
 

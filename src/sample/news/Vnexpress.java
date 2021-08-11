@@ -43,6 +43,7 @@ public class Vnexpress extends News {
     public Element scrapeContent(String url) throws IOException {
         //connect to url
         Document content = Jsoup.parse(Jsoup.connect(url).get().toString());
+        content.append("<link rel=" + '\"' + "@stylesheet" + '\"' + "href="+'\"'+"@styles/scrollstyle.css"+'\"' + "media="+'\"'+"screen"+'\"'+">");
 
         //removing all elements with such class name
         String[] classesToRemove = {

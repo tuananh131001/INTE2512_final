@@ -19,7 +19,6 @@ public abstract class News {
         return new ArrayList<>();
     }
 
-
     public Category scrapeWebsiteCategory(String categoryName,File urlfile) throws IOException {
         Category category = categories.get(categoryName);
         if (category != null) return category;

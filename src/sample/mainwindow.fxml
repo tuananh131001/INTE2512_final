@@ -13,7 +13,7 @@
             </effect></MenuBar>
       </top>
       <center>
-         <ScrollPane fx:id="scrollPaneFilters" fitToHeight="true" fitToWidth="true" pannable="true">
+         <ScrollPane fx:id="scrollPaneFilters" fitToHeight="true" fitToWidth="true" pannable="true" stylesheets="@styles/scrollstyle.css">
             <Pagination fx:id="page" BorderPane.alignment="BOTTOM_CENTER" />
          </ScrollPane>
       </center>
