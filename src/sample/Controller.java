@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.animation.*;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -14,6 +16,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.util.Duration;
 import org.jsoup.nodes.Element;
 import sample.news.Thanhnien;
 import sample.news.Tuoitre;
@@ -23,21 +26,12 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
     @FXML
     public ScrollPane scrollPaneFilters;
-    @FXML
-    private TextArea titleNewspaper;
-    @FXML
-    private TextArea contentTextArea;
-    @FXML
-    private VBox vboxApp;
-
-    //Delare webview
-    @FXML
-    private WebView newsScene;
     @FXML
     private StackPane stackPane;
     @FXML
@@ -47,22 +41,29 @@ public class Controller implements Initializable {
 
     private WebEngine engine;
 
+    private WebView newsScene;
+
+    //current article list being viewed
     protected ArrayList<Article> newsList;
 
     //initializing website scrapers
     Vnexpress vnexpress;
-
     Tuoitre tuoitre;
-
     Thanhnien thanhnien;
 
+    //save current category to make sure the we dont load the same category twice, after hashmap update this is not relevant anymore (still reduces loading time, just not noticeable)
     private String currentCategory = "";
+
+    //makes scroll smooth af
+    Animation scrollAnimation = new Timeline();
+    //makes for the above thing to work
+    double scrollDestination;
+    double scrollDirection;
 
     @Override
     public void initialize(URL url1, ResourceBundle resourceBundle) {
         try {
             newsList = new ArrayList<Article>(); // LAM ON DUNG BO DONG NAY PLEASEEEEEEEEEEEEEEEE
-
 
             //init web engine
             newsScene = new WebView();
@@ -75,14 +76,46 @@ public class Controller implements Initializable {
 
             thanhnien = new Thanhnien();
 
+            //apply scroll skin for news scene
+            newsScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/scrollstyle.css")).toExternalForm());
+
             //make pagination to invisible until a category is clicked
             page.setVisible(false);
             Text intro = new Text("Choose one of the above categories to start watching news!");
             intro.setFont(new Font("Arial", 30));
             stackPane.getChildren().add(intro);
 
-//            ArrayList<Category> categories =
-//            ArrayList<Category> categories =
+            //attempt to make the scrollbar a bit faster and smoother
+            final double SPEED = 0.004;
+            scrollPaneFilters.getContent().setOnScroll(scrollEvent -> {
+                double deltaY = scrollEvent.getDeltaY() * SPEED;
+                //if we're scrolling in a different direction, set the destination as new destination. Otherwise add the previous destination to the current animation
+                if (scrollDestination == 0 || scrollDirection*deltaY < 0) {
+                    scrollDestination = scrollPaneFilters.getVvalue() - deltaY;
+                }
+                else if (scrollAnimation != null){
+                    scrollAnimation.pause(); //pause previous animation to prevent weird stuff happening
+                    scrollDestination -= deltaY;
+                }
+                //save current direction
+                scrollDirection = deltaY;
+
+                //setup animation for scroll
+                scrollAnimation = new Timeline(
+                        new KeyFrame(Duration.seconds(0.15),
+                        new KeyValue(scrollPaneFilters.vvalueProperty(), scrollDestination)));
+
+                //reset destination and direction after finish scrolling
+                scrollAnimation.setOnFinished(e -> {
+                    scrollDestination = 0;
+                    scrollDirection = 0;
+                });
+
+                //plays the scroll animation
+                scrollAnimation.play();
+            });
+
+            //create a menu of categories
             HBox hbox = new HBox();
             String[] classesToRemove = {
                     "New",
@@ -145,7 +178,7 @@ public class Controller implements Initializable {
     public VBox createPage(int pageIndex, ArrayList<Article> articles) {
         VBox articleList = new VBox();
         articleList.setSpacing(5);
-        articleList.setPadding(new Insets(30, 70, 30, 70));
+        articleList.setPadding(new Insets(5, 30, 30, 30));
         int range = (pageIndex+1)*10-10;
         for (int i = range; i < range+10 && i < articles.size();i++) {
             Article article = articles.get(i);
@@ -197,7 +230,6 @@ public class Controller implements Initializable {
                             }
                         }
                         if (content != null) engine.loadContent(content.toString());
-
                         BorderPane border = new BorderPane(); // make a pane for news and exit button
                         border.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(0), Insets.EMPTY)));
 
