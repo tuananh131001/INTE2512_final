@@ -1,3 +1,9 @@
 https://thanhnien.vn/rss/home.rss|New
 https://thanhnien.vn/rss/thoi-su.rss|Politics
 https://thanhnien.vn/rss/the-gioi.rss|World
+https://thanhnien.vn/rss/thoi-su/vuot-qua-covid-19.rss|Covid
+https://thanhnien.vn/rss/tai-chinh-kinh-doanh.rss|Business
+https://thanhnien.vn/rss/cong-nghe.rss|Technology
+https://thethao.thanhnien.vn/rss/home.rss|Sports
+https://thanhnien.vn/rss/giai-tri.rss|Entertainment
+https://xe.thanhnien.vn/rss/home.rss|Others

@@ -67,7 +67,8 @@ public class Tuoitre extends News {
         }
         //removing all elements with such tagname
         String[] tagnameToRemove ={
-                "footer"
+                "footer",
+                "header"
         };
         for (String tagname : tagnameToRemove){
             Elements remove = content.getElementsByTag(tagname);

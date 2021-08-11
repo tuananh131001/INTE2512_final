@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public abstract class News {
+public class News {
 
     private HashMap<String, Category> categories = new HashMap<>();
 
@@ -23,6 +23,7 @@ public abstract class News {
         Category category = categories.get(categoryName);
         if (category != null) return category;
         Scanner urlScanner = new Scanner(urlfile);
+        //Hashmap to store url and category name
         HashMap<String, String> urls = new HashMap<String, String>();
         while (urlScanner.hasNextLine()) {
             String[] url = urlScanner.nextLine().split("\\|");
