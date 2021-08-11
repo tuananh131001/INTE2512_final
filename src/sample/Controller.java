@@ -232,7 +232,7 @@ public class Controller implements Initializable {
                                 break;
                             }
                         }
-                        if (content != null) engine.loadContent(content.toString(), "text/html");
+                        if (content != null) engine.loadContent(content.toString());
 
                         BorderPane border = new BorderPane(); // make a pane for news and exit button
                         border.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(0), Insets.EMPTY)));

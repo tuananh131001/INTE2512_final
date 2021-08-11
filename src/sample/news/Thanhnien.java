@@ -40,18 +40,8 @@ public class Thanhnien extends News {
     @Override
     public Element scrapeContent(String url) throws IOException {
         //connect to url
-        Document content = Jsoup.connect(url).get();
-//        Document doc = Jsoup.parseBodyFragment(Jsoup.connect(url).get().toString());
-        Element body = content.getElementsByTag("cms-body detail").first();;
-        //removing all elements with such tagname
-//        String[] tagnameToRemove ={
-//        };
-//        for (String tagName : tagnameToRemove){
-//            Elements remove = content.getElementsByTag(tagName);
-//            remove.remove();
-//        }
-        //return clean content
-        return body;
+        Document content = Jsoup.parse(Jsoup.connect(url).get().toString());
+        return content;
     }
 
 }
