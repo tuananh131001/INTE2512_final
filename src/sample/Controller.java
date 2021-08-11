@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -115,8 +117,9 @@ public class Controller implements Initializable {
             });
 
             //create a menu of categories
+            ToggleGroup toggleGroup = new ToggleGroup();
             HBox hbox = new HBox();
-            String[] classesToRemove = {
+            String[] ButtonNames = {
                     "New",
                     "Covid",
                     "Politics",
@@ -128,12 +131,12 @@ public class Controller implements Initializable {
                     "World",
                     "Others",
             };
-            hbox.setSpacing(10);
-            for(String button : classesToRemove){
-                Button button1 = new Button(button);
-                button1.getStylesheets().add("sample/custombutton.css");
-                hbox.getChildren().add(button1);
-                button1.setOnAction(myHandler);
+            for(String buttonName : ButtonNames){
+                ToggleButton button = new ToggleButton(buttonName);
+                button.getStylesheets().add("sample/custombutton.css");
+                button.setToggleGroup(toggleGroup);
+                button.setOnAction(myHandler);
+                hbox.getChildren().add(button);
             }
             borderPane.setTop(hbox);
 
@@ -147,13 +150,20 @@ public class Controller implements Initializable {
         @Override
         public void handle(ActionEvent event) {
             //if a category is chosen, add pagination back in and remove intro text
+            ToggleButton button = (ToggleButton) event.getSource();
+
+            Parent parent = button.getParent();
+            for (Node ee : parent.getChildrenUnmodifiable()) {
+                ee.setDisable(false);
+            }
+            button.setDisable(true);
             if (currentCategory.equals("")) {
                 page.setVisible(true);
                 stackPane.getChildren().remove(1);
             }
 
             //if the same button is pressed twice, do nothing
-            String category = ((Button) event.getSource()).getText();
+            String category = button.getText();
             if (currentCategory.equals(category)) return;
             currentCategory = category;
 
