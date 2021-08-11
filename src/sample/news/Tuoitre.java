@@ -45,4 +45,36 @@ public class Tuoitre extends News {
         }
         return newsList;
     }
+
+    @Override
+    public Element scrapeContent(String url) throws IOException {
+        //connect to url
+        Document content = Jsoup.parse(Jsoup.connect(url).get().toString());
+
+        //removing all elements with such ids
+        //removing all elements with such class name
+        String[] classesToRemove = {
+                "header-top",
+                "header-bottom",
+                "trending",
+                "title-content clearfix first",
+                "bannerfooter1",
+                "box_can_you_care",
+                "tagandnetwork"
+        };
+        for (String className : classesToRemove) {
+            Elements remove = content.getElementsByClass(className);
+            remove.remove();
+        }
+        //removing all elements with such tagname
+        String[] tagnameToRemove ={
+                "footer"
+        };
+        for (String tagname : tagnameToRemove){
+            Elements remove = content.getElementsByTag(tagname);
+            remove.remove();
+        }
+        //return clean content
+        return content;
+    }
 }

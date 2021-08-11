@@ -20,20 +20,6 @@ public abstract class News {
         return new ArrayList<>();
     }
 
-    public ArrayList<Category> createCategory() {
-        ArrayList<Category> category = new ArrayList<Category>();
-        category.add(new Category("New"));
-        category.add(new Category("Covid"));
-        category.add(new Category("Politics"));
-        category.add(new Category("Business"));
-        category.add(new Category("Technology"));
-        category.add(new Category("Health"));
-        category.add(new Category("Sports"));
-        category.add(new Category("Entertainment"));
-        category.add(new Category("World"));
-        category.add(new Category("Others"));
-        return category;
-    }
 
     public Category scrapeWebsiteCategory(String categoryName,File urlfile) throws IOException {
         Category category = categories.get(categoryName);
@@ -54,28 +40,6 @@ public abstract class News {
         return category;
     }
 
-    public ArrayList<Category> scrapeWebsite(File urlfile) throws IOException {
-        ArrayList<Category> categoryList = createCategory(); //new category list includes World New Politics etc
-
-        Scanner urlScanner = new Scanner(urlfile);
-        HashMap<String, String> urls = new HashMap<String, String>();
-
-        //scans the file
-        while (urlScanner.hasNextLine()) {
-            String[] url = urlScanner.nextLine().split("\\|");
-            urls.put(url[1], url[0]);
-        }
-
-        //Find and all article element in listArticle
-        for (Category category : categoryList) {
-            String url = urls.get(category.getCategoryName());
-            if (url == null) continue;
-            ArrayList<Article> articleList = scrapeArticle(url);
-            category.setArticleList(articleList);
-        }
-        return categoryList;
-
-    }
 
     public Element scrapeContent(String url) throws IOException {
         return Jsoup.parse(Jsoup.connect(url).get().toString());
