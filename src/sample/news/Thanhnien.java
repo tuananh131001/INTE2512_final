@@ -38,6 +38,13 @@ public class Thanhnien extends News {
         }
         return articleList;
     }
+    @Override
+    public Element scrapeContent(String url) throws IOException {
+        //connect to url
+        Document content = Jsoup.parse(Jsoup.connect(url).get().toString());
 
+        //return clean content
+        return content;
+    }
 
 }

@@ -69,7 +69,6 @@ public class Vnexpress extends News {
         //removing all elements with such ids
         String[] idToRemove = {
                 "to_top"
-
         };
         for (String idName : idToRemove){
             Element remove = content.getElementById(idName);
