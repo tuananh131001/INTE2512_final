@@ -41,6 +41,39 @@ public class Thanhnien extends News {
     public Element scrapeContent(String url) throws IOException {
         //connect to url
         Document content = Jsoup.parse(Jsoup.connect(url).get().toString());
+        String[] classesToRemove = {
+                "site-header",
+                "site-header__grid affix-top",
+                "details__meta",
+                "details__morenews",
+                "details__tags",
+                "modal fade",
+                "modal fade modal-signin",
+                "zone zone--comment",
+                "zone lastest-news lastest-news--gray",
+                "zone zone--media dark-media",
+                "as-content",
+                "site-footer"
+        };
+        //removing all elements with such ids
+        String[] idToRemove = {
+                "dablewidget_x7yEvG76"
+        };
+        for (String idName : idToRemove){
+            Element remove = content.getElementById(idName);
+            remove.remove();
+        }
+
+        //remove all hyperlinks while keeping its content
+        Elements hrefs = content.getElementsByAttribute("href");
+        for (Element remove : hrefs){
+            remove.clearAttributes();
+        }
+
+        for (String className : classesToRemove) {
+            Elements remove = content.getElementsByClass(className);
+            remove.remove();
+        }
         return content;
     }
 
