@@ -7,22 +7,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Article {
-    protected Image imageArticle;
+    protected Image image;
     protected String titleArticle;
     protected String sourceArticle;
     protected String timeArticle;
     protected String source;
 
-    public Article(Image imageArticle, String titleArticle, String sourceArticle, String timeArticle, String source) {
-        this.imageArticle = imageArticle;
+    public Article(Image image, String titleArticle, String sourceArticle, String timeArticle, String source) {
+        this.image = image;
         this.titleArticle = titleArticle;
         this.sourceArticle = sourceArticle;
         this.timeArticle = timeArticle;
         this.source = source;
-    }
-
-    public Image getImageArticle() {
-        return imageArticle;
     }
 
     public String getTitleArticle() {
@@ -36,4 +32,6 @@ public class Article {
     public String getTimeArticle(){ return timeArticle; }
 
     public String getSource() { return source; }
+
+    public Image getImageArticle() { return image; }
 }

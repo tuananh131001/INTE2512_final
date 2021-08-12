@@ -1,6 +1,9 @@
 package sample;
 
 import javafx.animation.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -18,6 +21,8 @@ import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.util.Duration;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import sample.news.Thanhnien;
 import sample.news.Tuoitre;
@@ -40,6 +45,8 @@ public class Controller implements Initializable {
     @FXML
     public Pagination page;
 
+    BorderPane newsBorder = new BorderPane(); // make a pane for news and exit button
+
     private WebEngine engine;
 
     private WebView newsScene;
@@ -57,7 +64,7 @@ public class Controller implements Initializable {
 
     //makes scroll smooth af
     Animation scrollAnimation = new Timeline();
-    //makes for the above thing to work
+    //makes the above thing work
     double scrollDestination;
     double scrollDirection;
 
@@ -85,6 +92,10 @@ public class Controller implements Initializable {
             Text intro = new Text("Choose one of the above categories to start watching news!");
             intro.setFont(new Font("Arial", 30));
             stackPane.getChildren().add(intro);
+
+            addNewsSceneListener();
+
+            initNewsBorder();
 
             //attempt to make the scrollbar a bit faster and smoother
             final double SPEED = 0.004;
@@ -134,7 +145,7 @@ public class Controller implements Initializable {
             };
             for(String buttonName : ButtonNames){
                 ToggleButton button = new ToggleButton(buttonName);
-                button.getStylesheets().add("sample/custombutton.css");
+                button.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/custombutton.css")).toString());
                 button.setToggleGroup(toggleGroup);
                 button.setOnAction(myHandler);
                 hbox.getChildren().add(button);
@@ -146,6 +157,7 @@ public class Controller implements Initializable {
             System.out.println(e);
         }
     }
+
     // ref: https://stackoverflow.com/questions/25409044/javafx-multiple-buttons-to-same-handler
     final EventHandler<ActionEvent> myHandler = new EventHandler<ActionEvent>(){
         @Override
@@ -173,7 +185,6 @@ public class Controller implements Initializable {
                 newsList = (ArrayList<Article>) vnexpress.scrapeWebsiteCategory(category, new File("src/sample/vnexpressurl.txt")).getArticleList().clone();
                 newsList.addAll(tuoitre.scrapeWebsiteCategory(category, new File("src/sample/tuoitreurl.txt")).getArticleList());
                 newsList.addAll(thanhnien.scrapeWebsiteCategory(category, new File("src/sample/thanhnienurl.txt")).getArticleList());
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -220,6 +231,7 @@ public class Controller implements Initializable {
 
             Button viewButton = new Button("View");
             viewButton.setStyle("-fx-font-size: 10; -fx-underline: true;");
+            viewButton.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/custombutton.css")).toString());
             vboxArticle.getChildren().addAll(labelArticle,labelSource,labelTime, viewButton);
             try {
                 viewButton.setOnAction(event -> {
@@ -244,21 +256,8 @@ public class Controller implements Initializable {
                             }
                         }
                         if (content != null) engine.loadContent(content.toString());
-
-                        BorderPane border = new BorderPane(); // make a pane for news and exit button
-                        border.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(0), Insets.EMPTY)));
-
-                        Button exit = new Button("<< Go back"); //setup exit button
-                        exit.setOnAction(actionEvent -> {
-                            stackPane.getChildren().remove(1);
-                        }); //lambda to remove current news pane
-
-                        //exit.setMaxWidth(Double.MAX_VALUE); //set exit button to match the window's width
-                        border.setTop(exit); //set button at top of borderpane
-                        exit.setAlignment(Pos.TOP_CENTER);
-                        border.setCenter(newsScene); //set center as news scene
-
-                        stackPane.getChildren().add(border); //add the whole thing on top of the application
+                        newsBorder.setCenter(newsScene); //set center as news scene
+                        stackPane.getChildren().add(newsBorder); //add the whole thing on top of the application
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -272,4 +271,48 @@ public class Controller implements Initializable {
         }
         return articleList;
     }
+
+    //use this to add loading bar
+    void addNewsSceneListener() {
+        newsScene.getEngine().getLoadWorker().stateProperty().addListener(
+                new ChangeListener<Worker.State>() {
+                    @Override
+                    public void changed(
+                            ObservableValue<? extends Worker.State> observable,
+                            Worker.State oldValue, Worker.State newValue) {
+                        switch (newValue) {
+                            case SUCCEEDED:
+                            case FAILED:
+                            case CANCELLED:
+                                newsScene
+                                        .getEngine()
+                                        .getLoadWorker()
+                                        .stateProperty()
+                                        .removeListener(this);
+                        }
+
+
+                        if (newValue != Worker.State.SUCCEEDED) {
+                            return;
+                        }
+                        Document doc = Jsoup.parse(engine.executeScript("document.documentElement.outerHTML").toString());
+//                        System.out.println("page loaded");
+                    }
+                });
+    }
+
+    void initNewsBorder(){
+        newsBorder.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(0), Insets.EMPTY)));
+        Button exit = new Button("<< Go back"); //setup exit button
+        exit.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/custombutton.css")).toString());
+        exit.setOnAction(actionEvent -> {
+            engine.loadContent("");
+            stackPane.getChildren().remove(1);
+        }); //lambda to remove current news pane
+
+        //exit.setMaxWidth(Double.MAX_VALUE); //set exit button to match the window's width
+        newsBorder.setTop(exit); //set button at top of borderpane
+        exit.setAlignment(Pos.TOP_CENTER);
+    }
 }
+
