@@ -61,7 +61,7 @@ public class Thanhnien extends News {
         };
         for (String idName : idToRemove){
             Element remove = content.getElementById(idName);
-            remove.remove();
+            if (remove != null) remove.remove();
         }
 
         //remove all hyperlinks while keeping its content

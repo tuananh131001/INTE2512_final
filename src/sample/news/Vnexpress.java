@@ -72,7 +72,7 @@ public class Vnexpress extends News {
         };
         for (String idName : idToRemove){
             Element remove = content.getElementById(idName);
-            remove.remove();
+            if (remove != null) remove.remove();
         }
 
         //removing all elements with such tagname

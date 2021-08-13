@@ -3,13 +3,13 @@ package sample;
 import javafx.animation.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.concurrent.Task;
 import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
@@ -28,13 +28,9 @@ import sample.news.Thanhnien;
 import sample.news.Tuoitre;
 import sample.news.Vnexpress;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Objects;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class Controller implements Initializable {
     @FXML
@@ -55,13 +51,10 @@ public class Controller implements Initializable {
     //current article list being viewed
     protected ArrayList<Article> newsList;
 
-    protected ProgressBar pb = new ProgressBar();
+    protected ProgressBar progressBar = new ProgressBar();
 
     //initializing website scrapers
-    HashMap<String, News> news;
-
-    //save current category to make sure the we dont load the same category twice, after hashmap update this is not relevant anymore (still reduces loading time, just not noticeable)
-    private String currentCategory = "";
+    LinkedHashMap<String, News> news;
 
     //makes scroll smooth af
     Animation scrollAnimation = new Timeline();
@@ -79,17 +72,17 @@ public class Controller implements Initializable {
             engine = newsScene.getEngine();
 
             //initializing website scrapers
-            news = new HashMap<>();
+            news = new LinkedHashMap<>();
             news.put("VnExpress", new Vnexpress());
-            news.put("Thanh Nien", new Vnexpress());
-            news.put("Tuoi Tre", new Vnexpress());
+            news.put("Tuoi Tre", new Tuoitre());
+            news.put("Thanh Nien", new Thanhnien());
 
             //init elements of the app
             initPagination();
-            addNewsSceneListener();
             initNewsBorder();
             initScrollBar();
             initMenuBar();
+            initLoadingBar();
 
         } catch (Exception e) {
             System.out.println(e);
@@ -100,40 +93,68 @@ public class Controller implements Initializable {
     final EventHandler<ActionEvent> myHandler = new EventHandler<ActionEvent>(){
         @Override
         public void handle(ActionEvent event) {
-            //if a category is chosen, add pagination back in and remove intro text
+            page.setVisible(false);
             ToggleButton button = (ToggleButton) event.getSource();
+            //get category
+            String category = button.getText();
 
+            //enable all buttons
             Parent parent = button.getParent();
             for (Node ee : parent.getChildrenUnmodifiable()) {
                 ee.setDisable(false);
             }
+            //disable current button
             button.setDisable(true);
-            if (currentCategory.equals("")) {
-                page.setVisible(true);
+
+            //remove intro text
+            if (stackPane.getChildren().size() >= 2 && stackPane.getChildren().get(1).getClass().getSimpleName().equals("Text")) {
                 stackPane.getChildren().remove(1);
             }
 
-            //if the same button is pressed twice, do nothing
-            String category = button.getText();
-            if (currentCategory.equals(category)) return;
-            currentCategory = category;
-
-            //scrape all articles of the chosen category
+            stackPane.getChildren().add(progressBar);
+            Task<Void> loadNewsListTask = new LoadNewsListTask(category);
+            Thread thread = new Thread(loadNewsListTask);
+            progressBar.progressProperty().bind(loadNewsListTask.progressProperty());
+            thread.setDaemon(true);
+            loadNewsListTask.setOnSucceeded(e -> {
+                //setting up pagination
+                stackPane.getChildren().remove(1);
+                page.setPageCount((newsList.size()+9)/10);
+                page.setCurrentPageIndex(0);
+                page.setPageFactory(pageIndex -> createPage(pageIndex,newsList));
+                page.setVisible(true);
+            });
+            thread.start();
             try {
+                thread.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }
+    };
+
+    public class LoadNewsListTask extends Task<Void> {
+        String category;
+        LoadNewsListTask(String category){
+            this.category = category;
+        }
+        @Override
+        protected Void call(){
+            try {
+                int newssize = news.size();
                 newsList = new ArrayList<>();
-                for (News news: news.values()){
-                    newsList.addAll(news.scrapeWebsiteCategory(category).getArticleList());
+                double count = 0;
+                for (News neww: news.values()){
+                    newsList.addAll(neww.scrapeWebsiteCategory(category).getArticleList());
+                    updateProgress(count, newssize);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-            //setting up pagination
-            page.setPageCount((newsList.size()+9)/10);
-            page.setCurrentPageIndex(0);
-            page.setPageFactory(pageIndex -> createPage(pageIndex,newsList));
+            return null;
         }
-    };
+    }
 
     public VBox createPage(int pageIndex, ArrayList<Article> articles) {
         VBox articleList = new VBox();
@@ -193,46 +214,17 @@ public class Controller implements Initializable {
         return articleList;
     }
 
-    //use this to add loading bar
-    void addNewsSceneListener() {
-        newsScene.getEngine().getLoadWorker().stateProperty().addListener(
-                new ChangeListener<Worker.State>() {
-                    @Override
-                    public void changed(
-                            ObservableValue<? extends Worker.State> observable,
-                            Worker.State oldValue, Worker.State newValue) {
-                        switch (newValue) {
-                            case SUCCEEDED:
-                            case FAILED:
-                            case CANCELLED:
-                                newsScene
-                                        .getEngine()
-                                        .getLoadWorker()
-                                        .stateProperty()
-                                        .removeListener(this);
-                        }
-
-                        if (newValue != Worker.State.SUCCEEDED) {
-                            return;
-                        }
-                        Document doc = Jsoup.parse(engine.executeScript("document.documentElement.outerHTML").toString());
-//                        System.out.println("page loaded");
-                    }
-                });
-    }
-
     void initNewsBorder(){
+        //make nice background for news border
         newsBorder.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(0), Insets.EMPTY)));
         Button exit = new Button("<< Go back"); //setup exit button
+        //apply css
         exit.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/custombutton.css")).toString());
         exit.setOnAction(actionEvent -> {
-            engine.loadContent("");
             stackPane.getChildren().remove(1);
         }); //lambda to remove current news pane
 
-        //exit.setMaxWidth(Double.MAX_VALUE); //set exit button to match the window's width
         newsBorder.setTop(exit); //set button at top of borderpane
-        exit.setAlignment(Pos.TOP_CENTER);
     }
 
     //attempt to make the scrollbar a bit faster and smoother
@@ -301,7 +293,11 @@ public class Controller implements Initializable {
         page.setVisible(false);
         Text intro = new Text("Choose one of the above categories to start watching news!");
         intro.setFont(new Font("Arial", 30));
-        borderPane.setCenter(intro);
+        stackPane.getChildren().add(intro);
+    }
+
+    void initLoadingBar(){
+        progressBar.autosize();
     }
 }
 
