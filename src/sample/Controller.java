@@ -17,9 +17,7 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.fxml.FXML;
 import org.jsoup.nodes.Element;
-import sample.news.Thanhnien;
-import sample.news.Tuoitre;
-import sample.news.Vnexpress;
+import sample.news.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -57,6 +55,10 @@ public class Controller implements Initializable {
 
     Thanhnien thanhnien;
 
+    Nhandan nhandan;
+
+    ZingNews zingnews;
+
     private String currentCategory = "";
 
     @Override
@@ -75,6 +77,10 @@ public class Controller implements Initializable {
             tuoitre = new Tuoitre();
 
             thanhnien = new Thanhnien();
+
+            nhandan = new Nhandan();
+
+            zingnews = new ZingNews();
 
             //make pagination to invisible until a category is clicked
             page.setVisible(false);
@@ -127,6 +133,8 @@ public class Controller implements Initializable {
                 newsList = vnexpress.scrapeWebsiteCategory(category, new File("src/sample/vnexpressurl.txt")).getArticleList();
                 newsList.addAll(tuoitre.scrapeWebsiteCategory(category, new File("src/sample/tuoitreurl.txt")).getArticleList());
                 newsList.addAll(thanhnien.scrapeWebsiteCategory(category, new File("src/sample/thanhnienurl.txt")).getArticleList());
+                newsList.addAll(nhandan.scrapeWebsiteCategory(category, new File("src/sample/nhandanurl.txt")).getArticleList());
+                newsList.addAll(zingnews.scrapeWebsiteCategory(category, new File("src/sample/zingnewsurl.txt")).getArticleList());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -181,12 +189,20 @@ public class Controller implements Initializable {
                                 content = thanhnien.scrapeContent(article.getSourceArticle());
                                 break;
                             }
-                            case "Tuoi Tre":{
+                            case "Tuoi Tre": {
                                 content = tuoitre.scrapeContent(article.getSourceArticle());
                                 break;
                             }
                             case "VnExpress": {
                                 content = vnexpress.scrapeContent(article.getSourceArticle());
+                                break;
+                            }
+                            case "Nhan dan": {
+                                content = nhandan.scrapeContent(article.getSourceArticle());
+                                break;
+                            }
+                            case "Zingnews": {
+                                content = zingnews.scrapeContent(article.getSourceArticle());
                                 break;
                             }
                         }
@@ -200,12 +216,12 @@ public class Controller implements Initializable {
                             stackPane.getChildren().remove(1);
                         }); //lambda to remove current news pane
 
-                        //exit.setMaxWidth(Double.MAX_VALUE); //set exit button to match the window's width
-                        border.setTop(exit); //set button at top of borderpane
-                        exit.setAlignment(Pos.TOP_CENTER);
-                        border.setCenter(newsScene); //set center as news scene
+                            //exit.setMaxWidth(Double.MAX_VALUE); //set exit button to match the window's width
+                            border.setTop(exit); //set button at top of borderpane
+                            exit.setAlignment(Pos.TOP_CENTER);
+                            border.setCenter(newsScene); //set center as news scene
 
-                        stackPane.getChildren().add(border); //add the whole thing on top of the application
+                            stackPane.getChildren().add(border); //add the whole thing on top of the application
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
