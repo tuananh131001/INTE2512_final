@@ -77,4 +77,9 @@ public class Thanhnien extends News {
         return content;
     }
 
+    @Override
+    public String getFileName(){
+        return "src/sample/thanhnienurl.txt";
+    }
+
 }

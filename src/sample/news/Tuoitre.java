@@ -77,4 +77,9 @@ public class Tuoitre extends News {
         //return clean content
         return content;
     }
+
+    @Override
+    public String getFileName(){
+        return "src/sample/tuoitreurl.txt";
+    }
 }

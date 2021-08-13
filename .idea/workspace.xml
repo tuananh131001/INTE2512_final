@@ -3,16 +3,21 @@
   <component name="ChangeListManager">
     <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="sadge">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/custombutton.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/styles/custombutton.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/styles/custombutton.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/News.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/News.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/news/Thanhnien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Thanhnien.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/news/Tuoitre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Tuoitre.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/news/Vnexpress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Vnexpress.java" afterDir="false" />
     </list>
     <list id="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" name="classes" comment="">
       <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/module-info.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Article.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Article.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Controller$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Controller$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/News.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/News.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Thanhnien.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Thanhnien.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Tuoitre.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Tuoitre.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Vnexpress.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Vnexpress.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -282,7 +287,8 @@
       <workItem from="1628738804409" duration="132000" />
       <workItem from="1628739038978" duration="2478000" />
       <workItem from="1628742601173" duration="19260000" />
-      <workItem from="1628796068542" duration="442000" />
+      <workItem from="1628796068542" duration="501000" />
+      <workItem from="1628847567657" duration="2293000" />
     </task>
     <task id="LOCAL-00001" summary="made things scrollable">
       <created>1628237732360</created>
@@ -452,7 +458,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628796100528</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="sadge">
+      <created>1628796551992</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1628796551992</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -509,15 +522,6 @@
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/sample/Controller.java</url>
-          <line>297</line>
-          <option name="timeStamp" value="56" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="sample.news.Vnexpress" memberName="image" />

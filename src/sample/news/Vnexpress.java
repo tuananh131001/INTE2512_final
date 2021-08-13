@@ -100,4 +100,8 @@ public class Vnexpress extends News {
         return content;
     }
 
+    @Override
+    public String getFileName(){
+        return "src/sample/vnexpressurl.txt";
+    }
 }

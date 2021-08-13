@@ -32,6 +32,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -54,10 +55,10 @@ public class Controller implements Initializable {
     //current article list being viewed
     protected ArrayList<Article> newsList;
 
+    protected ProgressBar pb = new ProgressBar();
+
     //initializing website scrapers
-    Vnexpress vnexpress;
-    Tuoitre tuoitre;
-    Thanhnien thanhnien;
+    HashMap<String, News> news;
 
     //save current category to make sure the we dont load the same category twice, after hashmap update this is not relevant anymore (still reduces loading time, just not noticeable)
     private String currentCategory = "";
@@ -78,80 +79,17 @@ public class Controller implements Initializable {
             engine = newsScene.getEngine();
 
             //initializing website scrapers
-            vnexpress = new Vnexpress();
+            news = new HashMap<>();
+            news.put("VnExpress", new Vnexpress());
+            news.put("Thanh Nien", new Vnexpress());
+            news.put("Tuoi Tre", new Vnexpress());
 
-            tuoitre = new Tuoitre();
-
-            thanhnien = new Thanhnien();
-
-            //apply scroll skin for news scene
-            newsScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/scrollstyle.css")).toExternalForm());
-
-            //make pagination to invisible until a category is clicked
-            page.setVisible(false);
-            Text intro = new Text("Choose one of the above categories to start watching news!");
-            intro.setFont(new Font("Arial", 30));
-            stackPane.getChildren().add(intro);
-
+            //init elements of the app
+            initPagination();
             addNewsSceneListener();
-
             initNewsBorder();
-
-            //attempt to make the scrollbar a bit faster and smoother
-            final double SPEED = 0.004;
-            scrollPaneFilters.getContent().setOnScroll(scrollEvent -> {
-                double deltaY = scrollEvent.getDeltaY() * SPEED;
-                //if we're scrolling in a different direction, set the destination as new destination. Otherwise add the previous destination to the current animation
-                if (scrollDestination == 0 || scrollDirection*deltaY < 0) {
-                    scrollDestination = scrollPaneFilters.getVvalue() - deltaY;
-                }
-                else if (scrollAnimation != null){
-                    scrollAnimation.pause(); //pause previous animation to prevent weird stuff happening
-                    scrollDestination -= deltaY;
-                }
-                //save current direction
-                scrollDirection = deltaY;
-
-                //setup animation for scroll
-                scrollAnimation = new Timeline(
-                        new KeyFrame(Duration.seconds(0.15),
-                        new KeyValue(scrollPaneFilters.vvalueProperty(), scrollDestination))
-                );
-
-                //reset destination and direction after finish scrolling
-                scrollAnimation.setOnFinished(e -> {
-                    scrollDestination = 0;
-                    scrollDirection = 0;
-                });
-
-                //plays the scroll animation
-                scrollAnimation.play();
-            });
-
-            //create a menu of categories
-            ToggleGroup toggleGroup = new ToggleGroup();
-            HBox hbox = new HBox();
-            String[] ButtonNames = {
-                    "New",
-                    "Covid",
-                    "Politics",
-                    "Business",
-                    "Technology",
-                    "Health",
-                    "Sports",
-                    "Entertainment",
-                    "World",
-                    "Others",
-            };
-            for(String buttonName : ButtonNames){
-                ToggleButton button = new ToggleButton(buttonName);
-                button.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/custombutton.css")).toString());
-                button.setToggleGroup(toggleGroup);
-                button.setOnAction(myHandler);
-                hbox.getChildren().add(button);
-            }
-            borderPane.setTop(hbox);
-
+            initScrollBar();
+            initMenuBar();
 
         } catch (Exception e) {
             System.out.println(e);
@@ -182,9 +120,10 @@ public class Controller implements Initializable {
 
             //scrape all articles of the chosen category
             try {
-                newsList = (ArrayList<Article>) vnexpress.scrapeWebsiteCategory(category, new File("src/sample/vnexpressurl.txt")).getArticleList().clone();
-                newsList.addAll(tuoitre.scrapeWebsiteCategory(category, new File("src/sample/tuoitreurl.txt")).getArticleList());
-                newsList.addAll(thanhnien.scrapeWebsiteCategory(category, new File("src/sample/thanhnienurl.txt")).getArticleList());
+                newsList = new ArrayList<>();
+                for (News news: news.values()){
+                    newsList.addAll(news.scrapeWebsiteCategory(category).getArticleList());
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -236,25 +175,7 @@ public class Controller implements Initializable {
             try {
                 viewButton.setOnAction(event -> {
                     try {
-                        Element content = null;
-
-                        switch (article.getSource()) {
-                            case "Thanh Nien": {
-
-                                content = thanhnien.scrapeContent(article.getSourceArticle());
-                                break;
-                            }
-                            case "Tuoi Tre":{
-
-                                content = tuoitre.scrapeContent(article.getSourceArticle());
-                                break;
-                            }
-                            case "VnExpress": {
-
-                                content = vnexpress.scrapeContent(article.getSourceArticle());
-                                break;
-                            }
-                        }
+                        Element content = news.get(article.getSource()).scrapeContent(article.getSourceArticle());
                         if (content != null) engine.loadContent(content.toString());
                         newsBorder.setCenter(newsScene); //set center as news scene
                         stackPane.getChildren().add(newsBorder); //add the whole thing on top of the application
@@ -291,7 +212,6 @@ public class Controller implements Initializable {
                                         .removeListener(this);
                         }
 
-
                         if (newValue != Worker.State.SUCCEEDED) {
                             return;
                         }
@@ -313,6 +233,75 @@ public class Controller implements Initializable {
         //exit.setMaxWidth(Double.MAX_VALUE); //set exit button to match the window's width
         newsBorder.setTop(exit); //set button at top of borderpane
         exit.setAlignment(Pos.TOP_CENTER);
+    }
+
+    //attempt to make the scrollbar a bit faster and smoother
+    void initScrollBar(){
+        //apply scroll skin for news scene
+        newsScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/scrollstyle.css")).toExternalForm());
+        final double SPEED = 0.004;
+        scrollPaneFilters.getContent().setOnScroll(scrollEvent -> {
+            double deltaY = scrollEvent.getDeltaY() * SPEED;
+            //if we're scrolling in a different direction, set the destination as new destination. Otherwise add the previous destination to the current animation
+            if (scrollDestination == 0 || scrollDirection*deltaY < 0) {
+                scrollDestination = scrollPaneFilters.getVvalue() - deltaY;
+            }
+            else if (scrollAnimation != null){
+                scrollAnimation.pause(); //pause previous animation to prevent weird stuff happening
+                scrollDestination -= deltaY;
+            }
+            //save current direction
+            scrollDirection = deltaY;
+
+            //setup animation for scroll
+            scrollAnimation = new Timeline(
+                    new KeyFrame(Duration.seconds(0.15),
+                            new KeyValue(scrollPaneFilters.vvalueProperty(), scrollDestination))
+            );
+
+            //reset destination and direction after finish scrolling
+            scrollAnimation.setOnFinished(e -> {
+                scrollDestination = 0;
+                scrollDirection = 0;
+            });
+
+            //plays the scroll animation
+            scrollAnimation.play();
+        });
+    }
+
+    void initMenuBar(){
+        //create a menu of categories
+        ToggleGroup toggleGroup = new ToggleGroup();
+        HBox hbox = new HBox();
+        String[] ButtonNames = {
+                "New",
+                "Covid",
+                "Politics",
+                "Business",
+                "Technology",
+                "Health",
+                "Sports",
+                "Entertainment",
+                "World",
+                "Others",
+        };
+        for(String buttonName : ButtonNames){
+            ToggleButton button = new ToggleButton(buttonName);
+            button.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/custombutton.css")).toString());
+            button.setToggleGroup(toggleGroup);
+            button.setOnAction(myHandler);
+            hbox.getChildren().add(button);
+        }
+        borderPane.setTop(hbox);
+    }
+
+    void initPagination(){
+        //make pagination to invisible until a category is clicked
+        page.setVisible(false);
+        Text intro = new Text("Choose one of the above categories to start watching news!");
+        intro.setFont(new Font("Arial", 30));
+        borderPane.setCenter(intro);
     }
 }
 

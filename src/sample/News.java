@@ -19,7 +19,8 @@ public class News {
         return new ArrayList<>();
     }
 
-    public Category scrapeWebsiteCategory(String categoryName,File urlfile) throws IOException {
+    public Category scrapeWebsiteCategory(String categoryName) throws IOException {
+        File urlfile = new File(getFileName());
         Category category = categories.get(categoryName);
         if (category != null) return category;
         Scanner urlScanner = new Scanner(urlfile);
@@ -42,6 +43,10 @@ public class News {
 
     public Element scrapeContent(String url) throws IOException {
         return Jsoup.parse(Jsoup.connect(url).get().toString());
+    }
+
+    public String getFileName(){
+        return "";
     }
 
 }
