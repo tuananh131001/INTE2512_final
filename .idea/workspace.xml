@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="big dick">
+    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="Merge remote-tracking branch 'origin/duy' into duy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/sample/Controller.java">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/news/Vnexpress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Vnexpress.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/thanhnienurl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/thanhnienurl.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/tuoitreurl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/tuoitreurl.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/vnexpressUrl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/vnexpressUrl.txt" afterDir="false" />
     </list>
     <list id="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" name="classes" comment="">
       <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/module-info.class" afterDir="false" />
@@ -286,7 +293,7 @@
       <workItem from="1628742601173" duration="19260000" />
       <workItem from="1628796068542" duration="501000" />
       <workItem from="1628847567657" duration="19941000" />
-      <workItem from="1628912488007" duration="2829000" />
+      <workItem from="1628912488007" duration="9298000" />
     </task>
     <task id="LOCAL-00001" summary="made things scrollable">
       <created>1628237732360</created>
@@ -491,7 +498,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628915285127</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Merge remote-tracking branch 'origin/duy' into duy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/sample/Controller.java">
+      <created>1628915369198</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1628915369198</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -547,7 +561,8 @@
     <MESSAGE value="QoL changes for Controller and News Class" />
     <MESSAGE value="added progress bar (it sucked)" />
     <MESSAGE value="big dick" />
-    <option name="LAST_COMMIT_MESSAGE" value="big dick" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/duy' into duy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/sample/Controller.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/duy' into duy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/sample/Controller.java" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XDebuggerManager">

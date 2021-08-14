@@ -10,6 +10,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
@@ -56,6 +57,8 @@ public class Controller implements Initializable {
     //initializing website scrapers
     LinkedHashMap<String, News> news;
 
+    HashMap<String, Thread> threads;
+
     //makes scroll smooth af
     Animation scrollAnimation = new Timeline();
     //makes the above thing work
@@ -77,12 +80,18 @@ public class Controller implements Initializable {
             news.put("Tuoi Tre", new Tuoitre());
             news.put("Thanh Nien", new Thanhnien());
 
+            //initializing threads
+            threads = new HashMap<>();
+
             //init elements of the app
             initPagination();
             initNewsBorder();
             initScrollBar();
             initMenuBar();
             initLoadingBar();
+
+            //defaults the program to run News articles first
+            ((ToggleButton)((HBox) borderPane.getTop()).getChildren().get(0)).fire();
 
         } catch (Exception e) {
             System.out.println(e);
@@ -113,14 +122,25 @@ public class Controller implements Initializable {
 
             //add progress bar in
             if (stackPane.getChildren().size() == 1) {
-                stackPane.getChildren().add(progressBar);
+                progressBar.setPrefSize(200, 20);
+                progressBar.setProgress(0);
+                Text loading = new Text("Loading articles: ");
+                loading.setFont(new Font("Segoe UI", 20));
+                HBox hBox = new HBox(loading, progressBar);
+                hBox.setAlignment(Pos.CENTER);
+                stackPane.getChildren().add(hBox);
             }
 
+            //check if same thread is running
+            Thread check = threads.get(category);
+            if (check != null && check.isAlive()) return; //if its running dont bother running it
+            //create a loading news list task
             Task<Void> loadNewsListTask = new LoadNewsListTask(category);
             Thread thread = new Thread(loadNewsListTask);
-            progressBar.setPrefSize(200, 20);
-            progressBar.setProgress(0);
+            threads.put(category, thread);
+            //makes sure thread is stopped when program shuts down
             thread.setDaemon(true);
+            //load pagination after task finished
             loadNewsListTask.setOnSucceeded(e -> {
                 //removing progress bar
                 if (stackPane.getChildren().size() >= 2) {
@@ -128,8 +148,8 @@ public class Controller implements Initializable {
                 }
                 //setting up pagination
                 page.setPageCount((newsList.size()+9)/10);
-                page.setCurrentPageIndex(0);
                 page.setPageFactory(pageIndex -> createPage(pageIndex,newsList));
+                page.setCurrentPageIndex(0);
                 page.setVisible(true);
             });
             //start task
@@ -146,19 +166,28 @@ public class Controller implements Initializable {
         @Override
         protected Void call() {
             try {
+                //hack to let progressBar load
                 synchronized (this){
-                    wait(0, 10);
+                    wait(5);
                 }
-                int newssize = news.size();
+                int newsSize = news.size();
                 newsList = new ArrayList<>();
                 double count = 0;
-                for (News neww: news.values()){
-                    Animation progressAnimation = new Timeline(
+                //reset progress bar back to 0
+                progressBar.progressProperty().unbind(); //unbinds the previous animation
+                progressBar.setProgress(0);
+                Animation progressAnimation = null;
+                for (News news: news.values()){
+                     progressAnimation = new Timeline(
                             new KeyFrame(Duration.seconds(0.5),
-                                    new KeyValue(progressBar.progressProperty(), ++count/newssize))
+                                    new KeyValue(progressBar.progressProperty(), ++count/newsSize))
                     );
+                    progressAnimation.setOnFinished(finished -> {
+                        Animation a = ((Animation) finished.getSource());
+                        a = null;
+                    });
                     progressAnimation.play();
-                    newsList.addAll(neww.scrapeWebsiteCategory(category).getArticleList());
+                    newsList.addAll(news.scrapeWebsiteCategory(category).getArticleList());
                 }
             } catch (IOException | InterruptedException e) {
                 System.out.println(e);
@@ -302,9 +331,6 @@ public class Controller implements Initializable {
     void initPagination(){
         //make pagination to invisible until a category is clicked
         page.setVisible(false);
-        Text intro = new Text("Choose one of the above categories to start watching news!");
-        intro.setFont(new Font("Arial", 30));
-        stackPane.getChildren().add(intro);
     }
 
     void initLoadingBar(){

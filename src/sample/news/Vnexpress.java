@@ -91,6 +91,12 @@ public class Vnexpress extends News {
             remove.clearAttributes();
         }
 
+        //changes all video attribute to hyperlink
+        Elements videos = content.getElementsByTag("video");
+        for (Element video : videos){
+            video.tagName("a");
+        }
+
         //attempt to remove all ads
         Elements ads = content.getElementsByAttributeValueMatching("class", "ads|flexbox");
         for (Element remove : ads){

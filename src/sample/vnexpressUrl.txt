@@ -1,5 +1,5 @@
 https://vnexpress.net/rss/tin-moi-nhat.rss|New
-https://vnexpress.net/rss/suc-khoe.rss|Covid
+https://vnexpress.net/rss/suc-khoe.rss|Health
 https://vnexpress.net/rss/the-gioi.rss|World
 https://vnexpress.net/rss/thoi-su.rss|Politics
 https://vnexpress.net/rss/kinh-doanh.rss|Business
