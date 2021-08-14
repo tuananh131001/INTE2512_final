@@ -111,46 +111,57 @@ public class Controller implements Initializable {
                 stackPane.getChildren().remove(1);
             }
 
-            stackPane.getChildren().add(progressBar);
+            //add progress bar in
+            if (stackPane.getChildren().size() == 1) {
+                stackPane.getChildren().add(progressBar);
+            }
+
             Task<Void> loadNewsListTask = new LoadNewsListTask(category);
             Thread thread = new Thread(loadNewsListTask);
-            progressBar.progressProperty().bind(loadNewsListTask.progressProperty());
+            progressBar.setPrefSize(200, 20);
+            progressBar.setProgress(0);
             thread.setDaemon(true);
             loadNewsListTask.setOnSucceeded(e -> {
+                //removing progress bar
+                if (stackPane.getChildren().size() >= 2) {
+                    stackPane.getChildren().remove(1);
+                }
                 //setting up pagination
-                stackPane.getChildren().remove(1);
                 page.setPageCount((newsList.size()+9)/10);
                 page.setCurrentPageIndex(0);
                 page.setPageFactory(pageIndex -> createPage(pageIndex,newsList));
                 page.setVisible(true);
             });
+            //start task
             thread.start();
-            try {
-                thread.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
         }
     };
 
+    //Task to load all articles for newsList
     public class LoadNewsListTask extends Task<Void> {
         String category;
         LoadNewsListTask(String category){
             this.category = category;
         }
         @Override
-        protected Void call(){
+        protected Void call() {
             try {
+                synchronized (this){
+                    wait(0, 10);
+                }
                 int newssize = news.size();
                 newsList = new ArrayList<>();
                 double count = 0;
                 for (News neww: news.values()){
+                    Animation progressAnimation = new Timeline(
+                            new KeyFrame(Duration.seconds(0.6),
+                                    new KeyValue(progressBar.progressProperty(), ++count/newssize))
+                    );
+                    progressAnimation.play();
                     newsList.addAll(neww.scrapeWebsiteCategory(category).getArticleList());
-                    updateProgress(count, newssize);
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
+            } catch (IOException | InterruptedException e) {
+                System.out.println(e);
             }
             return null;
         }
