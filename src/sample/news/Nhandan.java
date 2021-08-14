@@ -10,8 +10,9 @@ import sample.News;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 
-public class Tuoitre extends News {
+public class Nhandan extends News {
 
     @Override
     public ArrayList<Article> scrapeArticle(String url) throws IOException {
@@ -54,22 +55,26 @@ public class Tuoitre extends News {
 
         //connect to rss website and add in listArticle all "items"
         Document doc = Jsoup.connect(url).get();
-        listArticle.addAll(doc.getElementsByClass("news-item"));
+        listArticle.addAll(doc.getElementsByTag("article"));
+
+        HashSet<String> hs = new HashSet<>();
 
         //for each article, get its url, description and url
         try {
             for (Element article : listArticle) {
-                String name = article.getElementsByClass("title-news").first().child(0).ownText();
-                String articleUrl = "https://tuoitre.vn/" + article.getElementsByTag("a").attr("href");
+                String name = article.getElementsByTag("a").first().attr("title");
+                if (hs.contains(name)) continue;
+                hs.add(name);
+                String articleUrl = "https://nhandan.vn" + article.getElementsByTag("a").attr("href");
                 Image image = null;
                 String imageurl = null;
                 Element element = article.getElementsByTag("img").first();
-                if (element != null) imageurl = element.attr("src");
+                if (element != null) imageurl = element.attr("data-src");
                 if (imageurl != null && !imageurl.equals("")) {
                     image = new Image(imageurl);
                 }
-                String date = Jsoup.connect(articleUrl).get().getElementsByClass("date-time").first().ownText();
-                newsList.add(new Article(image, name, articleUrl, date,"Tuoi Tre"));
+                String date = Jsoup.connect(articleUrl).get().getElementsByClass("box-date pull-left").first().ownText();
+                newsList.add(new Article(image, name, articleUrl, date,"Nhan Dan"));
                 if (newsList.size() >= 10) break;
             }
         } catch (Exception e){
@@ -113,6 +118,6 @@ public class Tuoitre extends News {
 
     @Override
     public String getFileName(){
-        return "src/sample/urlfiles/tuoitreurl.txt";
+        return "src/sample/urlfiles/Nhandanurl.txt";
     }
 }

@@ -25,6 +25,7 @@ import javafx.util.Duration;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import sample.news.Nhandan;
 import sample.news.Thanhnien;
 import sample.news.Tuoitre;
 import sample.news.Vnexpress;
@@ -79,6 +80,7 @@ public class Controller implements Initializable {
             news.put("VnExpress", new Vnexpress());
             news.put("Tuoi Tre", new Tuoitre());
             news.put("Thanh Nien", new Thanhnien());
+            news.put("Nhan Dan", new Nhandan());
 
             //initializing threads
             threads = new HashMap<>();

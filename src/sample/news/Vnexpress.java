@@ -51,7 +51,9 @@ public class Vnexpress extends News {
                 String imageurl = null;
                 if (element != null) imageurl = element.attr("src");
                 Image image = null;
-                if (imageurl != null) image = new Image(imageurl);
+                if (imageurl != null && !imageurl.equals("")) {
+                    image = new Image(imageurl);
+                }
                 element = articleElement.getElementsByClass("title-news").first();
                 String titleArticle = element.child(0).ownText();
                 element = articleElement.getElementsByTag("a").first();
@@ -143,6 +145,6 @@ public class Vnexpress extends News {
 
     @Override
     public String getFileName(){
-        return "src/sample/vnexpressurl.txt";
+        return "src/sample/urlfiles/vnexpressurl.txt";
     }
 }

@@ -4,18 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="nice">
+    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="defaulted the program to load news first&#10;updated url files&#10;updated covid scraping">
+      <change afterPath="$PROJECT_DIR$/src/sample/news/Nhandan.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sample/urlfiles/nhandanurl.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/thanhnienurl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/thanhnienurl.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/tuoitreurl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/tuoitreurl.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/vnexpressUrl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/vnexpressUrl.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/thanhnienurl.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/tuoitreurl.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/vnexpressUrl.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/news/Thanhnien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Thanhnien.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/news/Tuoitre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Tuoitre.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/news/Vnexpress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Vnexpress.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/thanhnienurl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/thanhnienurl.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/tuoitreurl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/tuoitreurl.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/vnexpressUrl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/vnexpressUrl.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/thanhnienurl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/urlfiles/thanhnienurl.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/tuoitreurl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/urlfiles/tuoitreurl.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/vnexpressUrl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/urlfiles/vnexpressUrl.txt" afterDir="false" />
     </list>
     <list id="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" name="classes" comment="">
       <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/module-info.class" afterDir="false" />
@@ -37,8 +39,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
-        <option value="Class" />
         <option value="CSS File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -88,6 +90,7 @@
       <recent name="C:\Users\William\IdeaProjects\INTE2512_final\src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Codes\Java\INTE2512_final\src\sample\urlfiles" />
       <recent name="D:\Codes\Java\INTE2512_final\src\sample\styles" />
       <recent name="C:\Users\William\IdeaProjects\INTE2512_final\src\sample" />
       <recent name="C:\Users\William\IdeaProjects\INTE2512_final\src\sample\styles" />
@@ -250,6 +253,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="JavaFxApplication" />
       <method v="2">
@@ -298,7 +312,7 @@
       <workItem from="1628742601173" duration="19260000" />
       <workItem from="1628796068542" duration="501000" />
       <workItem from="1628847567657" duration="19941000" />
-      <workItem from="1628912488007" duration="15167000" />
+      <workItem from="1628912488007" duration="21217000" />
     </task>
     <task id="LOCAL-00001" summary="made things scrollable">
       <created>1628237732360</created>
@@ -517,7 +531,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628935623209</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="defaulted the program to load news first&#10;updated url files&#10;updated covid scraping">
+      <created>1628941567160</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1628941567160</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -575,7 +596,8 @@
     <MESSAGE value="big dick" />
     <MESSAGE value="Merge remote-tracking branch 'origin/duy' into duy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/sample/Controller.java" />
     <MESSAGE value="nice" />
-    <option name="LAST_COMMIT_MESSAGE" value="nice" />
+    <MESSAGE value="defaulted the program to load news first&#10;updated url files&#10;updated covid scraping" />
+    <option name="LAST_COMMIT_MESSAGE" value="defaulted the program to load news first&#10;updated url files&#10;updated covid scraping" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -583,13 +605,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/news/Vnexpress.java</url>
-          <line>140</line>
+          <line>142</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/sample/news/Thanhnien.java</url>
-          <line>43</line>
-          <option name="timeStamp" value="7" />
+          <url>file://$PROJECT_DIR$/src/sample/news/Nhandan.java</url>
+          <line>77</line>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -601,7 +623,7 @@
     </pin-to-top-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/INTE2512_final$Main.ic" NAME="Main Coverage Results" MODIFIED="1627872873496" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/INTE2512_final$Main.ic" NAME="Main Coverage Results" MODIFIED="1628956485062" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>sample.*</FILTER>
     </SUITE>
   </component>

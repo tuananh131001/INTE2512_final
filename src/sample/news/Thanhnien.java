@@ -29,9 +29,8 @@ public class Thanhnien extends News {
             Document description = Jsoup.parse(articleElement.child(1).ownText());
             String urlArticle = description.getElementsByTag("a").attr("href"); //Link of the article
             String imageurl = description.getElementsByTag("img").attr("src");
-            try{
+            if (imageurl != null && !imageurl.equals("")) {
                 image = new Image(imageurl);
-            } catch (IllegalArgumentException e){
             }
             Article article = new Article(image, titleArticle, urlArticle, date, "Thanh Nien");
             articleList.add(article);
@@ -54,7 +53,7 @@ public class Thanhnien extends News {
             String imageurl = null;
             Element element = articleElement.getElementsByTag("img").first();
             if (element != null) imageurl = element.attr("data-src");
-            if (imageurl != null) {
+            if (imageurl != null && !imageurl.equals("")) {
                 image = new Image(imageurl);
             }
             String date = Jsoup.connect(articleUrl).get().getElementsByTag("time").first().ownText();
@@ -106,7 +105,7 @@ public class Thanhnien extends News {
 
     @Override
     public String getFileName(){
-        return "src/sample/thanhnienurl.txt";
+        return "src/sample/urlfiles/thanhnienurl.txt";
     }
 
 }
