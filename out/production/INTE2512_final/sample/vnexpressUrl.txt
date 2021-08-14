@@ -1,9 +1,10 @@
 https://vnexpress.net/rss/tin-moi-nhat.rss|New
-https://vnexpress.net/rss/suc-khoe.rss|Covid
-https://vnexpress.net/rss/the-gioi.rss|World
+https://vnexpress.net/suc-khoe/vaccine|Covid
 https://vnexpress.net/rss/thoi-su.rss|Politics
 https://vnexpress.net/rss/kinh-doanh.rss|Business
 https://vnexpress.net/rss/so-hoa.rss|Technology
+https://vnexpress.net/rss/suc-khoe.rss|Health
 https://vnexpress.net/rss/the-thao.rss|Sports
 https://vnexpress.net/rss/giai-tri.rss|Entertainment
+https://vnexpress.net/rss/the-gioi.rss|World
 https://vnexpress.net/rss/cuoi.rss|Others

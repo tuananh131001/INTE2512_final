@@ -237,7 +237,8 @@ public class Controller implements Initializable {
                 viewButton.setOnAction(event -> {
                     try {
                         Element content = news.get(article.getSource()).scrapeContent(article.getSourceArticle());
-                        if (content != null) engine.loadContent(content.toString());
+//                        content.append("<link rel=" + '\"' + "@stylesheet" + '\"' + "href="+'\"'+"@styles/scrollstyle.css"+'\"' + "media="+'\"'+"screen"+'\"'+">");
+                        engine.loadContent(content.toString());
                         newsBorder.setCenter(newsScene); //set center as news scene
                         stackPane.getChildren().add(newsBorder); //add the whole thing on top of the application
                     } catch (Exception e) {

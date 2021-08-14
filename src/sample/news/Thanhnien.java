@@ -15,6 +15,8 @@ public class Thanhnien extends News {
 
     @Override
     public ArrayList<Article> scrapeArticle(String url) throws IOException {
+        if (url == null) return new ArrayList<>();
+        if (!url.contains("rss")) return scrapeArticleNonRss(url);
         Elements articleElementList = new Elements(); // Create list of element
         ArrayList<Article> articleList = new ArrayList<>(); //Create list of article
         Document doc = Jsoup.connect(url).get();
@@ -37,6 +39,31 @@ public class Thanhnien extends News {
         }
         return articleList;
     }
+
+    public ArrayList<Article> scrapeArticleNonRss(String url) throws IOException {
+        if (url == null) return new ArrayList<>();
+        Elements articleElementList = new Elements(); // Create list of element
+        ArrayList<Article> articleList = new ArrayList<>(); //Create list of article
+        Document doc = Jsoup.connect(url).get();
+        articleElementList.addAll(doc.getElementsByClass("story"));
+        // Loop into article Element
+        for (Element articleElement : articleElementList) {
+            String name = articleElement.getElementsByClass("story__title").first().ownText();
+            String articleUrl = "https://thanhnien.vn/" + articleElement.getElementsByTag("a").attr("href");
+            Image image = null;
+            String imageurl = null;
+            Element element = articleElement.getElementsByTag("img").first();
+            if (element != null) imageurl = element.attr("data-src");
+            if (imageurl != null) {
+                image = new Image(imageurl);
+            }
+            String date = Jsoup.connect(articleUrl).get().getElementsByTag("time").first().ownText();
+            articleList.add(new Article(image, name, articleUrl, date,"Thanh Nien"));
+            if (articleList.size() >= 10) break;
+        }
+        return articleList;
+    }
+
     @Override
     public Element scrapeContent(String url) throws IOException {
         //connect to url
