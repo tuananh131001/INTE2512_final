@@ -154,7 +154,7 @@ public class Controller implements Initializable {
                 double count = 0;
                 for (News neww: news.values()){
                     Animation progressAnimation = new Timeline(
-                            new KeyFrame(Duration.seconds(0.6),
+                            new KeyFrame(Duration.seconds(0.5),
                                     new KeyValue(progressBar.progressProperty(), ++count/newssize))
                     );
                     progressAnimation.play();
