@@ -75,7 +75,7 @@ public class Controller implements Initializable {
             newsScene = new WebView();
             engine = newsScene.getEngine();
 
-            //initializing website scrapers
+            //setting up news scrapers
             news = new LinkedHashMap<>();
             news.put("VnExpress", new Vnexpress());
             news.put("Tuoi Tre", new Tuoitre());
@@ -239,7 +239,6 @@ public class Controller implements Initializable {
                 viewButton.setOnAction(event -> {
                     try {
                         Element content = news.get(article.getSource()).scrapeContent(article.getSourceArticle());
-//                        content.append("<link rel=" + '\"' + "@stylesheet" + '\"' + "href="+'\"'+"@styles/scrollstyle.css"+'\"' + "media="+'\"'+"screen"+'\"'+">");
                         engine.loadContent(content.toString());
                         newsBorder.setCenter(newsScene); //set center as news scene
                         stackPane.getChildren().add(newsBorder); //add the whole thing on top of the application

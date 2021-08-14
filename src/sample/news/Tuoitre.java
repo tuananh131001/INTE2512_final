@@ -83,7 +83,6 @@ public class Tuoitre extends News {
         //connect to url
         Document content = Jsoup.parse(Jsoup.connect(url).get().toString());
 
-        //removing all elements with such ids
         //removing all elements with such class name
         String[] classesToRemove = {
                 "header-top",
@@ -98,6 +97,7 @@ public class Tuoitre extends News {
             Elements remove = content.getElementsByClass(className);
             remove.remove();
         }
+
         //removing all elements with such tagname
         String[] tagnameToRemove ={
                 "footer",
@@ -106,6 +106,15 @@ public class Tuoitre extends News {
         for (String tagname : tagnameToRemove){
             Elements remove = content.getElementsByTag(tagname);
             remove.remove();
+        }
+
+        //removing all elements with such ids
+        String[] idToRemove = {
+                "sticky-box"
+        };
+        for (String idName : idToRemove){
+            Element remove = content.getElementById(idName);
+            if (remove != null) remove.remove();
         }
         //return clean content
         return content;

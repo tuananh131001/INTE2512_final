@@ -4,20 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="defaulted the program to load news first&#10;updated url files&#10;updated covid scraping">
-      <change afterPath="$PROJECT_DIR$/src/sample/news/Nhandan.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/urlfiles/nhandanurl.txt" afterDir="false" />
+    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="defaulted the program to load news first&#10;updated url files&#10;updated covid scraping&#10;added Nhandan class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/thanhnienurl.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/tuoitreurl.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/vnexpressUrl.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/news/Nhandan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Nhandan.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/news/Thanhnien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Thanhnien.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/news/Tuoitre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Tuoitre.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/news/Vnexpress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Vnexpress.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/thanhnienurl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/urlfiles/thanhnienurl.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/tuoitreurl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/urlfiles/tuoitreurl.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/vnexpressUrl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/urlfiles/vnexpressUrl.txt" afterDir="false" />
     </list>
     <list id="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" name="classes" comment="">
       <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/module-info.class" afterDir="false" />
@@ -312,7 +304,7 @@
       <workItem from="1628742601173" duration="19260000" />
       <workItem from="1628796068542" duration="501000" />
       <workItem from="1628847567657" duration="19941000" />
-      <workItem from="1628912488007" duration="21217000" />
+      <workItem from="1628912488007" duration="30350000" />
     </task>
     <task id="LOCAL-00001" summary="made things scrollable">
       <created>1628237732360</created>
@@ -538,7 +530,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628941567160</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="defaulted the program to load news first&#10;updated url files&#10;updated covid scraping&#10;added Nhandan class">
+      <created>1628957157040</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1628957157040</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -597,7 +596,8 @@
     <MESSAGE value="Merge remote-tracking branch 'origin/duy' into duy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/sample/Controller.java" />
     <MESSAGE value="nice" />
     <MESSAGE value="defaulted the program to load news first&#10;updated url files&#10;updated covid scraping" />
-    <option name="LAST_COMMIT_MESSAGE" value="defaulted the program to load news first&#10;updated url files&#10;updated covid scraping" />
+    <MESSAGE value="defaulted the program to load news first&#10;updated url files&#10;updated covid scraping&#10;added Nhandan class" />
+    <option name="LAST_COMMIT_MESSAGE" value="defaulted the program to load news first&#10;updated url files&#10;updated covid scraping&#10;added Nhandan class" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -609,9 +609,9 @@
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/sample/news/Nhandan.java</url>
-          <line>77</line>
-          <option name="timeStamp" value="10" />
+          <url>file://$PROJECT_DIR$/src/sample/news/Thanhnien.java</url>
+          <line>120</line>
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

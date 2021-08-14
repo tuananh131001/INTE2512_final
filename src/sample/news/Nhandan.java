@@ -5,6 +5,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.jsoup.select.Evaluator;
 import sample.Article;
 import sample.News;
 
@@ -91,26 +92,35 @@ public class Nhandan extends News {
         //removing all elements with such ids
         //removing all elements with such class name
         String[] classesToRemove = {
-                "header-top",
-                "header-bottom",
-                "trending",
-                "title-content clearfix first",
-                "bannerfooter1",
-                "box_can_you_care",
-                "tagandnetwork"
+                "headersite",
+                "box-widget box-likepage box-likepage-top uk-clearfix",
+                "box-widget box-tags uk-clearfix",
+                "box-widget box-likepage uk-clearfix",
+                "box-widget box-related",
+                "footersite",
+                "uk-nav uk-nav-default",
+                "box-widget box-widget-tabs "
         };
         for (String className : classesToRemove) {
             Elements remove = content.getElementsByClass(className);
             remove.remove();
         }
-        //removing all elements with such tagname
-        String[] tagnameToRemove ={
-                "footer",
-                "header"
+        //removing all elements with such id
+        String[] IdToRemove ={
+                "offcanvas-overlay-push"
         };
-        for (String tagname : tagnameToRemove){
-            Elements remove = content.getElementsByTag(tagname);
-            remove.remove();
+        for (String idName : IdToRemove){
+            Element remove = content.getElementById(idName);
+            if (remove != null) remove.remove();
+        }
+
+        //change all local page css to its full link
+        Elements links = content.getElementsByTag("link");
+        for (Element element : links){
+            String href = element.attr("href");
+            if (!href.contains("nhandan")){
+                element.attr("href", "https://nhandan.vn" + href);
+            }
         }
         //return clean content
         return content;

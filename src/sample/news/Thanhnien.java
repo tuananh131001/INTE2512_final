@@ -67,20 +67,30 @@ public class Thanhnien extends News {
     public Element scrapeContent(String url) throws IOException {
         //connect to url
         Document content = Jsoup.parse(Jsoup.connect(url).get().toString());
+
         String[] classesToRemove = {
                 "site-header",
                 "site-header__grid affix-top",
-                "details__meta",
                 "details__morenews",
                 "details__tags",
                 "modal fade",
+                "details__meta",
                 "modal fade modal-signin",
                 "zone zone--comment",
                 "zone lastest-news lastest-news--gray",
                 "zone zone--media dark-media",
                 "as-content",
-                "site-footer"
+                "site-footer",
+                "floating-bar affix-top",
+                "floating-bar affix",
+                "floating-bar",
+                "media-list"
         };
+        for (String className : classesToRemove) {
+            Elements remove = content.getElementsByClass(className);
+            remove.remove();
+        }
+
         //removing all elements with such ids
         String[] idToRemove = {
                 "dablewidget_x7yEvG76"
@@ -90,16 +100,24 @@ public class Thanhnien extends News {
             if (remove != null) remove.remove();
         }
 
-        //remove all hyperlinks while keeping its content
-        Elements hrefs = content.getElementsByAttribute("href");
-        for (Element remove : hrefs){
-            remove.clearAttributes();
-        }
-
-        for (String className : classesToRemove) {
-            Elements remove = content.getElementsByClass(className);
+        String[] tagToRemove = {
+//                "nav"
+        };
+        for (String tagName : tagToRemove){
+            Elements remove = content.getElementsByTag(tagName);
             remove.remove();
         }
+
+
+        //change all local page css to its full link
+        Elements links = content.getElementsByTag("link");
+        for (Element element : links){
+            String href = element.attr("href");
+            if (href.contains("css") && !href.contains("https")){
+                element.attr("href", "https:" + href);
+            }
+        }
+
         return content;
     }
 
