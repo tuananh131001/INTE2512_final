@@ -5,13 +5,15 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.jsoup.select.Evaluator;
 import sample.Article;
 import sample.News;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 
-public class Tuoitre extends News {
+public class Nhandan extends News {
 
     @Override
     public ArrayList<Article> scrapeArticle(String url) throws IOException {
@@ -54,22 +56,26 @@ public class Tuoitre extends News {
 
         //connect to rss website and add in listArticle all "items"
         Document doc = Jsoup.connect(url).get();
-        listArticle.addAll(doc.getElementsByClass("news-item"));
+        listArticle.addAll(doc.getElementsByTag("article"));
+
+        HashSet<String> hs = new HashSet<>();
 
         //for each article, get its url, description and url
         try {
             for (Element article : listArticle) {
-                String name = article.getElementsByClass("title-news").first().child(0).ownText();
-                String articleUrl = "https://tuoitre.vn/" + article.getElementsByTag("a").attr("href");
+                String name = article.getElementsByTag("a").first().attr("title");
+                if (hs.contains(name)) continue;
+                hs.add(name);
+                String articleUrl = "https://nhandan.vn" + article.getElementsByTag("a").attr("href");
                 Image image = null;
                 String imageurl = null;
                 Element element = article.getElementsByTag("img").first();
-                if (element != null) imageurl = element.attr("src");
+                if (element != null) imageurl = element.attr("data-src");
                 if (imageurl != null && !imageurl.equals("")) {
                     image = new Image(imageurl);
                 }
-                String date = Jsoup.connect(articleUrl).get().getElementsByClass("date-time").first().ownText();
-                newsList.add(new Article(image, name, articleUrl, date,"Tuoi Tre"));
+                String date = Jsoup.connect(articleUrl).get().getElementsByClass("box-date pull-left").first().ownText();
+                newsList.add(new Article(image, name, articleUrl, date,"Nhan Dan"));
                 if (newsList.size() >= 10) break;
             }
         } catch (Exception e){
@@ -83,38 +89,38 @@ public class Tuoitre extends News {
         //connect to url
         Document content = Jsoup.parse(Jsoup.connect(url).get().toString());
 
+        //removing all elements with such ids
         //removing all elements with such class name
         String[] classesToRemove = {
-                "header-top",
-                "header-bottom",
-                "trending",
-                "title-content clearfix first",
-                "bannerfooter1",
-                "box_can_you_care",
-                "tagandnetwork"
+                "headersite",
+                "box-widget box-likepage box-likepage-top uk-clearfix",
+                "box-widget box-tags uk-clearfix",
+                "box-widget box-likepage uk-clearfix",
+                "box-widget box-related",
+                "footersite",
+                "uk-nav uk-nav-default",
+                "box-widget box-widget-tabs "
         };
         for (String className : classesToRemove) {
             Elements remove = content.getElementsByClass(className);
             remove.remove();
         }
-
-        //removing all elements with such tagname
-        String[] tagnameToRemove ={
-                "footer",
-                "header"
+        //removing all elements with such id
+        String[] IdToRemove ={
+                "offcanvas-overlay-push"
         };
-        for (String tagname : tagnameToRemove){
-            Elements remove = content.getElementsByTag(tagname);
-            remove.remove();
-        }
-
-        //removing all elements with such ids
-        String[] idToRemove = {
-                "sticky-box"
-        };
-        for (String idName : idToRemove){
+        for (String idName : IdToRemove){
             Element remove = content.getElementById(idName);
             if (remove != null) remove.remove();
+        }
+
+        //change all local page css to its full link
+        Elements links = content.getElementsByTag("link");
+        for (Element element : links){
+            String href = element.attr("href");
+            if (!href.contains("nhandan")){
+                element.attr("href", "https://nhandan.vn" + href);
+            }
         }
         //return clean content
         return content;
@@ -122,6 +128,6 @@ public class Tuoitre extends News {
 
     @Override
     public String getFileName(){
-        return "src/sample/urlfiles/tuoitreurl.txt";
+        return "src/sample/urlfiles/Nhandanurl.txt";
     }
 }
