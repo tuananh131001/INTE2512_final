@@ -111,26 +111,26 @@ public class Controller implements Initializable {
                 stackPane.getChildren().remove(1);
             }
 
-            stackPane.getChildren().add(progressBar);
+            if (stackPane.getChildren().size() == 1) {
+                stackPane.getChildren().add(progressBar);
+            }
+
             Task<Void> loadNewsListTask = new LoadNewsListTask(category);
             Thread thread = new Thread(loadNewsListTask);
             progressBar.progressProperty().bind(loadNewsListTask.progressProperty());
             thread.setDaemon(true);
             loadNewsListTask.setOnSucceeded(e -> {
                 //setting up pagination
-                stackPane.getChildren().remove(1);
+                //removing progress bar
+                if (stackPane.getChildren().size() >= 2) {
+                    stackPane.getChildren().remove(1);
+                }
                 page.setPageCount((newsList.size()+9)/10);
                 page.setCurrentPageIndex(0);
                 page.setPageFactory(pageIndex -> createPage(pageIndex,newsList));
                 page.setVisible(true);
             });
             thread.start();
-            try {
-                thread.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
         }
     };
 
@@ -140,8 +140,11 @@ public class Controller implements Initializable {
             this.category = category;
         }
         @Override
-        protected Void call(){
+        protected Void call() {
             try {
+                synchronized (this){
+                    wait(10);
+                }
                 int newssize = news.size();
                 newsList = new ArrayList<>();
                 double count = 0;
@@ -149,8 +152,8 @@ public class Controller implements Initializable {
                     newsList.addAll(neww.scrapeWebsiteCategory(category).getArticleList());
                     updateProgress(count, newssize);
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
+            } catch (IOException | InterruptedException e) {
+                System.out.println(e);
             }
             return null;
         }

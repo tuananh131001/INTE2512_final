@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="QoL changes for Controller and News Class">
+    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="added progress bar (it sucked)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/news/Thanhnien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Thanhnien.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/news/Vnexpress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Vnexpress.java" afterDir="false" />
     </list>
     <list id="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" name="classes" comment="">
       <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/module-info.class" afterDir="false" />
@@ -287,7 +285,8 @@
       <workItem from="1628739038978" duration="2478000" />
       <workItem from="1628742601173" duration="19260000" />
       <workItem from="1628796068542" duration="501000" />
-      <workItem from="1628847567657" duration="19159000" />
+      <workItem from="1628847567657" duration="19941000" />
+      <workItem from="1628912488007" duration="1591000" />
     </task>
     <task id="LOCAL-00001" summary="made things scrollable">
       <created>1628237732360</created>
@@ -471,7 +470,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628849956080</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="added progress bar (it sucked)">
+      <created>1628880203395</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1628880203395</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -525,10 +531,20 @@
     <MESSAGE value="changed button to togglebutton" />
     <MESSAGE value="sadge" />
     <MESSAGE value="QoL changes for Controller and News Class" />
-    <option name="LAST_COMMIT_MESSAGE" value="QoL changes for Controller and News Class" />
+    <MESSAGE value="added progress bar (it sucked)" />
+    <option name="LAST_COMMIT_MESSAGE" value="added progress bar (it sucked)" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/Controller.java</url>
+          <line>114</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="sample.news.Vnexpress" memberName="image" />
