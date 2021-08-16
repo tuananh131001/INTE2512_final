@@ -69,7 +69,10 @@ public class Zingnews extends News {
         Document content = Jsoup.parse(Jsoup.connect(url).get().toString());
         //removing all elements with such class name
         String[] classesToRemove = {
-                "the-article-tags"
+                "the-article-tags",
+                "section recommendation has-sidebar",
+                "sidebar",
+                "section article-news-background"
         };
         for (String className : classesToRemove) {
             Elements remove = content.getElementsByClass(className);
