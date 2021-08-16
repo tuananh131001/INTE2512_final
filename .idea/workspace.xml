@@ -4,15 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="defaulted the program to load news first&#10;updated url files&#10;updated covid scraping&#10;added Nhandan class">
+    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="update zingNews">
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Controller$LoadNewsListTask.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Nhandan.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Zingnews.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/styles/custombutton.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/urlfiles/nhandanurl.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/urlfiles/thanhnienurl.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/urlfiles/tuoitreurl.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/urlfiles/vnexpressUrl.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/urlfiles/zingnewsurl.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sample/news/Zingnews.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sample/urlfiles/zingnewsurl.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/news/Nhandan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Nhandan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/news/Thanhnien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Thanhnien.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/news/Tuoitre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Tuoitre.java" afterDir="false" />
     </list>
-    <list id="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" name="classes" comment="">
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/module-info.class" afterDir="false" />
+    <list id="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" name="classes" comment="Update zing news">
       <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Article.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Article.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Controller$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Controller$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Controller.class" afterDir="false" />
@@ -42,7 +51,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="duy" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -90,6 +99,58 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="JavaFxApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="JavaFxApplication" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="16" />
+      <option name="MAIN_CLASS_NAME" value="sample.Main" />
+      <module name="INTE2512_final" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sample.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="16" />
+      <option name="MAIN_CLASS_NAME" value="sample.Main" />
+      <module name="INTE2512_final" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sample.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="DjangoTestsConfigurationType">
       <module name="JavaFxApplication" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -217,58 +278,6 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="16" />
-      <option name="MAIN_CLASS_NAME" value="sample.Main" />
-      <module name="INTE2512_final" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="sample.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="16" />
-      <option name="MAIN_CLASS_NAME" value="sample.Main" />
-      <module name="INTE2512_final" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="sample.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="JavaFxApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="JavaFxApplication" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
@@ -305,6 +314,7 @@
       <workItem from="1628796068542" duration="501000" />
       <workItem from="1628847567657" duration="19941000" />
       <workItem from="1628912488007" duration="30350000" />
+      <workItem from="1629107778396" duration="288000" />
     </task>
     <task id="LOCAL-00001" summary="made things scrollable">
       <created>1628237732360</created>
@@ -573,7 +583,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="made things scrollable" />
     <MESSAGE value="big changes&#10;made scrapeContent for Vnexpress" />
     <MESSAGE value="added comments for Vnexpress" />
     <MESSAGE value="more things changed" />
@@ -597,7 +606,9 @@
     <MESSAGE value="nice" />
     <MESSAGE value="defaulted the program to load news first&#10;updated url files&#10;updated covid scraping" />
     <MESSAGE value="defaulted the program to load news first&#10;updated url files&#10;updated covid scraping&#10;added Nhandan class" />
-    <option name="LAST_COMMIT_MESSAGE" value="defaulted the program to load news first&#10;updated url files&#10;updated covid scraping&#10;added Nhandan class" />
+    <MESSAGE value="classes" />
+    <MESSAGE value="Update zing news" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update zing news" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -613,6 +624,11 @@
           <line>120</line>
           <option name="timeStamp" value="20" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/news/Zingnews.java</url>
+          <line>81</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>
@@ -621,9 +637,14 @@
         <PinnedItemInfo parentTag="javafx.scene.web.WebView" memberName="scene" />
       </pinned-members>
     </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="article" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/INTE2512_final$Main.ic" NAME="Main Coverage Results" MODIFIED="1628956485062" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/INTE2512_final$Main.ic" NAME="Main Coverage Results" MODIFIED="1627872873496" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>sample.*</FILTER>
     </SUITE>
   </component>

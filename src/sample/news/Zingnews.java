@@ -5,15 +5,15 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.jsoup.select.Evaluator;
 import sample.Article;
 import sample.News;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-public class Nhandan extends News {
+public class Zingnews extends News {
 
     @Override
     public ArrayList<Article> scrapeArticle(String url) throws IOException {
@@ -47,7 +47,6 @@ public class Nhandan extends News {
         }
         return newsList;
     }
-
     public ArrayList<Article> scrapeArticleNonRss(String url) throws IOException {
         if (url == null) return new ArrayList<>();
         ArrayList<Article> newsList = new ArrayList<>(); //initialize return variable
@@ -63,21 +62,23 @@ public class Nhandan extends News {
         //for each article, get its url, description and url
         try {
             for (Element article : listArticle) {
-                String name = article.getElementsByTag("a").first().attr("title");
+                String name = article.getElementsByClass("article-title").text();
                 if (hs.contains(name)) continue;
                 hs.add(name);
-                String articleUrl = "https://nhandan.vn" + article.getElementsByTag("a").attr("href");
+                String articleUrl = "https://zingnews.vn" + article.getElementsByTag("a").first().attr("href");
                 Image image = null;
                 String imageurl = null;
                 Element element = article.getElementsByTag("img").first();
-                if (element != null) imageurl = element.attr("data-src");
+
+
+                if (element != null) imageurl = element.attr("src");
                 try {
                     image = new Image(imageurl);
                 } catch (IllegalArgumentException e){
-                    System.out.println("Nhan Dan : Image link is error");
+                    System.out.println("Zing News : Image link is error");
                 }
-                String date = Jsoup.connect(articleUrl).get().getElementsByClass("box-date pull-left").first().ownText();
-                newsList.add(new Article(image, name, articleUrl, date,"Nhan Dan"));
+                String date = article.getElementsByClass("friendly-time").first().ownText();
+                newsList.add(new Article(image, name, articleUrl, date,"Zing News"));
                 if (newsList.size() >= 10) break;
             }
         } catch (Exception e){
@@ -91,45 +92,12 @@ public class Nhandan extends News {
         //connect to url
         Document content = Jsoup.parse(Jsoup.connect(url).get().toString());
 
-        //removing all elements with such ids
-        //removing all elements with such class name
-        String[] classesToRemove = {
-                "headersite",
-                "box-widget box-likepage box-likepage-top uk-clearfix",
-                "box-widget box-tags uk-clearfix",
-                "box-widget box-likepage uk-clearfix",
-                "box-widget box-related",
-                "footersite",
-                "uk-nav uk-nav-default",
-                "box-widget box-widget-tabs "
-        };
-        for (String className : classesToRemove) {
-            Elements remove = content.getElementsByClass(className);
-            remove.remove();
-        }
-        //removing all elements with such id
-        String[] IdToRemove ={
-                "offcanvas-overlay-push"
-        };
-        for (String idName : IdToRemove){
-            Element remove = content.getElementById(idName);
-            if (remove != null) remove.remove();
-        }
-
-        //change all local page css to its full link
-        Elements links = content.getElementsByTag("link");
-        for (Element element : links){
-            String href = element.attr("href");
-            if (!href.contains("nhandan")){
-                element.attr("href", "https://nhandan.vn" + href);
-            }
-        }
         //return clean content
         return content;
     }
 
     @Override
     public String getFileName(){
-        return "src/sample/urlfiles/Nhandanurl.txt";
+        return "src/sample/urlfiles/zingnewsurl.txt";
     }
 }
