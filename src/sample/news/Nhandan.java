@@ -18,34 +18,7 @@ public class Nhandan extends News {
     @Override
     public ArrayList<Article> scrapeArticle(String url) throws IOException {
         if (url == null) return new ArrayList<>();
-        if (!url.contains("rss")) return scrapeArticleNonRss(url);
-        ArrayList<Article> newsList = new ArrayList<>(); //initialize return variable
-
-        Elements listArticle = new Elements(); //initialize article list
-
-        //connect to rss website and add in listArticle all "items"
-        Document doc = Jsoup.connect(url).get();
-        listArticle.addAll(doc.getElementsByTag("item"));
-
-        //for each article, get its url, description and url
-        try {
-            for (Element article : listArticle) {
-                String name = article.child(0).ownText();
-                String articleUrl = article.child(1).ownText();
-                Image image = null;
-                Document description = Jsoup.parse(article.child(3).ownText());
-                String imageurl = description.getElementsByTag("img").attr("src");
-                if (imageurl != null) {
-                    image = new Image(imageurl);
-                }
-                String date = article.getElementsByTag("Pubdate").first().ownText();
-                newsList.add(new Article(image, name, articleUrl, date,"Tuoi Tre"));
-                if (newsList.size() >= 10) break;
-            }
-        } catch (Exception e){
-            System.out.println(e);
-        }
-        return newsList;
+        return scrapeArticleNonRss(url);
     }
 
     public ArrayList<Article> scrapeArticleNonRss(String url) throws IOException {
@@ -71,12 +44,19 @@ public class Nhandan extends News {
                 String imageurl = null;
                 Element element = article.getElementsByTag("img").first();
                 if (element != null) imageurl = element.attr("data-src");
-                try {
+                if (imageurl != null && !imageurl.equals("")) {
                     image = new Image(imageurl);
-                } catch (IllegalArgumentException e){
-                    System.out.println("Nhan Dan : Image link is error");
                 }
-                String date = Jsoup.connect(articleUrl).get().getElementsByClass("box-date pull-left").first().ownText();
+                Elements dateElements = Jsoup.connect(articleUrl).get().getElementsByAttributeValueMatching("class", "box-date");
+                Element dateElement = null;
+                if (dateElements.size() >= 2) dateElement = dateElements.get(1);
+                String date = "";
+                if (dateElement != null && dateElement.hasText()) date = dateElement.ownText();
+                else {
+                    dateElements = article.getElementsByClass("box-meta-small");
+                    if (dateElements.size() > 0) dateElement = dateElements.get(0);
+                    if (dateElement != null && dateElement.hasText()) date = dateElement.ownText();
+                }
                 newsList.add(new Article(image, name, articleUrl, date,"Nhan Dan"));
                 if (newsList.size() >= 10) break;
             }
@@ -130,6 +110,6 @@ public class Nhandan extends News {
 
     @Override
     public String getFileName(){
-        return "src/sample/urlfiles/nhandanurl.txt";
+        return "src/sample/urlfiles/Nhandanurl.txt";
     }
 }
