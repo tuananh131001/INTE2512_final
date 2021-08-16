@@ -67,6 +67,7 @@ public class Zingnews extends News {
     public Element scrapeContent(String url) throws IOException {
         //connect to url
         Document content = Jsoup.parse(Jsoup.connect(url).get().toString());
+
         //removing all elements with such class name
         String[] classesToRemove = {
                 "the-article-tags",
@@ -86,7 +87,12 @@ public class Zingnews extends News {
         };
         for (String tagName : tagNameToRemove){
             Elements remove = content.getElementsByTag(tagName);
-            remove.remove();
+            for (Element element : remove) {
+                if (element == null) continue;
+                String attr = element.attr("class");
+                if (attr != null && attr.equals("the-article-header")) continue;
+                element.remove();
+            }
         }
         //removing all elements with such ids
         String[] idToRemove = {
