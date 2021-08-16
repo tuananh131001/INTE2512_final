@@ -91,7 +91,32 @@ public class Zingnews extends News {
     public Element scrapeContent(String url) throws IOException {
         //connect to url
         Document content = Jsoup.parse(Jsoup.connect(url).get().toString());
-
+        //removing all elements with such class name
+        String[] classesToRemove = {
+                "the-article-tags"
+        };
+        for (String className : classesToRemove) {
+            Elements remove = content.getElementsByClass(className);
+            remove.remove();
+        }
+        //removing all elements with such tagname
+        String[] tagNameToRemove ={
+                "header",
+                "strong",
+                "footer"
+        };
+        for (String tagName : tagNameToRemove){
+            Elements remove = content.getElementsByTag(tagName);
+            remove.remove();
+        }
+        //removing all elements with such ids
+        String[] idToRemove = {
+                "pushed_popup"
+        };
+        for (String idName : idToRemove){
+            Element remove = content.getElementById(idName);
+            if (remove != null) remove.remove();
+        }
         //return clean content
         return content;
     }

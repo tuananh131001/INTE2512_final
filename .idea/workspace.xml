@@ -4,24 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="update zingNews">
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Controller$LoadNewsListTask.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Nhandan.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Zingnews.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/styles/custombutton.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/urlfiles/nhandanurl.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/urlfiles/thanhnienurl.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/urlfiles/tuoitreurl.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/urlfiles/vnexpressUrl.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/urlfiles/zingnewsurl.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/news/Zingnews.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/urlfiles/zingnewsurl.txt" afterDir="false" />
+    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="defaulted the program to load news first&#10;updated url files&#10;updated covid scraping&#10;added Nhandan class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/news/Nhandan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Nhandan.java" afterDir="false" />
-    </list>
-    <list id="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" name="classes" comment="Update zing news">
+      <change beforePath="$PROJECT_DIR$/INTE2512_final.iml" beforeDir="false" afterPath="$PROJECT_DIR$/INTE2512_final.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Article.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Article.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Controller$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Controller$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Controller.class" afterDir="false" />
@@ -30,7 +15,10 @@
       <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Thanhnien.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Thanhnien.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Tuoitre.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Tuoitre.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Vnexpress.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Vnexpress.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/news/Nhandan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Nhandan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/news/Zingnews.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Zingnews.java" afterDir="false" />
     </list>
+    <list id="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" name="classes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

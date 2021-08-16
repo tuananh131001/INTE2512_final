@@ -130,6 +130,6 @@ public class Nhandan extends News {
 
     @Override
     public String getFileName(){
-        return "src/sample/urlfiles/Nhandanurl.txt";
+        return "src/sample/urlfiles/nhandanurl.txt";
     }
 }
