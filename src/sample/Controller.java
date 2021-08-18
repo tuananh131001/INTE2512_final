@@ -230,6 +230,8 @@ public class Controller implements Initializable {
             labelTime.setFont(new Font("Arial", 12));
 
             Button viewButton = new Button("View");
+            //disable view button focus cause after article got added the damn thing is still in focus and will try to add more panes if you hit space or enter
+            viewButton.setFocusTraversable(false);
             viewButton.setStyle("-fx-font-size: 10; -fx-underline: true;");
             viewButton.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/custombutton.css")).toString());
             vboxArticle.getChildren().addAll(labelArticle,labelSource,labelTime, viewButton);

@@ -97,6 +97,7 @@ public class Vnexpress extends News {
         for (String className : classesToRemove) {
             Elements remove = content.getElementsByClass(className);
             remove.remove();
+//            remove.attr("visibility", "false");
         }
 
         //removing all elements with such ids
