@@ -4,11 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="dmm github">
+    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="cang det">
+      <change afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/styles/custombutton.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/urlfiles/nhandanurl.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/urlfiles/thanhnienurl.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/urlfiles/tuoitreurl.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/urlfiles/vnexpressUrl.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/urlfiles/zingnewsurl.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sample/styles/news/nhandanstyle.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sample/styles/news/thanhnienstyle.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sample/styles/news/tuoitrestyle.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sample/styles/news/vnexpressstyle.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sample/styles/news/zingnewsstyle.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Controller$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Controller$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/mainwindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/mainwindow.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Thanhnien.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Thanhnien.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Tuoitre.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Tuoitre.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Vnexpress.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Vnexpress.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/styles/scrollstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/styles/scrollstyle.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/news/Nhandan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Nhandan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/styles/custombutton.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/styles/custombutton.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -615,14 +633,7 @@
       <option name="project" value="LOCAL" />
       <updated>1629295501075</updated>
     </task>
-    <task id="LOCAL-00040" summary="dmm github">
-      <created>1629476235929</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1629476235929</updated>
-    </task>
-    <option name="localTasksCounter" value="41" />
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -658,6 +669,8 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="more things changed" />
+    <MESSAGE value="removed ads&#10;this should remove pesky block on top of Vnexpress pages now" />
     <MESSAGE value="max ping" />
     <MESSAGE value="clean code" />
     <MESSAGE value="better pagination&#10;added Tuoitre loading to test strain on computer" />
@@ -681,22 +694,16 @@
     <MESSAGE value="fixed nhandan date getting scraper" />
     <MESSAGE value="final?" />
     <MESSAGE value="fixed bugs" />
-    <MESSAGE value="cang det" />
-    <MESSAGE value="dmm github" />
-    <option name="LAST_COMMIT_MESSAGE" value="dmm github" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed bugs" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.lang.NullPointerException" package="java.lang" />
-          <option name="timeStamp" value="34" />
-        </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/sample/Controller.java</url>
-          <line>264</line>
-          <option name="timeStamp" value="35" />
+          <url>file://$PROJECT_DIR$/src/sample/news/Thanhnien.java</url>
+          <line>129</line>
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -706,12 +713,6 @@
         <PinnedItemInfo parentTag="javafx.scene.web.WebView" memberName="scene" />
       </pinned-members>
     </pin-to-top-manager>
-    <watches-manager>
-      <configuration name="Application">
-        <watch expression="source.replaceAll(&quot;\\s+&quot;, &quot;&quot;)" language="JAVA" />
-        <watch expression="getClass().getResource(&quot;styles/news/&quot; + &quot;vnexpress&quot; + &quot;style.css&quot;)" language="JAVA" />
-      </configuration>
-    </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/INTE2512_final$Main.ic" NAME="Main Coverage Results" MODIFIED="1628956485062" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
