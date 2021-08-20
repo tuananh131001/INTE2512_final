@@ -261,8 +261,7 @@ public class Controller implements Initializable {
                         String source = article.getSource();
                         Element content = news.get(source).scrapeContent(article.getSourceArticle());
                         engine.loadContent(content.toString());
-                        source = source.replaceAll("\\s+", "");
-                        engine.setUserStyleSheetLocation(Objects.requireNonNull(getClass().getResource("styles/news/" + source +  "style.css")).toString());
+                        engine.setUserStyleSheetLocation(Objects.requireNonNull(getClass().getResource("styles/news/" + source.replaceAll("\\s+", "") +  "style.css")).toString());
                         newsBorder.setCenter(newsScene); //set center as news scene
                         stackPane.getChildren().add(newsBorder); //add the whole thing on top of the application
                     } catch (Exception e) {
