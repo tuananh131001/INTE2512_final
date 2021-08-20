@@ -4,6 +4,7 @@
  
 ****************************************************************/
 .scroll-bar{
+    overflow:auto;
     -fx-background-color: rgb(96,96,96);
     /*-fx-background-radius: 2em;*/ /*remove comment to make oval shape scrollbar */
 }
