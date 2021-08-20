@@ -22,6 +22,7 @@ import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.util.Duration;
+import javafx.util.Pair;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -57,11 +58,17 @@ public class Controller implements Initializable {
 
     HashMap<String, Thread> threads;
 
+    //makes scroll bar smooth
+    HashMap<String, Pair<Double, Animation>> progressAnimations;
+    Text progressText;
+
     //makes scroll smooth af
     Animation scrollAnimation = new Timeline();
     //makes the above thing work
     double scrollDestination;
     double scrollDirection;
+
+    String currentCategory;
 
     @Override
     public void initialize(URL url1, ResourceBundle resourceBundle) {
@@ -83,6 +90,9 @@ public class Controller implements Initializable {
             //initializing threads
             threads = new HashMap<>();
 
+            progressAnimations = new HashMap<>();
+            progressText = new Text();
+
             //init elements of the app
             initPagination();
             initNewsBorder();
@@ -91,10 +101,11 @@ public class Controller implements Initializable {
             initLoadingBar();
 
             //defaults the program to run News articles first
+            currentCategory = "New";
             ((ToggleButton)((HBox) borderPane.getTop()).getChildren().get(0)).fire();
 
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e + " initialize");
         }
     }
 
@@ -106,6 +117,7 @@ public class Controller implements Initializable {
             ToggleButton button = (ToggleButton) event.getSource();
             //get category
             String category = button.getText();
+            currentCategory = category;
 
             //enable all buttons
             Parent parent = button.getParent();
@@ -133,15 +145,24 @@ public class Controller implements Initializable {
 
             //check if same thread is running
             Thread check = threads.get(category);
-            if (check != null && check.isAlive()) return; //if its running dont bother running it
+            if (check != null && check.isAlive()) {
+                Pair<Double, Animation> p = progressAnimations.get(category);
+                progressBar.setProgress(p.getKey());
+                p.getValue().play();
+                return; //if its running dont bother running it
+            }
+
             //create a loading news list task
-            Task<Void> loadNewsListTask = new LoadNewsListTask(category);
+            Task<ArrayList<Article>> loadNewsListTask = new LoadNewsListTask(category);
             Thread thread = new Thread(loadNewsListTask);
-            threads.put(category, thread);
+            threads.put(category, thread); //put the thread in for checkup
+
             //makes sure thread is stopped when program shuts down
             thread.setDaemon(true);
             //load pagination after task finished
             loadNewsListTask.setOnSucceeded(e -> {
+                if (!currentCategory.equals(category)) return;
+                newsList = (ArrayList<Article>) (e.getSource()).getValue();
                 //removing progress bar
                 if (stackPane.getChildren().size() >= 2) {
                     stackPane.getChildren().remove(1);
@@ -158,41 +179,37 @@ public class Controller implements Initializable {
     };
 
     //Task to load all articles for newsList
-    public class LoadNewsListTask extends Task<Void> {
+    public class LoadNewsListTask extends Task<ArrayList<Article>> {
         String category;
         LoadNewsListTask(String category){
             this.category = category;
         }
         @Override
-        protected Void call() {
+        protected ArrayList<Article> call() {
+            ArrayList<Article> list = new ArrayList<>();
             try {
                 //hack to let progressBar load
                 synchronized (this){
                     wait(5);
                 }
                 int newsSize = news.size();
-                newsList = new ArrayList<>();
                 double count = 0;
-                //reset progress bar back to 0
-                progressBar.progressProperty().unbind(); //unbinds the previous animation
-                progressBar.setProgress(0);
-                Animation progressAnimation = null;
                 for (News news: news.values()){
-                     progressAnimation = new Timeline(
+                    Animation progressAnimation = new Timeline(
                             new KeyFrame(Duration.seconds(0.5),
                                     new KeyValue(progressBar.progressProperty(), ++count/newsSize))
                     );
-                    progressAnimation.setOnFinished(finished -> {
-                        Animation a = ((Animation) finished.getSource());
-                        a = null;
-                    });
-                    progressAnimation.play();
-                    newsList.addAll(news.scrapeWebsiteCategory(category).getArticleList());
+
+                    progressAnimations.put(category, new Pair<>(count/newsSize, progressAnimation));
+
+                    if (currentCategory.equals(category)) progressAnimation.play();
+                    list.addAll(news.scrapeWebsiteCategory(category).getArticleList());
+                    if (currentCategory.equals(category)) progressBar.setProgress(count/newsSize);
                 }
             } catch (IOException | InterruptedException e) {
-                System.out.println(e);
+                System.out.println(e + " LoadNewsListTask");
             }
-            return null;
+            return list;
         }
     }
 
@@ -230,6 +247,8 @@ public class Controller implements Initializable {
             labelTime.setFont(new Font("Arial", 12));
 
             Button viewButton = new Button("View");
+            //disable view button focus cause after article got added the damn thing is still in focus and will try to add more panes if you hit space or enter
+            viewButton.setFocusTraversable(false);
             viewButton.setStyle("-fx-font-size: 10; -fx-underline: true;");
             viewButton.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/custombutton.css")).toString());
             vboxArticle.getChildren().addAll(labelArticle,labelSource,labelTime, viewButton);
@@ -238,6 +257,7 @@ public class Controller implements Initializable {
                     try {
                         Element content = news.get(article.getSource()).scrapeContent(article.getSourceArticle());
                         engine.loadContent(content.toString());
+                        engine.setUserStyleSheetLocation(Objects.requireNonNull(getClass().getResource("styles/news/" + source.replaceAll("\\s+", "") +  "style.css")).toString());
                         newsBorder.setCenter(newsScene); //set center as news scene
                         stackPane.getChildren().add(newsBorder); //add the whole thing on top of the application
                     } catch (Exception e) {
@@ -245,7 +265,7 @@ public class Controller implements Initializable {
                     }
                 });
             } catch (Exception e){
-                System.out.println(e);
+                System.out.println(e + " createPage");
             }
 
             hbox.getChildren().add(vboxArticle);

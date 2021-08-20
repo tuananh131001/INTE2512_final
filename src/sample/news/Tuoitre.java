@@ -1,6 +1,7 @@
 package sample.news;
 
 import javafx.scene.image.Image;
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -53,7 +54,8 @@ public class Tuoitre extends News {
         Elements listArticle = new Elements(); //initialize article list
 
         //connect to rss website and add in listArticle all "items"
-        Document doc = Jsoup.connect(url).get();
+        Document doc = Jsoup.connect(url).timeout(5000).get();
+
         listArticle.addAll(doc.getElementsByClass("news-item"));
 
         //for each article, get its url, description and url
@@ -73,7 +75,7 @@ public class Tuoitre extends News {
                 if (newsList.size() >= 10) break;
             }
         } catch (Exception e){
-            System.out.println(e);
+            System.out.println(e + " tuoitre.java");
         }
         return newsList;
     }

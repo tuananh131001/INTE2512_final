@@ -7,21 +7,16 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane fx:id="stackPane" prefHeight="566.0" prefWidth="710.0" styleClass="mainWindow" stylesheets="@styles/mainwindow.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
-   <BorderPane fx:id="borderPane">
-      <top>
-         <MenuBar fx:id="menuBar" prefHeight="32.0" prefWidth="710.0" BorderPane.alignment="CENTER">
-            <effect>
-               <Glow />
-            </effect></MenuBar>
-      </top>
-      <center>
+<BorderPane fx:id="borderPane" styleClass="mainWindow" stylesheets="@styles/mainwindow.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <top>
+   </top>
+   <center>
+      <StackPane fx:id="stackPane" prefHeight="566.0" prefWidth="710.0" >
          <ScrollPane fx:id="scrollPaneFilters" fitToHeight="true" fitToWidth="true" pannable="true" stylesheets="@styles/scrollstyle.css">
             <Pagination fx:id="page" BorderPane.alignment="BOTTOM_CENTER" />
          </ScrollPane>
-      </center>
-      <bottom>
-
-      </bottom>
-   </BorderPane>
-</StackPane>
+      </StackPane>
+   </center>
+   <bottom>
+   </bottom>
+</BorderPane>

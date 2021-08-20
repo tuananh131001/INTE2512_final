@@ -43,7 +43,9 @@ public class Vnexpress extends News {
     public ArrayList<Article> scrapeArticleNonRss(String url) throws IOException {
         Elements articleElementList = new Elements(); // Create list of element
         ArrayList<Article> articleList = new ArrayList<>(); //Create list of article
-        Document doc = Jsoup.connect(url).get();
+
+        Document doc = Jsoup.connect(url).timeout(5000).get();
+
         articleElementList.addAll(doc.getElementsByClass("item-news full-thumb"));
         try{
             for (Element articleElement : articleElementList){
@@ -65,7 +67,7 @@ public class Vnexpress extends News {
                 if (articleList.size() >= 10) break;
             }
         } catch (Exception e){
-            System.out.println(e);
+            System.out.println(e + " vnexpress.java");
         }
         return articleList;
     }
@@ -97,6 +99,7 @@ public class Vnexpress extends News {
         for (String className : classesToRemove) {
             Elements remove = content.getElementsByClass(className);
             remove.remove();
+//            remove.attr("visibility", "false");
         }
 
         //removing all elements with such ids
