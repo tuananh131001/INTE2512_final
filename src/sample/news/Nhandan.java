@@ -28,7 +28,8 @@ public class Nhandan extends News {
         Elements listArticle = new Elements(); //initialize article list
 
         //connect to rss website and add in listArticle all "items"
-        Document doc = Jsoup.connect(url).get();
+        Document doc = Jsoup.connect(url).timeout(5000).get();
+
         listArticle.addAll(doc.getElementsByTag("article"));
 
         HashSet<String> hs = new HashSet<>();
@@ -61,7 +62,7 @@ public class Nhandan extends News {
                 if (newsList.size() >= 10) break;
             }
         } catch (Exception e){
-            System.out.println(e);
+            System.out.println(e + " nhandan.java");
         }
         return newsList;
     }

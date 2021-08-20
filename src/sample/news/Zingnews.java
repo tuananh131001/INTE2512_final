@@ -28,7 +28,8 @@ public class Zingnews extends News {
         Elements listArticle = new Elements(); //initialize article list
 
         //connect to rss website and add in listArticle all "items"
-        Document doc = Jsoup.connect(url).get();
+        Document doc = Jsoup.connect(url).timeout(5000).get();
+
         listArticle.addAll(doc.getElementsByTag("article"));
 
         HashSet<String> hs = new HashSet<>();

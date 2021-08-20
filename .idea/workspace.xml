@@ -4,12 +4,37 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="fixed bugs">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/mainwindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/mainwindow.fxml" afterDir="false" />
-    </list>
-    <list id="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" name="classes" comment="">
+    <list default="true" id="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" name="classes" comment="classes">
+      <change afterPath="$PROJECT_DIR$/src/sample/styles/news/nhandanstyle.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sample/styles/news/thanhnienstyle.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sample/styles/news/tuoitrestyle.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sample/styles/news/vnexpressstyle.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sample/styles/news/zingnewsstyle.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/module-info.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Controller$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Controller$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/mainwindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/mainwindow.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Thanhnien.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Thanhnien.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Tuoitre.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Tuoitre.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Vnexpress.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Vnexpress.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/styles/scrollstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/styles/scrollstyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/news/Nhandan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Nhandan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/news/Thanhnien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Thanhnien.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/news/Tuoitre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Tuoitre.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/news/Vnexpress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Vnexpress.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/styles/custombutton.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/styles/custombutton.css" afterDir="false" />
+    </list>
+    <list id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="cang det">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/mainwindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/mainwindow.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/news/Nhandan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Nhandan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/news/Thanhnien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Thanhnien.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/news/Tuoitre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Tuoitre.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/news/Vnexpress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Vnexpress.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/news/Zingnews.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Zingnews.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/styles/scrollstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/styles/scrollstyle.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +45,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
-        <option value="CSS File" />
         <option value="Class" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -44,6 +69,68 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/sample/news/Thanhnien.java">
+      <ranges>
+        <range start1="21" end1="22" start2="21" end2="24" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
+        <range start1="45" end1="46" start2="47" end2="50" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
+        <range start1="58" end1="59" start2="62" end2="68" changelist="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/sample/news/Tuoitre.java">
+      <ranges>
+        <range start1="3" end1="3" start2="3" end2="4" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
+        <range start1="55" end1="56" start2="56" end2="58" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
+        <range start1="70" end1="71" start2="72" end2="78" changelist="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" />
+        <range start1="75" end1="76" start2="82" end2="83" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/sample/Controller.java">
+      <ranges>
+        <range start1="3" end1="3" start2="3" end2="4" changelist="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" />
+        <range start1="24" end1="24" start2="25" end2="26" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
+        <range start1="25" end1="25" start2="27" end2="28" changelist="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" />
+        <range start1="59" end1="59" start2="62" end2="66" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
+        <range start1="65" end1="65" start2="72" end2="74" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
+        <range start1="84" end1="84" start2="93" end2="96" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
+        <range start1="93" end1="93" start2="105" end2="106" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
+        <range start1="96" end1="97" start2="109" end2="110" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
+        <range start1="108" end1="108" start2="121" end2="122" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
+        <range start1="118" end1="119" start2="132" end2="133" changelist="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" />
+        <range start1="126" end1="126" start2="140" end2="141" changelist="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" />
+        <range start1="128" end1="129" start2="143" end2="145" changelist="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" />
+        <range start1="135" end1="136" start2="151" end2="158" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
+        <range start1="137" end1="138" start2="159" end2="160" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
+        <range start1="139" end1="140" start2="161" end2="163" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
+        <range start1="144" end1="144" start2="167" end2="169" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
+        <range start1="160" end1="161" start2="185" end2="186" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
+        <range start1="166" end1="167" start2="191" end2="193" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
+        <range start1="173" end1="174" start2="199" end2="199" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
+        <range start1="175" end1="179" start2="200" end2="200" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
+        <range start1="180" end1="181" start2="201" end2="202" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
+        <range start1="184" end1="190" start2="205" end2="211" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
+        <range start1="192" end1="193" start2="213" end2="214" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
+        <range start1="194" end1="195" start2="215" end2="216" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
+        <range start1="240" end1="241" start2="261" end2="263" changelist="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" />
+        <range start1="242" end1="242" start2="264" end2="265" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
+        <range start1="249" end1="250" start2="272" end2="273" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/sample/news/Nhandan.java">
+      <ranges>
+        <range start1="30" end1="31" start2="30" end2="32" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
+        <range start1="49" end1="50" start2="50" end2="56" changelist="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" />
+        <range start1="63" end1="64" start2="69" end2="70" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/sample/news/Vnexpress.java">
+      <ranges>
+        <range start1="45" end1="46" start2="45" end2="48" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
+        <range start1="60" end1="61" start2="62" end2="67" changelist="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" />
+        <range start1="67" end1="68" start2="73" end2="74" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
+      </ranges>
+    </file>
+  </component>
   <component name="ProjectId" id="1w8SNsuX09OMD6qAvXTEtHMbgsT" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -57,7 +144,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/sample/news" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/sample/styles" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Global Libraries" />
@@ -67,15 +154,16 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Codes\Java\INTE2512_final\src\sample\styles" />
       <recent name="C:\Users\William\IdeaProjects\INTE2512_final\src\sample\news" />
       <recent name="C:\Users\William\IdeaProjects\INTE2512_final\src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Codes\Java\INTE2512_final\src\sample\styles\news" />
       <recent name="D:\Codes\Java\INTE2512_final\src\sample\urlfiles" />
       <recent name="D:\Codes\Java\INTE2512_final\src\sample\styles" />
       <recent name="C:\Users\William\IdeaProjects\INTE2512_final\src\sample" />
       <recent name="C:\Users\William\IdeaProjects\INTE2512_final\src\sample\styles" />
-      <recent name="C:\Users\William\IdeaProjects\INTE2512_final\src" />
     </key>
   </component>
   <component name="RunManager">
@@ -234,6 +322,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="JavaFxApplication" />
       <method v="2">
@@ -285,7 +384,8 @@
       <workItem from="1628912488007" duration="30614000" />
       <workItem from="1629108706651" duration="2041000" />
       <workItem from="1629263484419" duration="4000" />
-      <workItem from="1629280119076" duration="1890000" />
+      <workItem from="1629280119076" duration="2599000" />
+      <workItem from="1629445402147" duration="15530000" />
     </task>
     <task id="LOCAL-00001" summary="made things scrollable">
       <created>1628237732360</created>
@@ -546,7 +646,21 @@
       <option name="project" value="LOCAL" />
       <updated>1629295323504</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="fixed bugs">
+      <created>1629295488549</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1629295488549</updated>
+    </task>
+    <task id="LOCAL-00039" summary="fixed bugs">
+      <created>1629295501075</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1629295501075</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -615,7 +729,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/news/Thanhnien.java</url>
-          <line>120</line>
+          <line>129</line>
           <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
@@ -626,11 +740,6 @@
         <PinnedItemInfo parentTag="javafx.scene.web.WebView" memberName="scene" />
       </pinned-members>
     </pin-to-top-manager>
-    <watches-manager>
-      <configuration name="Application">
-        <watch expression="article" />
-      </configuration>
-    </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/INTE2512_final$Main.ic" NAME="Main Coverage Results" MODIFIED="1628956485062" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
