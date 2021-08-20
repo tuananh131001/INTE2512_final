@@ -128,7 +128,7 @@ public class Controller implements Initializable {
             button.setDisable(true);
 
             //remove intro text
-            if (stackPane.getChildren().size() >= 2 && stackPane.getChildren().get(1).getClass().getSimpleName().equals("Text")) {
+            if (stackPane.getChildren().size() >= 2) {
                 stackPane.getChildren().remove(1);
             }
 
@@ -136,9 +136,12 @@ public class Controller implements Initializable {
             if (stackPane.getChildren().size() == 1) {
                 progressBar.setPrefSize(200, 20);
                 progressBar.setProgress(0);
+                Text percentage = new Text();
+                percentage.setFont(new Font("Segoe UI", 20));
+                percentage.textProperty().bind(progressBar.progressProperty().multiply(100).asString("%5.0f%%"));
                 Text loading = new Text("Loading articles: ");
                 loading.setFont(new Font("Segoe UI", 20));
-                HBox hBox = new HBox(loading, progressBar);
+                HBox hBox = new HBox(loading, progressBar, percentage);
                 hBox.setAlignment(Pos.CENTER);
                 stackPane.getChildren().add(hBox);
             }
@@ -255,9 +258,11 @@ public class Controller implements Initializable {
             try {
                 viewButton.setOnAction(event -> {
                     try {
-                        Element content = news.get(article.getSource()).scrapeContent(article.getSourceArticle());
+                        String source = article.getSource();
+                        Element content = news.get(source).scrapeContent(article.getSourceArticle());
                         engine.loadContent(content.toString());
-                        engine.setUserStyleSheetLocation(Objects.requireNonNull(getClass().getResource("styles/news/" + source.replaceAll("\\s+", "") +  "style.css")).toString());
+                        source = source.replaceAll("\\s+", "");
+                        engine.setUserStyleSheetLocation(Objects.requireNonNull(getClass().getResource("styles/news/" + source +  "style.css")).toString());
                         newsBorder.setCenter(newsScene); //set center as news scene
                         stackPane.getChildren().add(newsBorder); //add the whole thing on top of the application
                     } catch (Exception e) {

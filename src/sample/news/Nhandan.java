@@ -48,7 +48,12 @@ public class Nhandan extends News {
                 if (imageurl != null && !imageurl.equals("")) {
                     image = new Image(imageurl);
                 }
-                Elements dateElements = Jsoup.connect(articleUrl).get().getElementsByAttributeValueMatching("class", "box-date");
+                Elements dateElements;
+                try {
+                     dateElements = Jsoup.connect(articleUrl).timeout(500).get().getElementsByAttributeValueMatching("class", "box-date");
+                } catch (Exception e){
+                    continue;
+                }
                 Element dateElement = null;
                 if (dateElements.size() >= 2) dateElement = dateElements.get(1);
                 String date = "";

@@ -4,39 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" name="classes" comment="classes">
-      <change afterPath="$PROJECT_DIR$/src/sample/styles/news/nhandanstyle.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/styles/news/thanhnienstyle.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/styles/news/tuoitrestyle.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/styles/news/vnexpressstyle.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/styles/news/zingnewsstyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/module-info.class" afterDir="false" />
+    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="dmm github">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Controller$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Controller$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/mainwindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/mainwindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Thanhnien.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Thanhnien.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Tuoitre.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Tuoitre.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Vnexpress.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/news/Vnexpress.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/sample/styles/scrollstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/sample/styles/scrollstyle.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/news/Nhandan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Nhandan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/news/Thanhnien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Thanhnien.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/news/Tuoitre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Tuoitre.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/news/Vnexpress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Vnexpress.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/styles/custombutton.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/styles/custombutton.css" afterDir="false" />
     </list>
-    <list id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="cang det">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/mainwindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/mainwindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/news/Nhandan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Nhandan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/news/Thanhnien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Thanhnien.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/news/Tuoitre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Tuoitre.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/news/Vnexpress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Vnexpress.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/news/Zingnews.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/news/Zingnews.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/styles/scrollstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/styles/scrollstyle.css" afterDir="false" />
-    </list>
-    <list id="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" name="classes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -70,68 +43,6 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/sample/news/Thanhnien.java">
-      <ranges>
-        <range start1="21" end1="22" start2="21" end2="24" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
-        <range start1="45" end1="46" start2="47" end2="50" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
-        <range start1="58" end1="59" start2="62" end2="68" changelist="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/sample/news/Tuoitre.java">
-      <ranges>
-        <range start1="3" end1="3" start2="3" end2="4" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
-        <range start1="55" end1="56" start2="56" end2="58" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
-        <range start1="70" end1="71" start2="72" end2="78" changelist="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" />
-        <range start1="75" end1="76" start2="82" end2="83" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/sample/Controller.java">
-      <ranges>
-        <range start1="3" end1="3" start2="3" end2="4" changelist="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" />
-        <range start1="24" end1="24" start2="25" end2="26" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
-        <range start1="25" end1="25" start2="27" end2="28" changelist="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" />
-        <range start1="59" end1="59" start2="62" end2="66" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
-        <range start1="65" end1="65" start2="72" end2="74" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
-        <range start1="84" end1="84" start2="93" end2="96" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
-        <range start1="93" end1="93" start2="105" end2="106" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
-        <range start1="96" end1="97" start2="109" end2="110" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
-        <range start1="108" end1="108" start2="121" end2="122" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
-        <range start1="118" end1="119" start2="132" end2="133" changelist="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" />
-        <range start1="126" end1="126" start2="140" end2="141" changelist="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" />
-        <range start1="128" end1="129" start2="143" end2="145" changelist="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" />
-        <range start1="135" end1="136" start2="151" end2="158" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
-        <range start1="137" end1="138" start2="159" end2="160" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
-        <range start1="139" end1="140" start2="161" end2="163" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
-        <range start1="144" end1="144" start2="167" end2="169" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
-        <range start1="160" end1="161" start2="185" end2="186" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
-        <range start1="166" end1="167" start2="191" end2="193" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
-        <range start1="173" end1="174" start2="199" end2="199" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
-        <range start1="175" end1="179" start2="200" end2="200" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
-        <range start1="180" end1="181" start2="201" end2="202" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
-        <range start1="184" end1="190" start2="205" end2="211" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
-        <range start1="192" end1="193" start2="213" end2="214" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
-        <range start1="194" end1="195" start2="215" end2="216" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
-        <range start1="240" end1="241" start2="261" end2="263" changelist="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" />
-        <range start1="242" end1="242" start2="264" end2="265" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
-        <range start1="249" end1="250" start2="272" end2="273" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/sample/news/Nhandan.java">
-      <ranges>
-        <range start1="30" end1="31" start2="30" end2="32" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
-        <range start1="49" end1="50" start2="50" end2="56" changelist="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" />
-        <range start1="63" end1="64" start2="69" end2="70" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/sample/news/Vnexpress.java">
-      <ranges>
-        <range start1="45" end1="46" start2="45" end2="48" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
-        <range start1="60" end1="61" start2="62" end2="67" changelist="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" />
-        <range start1="67" end1="68" start2="73" end2="74" changelist="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" />
-      </ranges>
-    </file>
-  </component>
   <component name="ProjectId" id="1w8SNsuX09OMD6qAvXTEtHMbgsT" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -143,9 +54,10 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/sample/styles" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/sample/styles/news" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Global Libraries" />
@@ -155,6 +67,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Codes\Java\INTE2512_final\src\sample\styles\news" />
       <recent name="D:\Codes\Java\INTE2512_final\src\sample\styles" />
       <recent name="C:\Users\William\IdeaProjects\INTE2512_final\src\sample\news" />
       <recent name="C:\Users\William\IdeaProjects\INTE2512_final\src" />
@@ -168,47 +81,6 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="JavaFxApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="JavaFxApplication" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="16" />
-      <option name="MAIN_CLASS_NAME" value="sample.Main" />
-      <module name="INTE2512_final" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="sample.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="16" />
-      <option name="MAIN_CLASS_NAME" value="sample.Main" />
-      <module name="INTE2512_final" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="sample.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="DjangoTestsConfigurationType">
       <module name="JavaFxApplication" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -231,6 +103,19 @@
     </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="JavaFxApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="JavaFxApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="JavaFxApplication" />
+      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -335,6 +220,34 @@
       <option name="_new_target" value="&quot;&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="16" />
+      <option name="MAIN_CLASS_NAME" value="sample.Main" />
+      <module name="INTE2512_final" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sample.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="16" />
+      <option name="MAIN_CLASS_NAME" value="sample.Main" />
+      <module name="INTE2512_final" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sample.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="16" />
@@ -702,7 +615,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629295501075</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="dmm github">
+      <created>1629476235929</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1629476235929</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -738,8 +658,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="more things changed" />
-    <MESSAGE value="removed ads&#10;this should remove pesky block on top of Vnexpress pages now" />
     <MESSAGE value="max ping" />
     <MESSAGE value="clean code" />
     <MESSAGE value="better pagination&#10;added Tuoitre loading to test strain on computer" />
@@ -763,16 +681,22 @@
     <MESSAGE value="fixed nhandan date getting scraper" />
     <MESSAGE value="final?" />
     <MESSAGE value="fixed bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed bugs" />
+    <MESSAGE value="cang det" />
+    <MESSAGE value="dmm github" />
+    <option name="LAST_COMMIT_MESSAGE" value="dmm github" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="34" />
+        </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/sample/news/Thanhnien.java</url>
-          <line>129</line>
-          <option name="timeStamp" value="20" />
+          <url>file://$PROJECT_DIR$/src/sample/Controller.java</url>
+          <line>264</line>
+          <option name="timeStamp" value="35" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -782,9 +706,15 @@
         <PinnedItemInfo parentTag="javafx.scene.web.WebView" memberName="scene" />
       </pinned-members>
     </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="source.replaceAll(&quot;\\s+&quot;, &quot;&quot;)" language="JAVA" />
+        <watch expression="getClass().getResource(&quot;styles/news/&quot; + &quot;vnexpress&quot; + &quot;style.css&quot;)" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/INTE2512_final$Main.ic" NAME="Main Coverage Results" MODIFIED="1627872873496" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/INTE2512_final$Main.ic" NAME="Main Coverage Results" MODIFIED="1628956485062" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>sample.*</FILTER>
     </SUITE>
   </component>
