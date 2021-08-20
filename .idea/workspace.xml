@@ -277,17 +277,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="JavaFxApplication" />
       <method v="2">
@@ -315,7 +304,6 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="max ping" />
-      <changelist id="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" name="classes" comment="" />
       <created>1627838686824</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -341,6 +329,7 @@
       <workItem from="1629263484419" duration="4000" />
       <workItem from="1629280119076" duration="2599000" />
       <workItem from="1629445402147" duration="15530000" />
+      <workItem from="1629485426396" duration="50000" />
     </task>
     <task id="LOCAL-00001" summary="made things scrollable">
       <created>1628237732360</created>
@@ -622,7 +611,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629476235929</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="dmm github">
+      <created>1629485122108</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1629485122108</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -689,13 +685,9 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.lang.NullPointerException" package="java.lang" />
-          <option name="timeStamp" value="34" />
-        </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/Controller.java</url>
-          <line>264</line>
+          <line>263</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
       </breakpoints>
@@ -709,7 +701,7 @@
     <watches-manager>
       <configuration name="Application">
         <watch expression="source.replaceAll(&quot;\\s+&quot;, &quot;&quot;)" language="JAVA" />
-        <watch expression="getClass().getResource(&quot;styles/news/&quot; + &quot;vnexpress&quot; + &quot;style.css&quot;)" language="JAVA" />
+        <watch expression="getClass().getResource(&quot;styles/news/vnexpressstyle.css&quot;)" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>
