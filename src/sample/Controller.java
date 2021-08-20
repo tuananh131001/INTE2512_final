@@ -255,7 +255,8 @@ public class Controller implements Initializable {
             try {
                 viewButton.setOnAction(event -> {
                     try {
-                        Element content = news.get(article.getSource()).scrapeContent(article.getSourceArticle());
+                        String source = article.getSource();
+                        Element content = news.get(source).scrapeContent(article.getSourceArticle());
                         engine.loadContent(content.toString());
                         engine.setUserStyleSheetLocation(Objects.requireNonNull(getClass().getResource("styles/news/" + source.replaceAll("\\s+", "") +  "style.css")).toString());
                         newsBorder.setCenter(newsScene); //set center as news scene
