@@ -168,7 +168,7 @@ public class Controller implements Initializable {
                     stackPane.getChildren().remove(1);
                 }
                 //setting up pagination
-                page.setPageCount((newsList.size() + 9) / 10);
+                page.setPageCount(5);
                 page.setPageFactory(pageIndex -> createPage(pageIndex, newsList));
                 page.setCurrentPageIndex(0);
                 page.setVisible(true);
@@ -181,6 +181,7 @@ public class Controller implements Initializable {
 
     public class LoadNewsListTask extends Task<ArrayList<Article>> {
         String category;
+        double count = 0;
 
         LoadNewsListTask(String category) {
             this.category = category;
@@ -195,20 +196,41 @@ public class Controller implements Initializable {
                     wait(5);
                 }
                 int newsSize = newsHashMap.size();
-                double count = 0;
                 for (News news : newsHashMap.values()) {
-                    Animation progressAnimation = new Timeline(
-                            new KeyFrame(Duration.seconds(0.5),
-                                    new KeyValue(progressBar.progressProperty(), ++count / newsSize))
-                    );
+                    if (news.equals(newsHashMap.get("VnExpress"))) {
+                        Animation progressAnimation = new Timeline(
+                                new KeyFrame(Duration.seconds(0.5),
+                                        new KeyValue(progressBar.progressProperty(), ++count / newsSize))
+                        );
 
-                    progressAnimations.put(category, new Pair<>(count / newsSize, progressAnimation));
+                        progressAnimations.put(category, new Pair<>(count / newsSize, progressAnimation));
 
-                    if (currentCategory.equals(category)) progressAnimation.play();
-                    list.addAll(news.scrapeWebsiteCategory(category).getArticleList());
-                    if (currentCategory.equals(category)) progressBar.setProgress(count / newsSize);
+                        if (currentCategory.equals(category)) progressAnimation.play();
+                        list.addAll(news.scrapeWebsiteCategory(category).getArticleList());
+                        if (currentCategory.equals(category)) progressBar.setProgress(count / newsSize);
+                    } else {
+                        Thread newsThread = new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Animation progressAnimation = new Timeline(
+                                        new KeyFrame(Duration.seconds(0.5),
+                                                new KeyValue(progressBar.progressProperty(), ++count / newsSize))
+                                );
+                                progressAnimations.put(category, new Pair<>(count / newsSize, progressAnimation));
+
+                                if (currentCategory.equals(category)) progressAnimation.play();
+                                try {
+                                    list.addAll(news.scrapeWebsiteCategory(category).getArticleList());
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                if (currentCategory.equals(category)) progressBar.setProgress(count / newsSize);
+                            }
+                        });
+                        newsThread.start();
+                    }
                 }
-            } catch (IOException | InterruptedException e) {
+            } catch (InterruptedException | IOException e) {
                 System.out.println(e + " LoadNewsListTask");
             }
             return list;
