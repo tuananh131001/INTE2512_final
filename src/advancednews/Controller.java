@@ -168,7 +168,7 @@ public class Controller implements Initializable {
                     stackPane.getChildren().remove(1);
                 }
                 //setting up pagination
-                page.setPageCount(5);
+                page.setPageCount((newsList.size() + 9) / 10);
                 page.setPageFactory(pageIndex -> createPage(pageIndex, newsList));
                 page.setCurrentPageIndex(0);
                 page.setVisible(true);
@@ -181,7 +181,6 @@ public class Controller implements Initializable {
 
     public class LoadNewsListTask extends Task<ArrayList<Article>> {
         String category;
-        double count = 0;
 
         LoadNewsListTask(String category) {
             this.category = category;
@@ -196,41 +195,44 @@ public class Controller implements Initializable {
                     wait(5);
                 }
                 int newsSize = newsHashMap.size();
+                final double[] count = {0};
+                ArrayList<Thread> threads = new ArrayList<>();
                 for (News news : newsHashMap.values()) {
-                    if (news.equals(newsHashMap.get("VnExpress"))) {
-                        Animation progressAnimation = new Timeline(
-                                new KeyFrame(Duration.seconds(0.5),
-                                        new KeyValue(progressBar.progressProperty(), ++count / newsSize))
-                        );
-
-                        progressAnimations.put(category, new Pair<>(count / newsSize, progressAnimation));
-
-                        if (currentCategory.equals(category)) progressAnimation.play();
-                        list.addAll(news.scrapeWebsiteCategory(category).getArticleList());
-                        if (currentCategory.equals(category)) progressBar.setProgress(count / newsSize);
-                    } else {
-                        Thread newsThread = new Thread(new Runnable() {
+                    Thread thread = new Thread(new Runnable() {
                             @Override
                             public void run() {
-                                Animation progressAnimation = new Timeline(
-                                        new KeyFrame(Duration.seconds(0.5),
-                                                new KeyValue(progressBar.progressProperty(), ++count / newsSize))
-                                );
-                                progressAnimations.put(category, new Pair<>(count / newsSize, progressAnimation));
-
-                                if (currentCategory.equals(category)) progressAnimation.play();
                                 try {
-                                    list.addAll(news.scrapeWebsiteCategory(category).getArticleList());
+                                    Animation progressAnimation = new Timeline(
+                                            new KeyFrame(Duration.seconds(0.5),
+                                                    new KeyValue(progressBar.progressProperty(), ++count[0] /newsSize)));
+                                    progressAnimations.put(category, new Pair<>( count[0] / newsSize, progressAnimation));
+                                    if (currentCategory.equals(category)) progressAnimation.play();
+                                    synchronized (list) {
+                                        list.addAll(news.scrapeWebsiteCategory(category).getArticleList());
+                                    }
+                                    if (currentCategory.equals(category)) progressBar.setProgress(count[0] / newsSize);
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
-                                if (currentCategory.equals(category)) progressBar.setProgress(count / newsSize);
                             }
-                        });
-                        newsThread.start();
+                    });
+                    threads.add(thread);
+                    thread.start();
+                    while (true){
+                        synchronized (this){
+                            wait(50);
+                        }
+                        boolean ok = true;
+                        for (Thread thread1 : threads){
+                            if (thread1.isAlive()) {
+                                ok = false;
+                                break;
+                            }
+                        }
+                        if (ok) break;
                     }
                 }
-            } catch (InterruptedException | IOException e) {
+            } catch (InterruptedException e) {
                 System.out.println(e + " LoadNewsListTask");
             }
             return list;
