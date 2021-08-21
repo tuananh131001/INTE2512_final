@@ -22,7 +22,7 @@ public class Tuoitre extends News {
         Elements listArticle = new Elements(); //initialize article list
 
         //connect to rss website and add in listArticle all "items"
-        Document doc = Jsoup.connect(url).get();
+        Document doc = Jsoup.connect(url).timeout(5000).get();
         listArticle.addAll(doc.getElementsByTag("item"));
 
         //for each article, get its url, description and url
