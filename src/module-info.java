@@ -6,5 +6,6 @@ module JavaFxApplication {
     requires org.jsoup;
     requires javafx.media;
 
-    opens sample;
+    opens advancednews;
+    opens advancednews.Model;
 }
