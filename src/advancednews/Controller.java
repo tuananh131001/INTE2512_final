@@ -162,7 +162,7 @@ public class Controller implements Initializable {
             //load pagination after task finished
             loadNewsListTask.setOnSucceeded(e -> {
                 if (!currentCategory.equals(category)) return;
-                newsList = (ArrayList<Article>) (e.getSource()).getValue();
+                newsList = ((LoadNewsListTask) e.getSource()).getValue();
                 //removing progress bar
                 if (stackPane.getChildren().size() >= 2) {
                     stackPane.getChildren().remove(1);
@@ -190,26 +190,63 @@ public class Controller implements Initializable {
         protected ArrayList<Article> call() {
             ArrayList<Article> list = new ArrayList<>();
             try {
-                //hack to let progressBar load
-                synchronized (this) {
-                    wait(5);
-                }
                 int newsSize = newsHashMap.size();
-                double count = 0;
+                final double[] count = {0};
+                ArrayList<Thread> threads = new ArrayList<>();
+                progressBar.progressProperty().set(0);
+                final Animation[] progressAnimation = {new Timeline(
+                        new KeyFrame(Duration.seconds(0.5),
+                                new KeyValue(progressBar.progressProperty(), ++count[0] / newsSize)
+                        )
+                )};
+                progressAnimation[0].play();
                 for (News news : newsHashMap.values()) {
-                    Animation progressAnimation = new Timeline(
-                            new KeyFrame(Duration.seconds(0.5),
-                                    new KeyValue(progressBar.progressProperty(), ++count / newsSize))
-                    );
-
-                    progressAnimations.put(category, new Pair<>(count / newsSize, progressAnimation));
-
-                    if (currentCategory.equals(category)) progressAnimation.play();
-                    list.addAll(news.scrapeWebsiteCategory(category).getArticleList());
-                    if (currentCategory.equals(category)) progressBar.setProgress(count / newsSize);
+                    ScrapeWebsite scrapeWebsite = new ScrapeWebsite(category, news);
+                    Thread thread = new Thread(scrapeWebsite);
+                    if (currentCategory.equals(category)) progressBar.setProgress(count[0] / newsSize);
+                    progressAnimations.put(category, new Pair<>( count[0] / newsSize, progressAnimation[0]));
+                    scrapeWebsite.setOnSucceeded(e -> {
+                        progressAnimation[0] = new Timeline(
+                                new KeyFrame(Duration.seconds(0.5),
+                                        new KeyValue(progressBar.progressProperty(), ++count[0]/newsSize)
+                                )
+                        );
+                        synchronized (list) {
+                            list.addAll(((ScrapeWebsite) e.getSource()).getValue());
+                        }
+                        if (currentCategory.equals(category)) progressAnimation[0].play();
+                    });
+                    thread.start();
+                    threads.add(thread);
                 }
-            } catch (IOException | InterruptedException e) {
+                for (Thread thread : threads){
+                    synchronized (this) {
+                        thread.join();
+                    }
+                }
+            } catch (InterruptedException e) {
                 System.out.println(e + " LoadNewsListTask");
+            }
+            return list;
+        }
+    }
+
+    public class ScrapeWebsite extends Task<ArrayList<Article>> {
+        String category;
+        News news;
+
+        ScrapeWebsite(String category, News news) {
+            this.category = category;
+            this.news = news;
+        }
+
+        @Override
+        protected ArrayList<Article> call() {
+            ArrayList<Article> list = new ArrayList<>();
+            try{
+                list.addAll(news.scrapeWebsiteCategory(category).getArticleList());
+            } catch (IOException e) {
+                System.out.println(e + " ScrapeWebsite");
             }
             return list;
         }
