@@ -196,19 +196,35 @@ public class Controller implements Initializable {
                 }
                 int newsSize = newsHashMap.size();
                 double count = 0;
+                ArrayList<Thread> threads = new ArrayList<>();
                 for (News news : newsHashMap.values()) {
-                    Animation progressAnimation = new Timeline(
-                            new KeyFrame(Duration.seconds(0.5),
-                                    new KeyValue(progressBar.progressProperty(), ++count / newsSize))
-                    );
-
-                    progressAnimations.put(category, new Pair<>(count / newsSize, progressAnimation));
-
-                    if (currentCategory.equals(category)) progressAnimation.play();
-                    list.addAll(news.scrapeWebsiteCategory(category).getArticleList());
-                    if (currentCategory.equals(category)) progressBar.setProgress(count / newsSize);
+                    Thread thread = new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    list.addAll(news.scrapeWebsiteCategory(category).getArticleList());
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                    });
+                    threads.add(thread);
+                    thread.start();
                 }
-            } catch (IOException | InterruptedException e) {
+                try {
+                    for (Thread thread : threads){
+                        Animation progressAnimation = new Timeline(
+                                new KeyFrame(Duration.seconds(0.5),
+                                        new KeyValue(progressBar.progressProperty(), ++count/newsSize)));
+                        progressAnimations.put(category, new Pair<>( count / newsSize, progressAnimation));
+                        if (currentCategory.equals(category)) progressAnimation.play();
+                        thread.join();
+                        if (currentCategory.equals(category)) progressBar.setProgress(count / newsSize);
+                    }
+                } catch (Exception e){
+                    System.out.println(e + "loop waiting for threads");
+                }
+            } catch (InterruptedException e) {
                 System.out.println(e + " LoadNewsListTask");
             }
             return list;
