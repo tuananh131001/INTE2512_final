@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="nani">
+    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="?">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/module-info.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller$LoadNewsListTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller$LoadNewsListTask.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/Controller.java" afterDir="false" />
     </list>
     <list id="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" name="classes" comment="classes" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,7 +35,6 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -73,11 +74,11 @@
       <recent name="C:\Users\William\IdeaProjects\INTE2512_final\src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Codes\Java\INTE2512_final\src\advancednews" />
       <recent name="D:\Codes\Java\INTE2512_final\src\sample\styles\news" />
       <recent name="D:\Codes\Java\INTE2512_final\src\sample\urlfiles" />
       <recent name="D:\Codes\Java\INTE2512_final\src\sample\styles" />
       <recent name="C:\Users\William\IdeaProjects\INTE2512_final\src\sample" />
-      <recent name="C:\Users\William\IdeaProjects\INTE2512_final\src\sample\styles" />
     </key>
   </component>
   <component name="RunManager">
@@ -330,6 +331,7 @@
       <workItem from="1629280119076" duration="2599000" />
       <workItem from="1629445402147" duration="15530000" />
       <workItem from="1629485426396" duration="50000" />
+      <workItem from="1629546468689" duration="1982000" />
     </task>
     <task id="LOCAL-00001" summary="made things scrollable">
       <created>1628237732360</created>
@@ -618,7 +620,28 @@
       <option name="project" value="LOCAL" />
       <updated>1629485122108</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="changed style and url file location">
+      <created>1629543121550</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1629543121550</updated>
+    </task>
+    <task id="LOCAL-00043" summary="changed style and url file location">
+      <created>1629543130272</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1629543130272</updated>
+    </task>
+    <task id="LOCAL-00044" summary="?">
+      <created>1629548048884</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1629548048884</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -640,7 +663,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/main" />
+                        <option value="duy" />
                       </list>
                     </value>
                   </entry>
@@ -654,8 +677,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="max ping" />
-    <MESSAGE value="clean code" />
     <MESSAGE value="better pagination&#10;added Tuoitre loading to test strain on computer" />
     <MESSAGE value="prevented multiple button clicks to reload the same category" />
     <MESSAGE value="blazing fast" />
@@ -679,7 +700,9 @@
     <MESSAGE value="fixed bugs" />
     <MESSAGE value="cang det" />
     <MESSAGE value="dmm github" />
-    <option name="LAST_COMMIT_MESSAGE" value="dmm github" />
+    <MESSAGE value="changed style and url file location" />
+    <MESSAGE value="?" />
+    <option name="LAST_COMMIT_MESSAGE" value="?" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -687,8 +710,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/advancednews/Controller.java</url>
-          <line>156</line>
-          <option name="timeStamp" value="41" />
+          <line>204</line>
+          <option name="timeStamp" value="42" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

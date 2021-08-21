@@ -195,20 +195,44 @@ public class Controller implements Initializable {
                     wait(5);
                 }
                 int newsSize = newsHashMap.size();
-                double count = 0;
+                final double[] count = {0};
+                ArrayList<Thread> threads = new ArrayList<>();
                 for (News news : newsHashMap.values()) {
-                    Animation progressAnimation = new Timeline(
-                            new KeyFrame(Duration.seconds(0.5),
-                                    new KeyValue(progressBar.progressProperty(), ++count / newsSize))
-                    );
-
-                    progressAnimations.put(category, new Pair<>(count / newsSize, progressAnimation));
-
-                    if (currentCategory.equals(category)) progressAnimation.play();
-                    list.addAll(news.scrapeWebsiteCategory(category).getArticleList());
-                    if (currentCategory.equals(category)) progressBar.setProgress(count / newsSize);
+                    Thread thread = new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    Animation progressAnimation = new Timeline(
+                                            new KeyFrame(Duration.seconds(0.5),
+                                                    new KeyValue(progressBar.progressProperty(), ++count[0] /newsSize)));
+                                    progressAnimations.put(category, new Pair<>( count[0] / newsSize, progressAnimation));
+                                    if (currentCategory.equals(category)) progressAnimation.play();
+                                    synchronized (list) {
+                                        list.addAll(news.scrapeWebsiteCategory(category).getArticleList());
+                                    }
+                                    if (currentCategory.equals(category)) progressBar.setProgress(count[0] / newsSize);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                    });
+                    threads.add(thread);
+                    thread.start();
+                    while (true){
+                        synchronized (this){
+                            wait(50);
+                        }
+                        boolean ok = true;
+                        for (Thread thread1 : threads){
+                            if (thread1.isAlive()) {
+                                ok = false;
+                                break;
+                            }
+                        }
+                        if (ok) break;
+                    }
                 }
-            } catch (IOException | InterruptedException e) {
+            } catch (InterruptedException e) {
                 System.out.println(e + " LoadNewsListTask");
             }
             return list;
