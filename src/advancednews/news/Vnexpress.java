@@ -18,7 +18,7 @@ public class Vnexpress extends News {
         if (!url.contains("rss")) return scrapeArticleNonRss(url);
         Elements articleElementList = new Elements(); // Create list of element
         ArrayList<Article> articleList = new ArrayList<>(); //Create list of article
-        Document doc = Jsoup.connect(url).get();
+        Document doc = Jsoup.connect(url).timeout(5000).get();
         articleElementList.addAll(doc.getElementsByTag("item"));
         // Loop into article Element
         try {
