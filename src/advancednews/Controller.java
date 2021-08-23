@@ -163,7 +163,6 @@ public class Controller implements Initializable {
             loadNewsListTask.setOnSucceeded(e -> {
                 if (!currentCategory.equals(category)) return;
                 newsList = ((LoadNewsListTask) e.getSource()).getValue();
-                Collections.shuffle(newsList);
                 //removing progress bar
                 if (stackPane.getChildren().size() >= 2) {
                     stackPane.getChildren().remove(1);
