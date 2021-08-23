@@ -69,8 +69,14 @@ public class Tuoitre extends News {
                 if (imageurl != null && !imageurl.equals("")) {
                     image = new Image(imageurl);
                 }
-                String date = Jsoup.connect(articleUrl).get().getElementsByClass("date-time").first().ownText();
-                newsList.add(new Article(image, name, articleUrl, date,"Tuoi Tre"));
+                String date = "";
+                try {
+                    date = Jsoup.connect(articleUrl).timeout(4000).get().getElementsByClass("date-time").first().ownText();
+                } catch (Exception e){
+                    System.out.println("skipping an article in tuoi tre..");
+                    continue;
+                }
+                newsList.add(new Article(image, name, articleUrl, date, "Tuoi Tre"));
                 if (newsList.size() >= 10) break;
             }
         } catch (Exception e){
