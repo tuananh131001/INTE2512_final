@@ -60,7 +60,12 @@ public class Vnexpress extends News {
                 String titleArticle = element.child(0).ownText();
                 element = articleElement.getElementsByTag("a").first();
                 String urlArticle = element.attr("href");
-                element = Jsoup.connect(urlArticle).get();
+                try {
+                    element = Jsoup.connect(urlArticle).timeout(4000).get();
+                } catch (Exception e){
+                    System.out.println("skipping an article in vnexpress..");
+                    continue;
+                }
                 String date = element.getElementsByClass("date").first().ownText();
                 Article article = new Article(image, titleArticle, urlArticle, date, "VnExpress");
                 articleList.add(article);

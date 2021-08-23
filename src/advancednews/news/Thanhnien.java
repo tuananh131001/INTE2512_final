@@ -60,7 +60,13 @@ public class Thanhnien extends News {
             if (imageurl != null && !imageurl.equals("")) {
                 image = new Image(imageurl);
             }
-            String date = Jsoup.connect(articleUrl).get().getElementsByTag("time").first().ownText();
+            String date = "";
+            try {
+                date = Jsoup.connect(articleUrl).timeout(4000).get().getElementsByTag("time").first().ownText();
+            } catch (Exception e){
+                System.out.println("skipping an article in Thanh Nien..");
+                continue;
+            }
             articleList.add(new Article(image, name, articleUrl, date,"Thanh Nien"));
             if (articleList.size() >= 10) break;
         }

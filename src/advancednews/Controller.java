@@ -163,7 +163,6 @@ public class Controller implements Initializable {
             loadNewsListTask.setOnSucceeded(e -> {
                 if (!currentCategory.equals(category)) return;
                 newsList = ((LoadNewsListTask) e.getSource()).getValue();
-                Collections.shuffle(newsList);
                 //removing progress bar
                 if (stackPane.getChildren().size() >= 2) {
                     stackPane.getChildren().remove(1);
@@ -204,7 +203,6 @@ public class Controller implements Initializable {
                 for (News news : newsHashMap.values()) {
                     ScrapeWebsite scrapeWebsite = new ScrapeWebsite(category, news);
                     Thread thread = new Thread(scrapeWebsite);
-                    if (currentCategory.equals(category)) progressBar.setProgress(count[0] / newsSize);
                     progressAnimations.put(category, new Pair<>( count[0] / newsSize, progressAnimation[0]));
                     scrapeWebsite.setOnSucceeded(e -> {
                         progressAnimation[0] = new Timeline(
@@ -212,6 +210,7 @@ public class Controller implements Initializable {
                                         new KeyValue(progressBar.progressProperty(), ++count[0]/newsSize)
                                 )
                         );
+                        progressAnimations.put(category, new Pair<>( count[0] / newsSize, progressAnimation[0]));
                         synchronized (list) {
                             list.addAll(((ScrapeWebsite) e.getSource()).getValue());
                         }

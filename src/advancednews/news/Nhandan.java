@@ -49,8 +49,9 @@ public class Nhandan extends News {
                 }
                 Elements dateElements;
                 try {
-                     dateElements = Jsoup.connect(articleUrl).timeout(500).get().getElementsByAttributeValueMatching("class", "box-date");
+                     dateElements = Jsoup.connect(articleUrl).timeout(4000).get().getElementsByAttributeValueMatching("class", "box-date");
                 } catch (Exception e){
+                    System.out.println("skipping an article in Nhan Dan..");
                     continue;
                 }
                 Element dateElement = null;
