@@ -252,66 +252,69 @@ public class Controller implements Initializable {
         }
     }
 
-
     public VBox createPage(int pageIndex, ArrayList<Article> articles) {
         VBox articleList = new VBox();
         articleList.setSpacing(5);
         articleList.setPadding(new Insets(5, 30, 30, 30));
         int range = (pageIndex + 1) * 10 - 10;
         for (int i = range; i < range + 10 && i < articles.size(); i++) {
-            Article article = articles.get(i);
-            HBox hbox = new HBox();
-            hbox.setSpacing(10);
-            hbox.setStyle("-fx-background-color: #ebe9e9;");
-
-            if (article.getImageArticle() != null) {
-                ImageView imageView = new ImageView(article.getImageArticle());
-                imageView.setFitHeight(100);
-                imageView.setFitWidth(100);
-                hbox.getChildren().add(imageView);
-            } else {
-                Label replaceImage = new Label("no image");
-                replaceImage.setStyle("-fx-alignment: CENTER; -fx-background-color: #dddfe1; -fx-pref-width: 100; -fx-pref-height: 100;");
-                hbox.getChildren().add(replaceImage);
-            }
-
-            VBox vboxArticle = new VBox();
-            vboxArticle.setSpacing(3);
-
-            Label labelArticle = new Label(article.getTitleArticle());
-            labelArticle.setFont(new Font("Arial", 18));
-            Label labelSource = new Label(article.getSource());
-            labelSource.setFont(new Font("Arial", 12));
-            Label labelTime = new Label(article.getTimeArticle());
-            labelTime.setFont(new Font("Arial", 12));
-
-            Button viewButton = new Button("View");
-            //disable view button focus cause after article got added the damn thing is still in focus and will try to add more panes if you hit space or enter
-            viewButton.setFocusTraversable(false);
-            viewButton.setStyle("-fx-font-size: 10; -fx-underline: true;");
-            viewButton.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/custombutton.css")).toString());
-            vboxArticle.getChildren().addAll(labelArticle, labelSource, labelTime, viewButton);
-            try {
-                viewButton.setOnAction(event -> {
-                    try {
-                        String source = article.getSource();
-                        Element content = newsHashMap.get(source).scrapeContent(article.getSourceArticle());
-                        engine.loadContent(content.toString());
-                        engine.setUserStyleSheetLocation(Objects.requireNonNull(getClass().getResource("styles/news/" + source.replaceAll("\\s+", "") + "style.css")).toString());
-                        newsBorder.setCenter(newsScene); //set center as news scene
-                        stackPane.getChildren().add(newsBorder); //add the whole thing on top of the application
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                });
-            } catch (Exception e) {
-                System.out.println(e + " createPage");
-            }
-
-            hbox.getChildren().add(vboxArticle);
+            HBox hbox = createArticleElement(articles,i);
             articleList.getChildren().add(hbox);
         }
         return articleList;
+    }
+
+    HBox createArticleElement(ArrayList<Article> articles, int position){
+        HBox hbox = new HBox();
+        hbox.setSpacing(10);
+        hbox.setStyle("-fx-background-color: #ebe9e9;");
+        Article article = articles.get(position);
+
+        if (article.getImageArticle() != null) {
+            ImageView imageView = new ImageView(article.getImageArticle());
+            imageView.setFitHeight(100);
+            imageView.setFitWidth(100);
+            hbox.getChildren().add(imageView);
+        } else {
+            Label replaceImage = new Label("no image");
+            replaceImage.setStyle("-fx-alignment: CENTER; -fx-background-color: #dddfe1; -fx-pref-width: 100; -fx-pref-height: 100;");
+            hbox.getChildren().add(replaceImage);
+        }
+
+        Label labelArticle = new Label(article.getTitleArticle());
+        labelArticle.setFont(new Font("Arial", 18));
+        Label labelSource = new Label(article.getSource());
+        labelSource.setFont(new Font("Arial", 12));
+        Label labelTime = new Label(article.getTimeArticle());
+        labelTime.setFont(new Font("Arial", 12));
+
+        VBox vboxArticle = new VBox();
+        vboxArticle.setSpacing(3);
+        Button viewButton = new Button("View");
+        //disable view button focus cause after article got added the damn thing is still in focus and will try to add more panes if you hit space or enter
+        viewButton.setFocusTraversable(false);
+        viewButton.setStyle("-fx-font-size: 10; -fx-underline: true;");
+        viewButton.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/custombutton.css")).toString());
+        vboxArticle.getChildren().addAll(labelArticle, labelSource, labelTime, viewButton);
+
+        try {
+            viewButton.setOnAction(event -> {
+                try {
+                    String source = article.getSource();
+                    Element content = newsHashMap.get(source).scrapeContent(article.getSourceArticle());
+                    engine.loadContent(content.toString());
+                    engine.setUserStyleSheetLocation(Objects.requireNonNull(getClass().getResource("styles/news/" + source.replaceAll("\\s+", "") + "style.css")).toString());
+                    newsBorder.setCenter(newsScene); //set center as news scene
+                    stackPane.getChildren().add(newsBorder); //add the whole thing on top of the application
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        } catch (Exception e) {
+            System.out.println(e + " createPage");
+        }
+        hbox.getChildren().add(vboxArticle);
+        return hbox;
     }
 
     void initNewsBorder() {
@@ -323,7 +326,6 @@ public class Controller implements Initializable {
         exit.setOnAction(actionEvent -> {
             stackPane.getChildren().remove(1);
         }); //lambda to remove current news pane
-
         newsBorder.setTop(exit); //set button at top of borderpane
     }
 
@@ -377,13 +379,16 @@ public class Controller implements Initializable {
                 "World",
                 "Others",
         };
+
         for (String buttonName : ButtonNames) {
             ToggleButton button = new ToggleButton(buttonName);
             button.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/custombutton.css")).toString());
             button.setToggleGroup(toggleGroup);
             button.setOnAction(myHandler);
+
             hbox.getChildren().add(button);
         }
+
         borderPane.setTop(hbox);
     }
 
