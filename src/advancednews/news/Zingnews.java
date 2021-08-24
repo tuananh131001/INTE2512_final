@@ -9,8 +9,11 @@ import advancednews.Model.Article;
 import advancednews.Model.News;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.Instant;
+import java.util.*;
 
 public class Zingnews extends News {
 
@@ -46,6 +49,7 @@ public class Zingnews extends News {
 
 
                 if (element != null) imageurl = element.attr("src");
+                assert imageurl != null;
                 if (imageurl.contains("gif")) imageurl = element.attr("data-src");
                 try {
                     image = new Image(imageurl);
@@ -53,12 +57,15 @@ public class Zingnews extends News {
                     System.out.println("Zing News : Image link is error");
 
                 }
-                String date = article.getElementsByClass("friendly-time").first().ownText();
-                newsList.add(new Article(image, name, articleUrl, date,"Zing News"));
+                String date = article.getElementsByClass("date").first().ownText();;
+                Elements elements = article.getElementsByClass("time");
+                String time = "";
+                if (elements.size() > 0) time = elements.first().ownText();
+                newsList.add(new Article(image, name, articleUrl, getTimeSince(date + " " + time),"Zing News"));
                 if (newsList.size() >= 10) break;
             }
         } catch (Exception e){
-            System.out.println(e);
+            System.out.println(e + " zingnews.java");
         }
         return newsList;
     }
@@ -115,5 +122,15 @@ public class Zingnews extends News {
     @Override
     public String getFileName(){
         return "src/advancednews/urlfiles/zingnewsurl.txt";
+    }
+
+    public Duration getTimeSince(String dateTime) throws ParseException {
+        Scanner scanner = new Scanner(dateTime);
+        String day = scanner.findInLine("(\\d+/\\w+/\\d+)");
+        scanner = new Scanner(dateTime);
+        String time = scanner.findInLine("(\\d+:\\d+:?\\d+)");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy kk:mm");
+        Date date = dateFormat.parse(day + " " + time);
+        return Duration.between(date.toInstant(), Instant.now());
     }
 }

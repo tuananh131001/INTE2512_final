@@ -9,15 +9,22 @@ import advancednews.Model.Article;
 import advancednews.Model.News;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.Scanner;
 
 public class Tuoitre extends News {
 
     @Override
     public ArrayList<Article> scrapeArticle(String url) throws IOException {
-        if (url == null) return new ArrayList<>();
+        if (url == null) return new ArrayList<>();;
         if (!url.contains("rss")) return scrapeArticleNonRss(url);
-        ArrayList<Article> newsList = new ArrayList<>(); //initialize return variable
+        ArrayList<Article> newsList = new ArrayList<>();; //initialize return variable
 
         Elements listArticle = new Elements(); //initialize article list
 
@@ -37,18 +44,18 @@ public class Tuoitre extends News {
                     image = new Image(imageurl);
                 }
                 String date = article.getElementsByTag("Pubdate").first().ownText();
-                newsList.add(new Article(image, name, articleUrl, date,"Tuoi Tre"));
+                newsList.add(new Article(image, name, articleUrl, getTimeSince(date),"Tuoi Tre"));
                 if (newsList.size() >= 10) break;
             }
         } catch (Exception e){
-            System.out.println(e);
+            System.out.println(e + " tuoi tre");
         }
         return newsList;
     }
 
     public ArrayList<Article> scrapeArticleNonRss(String url) throws IOException {
-        if (url == null) return new ArrayList<>();
-        ArrayList<Article> newsList = new ArrayList<>(); //initialize return variable
+        if (url == null) return new ArrayList<>();;
+        ArrayList<Article> newsList = new ArrayList<>();; //initialize return variable
 
         Elements listArticle = new Elements(); //initialize article list
 
@@ -76,7 +83,7 @@ public class Tuoitre extends News {
                     System.out.println("skipping an article in tuoi tre..");
                     continue;
                 }
-                newsList.add(new Article(image, name, articleUrl, date, "Tuoi Tre"));
+                newsList.add(new Article(image, name, articleUrl, getTimeSince(date), "Tuoi Tre"));
                 if (newsList.size() >= 10) break;
             }
         } catch (Exception e){
@@ -132,4 +139,5 @@ public class Tuoitre extends News {
     public String getFileName(){
         return "src/advancednews/urlfiles/tuoitreurl.txt";
     }
+
 }

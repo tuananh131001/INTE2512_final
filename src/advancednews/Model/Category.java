@@ -1,6 +1,7 @@
 package advancednews.Model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Category {
     protected ArrayList<Article> articleList;

@@ -9,8 +9,11 @@ import advancednews.Model.Article;
 import advancednews.Model.News;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.Instant;
+import java.util.*;
 
 public class Nhandan extends News {
 
@@ -21,8 +24,8 @@ public class Nhandan extends News {
     }
 
     public ArrayList<Article> scrapeArticleNonRss(String url) throws IOException {
-        if (url == null) return new ArrayList<>();
-        ArrayList<Article> newsList = new ArrayList<>(); //initialize return variable
+        if (url == null) return (ArrayList<Article>) Collections.synchronizedCollection(new ArrayList<Article>());
+        ArrayList<Article> newsList = new ArrayList<>();; //initialize return variable
 
         Elements listArticle = new Elements(); //initialize article list
 
@@ -56,6 +59,7 @@ public class Nhandan extends News {
                 }
                 Element dateElement = null;
                 if (dateElements.size() >= 2) dateElement = dateElements.get(1);
+                else if (dateElements.size() >= 1) dateElement = dateElements.get(0);
                 String date = "";
                 if (dateElement != null && dateElement.hasText()) date = dateElement.ownText();
                 else {
@@ -63,7 +67,7 @@ public class Nhandan extends News {
                     if (dateElements.size() > 0) dateElement = dateElements.get(0);
                     if (dateElement != null && dateElement.hasText()) date = dateElement.ownText();
                 }
-                newsList.add(new Article(image, name, articleUrl, date,"Nhan Dan"));
+                newsList.add(new Article(image, name, articleUrl, getTimeSince(date),"Nhan Dan"));
                 if (newsList.size() >= 10) break;
             }
         } catch (Exception e){
@@ -118,5 +122,15 @@ public class Nhandan extends News {
     @Override
     public String getFileName(){
         return "src/advancednews/urlfiles/Nhandanurl.txt";
+    }
+
+    public java.time.Duration getTimeSince(String dateTime) throws ParseException {
+        Scanner scanner = new Scanner(dateTime);
+        String day = scanner.findInLine("(\\d+-\\w+-\\d+)");
+        scanner = new Scanner(dateTime);
+        String time = scanner.findInLine("(\\d+:\\d+:?\\d+)");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy kk:mm");
+        Date date = dateFormat.parse(day + " " + time);
+        return Duration.between(date.toInstant(), Instant.now());
     }
 }

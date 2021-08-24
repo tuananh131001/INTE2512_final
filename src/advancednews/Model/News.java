@@ -5,15 +5,17 @@ import org.jsoup.nodes.Element;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Scanner;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.Instant;
+import java.util.*;
 
 public class News {
 
     private HashMap<String, Category> categories = new HashMap<>();
 
-    public ArrayList<Article> scrapeArticle(String url) throws IOException{
+    public ArrayList<Article> scrapeArticle(String url) throws IOException {
         return new ArrayList<>();
     }
 
@@ -47,4 +49,26 @@ public class News {
         return "";
     }
 
+    public Duration getTimeSince(String dateTime) throws ParseException {
+        Scanner scanner = new Scanner(dateTime);
+        String day = scanner.findInLine("(\\d+/\\w+/\\d+)");
+        if (day == null) day = scanner.findInLine("(\\d+ \\w+ \\d+)");
+        if (day == null) day = scanner.findInLine("(\\d+/\\d+/\\d+)");
+        String time = scanner.findInLine("(\\d+:\\d+:?\\d+)");
+        SimpleDateFormat dateFormat;
+        Date date;
+        try {
+            dateFormat = new SimpleDateFormat("dd/MM/yyyy kk:mm:ss");
+            date =  dateFormat.parse(day + " " + time);
+        } catch (Exception e) {
+            try {
+            dateFormat = new SimpleDateFormat("dd MMM yyyy kk:mm:ss");
+            date = dateFormat.parse(day + " " + time);
+            } catch (Exception e2){
+                dateFormat = new SimpleDateFormat("dd/MM/yyyy kk:mm");
+                date = dateFormat.parse(day + " " + time);
+            }
+        }
+        return Duration.between(date.toInstant(), Instant.now());
+    }
 }
