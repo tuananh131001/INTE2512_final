@@ -4,20 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="removed shuffle">
+    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="added timeout when scraping (4000ms) per article, this means the maximum ammount of time a user has to wait is 20 seconds per category">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller$LoadNewsListTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller$LoadNewsListTask.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Nhandan.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Nhandan.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Thanhnien.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Thanhnien.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Tuoitre.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Tuoitre.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Vnexpress.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Vnexpress.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/advancednews/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/Model/Article.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/Model/Article.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/Model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/Model/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/Model/News.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/Model/News.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/advancednews/news/Nhandan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/news/Nhandan.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/advancednews/news/Thanhnien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/news/Thanhnien.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/advancednews/news/Tuoitre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/news/Tuoitre.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/advancednews/news/Vnexpress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/news/Vnexpress.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/news/Zingnews.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/news/Zingnews.java" afterDir="false" />
     </list>
     <list id="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" name="classes" comment="classes" />
     <option name="SHOW_DIALOG" value="false" />
@@ -342,14 +339,9 @@
       <workItem from="1629485426396" duration="50000" />
       <workItem from="1629546468689" duration="13127000" />
       <workItem from="1629691286129" duration="1685000" />
-      <workItem from="1629693265900" duration="49000" />
-    </task>
-    <task id="LOCAL-00003" summary="added comments for Vnexpress">
-      <created>1628506037350</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1628506037350</updated>
+      <workItem from="1629693265900" duration="192000" />
+      <workItem from="1629736361005" duration="11000" />
+      <workItem from="1629785458000" duration="12938000" />
     </task>
     <task id="LOCAL-00004" summary="more things changed">
       <created>1628507319022</created>
@@ -687,7 +679,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629691557594</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="added timeout when scraping (4000ms) per article, this means the maximum ammount of time a user has to wait is 20 seconds per category">
+      <created>1629693405465</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1629693405466</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -723,7 +722,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="blazing fast" />
     <MESSAGE value="Update theo đề mỗi trang chỉ hiện 10 article 1 category hiện 50 article" />
     <MESSAGE value="fixed counting bug" />
     <MESSAGE value="fixed dupe bug" />
@@ -748,16 +746,22 @@
     <MESSAGE value="?" />
     <MESSAGE value="removed hack cause its stupid&#10;made loading even faster&#10;potentially fixed all crashing bugs related to multithreading" />
     <MESSAGE value="removed shuffle" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed shuffle" />
+    <MESSAGE value="added timeout when scraping (4000ms) per article, this means the maximum ammount of time a user has to wait is 20 seconds per category" />
+    <option name="LAST_COMMIT_MESSAGE" value="added timeout when scraping (4000ms) per article, this means the maximum ammount of time a user has to wait is 20 seconds per category" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/advancednews/Controller.java</url>
-          <line>192</line>
-          <option name="timeStamp" value="43" />
+          <url>file://$PROJECT_DIR$/src/advancednews/news/Vnexpress.java</url>
+          <line>82</line>
+          <option name="timeStamp" value="64" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/advancednews/news/Nhandan.java</url>
+          <line>130</line>
+          <option name="timeStamp" value="80" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -767,16 +771,10 @@
         <PinnedItemInfo parentTag="javafx.scene.web.WebView" memberName="scene" />
       </pinned-members>
     </pin-to-top-manager>
-    <watches-manager>
-      <configuration name="Application">
-        <watch expression="source.replaceAll(&quot;\\s+&quot;, &quot;&quot;)" language="JAVA" />
-        <watch expression="getClass().getResource(&quot;styles/news/vnexpressstyle.css&quot;)" language="JAVA" />
-      </configuration>
-    </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/INTE2512_final$Main.ic" NAME="Main Coverage Results" MODIFIED="1628956485062" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>sample.*</FILTER>
+    <SUITE FILE_PATH="coverage/INTE2512_final$Main.ic" NAME="Main Coverage Results" MODIFIED="1629793792067" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>advancednews.Model.*</FILTER>
     </SUITE>
   </component>
 </project>

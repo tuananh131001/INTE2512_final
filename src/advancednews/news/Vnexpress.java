@@ -9,7 +9,15 @@ import advancednews.Model.Article;
 import advancednews.Model.News;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Vnexpress extends News {
 
@@ -17,7 +25,7 @@ public class Vnexpress extends News {
     public ArrayList<Article> scrapeArticle(String url) throws IOException {
         if (!url.contains("rss")) return scrapeArticleNonRss(url);
         Elements articleElementList = new Elements(); // Create list of element
-        ArrayList<Article> articleList = new ArrayList<>(); //Create list of article
+        ArrayList<Article> articleList = new ArrayList<>();; //Create list of article
         Document doc = Jsoup.connect(url).timeout(5000).get();
         articleElementList.addAll(doc.getElementsByTag("item"));
         // Loop into article Element
@@ -30,19 +38,19 @@ public class Vnexpress extends News {
                 Document description = Jsoup.parse(articleElement.child(1).ownText());
                 String imageurl = description.getElementsByTag("img").attr("src");
                 if (imageurl != null && !imageurl.equals("")) image = new Image(imageurl);
-                Article article = new Article(image, titleArticle, urlArticle, date, "VnExpress");
+                Article article = new Article(image, titleArticle, urlArticle, getTimeSince(date), "VnExpress");
                 articleList.add(article);
                 if (articleList.size() >= 10) break;
             }
         } catch (Exception e){
-            System.out.println(e);
+            System.out.println(e + " vnexpress");
         }
         return articleList;
     }
 
     public ArrayList<Article> scrapeArticleNonRss(String url) throws IOException {
         Elements articleElementList = new Elements(); // Create list of element
-        ArrayList<Article> articleList = new ArrayList<>(); //Create list of article
+        ArrayList<Article> articleList = new ArrayList<>();; //Create list of article
 
         Document doc = Jsoup.connect(url).timeout(5000).get();
 
@@ -67,7 +75,7 @@ public class Vnexpress extends News {
                     continue;
                 }
                 String date = element.getElementsByClass("date").first().ownText();
-                Article article = new Article(image, titleArticle, urlArticle, date, "VnExpress");
+                Article article = new Article(image, titleArticle, urlArticle, getTimeSince(date), "VnExpress");
                 articleList.add(article);
                 if (articleList.size() >= 10) break;
             }

@@ -28,6 +28,8 @@ import advancednews.news.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Controller implements Initializable {
     @FXML
@@ -46,7 +48,7 @@ public class Controller implements Initializable {
     private WebView newsScene;
 
     //current article list being viewed
-    protected ArrayList<Article> newsList;
+    protected List<Article> newsList;
 
     protected ProgressBar progressBar = new ProgressBar();
 
@@ -70,7 +72,7 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL url1, ResourceBundle resourceBundle) {
         try {
-            newsList = new ArrayList<Article>(); // LAM ON DUNG BO DONG NAY PLEASEEEEEEEEEEEEEEEE
+            newsList = Collections.synchronizedList(new ArrayList<>()); // LAM ON DUNG BO DONG NAY PLEASEEEEEEEEEEEEEEEE
 
             //init web engine
             newsScene = new WebView();
@@ -153,7 +155,7 @@ public class Controller implements Initializable {
             }
 
             //create a loading news list task
-            Task<ArrayList<Article>> loadNewsListTask = new LoadNewsListTask(category);
+            Task<List<Article>> loadNewsListTask = new LoadNewsListTask(category);
             Thread threadNews = new Thread(loadNewsListTask);
             threadsHash.put(category, threadNews); //put the thread in for checkup
 
@@ -163,6 +165,7 @@ public class Controller implements Initializable {
             loadNewsListTask.setOnSucceeded(e -> {
                 if (!currentCategory.equals(category)) return;
                 newsList = ((LoadNewsListTask) e.getSource()).getValue();
+                newsList.sort(Comparator.comparing(Article::getTimeArticle));
                 //removing progress bar
                 if (stackPane.getChildren().size() >= 2) {
                     stackPane.getChildren().remove(1);
@@ -179,7 +182,7 @@ public class Controller implements Initializable {
     };
 
 
-    public class LoadNewsListTask extends Task<ArrayList<Article>> {
+    public class LoadNewsListTask extends Task<List<Article>> {
         String category;
 
         LoadNewsListTask(String category) {
@@ -187,8 +190,8 @@ public class Controller implements Initializable {
         }
 
         @Override
-        protected ArrayList<Article> call() {
-            ArrayList<Article> list = new ArrayList<>();
+        protected List<Article> call() {
+            List<Article> list = Collections.synchronizedList(new ArrayList<>());
             try {
                 int newsSize = newsHashMap.size();
                 final double[] count = {0};
@@ -253,7 +256,7 @@ public class Controller implements Initializable {
     }
 
 
-    public VBox createPage(int pageIndex, ArrayList<Article> articles) {
+    public VBox createPage(int pageIndex, List<Article> articles) {
         VBox articleList = new VBox();
         articleList.setSpacing(5);
         articleList.setPadding(new Insets(5, 30, 30, 30));
@@ -282,7 +285,17 @@ public class Controller implements Initializable {
             labelArticle.setFont(new Font("Arial", 18));
             Label labelSource = new Label(article.getSource());
             labelSource.setFont(new Font("Arial", 12));
-            Label labelTime = new Label(article.getTimeArticle());
+            String timeString = Long.toString(article.getTimeArticle().toDays());
+            if (timeString.equals("0")) {
+                timeString = Long.toString(article.getTimeArticle().toHours());
+                if (timeString.equals("0")) {
+                    timeString = Long.toString(article.getTimeArticle().toMinutes());
+                    timeString += " Minute" + (timeString.equals("1")?"":"s") + " ago";
+                }
+                else timeString += " Hour" + (timeString.equals("1")?"":"s") + " ago";
+            }
+            else timeString += " Day" + (timeString.equals("1")?"":"s") + " ago";
+            Label labelTime = new Label(timeString);
             labelTime.setFont(new Font("Arial", 12));
 
             Button viewButton = new Button("View");

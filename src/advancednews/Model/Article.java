@@ -2,14 +2,16 @@ package advancednews.Model;
 
 import javafx.scene.image.Image;
 
+import java.time.Duration;
+
 public class Article {
     protected Image image;
     protected String titleArticle;
     protected String sourceArticle;
-    protected String timeArticle;
+    protected Duration timeArticle;
     protected String source;
 
-    public Article(Image image, String titleArticle, String sourceArticle, String timeArticle, String source) {
+    public Article(Image image, String titleArticle, String sourceArticle, Duration timeArticle, String source) {
         this.image = image;
         this.titleArticle = titleArticle;
         this.sourceArticle = sourceArticle;
@@ -25,7 +27,7 @@ public class Article {
         return sourceArticle;
     }
 
-    public String getTimeArticle(){ return timeArticle; }
+    public Duration getTimeArticle(){ return timeArticle; }
 
     public String getSource() { return source; }
 
