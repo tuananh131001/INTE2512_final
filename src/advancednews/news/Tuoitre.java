@@ -99,7 +99,6 @@ public class Tuoitre extends News {
                 "bannerfooter1",
                 "box_can_you_care",
                 "tagandnetwork",
-                "VCSortableInPreviewMode",
                 "relate-container"
         };
         for (String className : classesToRemove) {
