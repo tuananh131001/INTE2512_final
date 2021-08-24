@@ -4,11 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="update zing news perfect view">
+    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="update tuoitre perfect view">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Zingnews.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Zingnews.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/styles/news/zingnewsstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/styles/news/zingnewsstyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/advancednews/news/Tuoitre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/news/Tuoitre.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Tuoitre.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Tuoitre.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/news/Nhandan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/news/Nhandan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/styles/news/nhandanstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/styles/news/nhandanstyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/styles/news/thanhnienstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/styles/news/thanhnienstyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/styles/news/vnexpressstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/styles/news/vnexpressstyle.css" afterDir="false" />
     </list>
     <list id="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" name="classes" comment="classes" />
     <option name="SHOW_DIALOG" value="false" />
@@ -335,14 +339,7 @@
       <workItem from="1629691286129" duration="1685000" />
       <workItem from="1629693265900" duration="49000" />
       <workItem from="1629724356341" duration="7517000" />
-      <workItem from="1629776489782" duration="1874000" />
-    </task>
-    <task id="LOCAL-00005" summary="removed ads&#10;this should remove pesky block on top of Vnexpress pages now">
-      <created>1628515544708</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1628515544708</updated>
+      <workItem from="1629776489782" duration="3872000" />
     </task>
     <task id="LOCAL-00006" summary="max ping">
       <created>1628519139552</created>
@@ -680,7 +677,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629778077001</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="update tuoitre perfect view">
+      <created>1629778496514</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1629778496514</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -716,7 +720,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed counting bug" />
     <MESSAGE value="fixed dupe bug" />
     <MESSAGE value="smooooooooooooooth" />
     <MESSAGE value="smoooooooooth" />
@@ -741,7 +744,8 @@
     <MESSAGE value="removed shuffle" />
     <MESSAGE value="dọn đường cho chỉnh sửa giao diện" />
     <MESSAGE value="update zing news perfect view" />
-    <option name="LAST_COMMIT_MESSAGE" value="update zing news perfect view" />
+    <MESSAGE value="update tuoitre perfect view" />
+    <option name="LAST_COMMIT_MESSAGE" value="update tuoitre perfect view" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -751,6 +755,11 @@
           <url>file://$PROJECT_DIR$/src/advancednews/Controller.java</url>
           <line>264</line>
           <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/advancednews/news/Nhandan.java</url>
+          <line>93</line>
+          <option name="timeStamp" value="48" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

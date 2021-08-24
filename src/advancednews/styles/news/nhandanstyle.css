@@ -1,0 +1,13 @@
+.block-detail-content{
+    max-width: 100% !important;
+    align-content: center;
+    text-align: center;
+    margin: auto;
+
+}
+.col-main {
+    width: max-content;
+}
+.bodysite {
+    width: max-content;
+}

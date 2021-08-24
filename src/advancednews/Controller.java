@@ -303,7 +303,8 @@ public class Controller implements Initializable {
                     String source = article.getSource();
                     Element content = newsHashMap.get(source).scrapeContent(article.getSourceArticle());
                     engine.loadContent(content.toString());
-                    engine.setUserStyleSheetLocation(Objects.requireNonNull(getClass().getResource("styles/news/" + source.replaceAll("\\s+", "") + "style.css")).toString());
+                    newsScene.setPrefSize(5000, 5000);
+                    engine.setUserStyleSheetLocation(Objects.requireNonNull(getClass().getResource("styles/news/" + source.replaceAll("\\s+", "").toLowerCase() + "style.css")).toString());
                     newsBorder.setCenter(newsScene); //set center as news scene
                     stackPane.getChildren().add(newsBorder); //add the whole thing on top of the application
                 } catch (Exception e) {
