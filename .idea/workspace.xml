@@ -4,15 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="update tuoitre perfect view">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="thanh nien and nhan dan not change css">
       <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Tuoitre.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Tuoitre.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Nhandan.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Nhandan.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/styles/news/nhandanstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/styles/news/nhandanstyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/styles/news/thanhnienstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/styles/news/thanhnienstyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/styles/news/vnexpressstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/styles/news/vnexpressstyle.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/advancednews/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/advancednews/news/Nhandan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/news/Nhandan.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/advancednews/styles/news/nhandanstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/styles/news/nhandanstyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/advancednews/styles/news/thanhnienstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/styles/news/thanhnienstyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/advancednews/styles/news/vnexpressstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/styles/news/vnexpressstyle.css" afterDir="false" />
     </list>
     <list id="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" name="classes" comment="classes" />
     <option name="SHOW_DIALOG" value="false" />
@@ -339,14 +338,7 @@
       <workItem from="1629691286129" duration="1685000" />
       <workItem from="1629693265900" duration="49000" />
       <workItem from="1629724356341" duration="7517000" />
-      <workItem from="1629776489782" duration="3872000" />
-    </task>
-    <task id="LOCAL-00006" summary="max ping">
-      <created>1628519139552</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1628519139552</updated>
+      <workItem from="1629776489782" duration="4173000" />
     </task>
     <task id="LOCAL-00007" summary="clean code">
       <created>1628519313639</created>
@@ -684,7 +676,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629778496514</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="thanh nien and nhan dan not change css">
+      <created>1629780552791</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1629780552792</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -720,7 +719,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed dupe bug" />
     <MESSAGE value="smooooooooooooooth" />
     <MESSAGE value="smoooooooooth" />
     <MESSAGE value="changed button to togglebutton" />
@@ -745,7 +743,8 @@
     <MESSAGE value="dọn đường cho chỉnh sửa giao diện" />
     <MESSAGE value="update zing news perfect view" />
     <MESSAGE value="update tuoitre perfect view" />
-    <option name="LAST_COMMIT_MESSAGE" value="update tuoitre perfect view" />
+    <MESSAGE value="thanh nien and nhan dan not change css" />
+    <option name="LAST_COMMIT_MESSAGE" value="thanh nien and nhan dan not change css" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XDebuggerManager">
