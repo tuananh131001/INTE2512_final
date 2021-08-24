@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="thanh nien and nhan dan not change css">
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Nhandan.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Nhandan.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/styles/news/nhandanstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/styles/news/nhandanstyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/styles/news/thanhnienstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/styles/news/thanhnienstyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/styles/news/vnexpressstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/styles/news/vnexpressstyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/advancednews/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/advancednews/styles/news/nhandanstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/styles/news/nhandanstyle.css" afterDir="false" />
+    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="update scrape content for all newspaper">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Thanhnien.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Thanhnien.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Tuoitre.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Tuoitre.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/news/Tuoitre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/news/Tuoitre.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/styles/news/tuoitrestyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/styles/news/tuoitrestyle.css" afterDir="false" />
     </list>
     <list id="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" name="classes" comment="classes" />
     <option name="SHOW_DIALOG" value="false" />
@@ -338,21 +337,7 @@
       <workItem from="1629691286129" duration="1685000" />
       <workItem from="1629693265900" duration="49000" />
       <workItem from="1629724356341" duration="7517000" />
-      <workItem from="1629776489782" duration="4173000" />
-    </task>
-    <task id="LOCAL-00007" summary="clean code">
-      <created>1628519313639</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1628519313639</updated>
-    </task>
-    <task id="LOCAL-00008" summary="clean code">
-      <created>1628519325095</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1628519325095</updated>
+      <workItem from="1629776489782" duration="8913000" />
     </task>
     <task id="LOCAL-00009" summary="better pagination&#10;added Tuoitre loading to test strain on computer">
       <created>1628521214634</created>
@@ -683,7 +668,21 @@
       <option name="project" value="LOCAL" />
       <updated>1629780552792</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="up cho nhandan">
+      <created>1629780816758</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1629780816758</updated>
+    </task>
+    <task id="LOCAL-00057" summary="update scrape content for all newspaper">
+      <created>1629783355250</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1629783355250</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -719,8 +718,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="smooooooooooooooth" />
-    <MESSAGE value="smoooooooooth" />
     <MESSAGE value="changed button to togglebutton" />
     <MESSAGE value="sadge" />
     <MESSAGE value="QoL changes for Controller and News Class" />
@@ -744,7 +741,9 @@
     <MESSAGE value="update zing news perfect view" />
     <MESSAGE value="update tuoitre perfect view" />
     <MESSAGE value="thanh nien and nhan dan not change css" />
-    <option name="LAST_COMMIT_MESSAGE" value="thanh nien and nhan dan not change css" />
+    <MESSAGE value="up cho nhandan" />
+    <MESSAGE value="update scrape content for all newspaper" />
+    <option name="LAST_COMMIT_MESSAGE" value="update scrape content for all newspaper" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -759,6 +758,21 @@
           <url>file://$PROJECT_DIR$/src/advancednews/news/Nhandan.java</url>
           <line>93</line>
           <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/advancednews/news/Thanhnien.java</url>
+          <line>80</line>
+          <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/advancednews/news/Thanhnien.java</url>
+          <line>78</line>
+          <option name="timeStamp" value="50" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/advancednews/news/Thanhnien.java</url>
+          <line>145</line>
+          <option name="timeStamp" value="51" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
