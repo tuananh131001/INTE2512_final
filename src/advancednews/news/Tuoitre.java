@@ -105,7 +105,8 @@ public class Tuoitre extends News {
                 "title-content clearfix first",
                 "bannerfooter1",
                 "box_can_you_care",
-                "tagandnetwork"
+                "tagandnetwork",
+                "relate-container"
         };
         for (String className : classesToRemove) {
             Elements remove = content.getElementsByClass(className);

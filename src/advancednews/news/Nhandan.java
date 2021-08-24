@@ -86,6 +86,7 @@ public class Nhandan extends News {
         String[] classesToRemove = {
                 "headersite",
                 "box-widget box-likepage box-likepage-top uk-clearfix",
+                "uk-width-1-1 uk-width-1-4@m col-sidebar uk-grid-margin",
                 "box-widget box-tags uk-clearfix",
                 "box-widget box-likepage uk-clearfix",
                 "box-widget box-related",

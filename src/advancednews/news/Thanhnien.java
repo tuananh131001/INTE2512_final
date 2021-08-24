@@ -110,7 +110,15 @@ public class Thanhnien extends News {
                 "floating-bar affix-top",
                 "floating-bar affix",
                 "floating-bar",
-                "media-list"
+                "media-list",
+                "details__bottombanner",
+                "native-ad.",
+                "inread-ads",
+                "site-header__grid affix has-ss-box",
+                "zone__content",
+                "site-footer",
+                "sidebar sidebar--col300",
+                "body--h"
         };
         for (String className : classesToRemove) {
             Elements remove = content.getElementsByClass(className);
@@ -119,7 +127,13 @@ public class Thanhnien extends News {
 
         //removing all elements with such ids
         String[] idToRemove = {
-                "dablewidget_x7yEvG76"
+                "dablewidget_x7yEvG76",
+                "dablewidget_1oVpGklP",
+                "dablewidget_AlmNaEX1",
+                "animation_container",
+                "dablewidget_1oVpGklP",
+                "dablewidget",
+                "abde"
         };
         for (String idName : idToRemove){
             Element remove = content.getElementById(idName);
@@ -127,7 +141,8 @@ public class Thanhnien extends News {
         }
 
         String[] tagToRemove = {
-//                "nav"
+//                "nav",
+                "iframe"
         };
         for (String tagName : tagToRemove){
             Elements remove = content.getElementsByTag(tagName);
