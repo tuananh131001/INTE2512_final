@@ -4,17 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="added timeout when scraping (4000ms) per article, this means the maximum ammount of time a user has to wait is 20 seconds per category">
+    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="fixed time format">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/advancednews/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/advancednews/Model/Article.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/Model/Article.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/advancednews/Model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/Model/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/advancednews/Model/News.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/Model/News.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/advancednews/news/Nhandan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/news/Nhandan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/advancednews/news/Thanhnien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/news/Thanhnien.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/advancednews/news/Tuoitre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/news/Tuoitre.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/advancednews/news/Vnexpress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/news/Vnexpress.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/advancednews/news/Zingnews.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/news/Zingnews.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller$LoadNewsListTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller$LoadNewsListTask.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Model/Article.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Model/Article.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Model/Category.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Model/Category.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Model/News.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Model/News.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Nhandan.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Nhandan.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Thanhnien.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Thanhnien.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Tuoitre.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Tuoitre.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Vnexpress.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Vnexpress.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Zingnews.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Zingnews.class" afterDir="false" />
     </list>
     <list id="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" name="classes" comment="classes" />
     <option name="SHOW_DIALOG" value="false" />
@@ -341,14 +343,7 @@
       <workItem from="1629691286129" duration="1685000" />
       <workItem from="1629693265900" duration="192000" />
       <workItem from="1629736361005" duration="11000" />
-      <workItem from="1629785458000" duration="12938000" />
-    </task>
-    <task id="LOCAL-00004" summary="more things changed">
-      <created>1628507319022</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1628507319022</updated>
+      <workItem from="1629785458000" duration="13372000" />
     </task>
     <task id="LOCAL-00005" summary="removed ads&#10;this should remove pesky block on top of Vnexpress pages now">
       <created>1628515544708</created>
@@ -686,7 +681,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629693405466</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="fixed time format">
+      <created>1629798759396</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1629798759396</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -722,7 +724,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update theo đề mỗi trang chỉ hiện 10 article 1 category hiện 50 article" />
     <MESSAGE value="fixed counting bug" />
     <MESSAGE value="fixed dupe bug" />
     <MESSAGE value="smooooooooooooooth" />
@@ -747,7 +748,8 @@
     <MESSAGE value="removed hack cause its stupid&#10;made loading even faster&#10;potentially fixed all crashing bugs related to multithreading" />
     <MESSAGE value="removed shuffle" />
     <MESSAGE value="added timeout when scraping (4000ms) per article, this means the maximum ammount of time a user has to wait is 20 seconds per category" />
-    <option name="LAST_COMMIT_MESSAGE" value="added timeout when scraping (4000ms) per article, this means the maximum ammount of time a user has to wait is 20 seconds per category" />
+    <MESSAGE value="fixed time format" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed time format" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XDebuggerManager">
