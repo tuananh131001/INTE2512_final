@@ -260,13 +260,13 @@ public class Controller implements Initializable {
         articleList.setPadding(new Insets(5, 30, 30, 30));
         int range = (pageIndex + 1) * 10 - 10;
         for (int i = range; i < range + 10 && i < articles.size(); i++) {
-            HBox hbox = createArticleElement(articles,i);
+            HBox hbox = createArticleElement(articles, i);
             articleList.getChildren().add(hbox);
         }
         return articleList;
     }
 
-    HBox createArticleElement(ArrayList<Article> articles, int position){
+    HBox createArticleElement(List<Article> articles, int position){
         HBox hbox = new HBox();
         hbox.setSpacing(10);
         hbox.setStyle("-fx-background-color: #ebe9e9;");
@@ -287,8 +287,6 @@ public class Controller implements Initializable {
         labelArticle.setFont(new Font("Arial", 18));
         Label labelSource = new Label(article.getSource());
         labelSource.setFont(new Font("Arial", 12));
-        Label labelTime = new Label(article.getTimeArticle());
-        labelTime.setFont(new Font("Arial", 12));
         String timeString = Long.toString(article.getTimeArticle().toDays());
         if (timeString.equals("0")) {
             timeString = Long.toString(article.getTimeArticle().toHours());
