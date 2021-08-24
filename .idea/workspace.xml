@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="MultiThread testing progressanimation still not work">
+    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="dọn đường cho chỉnh sửa giao diện">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/advancednews/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/news/Zingnews.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/news/Zingnews.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/styles/news/zingnewsstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/styles/news/zingnewsstyle.css" afterDir="false" />
     </list>
     <list id="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" name="classes" comment="classes" />
     <option name="SHOW_DIALOG" value="false" />
@@ -333,13 +335,8 @@
       <workItem from="1629546468689" duration="13127000" />
       <workItem from="1629691286129" duration="1685000" />
       <workItem from="1629693265900" duration="49000" />
-    </task>
-    <task id="LOCAL-00003" summary="added comments for Vnexpress">
-      <created>1628506037350</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1628506037350</updated>
+      <workItem from="1629724356341" duration="7517000" />
+      <workItem from="1629776489782" duration="1253000" />
     </task>
     <task id="LOCAL-00004" summary="more things changed">
       <created>1628507319022</created>
@@ -677,7 +674,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629691557594</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="dọn đường cho chỉnh sửa giao diện">
+      <created>1629701829792</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1629701829792</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -713,7 +717,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="blazing fast" />
     <MESSAGE value="Update theo đề mỗi trang chỉ hiện 10 article 1 category hiện 50 article" />
     <MESSAGE value="fixed counting bug" />
     <MESSAGE value="fixed dupe bug" />
@@ -738,7 +741,8 @@
     <MESSAGE value="?" />
     <MESSAGE value="removed hack cause its stupid&#10;made loading even faster&#10;potentially fixed all crashing bugs related to multithreading" />
     <MESSAGE value="removed shuffle" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed shuffle" />
+    <MESSAGE value="dọn đường cho chỉnh sửa giao diện" />
+    <option name="LAST_COMMIT_MESSAGE" value="dọn đường cho chỉnh sửa giao diện" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -746,8 +750,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/advancednews/Controller.java</url>
-          <line>192</line>
-          <option name="timeStamp" value="43" />
+          <line>264</line>
+          <option name="timeStamp" value="46" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

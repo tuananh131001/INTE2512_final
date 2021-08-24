@@ -401,4 +401,3 @@ public class Controller implements Initializable {
         progressBar.autosize();
     }
 }
-

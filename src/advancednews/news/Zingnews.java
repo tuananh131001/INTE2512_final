@@ -73,6 +73,7 @@ public class Zingnews extends News {
                 "the-article-tags",
                 "section recommendation has-sidebar",
                 "sidebar",
+                "sticky-header sticky-header--show",
                 "section article-news-background"
         };
         for (String className : classesToRemove) {
@@ -96,7 +97,12 @@ public class Zingnews extends News {
         }
         //removing all elements with such ids
         String[] idToRemove = {
-                "pushed_popup"
+                "pushed_popup",
+                "trending",
+                "innerarticle",
+                "zing-header",
+                "article-nextreads",
+                "site-header"
         };
         for (String idName : idToRemove){
             Element remove = content.getElementById(idName);
