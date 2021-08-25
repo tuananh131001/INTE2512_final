@@ -131,6 +131,26 @@ public class Tuoitre extends News {
             Element remove = content.getElementById(idName);
             if (remove != null) remove.remove();
         }
+        //changes all video attribute to a text with its link
+        Elements videos = content.select("[data-src]");
+        for (Element video : videos){
+            String videoUrl = null;
+            try {
+                videoUrl = video.getElementsByAttributeValueMatching("data-src", "vcplayer").first().attr("data-src");
+            } catch (NullPointerException E) {
+                break;
+            }
+            video.text("Video link: " + videoUrl);
+        }
+        //remove all hyperlinks while keeping its content
+        Elements hrefs = content.getElementsByAttribute("href");
+        for (Element remove : hrefs){
+            if (remove.attr("href").contains("tuoitre") && remove.tagName().contains("a")) {
+                remove.clearAttributes();
+                remove.tagName("a");
+            }
+        }
+
         //return clean content
         return content;
     }
