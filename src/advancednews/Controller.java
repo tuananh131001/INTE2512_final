@@ -70,14 +70,14 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL url1, ResourceBundle resourceBundle) {
         try {
-            newsList = Collections.synchronizedList(new ArrayList<>()); // LAM ON DUNG BO DONG NAY PLEASEEEEEEEEEEEEEEEE
+            newsList = Collections.synchronizedList(new ArrayList<>()); // LAM ON DUNG BO DONG NAY PLEASE
 
             //init web engine
             newsScene = new WebView();
             engine = newsScene.getEngine();
 
             //setting up news scrapers
-            newsHashMap = new LinkedHashMap<String, News>();
+            newsHashMap = new LinkedHashMap<>();
             newsHashMap.put("VnExpress", new Vnexpress());
             newsHashMap.put("Tuoi Tre", new Tuoitre());
             newsHashMap.put("Thanh Nien", new Thanhnien());
@@ -107,7 +107,7 @@ public class Controller implements Initializable {
     }
 
     // ref: https://stackoverflow.com/questions/25409044/javafx-multiple-buttons-to-same-handler
-    final EventHandler<ActionEvent> myHandler = new EventHandler<ActionEvent>() {
+    final EventHandler<ActionEvent> myHandler = new EventHandler<>() {
         @Override
         public void handle(ActionEvent event) {
             page.setVisible(false);
@@ -232,7 +232,7 @@ public class Controller implements Initializable {
         }
     }
 
-    public class ScrapeWebsite extends Task<ArrayList<Article>> {
+    public static class ScrapeWebsite extends Task<ArrayList<Article>> {
         String category;
         News news;
 
@@ -335,9 +335,7 @@ public class Controller implements Initializable {
         Button exit = new Button("<< Go back"); //setup exit button
         //apply css
         exit.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/custombutton.css")).toString());
-        exit.setOnAction(actionEvent -> {
-            stackPane.getChildren().remove(1);
-        }); //lambda to remove current news pane
+        exit.setOnAction(actionEvent -> stackPane.getChildren().remove(1)); //lambda to remove current news pane
         newsBorder.setTop(exit); //set button at top of borderpane
     }
 
@@ -394,15 +392,38 @@ public class Controller implements Initializable {
 
         for (String buttonName : ButtonNames) {
             ToggleButton button = new ToggleButton(buttonName);
-            button.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/custombutton.css")).toString());
             button.setToggleGroup(toggleGroup);
             button.setOnAction(myHandler);
+            button.setId(buttonName);
 
             hbox.getChildren().add(button);
         }
 
+        Button reloadButton = new Button("Reload Category");
+        Region region = new Region();
+        HBox.setHgrow(region, Priority.ALWAYS);
+        hbox.getChildren().addAll(region, reloadButton);
+        reloadButton.setStyle("-fx-border-color: transparent; -fx-border-width: 0; -fx-background-radius: 0;");
+        reloadButton.setOnAction(reloadCategory);
+
+        hbox.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/custombutton.css")).toString());
+
         borderPane.setTop(hbox);
     }
+
+    final EventHandler<ActionEvent> reloadCategory = actionEvent -> {
+        HBox hBox = (HBox) ((Button) actionEvent.getSource()).getParent();
+        for (Node node : hBox.getChildren()){
+            if (currentCategory.equals(node.getId())) {
+                threadsHash.put(node.getId(), null);
+                for (News news : newsHashMap.values()) {
+                    news.resetCategory(node.getId());
+                }
+                node.setDisable(false);
+                ((ToggleButton) node).fire();
+            }
+        }
+    };
 
     void initPagination() {
         //make pagination to invisible until a category is clicked

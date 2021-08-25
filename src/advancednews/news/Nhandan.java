@@ -24,8 +24,8 @@ public class Nhandan extends News {
     }
 
     public ArrayList<Article> scrapeArticleNonRss(String url) throws IOException {
-        if (url == null) return (ArrayList<Article>) Collections.synchronizedCollection(new ArrayList<Article>());
-        ArrayList<Article> newsList = new ArrayList<>();; //initialize return variable
+        if (url == null) return new ArrayList<>();
+        ArrayList<Article> newsList = new ArrayList<>(); //initialize return variable
 
         Elements listArticle = new Elements(); //initialize article list
 
