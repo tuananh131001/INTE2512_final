@@ -25,7 +25,7 @@ public class Vnexpress extends News {
     public ArrayList<Article> scrapeArticle(String url) throws IOException {
         if (!url.contains("rss")) return scrapeArticleNonRss(url);
         Elements articleElementList = new Elements(); // Create list of element
-        ArrayList<Article> articleList = new ArrayList<>();; //Create list of article
+        ArrayList<Article> articleList = new ArrayList<>(); //Create list of article
         Document doc = Jsoup.connect(url).timeout(5000).get();
         articleElementList.addAll(doc.getElementsByTag("item"));
         // Loop into article Element
@@ -50,7 +50,7 @@ public class Vnexpress extends News {
 
     public ArrayList<Article> scrapeArticleNonRss(String url) throws IOException {
         Elements articleElementList = new Elements(); // Create list of element
-        ArrayList<Article> articleList = new ArrayList<>();; //Create list of article
+        ArrayList<Article> articleList = new ArrayList<>(); //Create list of article
 
         Document doc = Jsoup.connect(url).timeout(5000).get();
 
@@ -138,16 +138,20 @@ public class Vnexpress extends News {
             remove.remove();
         }
 
-        //remove all hyperlinks while keeping its content
-//        Elements hrefs = content.getElementsByAttribute("href");
-//        for (Element remove : hrefs){
-//            remove.clearAttributes();
-//        }
-
-        //changes all video attribute to hyperlink
-        Elements videos = content.getElementsByTag("video");
+        //changes all video attribute to a text with its link
+        Elements videos = content.getElementsByAttributeValueMatching("id","video");
         for (Element video : videos){
-            video.tagName("a");
+            String src = video.getElementsByAttributeValueMatching("src", "vnecdn").first().attr("src");
+            if (src != null) {
+                video.text("Video link: " + src);
+            }
+        }
+
+        //remove all hyperlinks while keeping its content
+        Elements hrefs = content.getElementsByAttribute("href");
+        for (Element remove : hrefs){
+            remove.clearAttributes();
+            remove.tagName("p");
         }
 
         //attempt to remove all ads

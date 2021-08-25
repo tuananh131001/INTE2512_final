@@ -25,7 +25,7 @@ public class News {
         if (category != null) return category;
         Scanner urlScanner = new Scanner(urlfile);
         //Hashmap to store url and category name
-        HashMap<String, String> urlsHashMap = new HashMap<String, String>();
+        HashMap<String, String> urlsHashMap = new HashMap<>();
         while (urlScanner.hasNextLine()) {
             String[] url = urlScanner.nextLine().split("\\|");
             urlsHashMap.put(url[1], url[0]);
@@ -70,5 +70,9 @@ public class News {
             }
         }
         return Duration.between(date.toInstant(), Instant.now());
+    }
+
+    public void resetCategory(String category){
+        categories.put(category, null);
     }
 }

@@ -1,12 +1,12 @@
 package advancednews.news;
 
+import advancednews.Model.Article;
+import advancednews.Model.News;
 import javafx.scene.image.Image;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import advancednews.Model.Article;
-import advancednews.Model.News;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -14,7 +14,6 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -53,9 +52,9 @@ public class Thanhnien extends News {
     }
 
     public ArrayList<Article> scrapeArticleNonRss(String url) throws IOException {
-        if (url == null) return new ArrayList<>();;
+        if (url == null) return new ArrayList<>();
         Elements articleElementList = new Elements(); // Create list of element
-        ArrayList<Article> articleList = new ArrayList<>();; //Create list of article
+        ArrayList<Article> articleList = new ArrayList<>(); //Create list of article
 
         Document doc = Jsoup.connect(url).timeout(5000).get();
 
@@ -72,7 +71,7 @@ public class Thanhnien extends News {
                 if (imageurl != null && !imageurl.equals("")) {
                     image = new Image(imageurl);
                 }
-                String date = "";
+                String date;
                 try {
                     Document document = Jsoup.connect(articleUrl).timeout(4000).get();
                     date = document.getElementsByTag("time").first().ownText();

@@ -1,6 +1,7 @@
 .sidebar-1{
     max-width: 100% !important;
 }
+
 .block-detail-content{
     max-width: 100% !important;
     align-content: center;
@@ -8,9 +9,15 @@
     margin: auto;
 
 }
+
 .col-main {
     width: max-content;
 }
+
 .bodysite {
     width: max-content;
+}
+
+.fig-picture{
+    background: transparent !important;
 }
