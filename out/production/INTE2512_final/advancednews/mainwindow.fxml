@@ -11,7 +11,7 @@
    <top>
    </top>
    <center>
-      <StackPane fx:id="stackPane" prefHeight="566.0" prefWidth="710.0" >
+      <StackPane fx:id="stackPane"  >
          <ScrollPane fx:id="scrollPaneFilters" fitToHeight="true" fitToWidth="true" pannable="true" stylesheets="@styles/scrollstyle.css">
             <Pagination fx:id="page" BorderPane.alignment="BOTTOM_CENTER" />
          </ScrollPane>

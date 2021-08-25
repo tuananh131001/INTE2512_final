@@ -1,18 +1,15 @@
 .toggle-button {
     -fx-border-color: transparent;
-    -fx-border-width: 0;
     -fx-background-radius: 0;
     -fx-background-color: transparent;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
-    -fx-font-size: 1em; /* 12 */
     -fx-text-fill: #ffffff;
+    -fx-pref-height: 30;
 }
 .toggle-button:focused {
-    -fx-border-color: transparent, white;
-    /*-fx-border-width: 1, 1;*/
-    -fx-border-style: solid;
-    -fx-border-radius: 0, 0;
-    /*-fx-border-insets: 1 1 1 1, 0;*/
+    -fx-border-color: #070758;
+    -fx-background-color: white;
+    -fx-text-fill: #070758;
 }
 .toggle-button:pressed {
     -fx-background-color: white;
@@ -24,19 +21,15 @@
     -fx-opacity: 100;
 }
 .button {
-    -fx-border-width: 0;
+    -fx-border-color: transparent;
     -fx-background-radius: 0;
     -fx-background-color: #070758;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
-    -fx-font-size: 1em; /* 12 */
     -fx-text-fill: #ffffff;
+    -fx-pref-height: 30;
 }
 .button:focused {
-    -fx-border-color: transparent, white;
-    -fx-border-width: 1, 1;
-    -fx-border-style: solid;
-    -fx-border-radius: 0, 0;
-    -fx-border-insets: 0 /*1 1 1 1, 0;*/
+    -fx-border-color: #070758;
 }
 .button:pressed {
     -fx-background-color: white;

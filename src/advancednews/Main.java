@@ -17,7 +17,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("mainwindow.fxml")));
 
-        Scene scene = new Scene(root, 1000, 800);
+        Scene scene = new Scene(root, 1000, 600);
         primaryStage.setScene(scene);
         scene.setFill(Color.TRANSPARENT);
         primaryStage.setTitle("nicesu application verry pretty cute hihi");

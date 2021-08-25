@@ -305,9 +305,10 @@ public class Controller implements Initializable {
         Button viewButton = new Button("View");
         //disable view button focus cause after article got added the damn thing is still in focus and will try to add more panes if you hit space or enter
         viewButton.setFocusTraversable(false);
-        viewButton.setStyle("-fx-font-size: 10; -fx-underline: true;");
+        viewButton.setStyle("-fx-pref-height: 20;-fx-font-size: 10; -fx-underline: true;");
         viewButton.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/custombutton.css")).toString());
         vboxArticle.getChildren().addAll(labelArticle, labelSource, labelTime, viewButton);
+
 
         try {
             viewButton.setOnAction(event -> {
@@ -400,10 +401,11 @@ public class Controller implements Initializable {
         }
 
         Button reloadButton = new Button("Reload Category");
+        reloadButton.setStyle("-fx-pref-height: 29;");
         Region region = new Region();
         HBox.setHgrow(region, Priority.ALWAYS);
         hbox.getChildren().addAll(region, reloadButton);
-        reloadButton.setStyle("-fx-border-color: transparent; -fx-border-width: 0; -fx-background-radius: 0;");
+
         reloadButton.setOnAction(reloadCategory);
 
         hbox.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/custombutton.css")).toString());
