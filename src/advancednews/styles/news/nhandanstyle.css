@@ -5,9 +5,11 @@
     margin: auto !important;
 
 }
+
 .col-main {
     width: 100% !important;
 }
-.bodysite {
-    width: 100% !important;
-}
+
+/*.bodysite {*/
+/*    width: max-content !important;*/
+/*}*/
