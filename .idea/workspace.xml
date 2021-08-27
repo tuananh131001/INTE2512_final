@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="update with group, minor changes in size of button" />
+    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="them *{font-family: sans-serif !important;}">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/Controller.java" afterDir="false" />
+    </list>
     <list id="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" name="classes" comment="classes" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -336,13 +340,10 @@
       <workItem from="1629801329413" duration="14000" />
       <workItem from="1629812276981" duration="813000" />
       <workItem from="1629865901081" duration="9498000" />
-    </task>
-    <task id="LOCAL-00009" summary="better pagination&#10;added Tuoitre loading to test strain on computer">
-      <created>1628521214634</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1628521214634</updated>
+      <workItem from="1629899730116" duration="1405000" />
+      <workItem from="1629970576980" duration="42000" />
+      <workItem from="1629974233265" duration="615000" />
+      <workItem from="1630049976393" duration="2007000" />
     </task>
     <task id="LOCAL-00010" summary="prevented multiple button clicks to reload the same category">
       <created>1628588651265</created>
@@ -680,7 +681,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629897809064</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="them *{font-family: sans-serif !important;}">
+      <created>1629900041903</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1629900041903</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -716,7 +724,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="smooooooooooooooth" />
     <MESSAGE value="smoooooooooth" />
     <MESSAGE value="changed button to togglebutton" />
     <MESSAGE value="sadge" />
@@ -741,7 +748,8 @@
     <MESSAGE value="fixed time format" />
     <MESSAGE value="added reload button" />
     <MESSAGE value="update with group, minor changes in size of button" />
-    <option name="LAST_COMMIT_MESSAGE" value="update with group, minor changes in size of button" />
+    <MESSAGE value="them *{font-family: sans-serif !important;}" />
+    <option name="LAST_COMMIT_MESSAGE" value="them *{font-family: sans-serif !important;}" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -754,7 +762,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/advancednews/Controller.java</url>
-          <line>418</line>
+          <line>417</line>
           <option name="timeStamp" value="82" />
         </line-breakpoint>
       </breakpoints>

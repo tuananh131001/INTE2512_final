@@ -8,10 +8,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -302,16 +304,12 @@ public class Controller implements Initializable {
 
         VBox vboxArticle = new VBox();
         vboxArticle.setSpacing(3);
-        Button viewButton = new Button("View");
-        //disable view button focus cause after article got added the damn thing is still in focus and will try to add more panes if you hit space or enter
-        viewButton.setFocusTraversable(false);
-        viewButton.setStyle("-fx-pref-height: 20;-fx-font-size: 10; -fx-underline: true;");
-        viewButton.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/custombutton.css")).toString());
-        vboxArticle.getChildren().addAll(labelArticle, labelSource, labelTime, viewButton);
-
-
+        vboxArticle.getChildren().addAll(labelArticle, labelSource, labelTime);
         try {
-            viewButton.setOnAction(event -> {
+            hbox.setOnMouseMoved(mouseEvent -> { //change cursor icon when mouse move to on the article
+                    hbox.setCursor(Cursor.HAND);
+            });
+            hbox.setOnMouseClicked(mouseEvent -> {
                 try {
                     String source = article.getSource();
                     Element content = newsHashMap.get(source).scrapeContent(article.getSourceArticle());
@@ -326,6 +324,7 @@ public class Controller implements Initializable {
         } catch (Exception e) {
             System.out.println(e + " createPage");
         }
+
         hbox.getChildren().add(vboxArticle);
         return hbox;
     }
@@ -435,4 +434,9 @@ public class Controller implements Initializable {
     void initLoadingBar() {
         progressBar.autosize();
     }
+
+//    @FXML
+//    void onMouseMove(MouseEvent mouse) {
+//        mouse.setC
+//    }
 }
