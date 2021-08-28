@@ -1,6 +1,12 @@
 package advancednews;
 
-import javafx.animation.*;
+import advancednews.Model.Article;
+import advancednews.Model.News;
+import advancednews.news.*;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,7 +19,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -23,9 +28,6 @@ import javafx.scene.web.WebView;
 import javafx.util.Duration;
 import javafx.util.Pair;
 import org.jsoup.nodes.Element;
-import advancednews.Model.Article;
-import advancednews.Model.News;
-import advancednews.news.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -281,80 +283,48 @@ public class Controller implements Initializable {
     HBox createArticleElementHBox(List<Article> articles, int position){
         HBox hbox = new HBox();
         hbox.setStyle("-fx-background-color: #ebe9e9; -fx-spacing: 10;");
-        Article article = articles.get(position);
-
-        if (article.getImageArticle() != null) {
-            ImageView imageView = new ImageView(article.getImageArticle());
-            imageView.setFitHeight(100);
-            imageView.setFitWidth(100);
-            hbox.getChildren().add(imageView);
-        } else {
-            Label replaceImage = new Label("no image");
-            replaceImage.setMinSize(100,100);
-            replaceImage.setStyle("-fx-alignment: CENTER; -fx-background-color: #dddfe1;");
-            hbox.getChildren().add(replaceImage);
-        }
-
-        Label labelArticle = new Label(article.getTitleArticle());
-        labelArticle.setFont(new Font("Arial", 18));
-        labelArticle.setWrapText(true);
-        Label labelSource = new Label(article.getSource());
-        labelSource.setFont(new Font("Arial", 12));
-        String timeString = Long.toString(article.getTimeArticle().toDays());
-        if (timeString.equals("0")) {
-            timeString = Long.toString(article.getTimeArticle().toHours());
-            if (timeString.equals("0")) {
-                timeString = Long.toString(article.getTimeArticle().toMinutes());
-                timeString += " Minute" + (timeString.equals("1")?"":"s") + " ago";
-            }
-            else timeString += " Hour" + (timeString.equals("1")?"":"s") + " ago";
-        }
-        else timeString += " Day" + (timeString.equals("1")?"":"s") + " ago";
-        Label labelTime = new Label(timeString);
-        labelTime.setFont(new Font("Arial", 12));
-
-        VBox vboxArticle = new VBox();
-        vboxArticle.setSpacing(3);
-        vboxArticle.getChildren().addAll(labelArticle, labelSource, labelTime);
-        try {
-            hbox.setOnMouseMoved(mouseEvent -> { //change cursor icon when mouse move to on the article
-                    hbox.setCursor(Cursor.HAND);
-            });
-            hbox.setOnMouseClicked(mouseEvent -> {
-                try {
-                    String source = article.getSource();
-                    Element content = newsHashMap.get(source).scrapeContent(article.getSourceArticle());
-                    engine.loadContent(content.toString());
-                    engine.setUserStyleSheetLocation(Objects.requireNonNull(getClass().getResource("styles/news/" + source.replaceAll("\\s+", "").toLowerCase() + "style.css")).toString());
-                    newsBorder.setCenter(newsScene); //set center as news scene
-                    stackPane.getChildren().add(newsBorder); //add the whole thing on top of the application
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            });
-        } catch (Exception e) {
-            System.out.println(e + " createPage");
-        }
-
-        hbox.getChildren().add(vboxArticle);
+        Pane pane = createArticleElement(articles, position, "hbox");
+        hbox.getChildren().addAll(pane.getChildren());
+        hbox.setOnMouseMoved(pane.getOnMouseMoved());
+        hbox.setOnMouseClicked(pane.getOnMouseClicked());
         return hbox;
     }
 
     VBox createArticleElementVBox(List<Article> articles, int position){
         VBox vbox = new VBox();
+        Pane pane = createArticleElement(articles, position, "vbox");
         vbox.setStyle("-fx-background-color: #ebe9e9; -fx-max-width: 600; -fx-spacing: 3;-fx-padding: 0 0 20 0;");
+        vbox.getChildren().addAll(pane.getChildren());
+        vbox.setOnMouseMoved(pane.getOnMouseMoved());
+        vbox.setOnMouseClicked(pane.getOnMouseClicked());
+        return vbox;
+    }
+
+    Pane createArticleElement(List<Article> articles, int position, String box){
+        Pane pane = new Pane();
         Article article = articles.get(position);
 
         if (article.getImageArticle() != null) {
             ImageView imageView = new ImageView(article.getImageArticle());
-            imageView.setFitHeight(300);
-            imageView.setFitWidth(600);
-            vbox.getChildren().add(imageView);
+            if (box.equals("vbox")) {
+                imageView.setFitHeight(300);
+                imageView.setFitWidth(600);
+            }
+            else {
+                imageView.setFitHeight(100);
+                imageView.setFitWidth(100);
+            }
+            pane.getChildren().add(imageView);
         } else {
             Label replaceImage = new Label("no image");
-            replaceImage.setMinSize(600,300);
+            if (box.equals("vbox")){
+                replaceImage.setMinSize(600,300);
+            }
+            else {
+                replaceImage.setMinSize(100,100);
+            }
             replaceImage.setStyle("-fx-alignment: CENTER; -fx-background-color: #dddfe1;");
-            vbox.getChildren().add(replaceImage);
+            pane.getChildren().add(replaceImage);
         }
 
         Label labelArticle = new Label(article.getTitleArticle());
@@ -376,12 +346,15 @@ public class Controller implements Initializable {
         labelTime.setFont(new Font("Arial", 12));
 
 
-        vbox.getChildren().addAll(labelArticle, labelSource, labelTime);
+        VBox vboxArticle = new VBox();
+        vboxArticle.setSpacing(3);
+        vboxArticle.getChildren().addAll(labelArticle, labelSource, labelTime);
+        pane.getChildren().add(vboxArticle);
         try {
-            vbox.setOnMouseMoved(mouseEvent -> { //change cursor icon when mouse move to on the article
-                vbox.setCursor(Cursor.HAND);
+            pane.setOnMouseMoved(mouseEvent -> { //change cursor icon when mouse move to on the article
+                ((Pane) mouseEvent.getSource()).setCursor(Cursor.HAND);
             });
-            vbox.setOnMouseClicked(mouseEvent -> {
+            pane.setOnMouseClicked(mouseEvent -> {
                 try {
                     String source = article.getSource();
                     Element content = newsHashMap.get(source).scrapeContent(article.getSourceArticle());
@@ -397,7 +370,7 @@ public class Controller implements Initializable {
             System.out.println(e + " createPage");
         }
 
-        return vbox;
+        return pane;
     }
 
     void initNewsBorder() {
