@@ -5,15 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="added reload button">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/javafx_swt.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/jsoup_1_14_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/INTE2512_final.iml" beforeDir="false" afterPath="$PROJECT_DIR$/INTE2512_final.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller$LoadNewsListTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller$LoadNewsListTask.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/module-info.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/advancednews/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Model/Category.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Model/Category.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Model/News.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Model/News.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Vnexpress.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Vnexpress.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/styles/news/nhandanstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/styles/news/nhandanstyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/styles/news/tuoitrestyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/styles/news/tuoitrestyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/styles/news/vnexpressstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/styles/news/vnexpressstyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/styles/news/vnexpressstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/styles/news/vnexpressstyle.css" afterDir="false" />
     </list>
     <list id="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" name="classes" comment="classes" />
     <option name="SHOW_DIALOG" value="false" />
@@ -229,7 +229,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="16" />
+      <option name="ALTERNATIVE_JRE_PATH" value="liberica-16" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="advancednews.Main" />
       <module name="INTE2512_final" />
@@ -783,8 +783,8 @@
     </pin-to-top-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/INTE2512_final$Main.ic" NAME="Main Coverage Results" MODIFIED="1625943122768" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>sample.*</FILTER>
+    <SUITE FILE_PATH="coverage/INTE2512_final$Main.ic" NAME="Main Coverage Results" MODIFIED="1629793792067" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>advancednews.Model.*</FILTER>
     </SUITE>
   </component>
 </project>

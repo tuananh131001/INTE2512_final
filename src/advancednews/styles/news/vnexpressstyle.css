@@ -11,11 +11,11 @@
 }
 
 .col-main {
-    width: max-content;
+    width: 100% !important;
 }
 
 .bodysite {
-    width: max-content;
+    width: 100% !important;;
 }
 
 .fig-picture{
