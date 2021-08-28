@@ -1,9 +1,22 @@
-.content .content-detail.column-2 .detail-w .main-content-body {
+/*.content .content-detail.column-2 .detail-w .main-content-body {*/
+/*    width: 100% !important;*/
+/*    align-content: stretch !important;*/
+/*    overflow: auto !important;*/
+/*}*/
+/*.w980 {*/
+/*    width: 100% !important;*/
+/*}*/
+
+.main-content-body {
     width: 100% !important;
-    align-content: stretch !important;
-    overflow: auto !important;
+    left: auto !important;
 }
-.w980 {
+
+h1.article-title {
+    width: auto !important;
+}
+
+section.detail-w.fl {
     width: 100% !important;
 }
 

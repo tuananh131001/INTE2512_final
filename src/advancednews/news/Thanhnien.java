@@ -16,6 +16,8 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Thanhnien extends News {
 
@@ -146,6 +148,42 @@ public class Thanhnien extends News {
         for (String tagName : tagToRemove){
             Elements remove = content.getElementsByTag(tagName);
             remove.remove();
+        }
+        //changes all video attribute to a text with its link
+        Elements videos = content.getElementsByClass("clearfix cms-video");
+        for (Element video : videos){
+            String videoUrl = video.attr("data-video-src");
+            if (videoUrl != null) {
+                video.text("Video link: " + videoUrl);
+            }
+        }
+        String pattern =
+                "(((ht|f)tp(s?)\\:\\/\\/|~\\/|\\/)|www.)" +
+                        "(\\w+:\\w+@)?(([-\\w]+\\.)+(com|org|net|gov" +
+                        "|mil|biz|info|mobi|name|aero|jobs|museum" +
+                        "|travel|[a-z]{2}))(:[\\d]{1,5})?" +
+                        "(((\\/([-\\w~!$+|.,=]|%[a-f\\d]{2})+)+|\\/)+|\\?|#)?" +
+                        "((\\?([-\\w~!$+|.,*:]|%[a-f\\d{2}])+=?" +
+                        "([-\\w~!$+|.,*:=]|%[a-f\\d]{2})*)" +
+                        "(&(?:[-\\w~!$+|.,*:]|%[a-f\\d{2}])+=?" +
+                        "([-\\w~!$+|.,*:=]|%[a-f\\d]{2})*)*)*" +
+                        "(#([-\\w~!$+|.,*:=]|%[a-f\\d]{2})*)?\\b" + "mp4";
+
+        String[] videosTest = content.select("[id^=videoavatar]").toString().split(pattern);
+
+        for(String line:videosTest)
+        {
+            System.out.println(line);
+        }
+
+
+        //remove all hyperlinks while keeping its content
+        Elements hrefs = content.getElementsByAttribute("href");
+        for (Element remove : hrefs){
+            if (remove.attr("href").contains("thanhnien") && remove.tagName().contains("a")) {
+                remove.clearAttributes();
+                remove.tagName("a");
+            }
         }
 
 
