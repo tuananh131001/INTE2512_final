@@ -6,23 +6,20 @@
   <component name="ChangeListManager">
     <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="added reload button">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/INTE2512_final.iml" beforeDir="false" afterPath="$PROJECT_DIR$/INTE2512_final.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/advancednews/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/advancednews/styles/news/nhandanstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/styles/news/nhandanstyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/advancednews/styles/news/tuoitrestyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/styles/news/tuoitrestyle.css" afterDir="false" />
-    </list>
-    <list id="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" name="classes" comment="classes">
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Model/Category.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Model/Category.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Model/News.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Model/News.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Vnexpress.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Vnexpress.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/styles/news/nhandanstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/styles/news/nhandanstyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/styles/news/tuoitrestyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/styles/news/tuoitrestyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/styles/news/vnexpressstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/styles/news/vnexpressstyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/styles/news/vnexpressstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/styles/news/vnexpressstyle.css" afterDir="false" />
     </list>
+    <list id="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" name="classes" comment="classes" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="CodeInsightWorkspaceSettings">
-    <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -39,7 +36,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="duy" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -66,10 +63,10 @@
     <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/.jdks/liberica-16.0.2/lib/jsoup-1.13.1.jar" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../Program Files/jsoup/jsoup-1.14.1.jar" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.13351136" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -349,18 +346,12 @@
       <workItem from="1629801040776" duration="162000" />
       <workItem from="1629801329413" duration="14000" />
       <workItem from="1629812276981" duration="813000" />
-      <workItem from="1629865901081" duration="9820000" />
-      <workItem from="1629889582154" duration="42000" />
-      <workItem from="1629900181447" duration="506000" />
-      <workItem from="1629900696582" duration="202000" />
-      <workItem from="1629901725959" duration="2900000" />
-    </task>
-    <task id="LOCAL-00009" summary="better pagination&#10;added Tuoitre loading to test strain on computer">
-      <created>1628521214634</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1628521214634</updated>
+      <workItem from="1629865901081" duration="9498000" />
+      <workItem from="1629899730116" duration="1405000" />
+      <workItem from="1629970576980" duration="42000" />
+      <workItem from="1629974233265" duration="615000" />
+      <workItem from="1630049976393" duration="2007000" />
+      <workItem from="1630055942024" duration="4729000" />
     </task>
     <task id="LOCAL-00010" summary="prevented multiple button clicks to reload the same category">
       <created>1628588651265</created>
@@ -691,14 +682,21 @@
       <option name="project" value="LOCAL" />
       <updated>1629799797167</updated>
     </task>
-    <task id="LOCAL-00057" summary="added reload button">
-      <created>1629889203678</created>
+    <task id="LOCAL-00057" summary="update with group, minor changes in size of button">
+      <created>1629897809063</created>
       <option name="number" value="00057" />
       <option name="presentableId" value="LOCAL-00057" />
       <option name="project" value="LOCAL" />
-      <updated>1629889203679</updated>
+      <updated>1629897809064</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="them *{font-family: sans-serif !important;}">
+      <created>1629900041903</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1629900041903</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -720,7 +718,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/main" />
+                        <option value="main" />
                       </list>
                     </value>
                   </entry>
@@ -734,8 +732,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed dupe bug" />
-    <MESSAGE value="smooooooooooooooth" />
     <MESSAGE value="smoooooooooth" />
     <MESSAGE value="changed button to togglebutton" />
     <MESSAGE value="sadge" />
@@ -759,7 +755,9 @@
     <MESSAGE value="added timeout when scraping (4000ms) per article, this means the maximum ammount of time a user has to wait is 20 seconds per category" />
     <MESSAGE value="fixed time format" />
     <MESSAGE value="added reload button" />
-    <option name="LAST_COMMIT_MESSAGE" value="added reload button" />
+    <MESSAGE value="update with group, minor changes in size of button" />
+    <MESSAGE value="them *{font-family: sans-serif !important;}" />
+    <option name="LAST_COMMIT_MESSAGE" value="them *{font-family: sans-serif !important;}" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -772,7 +770,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/advancednews/Controller.java</url>
-          <line>416</line>
+          <line>488</line>
           <option name="timeStamp" value="82" />
         </line-breakpoint>
       </breakpoints>

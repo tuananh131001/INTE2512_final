@@ -11,13 +11,15 @@
 }
 
 .col-main {
-    width: max-content;
+    width: 100% !important;
 }
 
 .bodysite {
-    width: max-content;
+    width: 100% !important;;
 }
 
 .fig-picture{
     background: transparent !important;
 }
+
+*{font-family: sans-serif !important;}

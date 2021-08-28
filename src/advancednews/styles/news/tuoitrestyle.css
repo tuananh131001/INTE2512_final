@@ -19,3 +19,5 @@ h1.article-title {
 section.detail-w.fl {
     width: 100% !important;
 }
+
+*{font-family: sans-serif !important;}

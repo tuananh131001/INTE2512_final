@@ -8,10 +8,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -254,22 +256,31 @@ public class Controller implements Initializable {
     }
 
 
-    public VBox createPage(int pageIndex, List<Article> articles) {
-        VBox articleList = new VBox();
-        articleList.setSpacing(5);
-        articleList.setPadding(new Insets(5, 30, 30, 30));
+    public HBox createPage(int pageIndex, List<Article> articles) {
+        HBox articleList = new HBox();
+        articleList.setStyle("-fx-alignment: CENTER; -fx-padding: 20 40 20 40; -fx-spacing: 10;");
+        VBox vboxHighLight = new VBox();
+        vboxHighLight.setSpacing(10);
+        VBox vboxList = new VBox();
+        vboxList.setSpacing(6);
         int range = (pageIndex + 1) * 10 - 10;
         for (int i = range; i < range + 10 && i < articles.size(); i++) {
-            HBox hbox = createArticleElement(articles, i);
-            articleList.getChildren().add(hbox);
+            if (i%10 == 0 || i%10 == 1) {
+                VBox vbox = createArticleElementVBox(articles, i);
+                vboxHighLight.getChildren().add(vbox);
+            }
+            else {
+                HBox hbox = createArticleElementHBox(articles, i);
+                vboxList.getChildren().add(hbox);
+            }
         }
+        articleList.getChildren().addAll(vboxHighLight,vboxList);
         return articleList;
     }
 
-    HBox createArticleElement(List<Article> articles, int position){
+    HBox createArticleElementHBox(List<Article> articles, int position){
         HBox hbox = new HBox();
-        hbox.setSpacing(10);
-        hbox.setStyle("-fx-background-color: #ebe9e9;");
+        hbox.setStyle("-fx-background-color: #ebe9e9; -fx-spacing: 10;");
         Article article = articles.get(position);
 
         if (article.getImageArticle() != null) {
@@ -279,12 +290,14 @@ public class Controller implements Initializable {
             hbox.getChildren().add(imageView);
         } else {
             Label replaceImage = new Label("no image");
-            replaceImage.setStyle("-fx-alignment: CENTER; -fx-background-color: #dddfe1; -fx-pref-width: 100; -fx-pref-height: 100;");
+            replaceImage.setMinSize(100,100);
+            replaceImage.setStyle("-fx-alignment: CENTER; -fx-background-color: #dddfe1;");
             hbox.getChildren().add(replaceImage);
         }
 
         Label labelArticle = new Label(article.getTitleArticle());
         labelArticle.setFont(new Font("Arial", 18));
+        labelArticle.setWrapText(true);
         Label labelSource = new Label(article.getSource());
         labelSource.setFont(new Font("Arial", 12));
         String timeString = Long.toString(article.getTimeArticle().toDays());
@@ -302,15 +315,12 @@ public class Controller implements Initializable {
 
         VBox vboxArticle = new VBox();
         vboxArticle.setSpacing(3);
-        Button viewButton = new Button("View");
-        //disable view button focus cause after article got added the damn thing is still in focus and will try to add more panes if you hit space or enter
-        viewButton.setFocusTraversable(false);
-        viewButton.setStyle("-fx-font-size: 10; -fx-underline: true;");
-        viewButton.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/custombutton.css")).toString());
-        vboxArticle.getChildren().addAll(labelArticle, labelSource, labelTime, viewButton);
-
+        vboxArticle.getChildren().addAll(labelArticle, labelSource, labelTime);
         try {
-            viewButton.setOnAction(event -> {
+            hbox.setOnMouseMoved(mouseEvent -> { //change cursor icon when mouse move to on the article
+                    hbox.setCursor(Cursor.HAND);
+            });
+            hbox.setOnMouseClicked(mouseEvent -> {
                 try {
                     String source = article.getSource();
                     Element content = newsHashMap.get(source).scrapeContent(article.getSourceArticle());
@@ -325,8 +335,69 @@ public class Controller implements Initializable {
         } catch (Exception e) {
             System.out.println(e + " createPage");
         }
+
         hbox.getChildren().add(vboxArticle);
         return hbox;
+    }
+
+    VBox createArticleElementVBox(List<Article> articles, int position){
+        VBox vbox = new VBox();
+        vbox.setStyle("-fx-background-color: #ebe9e9; -fx-max-width: 600; -fx-spacing: 3;-fx-padding: 0 0 20 0;");
+        Article article = articles.get(position);
+
+        if (article.getImageArticle() != null) {
+            ImageView imageView = new ImageView(article.getImageArticle());
+            imageView.setFitHeight(300);
+            imageView.setFitWidth(600);
+            vbox.getChildren().add(imageView);
+        } else {
+            Label replaceImage = new Label("no image");
+            replaceImage.setMinSize(600,300);
+            replaceImage.setStyle("-fx-alignment: CENTER; -fx-background-color: #dddfe1;");
+            vbox.getChildren().add(replaceImage);
+        }
+
+        Label labelArticle = new Label(article.getTitleArticle());
+        labelArticle.setWrapText(true);
+        labelArticle.setFont(new Font("Arial", 18));
+        Label labelSource = new Label(article.getSource());
+        labelSource.setFont(new Font("Arial", 12));
+        String timeString = Long.toString(article.getTimeArticle().toDays());
+        if (timeString.equals("0")) {
+            timeString = Long.toString(article.getTimeArticle().toHours());
+            if (timeString.equals("0")) {
+                timeString = Long.toString(article.getTimeArticle().toMinutes());
+                timeString += " Minute" + (timeString.equals("1")?"":"s") + " ago";
+            }
+            else timeString += " Hour" + (timeString.equals("1")?"":"s") + " ago";
+        }
+        else timeString += " Day" + (timeString.equals("1")?"":"s") + " ago";
+        Label labelTime = new Label(timeString);
+        labelTime.setFont(new Font("Arial", 12));
+
+
+        vbox.getChildren().addAll(labelArticle, labelSource, labelTime);
+        try {
+            vbox.setOnMouseMoved(mouseEvent -> { //change cursor icon when mouse move to on the article
+                vbox.setCursor(Cursor.HAND);
+            });
+            vbox.setOnMouseClicked(mouseEvent -> {
+                try {
+                    String source = article.getSource();
+                    Element content = newsHashMap.get(source).scrapeContent(article.getSourceArticle());
+                    engine.loadContent(content.toString());
+                    engine.setUserStyleSheetLocation(Objects.requireNonNull(getClass().getResource("styles/news/" + source.replaceAll("\\s+", "").toLowerCase() + "style.css")).toString());
+                    newsBorder.setCenter(newsScene); //set center as news scene
+                    stackPane.getChildren().add(newsBorder); //add the whole thing on top of the application
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        } catch (Exception e) {
+            System.out.println(e + " createPage");
+        }
+
+        return vbox;
     }
 
     void initNewsBorder() {
@@ -400,10 +471,11 @@ public class Controller implements Initializable {
         }
 
         Button reloadButton = new Button("Reload Category");
+        reloadButton.setStyle("-fx-pref-height: 29;");
         Region region = new Region();
         HBox.setHgrow(region, Priority.ALWAYS);
         hbox.getChildren().addAll(region, reloadButton);
-        reloadButton.setStyle("-fx-border-color: transparent; -fx-border-width: 0; -fx-background-radius: 0;");
+
         reloadButton.setOnAction(reloadCategory);
 
         hbox.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/custombutton.css")).toString());
@@ -433,4 +505,9 @@ public class Controller implements Initializable {
     void initLoadingBar() {
         progressBar.autosize();
     }
+
+//    @FXML
+//    void onMouseMove(MouseEvent mouse) {
+//        mouse.setC
+//    }
 }
