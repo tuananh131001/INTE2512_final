@@ -90,7 +90,8 @@ public class Controller implements Initializable {
 
             //initializing threads
             threadsHash = new HashMap<>();
-
+            
+            // Init animation
             progressAnimations = new HashMap<>();
             progressText = new Text();
 
@@ -109,14 +110,16 @@ public class Controller implements Initializable {
             System.out.println(e + " initialize");
         }
     }
-
+    
     // ref: https://stackoverflow.com/questions/25409044/javafx-multiple-buttons-to-same-handler
-    final EventHandler<ActionEvent> myHandler = new EventHandler<>() {
+    final EventHandler<ActionEvent> loadHandler = new EventHandler<>() {
         @Override
         public void handle(ActionEvent event) {
+            // Init button
             page.setVisible(false);
             ToggleButton button = (ToggleButton) event.getSource();
-            //get category
+
+            //get categoryName
             String category = button.getText();
             currentCategory = category;
 
@@ -125,6 +128,7 @@ public class Controller implements Initializable {
             for (Node ee : parent.getChildrenUnmodifiable()) {
                 ee.setDisable(false);
             }
+
             //disable current button
             button.setDisable(true);
 
@@ -135,16 +139,7 @@ public class Controller implements Initializable {
 
             //add progress bar in
             if (stackPane.getChildren().size() == 1) {
-                progressBar.setPrefSize(200, 20);
-                progressBar.setProgress(0);
-                Text percentage = new Text();
-                percentage.setFont(new Font("Segoe UI", 20));
-                percentage.textProperty().bind(progressBar.progressProperty().multiply(100).asString("%5.0f%%"));
-                Text loading = new Text("Loading articles: ");
-                loading.setFont(new Font("Segoe UI", 20));
-                HBox hBox = new HBox(loading, progressBar, percentage);
-                hBox.setAlignment(Pos.CENTER);
-                stackPane.getChildren().add(hBox);
+                stackPane.getChildren().add(addProcessBar());
             }
 
             //check if same thread is running
@@ -163,15 +158,19 @@ public class Controller implements Initializable {
 
             //makes sure thread is stopped when program shuts down
             threadNews.setDaemon(true);
+
             //load pagination after task finished
             loadNewsListTask.setOnSucceeded(e -> {
+                // Load article and sort by time
                 if (!currentCategory.equals(category)) return;
                 newsList = ((LoadNewsListTask) e.getSource()).getValue();
                 newsList.sort(Comparator.comparing(Article::getTimeArticle));
+
                 //removing progress bar
                 if (stackPane.getChildren().size() >= 2) {
                     stackPane.getChildren().remove(1);
                 }
+
                 //setting up pagination
                 page.setPageCount((newsList.size() + 9) / 10);
                 page.setPageFactory(pageIndex -> createPage(pageIndex, newsList));
@@ -183,47 +182,64 @@ public class Controller implements Initializable {
         }
     };
 
+    public HBox addProcessBar() {
+        // Config progress bar size
+        progressBar.setPrefSize(200, 20);
+        progressBar.setProgress(0);
+        Text percentage = new Text();
+        percentage.setFont(new Font("Segoe UI", 20));
+        percentage.textProperty().bind(progressBar.progressProperty().multiply(100).asString("%5.0f%%"));
+        Text loading = new Text("Loading articles: ");
+        loading.setFont(new Font("Segoe UI", 20));
+
+        // Return HBox contain progrerss bar
+        HBox hBox = new HBox(loading, progressBar, percentage);
+        hBox.setAlignment(Pos.CENTER);
+        return hBox;
+    }
 
     public class LoadNewsListTask extends Task<List<Article>> {
-        String category;
+        // init categoryName
+        String categoryName;
 
         LoadNewsListTask(String category) {
-            this.category = category;
+            this.categoryName = category;
         }
 
         @Override
         protected List<Article> call() {
             List<Article> list = Collections.synchronizedList(new ArrayList<>());
             try {
+                // Init variable for threads
                 int newsSize = newsHashMap.size();
                 final double[] count = {0};
                 ArrayList<Thread> threads = new ArrayList<>();
                 progressBar.progressProperty().set(0);
-                final Animation[] progressAnimation = {new Timeline(
-                        new KeyFrame(Duration.seconds(0.5),
-                                new KeyValue(progressBar.progressProperty(), ++count[0] / newsSize)
-                        )
-                )};
+                final Animation[] progressAnimation = {increaseProgressBar(count, newsSize)};
+
+                // Start running multiple threads to scrape
                 progressAnimation[0].play();
                 for (News news : newsHashMap.values()) {
-                    ScrapeWebsite scrapeWebsite = new ScrapeWebsite(category, news);
+                    // Scape and put in threads
+                    ScrapeWebsite scrapeWebsite = new ScrapeWebsite(categoryName, news);
                     Thread thread = new Thread(scrapeWebsite);
-                    progressAnimations.put(category, new Pair<>( count[0] / newsSize, progressAnimation[0]));
+                    progressAnimations.put(categoryName, new Pair<>( count[0] / newsSize, progressAnimation[0]));
+
+                    // Synchronize threads and play progress bar
                     scrapeWebsite.setOnSucceeded(e -> {
-                        progressAnimation[0] = new Timeline(
-                                new KeyFrame(Duration.seconds(0.5),
-                                        new KeyValue(progressBar.progressProperty(), ++count[0]/newsSize)
-                                )
-                        );
-                        progressAnimations.put(category, new Pair<>( count[0] / newsSize, progressAnimation[0]));
+                        progressAnimation[0] = increaseProgressBar(count, newsSize);
+                        progressAnimations.put(categoryName, new Pair<>( count[0] / newsSize, progressAnimation[0]));
                         synchronized (list) {
                             list.addAll(((ScrapeWebsite) e.getSource()).getValue());
                         }
-                        if (currentCategory.equals(category)) progressAnimation[0].play();
+                        if (currentCategory.equals(categoryName)) progressAnimation[0].play();
                     });
+
+                    // Start and add to thread
                     thread.start();
                     threads.add(thread);
                 }
+                // Synchronized threads
                 for (Thread thread : threads){
                     synchronized (this) {
                         thread.join();
@@ -234,6 +250,14 @@ public class Controller implements Initializable {
             }
             return list;
         }
+    }
+    // Increase progress bar each time scrape article
+    public Timeline increaseProgressBar(double[] count,int newsSize){
+        return new Timeline(
+                new KeyFrame(Duration.seconds(0.5),
+                        new KeyValue(progressBar.progressProperty(), ++count[0] / newsSize)
+                )
+        );
     }
 
     public static class ScrapeWebsite extends Task<ArrayList<Article>> {
@@ -259,12 +283,16 @@ public class Controller implements Initializable {
 
 
     public HBox createPage(int pageIndex, List<Article> articles) {
+        // Init container for page
         HBox articleList = new HBox();
         articleList.setStyle("-fx-alignment: CENTER; -fx-padding: 20 40 20 40; -fx-spacing: 10;");
         VBox vboxHighLight = new VBox();
         vboxHighLight.setSpacing(10);
         VBox vboxList = new VBox();
         vboxList.setSpacing(6);
+
+
+        // Scrape 10 articles only
         int range = (pageIndex + 1) * 10 - 10;
         for (int i = range; i < range + 10 && i < articles.size(); i++) {
             if (i%10 == 0 || i%10 == 1) {
@@ -276,10 +304,13 @@ public class Controller implements Initializable {
                 vboxList.getChildren().add(hbox);
             }
         }
+
+        // Add all articles to articleList and return
         articleList.getChildren().addAll(vboxHighLight,vboxList);
         return articleList;
     }
 
+    // Create Article element HBox
     HBox createArticleElementHBox(List<Article> articles, int position){
         HBox hbox = new HBox();
         hbox.setStyle("-fx-background-color: #ebe9e9; -fx-spacing: 10;");
@@ -290,6 +321,7 @@ public class Controller implements Initializable {
         return hbox;
     }
 
+    // Create Article Element VBox
     VBox createArticleElementVBox(List<Article> articles, int position){
         VBox vbox = new VBox();
         Pane pane = createArticleElement(articles, position, "vbox");
@@ -437,7 +469,7 @@ public class Controller implements Initializable {
         for (String buttonName : ButtonNames) {
             ToggleButton button = new ToggleButton(buttonName);
             button.setToggleGroup(toggleGroup);
-            button.setOnAction(myHandler);
+            button.setOnAction(loadHandler);
             button.setId(buttonName);
 
             hbox.getChildren().add(button);
@@ -471,7 +503,7 @@ public class Controller implements Initializable {
     };
 
     void initPagination() {
-        //make pagination to invisible until a category is clicked
+        //make pagination to invisible until a categoryName is clicked
         page.setVisible(false);
     }
 
