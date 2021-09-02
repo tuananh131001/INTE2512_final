@@ -106,7 +106,8 @@ public class Tuoitre extends News {
                 "bannerfooter1",
                 "box_can_you_care",
                 "tagandnetwork",
-                "relate-container"
+                "relate-container",
+                "VCSortableInPreviewMode"
         };
         for (String className : classesToRemove) {
             Elements remove = content.getElementsByClass(className);

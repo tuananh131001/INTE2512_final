@@ -92,7 +92,8 @@ public class Nhandan extends News {
                 "box-widget box-related",
                 "footersite",
                 "uk-nav uk-nav-default",
-                "box-widget box-widget-tabs "
+                "box-widget box-widget-tabs ",
+                "list-by-topic"
         };
         for (String className : classesToRemove) {
             Elements remove = content.getElementsByClass(className);

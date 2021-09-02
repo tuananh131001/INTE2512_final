@@ -107,7 +107,8 @@ public class Vnexpress extends News {
                 "tab_content",
                 "container banner-folder box_category clearfix",
                 "section section_footer",
-                "header_new clearfix hidde-mobile"
+                "header_new clearfix hidde-mobile",
+                "footer-content  width_common"
         };
         for (String className : classesToRemove) {
             Elements remove = content.getElementsByClass(className);

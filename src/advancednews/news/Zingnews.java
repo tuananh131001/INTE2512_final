@@ -81,7 +81,8 @@ public class Zingnews extends News {
                 "section recommendation has-sidebar",
                 "sidebar",
                 "sticky-header sticky-header--show",
-                "section article-news-background"
+                "section article-news-background",
+                "z-widget-corona"
         };
         for (String className : classesToRemove) {
             Elements remove = content.getElementsByClass(className);
