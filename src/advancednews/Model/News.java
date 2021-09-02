@@ -13,31 +13,37 @@ import java.util.*;
 
 public class News {
 
-    private HashMap<String, Category> categories = new HashMap<>();
+    private final HashMap<String, Category> categories = new HashMap<>();
 
     public ArrayList<Article> scrapeArticle(String url) throws IOException {
         return new ArrayList<>();
     }
 
     public Category scrapeWebsiteCategory(String categoryName) throws IOException {
-        File urlfile = new File(getFileName());
-        Category category = categories.get(categoryName);
-        if (category != null) return category;
-        Scanner urlScanner = new Scanner(urlfile);
+        Category categoryElement = categories.get(categoryName);
+        // Check category if nothing in category
+        if (categoryElement != null) return categoryElement;
+
+        // initialize the Scanner
+        Scanner urlScanner = new Scanner(new File(getFileName()));
+
         //Hashmap to store url and category name
         HashMap<String, String> urlsHashMap = new HashMap<>();
         while (urlScanner.hasNextLine()) {
             String[] url = urlScanner.nextLine().split("\\|");
             urlsHashMap.put(url[1], url[0]);
         }
-        //crawl from these site
+
+        // Get website information
         String urlCategory = urlsHashMap.get(categoryName);
-        category = new Category(categoryName);
-        if (urlCategory == null) return category;
+        categoryElement = new Category(categoryName);
+        if (urlCategory == null) return categoryElement;
+
+        //crawl from these site
         ArrayList<Article> articleList = scrapeArticle(urlCategory);
-        category.setArticleList(articleList);
-        categories.put(categoryName, category);
-        return category;
+        categoryElement.setArticleList(articleList);
+        categories.put(categoryName, categoryElement);
+        return categoryElement;
     }
 
 
@@ -45,34 +51,43 @@ public class News {
         return Jsoup.parse(Jsoup.connect(url).get().toString());
     }
 
-    public String getFileName(){
+    public String getFileName() {
         return "";
     }
 
     public Duration getTimeSince(String dateTime) throws ParseException {
+        // Init variable
+        SimpleDateFormat dateFormat;
+        Date date;
+
+        // Init date and time scanner
         Scanner scanner = new Scanner(dateTime);
+
+        // Find time
         String day = scanner.findInLine("(\\d+/\\w+/\\d+)");
         if (day == null) day = scanner.findInLine("(\\d+ \\w+ \\d+)");
         if (day == null) day = scanner.findInLine("(\\d+/\\d+/\\d+)");
         String time = scanner.findInLine("(\\d+:\\d+:?\\d+)");
-        SimpleDateFormat dateFormat;
-        Date date;
+
+        // Parse time from website
         try {
             dateFormat = new SimpleDateFormat("dd/MM/yyyy kk:mm:ss");
-            date =  dateFormat.parse(day + " " + time);
+            date = dateFormat.parse(day + " " + time);
         } catch (Exception e) {
             try {
-            dateFormat = new SimpleDateFormat("dd MMM yyyy kk:mm:ss");
-            date = dateFormat.parse(day + " " + time);
-            } catch (Exception e2){
+                dateFormat = new SimpleDateFormat("dd MMM yyyy kk:mm:ss");
+                date = dateFormat.parse(day + " " + time);
+            } catch (Exception e2) {
                 dateFormat = new SimpleDateFormat("dd/MM/yyyy kk:mm");
                 date = dateFormat.parse(day + " " + time);
             }
         }
+
+        // Return time and date
         return Duration.between(date.toInstant(), Instant.now());
     }
 
-    public void resetCategory(String category){
+    public void resetCategory(String category) {
         categories.put(category, null);
     }
 }
