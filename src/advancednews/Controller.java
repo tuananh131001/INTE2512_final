@@ -287,7 +287,7 @@ public class Controller implements Initializable {
         HBox articleList = new HBox();
         articleList.setStyle("-fx-alignment: CENTER; -fx-padding: 20 40 20 40; -fx-spacing: 20;");
         VBox vboxHighLight = new VBox();
-        vboxHighLight.setSpacing(19);
+        vboxHighLight.setSpacing(20);
         VBox vboxList = new VBox();
         vboxList.setSpacing(6);
 
@@ -325,7 +325,7 @@ public class Controller implements Initializable {
     VBox createArticleElementVBox(List<Article> articles, int position){
         VBox vbox = new VBox();
         Pane pane = createArticleElement(articles, position, "vbox");
-        vbox.setStyle("-fx-background-color: #ebe9e9; -fx-min-height: 405;-fx-spacing: 5;");
+        vbox.setStyle("-fx-background-color: #ebe9e9; -fx-min-height: 404;-fx-spacing: 5;");
         vbox.getChildren().addAll(pane.getChildren());
         vbox.setOnMouseMoved(pane.getOnMouseMoved());
         vbox.setOnMouseClicked(pane.getOnMouseClicked());

@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="update tuoitre và thanhnien remove hyperlink and video&#10;tuoitre ko có hyperlink hê hê">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/javafx_swt.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/jsoup_1_14_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/jsoup_1_14_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/INTE2512_final.iml" beforeDir="false" afterPath="$PROJECT_DIR$/INTE2512_final.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller$LoadNewsListTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller$LoadNewsListTask.class" afterDir="false" />
+    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="fix layout">
       <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/module-info.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/advancednews/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/Controller.java" afterDir="false" />
     </list>
     <list id="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" name="classes" comment="classes" />
@@ -354,13 +348,6 @@
       <workItem from="1630554589683" duration="387000" />
       <workItem from="1630562721936" duration="766000" />
     </task>
-    <task id="LOCAL-00010" summary="prevented multiple button clicks to reload the same category">
-      <created>1628588651265</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1628588651265</updated>
-    </task>
     <task id="LOCAL-00011" summary="prevented multiple button clicks to reload the same category">
       <created>1628588720220</created>
       <option name="number" value="00011" />
@@ -697,7 +684,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629900041903</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="fix layout">
+      <created>1630665120717</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1630665120718</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -733,7 +727,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="smoooooooooth" />
     <MESSAGE value="changed button to togglebutton" />
     <MESSAGE value="sadge" />
     <MESSAGE value="QoL changes for Controller and News Class" />
@@ -758,7 +751,8 @@
     <MESSAGE value="added reload button" />
     <MESSAGE value="update with group, minor changes in size of button" />
     <MESSAGE value="them *{font-family: sans-serif !important;}" />
-    <option name="LAST_COMMIT_MESSAGE" value="them *{font-family: sans-serif !important;}" />
+    <MESSAGE value="fix layout" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix layout" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XDebuggerManager">
