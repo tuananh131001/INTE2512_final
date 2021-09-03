@@ -90,7 +90,7 @@ public class Controller implements Initializable {
 
             //initializing threads
             threadsHash = new HashMap<>();
-            
+
             // Init animation
             progressAnimations = new HashMap<>();
             progressText = new Text();
@@ -110,7 +110,7 @@ public class Controller implements Initializable {
             System.out.println(e + " initialize");
         }
     }
-    
+
     // ref: https://stackoverflow.com/questions/25409044/javafx-multiple-buttons-to-same-handler
     final EventHandler<ActionEvent> loadHandler = new EventHandler<>() {
         @Override
@@ -285,9 +285,9 @@ public class Controller implements Initializable {
     public HBox createPage(int pageIndex, List<Article> articles) {
         // Init container for page
         HBox articleList = new HBox();
-        articleList.setStyle("-fx-alignment: CENTER; -fx-padding: 20 40 20 40; -fx-spacing: 10;");
+        articleList.setStyle("-fx-alignment: CENTER; -fx-padding: 20 40 20 40; -fx-spacing: 20;");
         VBox vboxHighLight = new VBox();
-        vboxHighLight.setSpacing(10);
+        vboxHighLight.setSpacing(19);
         VBox vboxList = new VBox();
         vboxList.setSpacing(6);
 
@@ -325,7 +325,7 @@ public class Controller implements Initializable {
     VBox createArticleElementVBox(List<Article> articles, int position){
         VBox vbox = new VBox();
         Pane pane = createArticleElement(articles, position, "vbox");
-        vbox.setStyle("-fx-background-color: #ebe9e9; -fx-max-width: 600; -fx-spacing: 3;-fx-padding: 0 0 20 0;");
+        vbox.setStyle("-fx-background-color: #ebe9e9; -fx-min-height: 405;-fx-spacing: 5;");
         vbox.getChildren().addAll(pane.getChildren());
         vbox.setOnMouseMoved(pane.getOnMouseMoved());
         vbox.setOnMouseClicked(pane.getOnMouseClicked());
@@ -339,21 +339,21 @@ public class Controller implements Initializable {
         if (article.getImageArticle() != null) {
             ImageView imageView = new ImageView(article.getImageArticle());
             if (box.equals("vbox")) {
-                imageView.setFitHeight(300);
-                imageView.setFitWidth(600);
+                imageView.setFitHeight(312);
+                imageView.setFitWidth(550);
             }
             else {
                 imageView.setFitHeight(100);
-                imageView.setFitWidth(100);
+                imageView.setFitWidth(150);
             }
             pane.getChildren().add(imageView);
         } else {
             Label replaceImage = new Label("no image");
             if (box.equals("vbox")){
-                replaceImage.setMinSize(600,300);
+                replaceImage.setMinSize(550,312);
             }
             else {
-                replaceImage.setMinSize(100,100);
+                replaceImage.setMinSize(100,150);
             }
             replaceImage.setStyle("-fx-alignment: CENTER; -fx-background-color: #dddfe1;");
             pane.getChildren().add(replaceImage);
@@ -363,7 +363,7 @@ public class Controller implements Initializable {
         labelArticle.setWrapText(true);
         labelArticle.setFont(new Font("Arial", 18));
         Label labelSource = new Label(article.getSource());
-        labelSource.setFont(new Font("Arial", 12));
+        labelSource.setFont(new Font("Arial Bold", 12));
         String timeString = Long.toString(article.getTimeArticle().toDays());
         if (timeString.equals("0")) {
             timeString = Long.toString(article.getTimeArticle().toHours());
@@ -377,6 +377,9 @@ public class Controller implements Initializable {
         Label labelTime = new Label(timeString);
         labelTime.setFont(new Font("Arial", 12));
 
+//        if (box.equals("vbox")) {
+//            labelTime.setPadding(new Insets(0,0,20,0));
+//        }
 
         VBox vboxArticle = new VBox();
         vboxArticle.setSpacing(3);
