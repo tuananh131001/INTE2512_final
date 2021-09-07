@@ -4,9 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="fix layout">
+    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="better createArticleElement">
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/INTE2512_final.iml" beforeDir="false" afterPath="$PROJECT_DIR$/INTE2512_final.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Model/News.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Model/News.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Vnexpress.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Vnexpress.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/urlfiles/tuoitreurl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/urlfiles/tuoitreurl.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/urlfiles/vnexpressUrl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/urlfiles/vnexpressUrl.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/module-info.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/advancednews/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/Model/News.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/Model/News.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/news/Tuoitre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/news/Tuoitre.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/news/Vnexpress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/news/Vnexpress.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/news/Zingnews.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/news/Zingnews.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/urlfiles/tuoitreurl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/urlfiles/tuoitreurl.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/urlfiles/vnexpressUrl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/urlfiles/vnexpressUrl.txt" afterDir="false" />
     </list>
     <list id="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" name="classes" comment="classes" />
     <option name="SHOW_DIALOG" value="false" />
@@ -56,14 +70,14 @@
     <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../Program Files/jsoup/jsoup-1.14.1.jar" />
+    <property name="last_opened_file_path" value="$USER_HOME$/.jdks/liberica-16.0.2/lib/jsoup-1.13.1.jar" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.15174508" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="reference.idesettings.debugger.capture" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -222,7 +236,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="D:\Program Files\JavaJDK\jdk 16.0.2" />
+      <option name="ALTERNATIVE_JRE_PATH" value="liberica-16" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="advancednews.Main" />
       <module name="INTE2512_final" />
@@ -347,6 +361,7 @@
       <workItem from="1630055942024" duration="4729000" />
       <workItem from="1630554589683" duration="387000" />
       <workItem from="1630562721936" duration="766000" />
+      <workItem from="1631012434305" duration="272000" />
     </task>
     <task id="LOCAL-00011" summary="prevented multiple button clicks to reload the same category">
       <created>1628588720220</created>
@@ -684,12 +699,12 @@
       <option name="project" value="LOCAL" />
       <updated>1629900041903</updated>
     </task>
-    <task id="LOCAL-00059" summary="fix layout">
-      <created>1630665120717</created>
+    <task id="LOCAL-00059" summary="better createArticleElement">
+      <created>1630166848477</created>
       <option name="number" value="00059" />
       <option name="presentableId" value="LOCAL-00059" />
       <option name="project" value="LOCAL" />
-      <updated>1630665120718</updated>
+      <updated>1630166848477</updated>
     </task>
     <option name="localTasksCounter" value="60" />
     <servers />
@@ -751,11 +766,21 @@
     <MESSAGE value="added reload button" />
     <MESSAGE value="update with group, minor changes in size of button" />
     <MESSAGE value="them *{font-family: sans-serif !important;}" />
+    <MESSAGE value="better createArticleElement" />
     <MESSAGE value="fix layout" />
     <option name="LAST_COMMIT_MESSAGE" value="fix layout" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/advancednews/news/Thanhnien.java</url>
+          <line>175</line>
+          <option name="timeStamp" value="101" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="sample.news.Vnexpress" memberName="image" />
@@ -763,9 +788,13 @@
       </pinned-members>
     </pin-to-top-manager>
   </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/INTE2512_final$Main.ic" NAME="Main Coverage Results" MODIFIED="1625943122768" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>sample.*</FILTER>
+    <SUITE FILE_PATH="coverage/INTE2512_final$Main.ic" NAME="Main Coverage Results" MODIFIED="1631009031021" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>advancednews.Model.*</FILTER>
     </SUITE>
   </component>
 </project>

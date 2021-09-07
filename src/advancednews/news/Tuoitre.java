@@ -1,22 +1,14 @@
 package advancednews.news;
 
+import advancednews.Model.Article;
+import advancednews.Model.News;
 import javafx.scene.image.Image;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import advancednews.Model.Article;
-import advancednews.Model.News;
-
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.Duration;
-import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.Scanner;
 
 public class Tuoitre extends News {
 
@@ -76,13 +68,13 @@ public class Tuoitre extends News {
                 if (imageurl != null && !imageurl.equals("")) {
                     image = new Image(imageurl);
                 }
-                String date = "";
                 try {
-                    date = Jsoup.connect(articleUrl).timeout(4000).get().getElementsByClass("date-time").first().ownText();
+                    element = Jsoup.connect(articleUrl).timeout(4000).get();
                 } catch (Exception e){
-                    System.out.println("skipping an article in tuoi tre..");
+                    System.out.println("skipping an article in Tuoitre..");
                     continue;
                 }
+                String date = element.getElementsByAttributeValueMatching("name", "pubdate").attr("content");
                 newsList.add(new Article(image, name, articleUrl, getTimeSince(date), "Tuoi Tre"));
                 if (newsList.size() >= 10) break;
             }

@@ -1,23 +1,15 @@
 package advancednews.news;
 
+import advancednews.Model.Article;
+import advancednews.Model.News;
 import javafx.scene.image.Image;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import advancednews.Model.Article;
-import advancednews.Model.News;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.Duration;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.ArrayList;
 
 public class Vnexpress extends News {
 
@@ -54,13 +46,17 @@ public class Vnexpress extends News {
 
         Document doc = Jsoup.connect(url).timeout(5000).get();
 
-        articleElementList.addAll(doc.getElementsByClass("item-news full-thumb"));
+        articleElementList.addAll(doc.getElementsByClass("item-news full-thumb article-topstory"));
+        articleElementList.addAll(doc.getElementsByClass("item-news item-news-common"));
+        articleElementList.addAll(doc.getElementsByClass("item-news full-thumb "));
         try{
             for (Element articleElement : articleElementList){
+                if (articleElement.getElementsByClass("thumb-art").size() == 0) continue;
                 Element element = articleElement.getElementsByTag("img").first();
                 String imageurl = null;
-                if (element != null) imageurl = element.attr("src");
                 Image image = null;
+                if (element != null) imageurl = element.attr("src");
+                if (imageurl != null && !imageurl.contains("http")) imageurl = element.attr("data-src");
                 if (imageurl != null && !imageurl.equals("")) {
                     image = new Image(imageurl);
                 }
@@ -74,7 +70,7 @@ public class Vnexpress extends News {
                     System.out.println("skipping an article in vnexpress..");
                     continue;
                 }
-                String date = element.getElementsByClass("date").first().ownText();
+                String date = element.getElementsByAttributeValueMatching("name", "pubdate").attr("content");
                 Article article = new Article(image, titleArticle, urlArticle, getTimeSince(date), "VnExpress");
                 articleList.add(article);
                 if (articleList.size() >= 10) break;
