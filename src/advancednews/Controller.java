@@ -343,8 +343,8 @@ public class Controller implements Initializable {
                 imageView.setFitWidth(550);
             }
             else {
-                imageView.setFitHeight(100);
                 imageView.setFitWidth(150);
+                imageView.setFitHeight(100);
             }
             pane.getChildren().add(imageView);
         } else {
@@ -353,7 +353,7 @@ public class Controller implements Initializable {
                 replaceImage.setMinSize(550,312);
             }
             else {
-                replaceImage.setMinSize(100,150);
+                replaceImage.setMinSize(150,100);
             }
             replaceImage.setStyle("-fx-alignment: CENTER; -fx-background-color: #dddfe1;");
             pane.getChildren().add(replaceImage);
@@ -392,7 +392,7 @@ public class Controller implements Initializable {
             pane.setOnMouseClicked(mouseEvent -> {
                 try {
                     String source = article.getSource();
-                    Element content = newsHashMap.get(source).scrapeContent(article.getSourceArticle());
+                        Element content = newsHashMap.get(source).scrapeContent(article.getSourceArticle());
                     engine.loadContent(content.toString());
                     engine.setUserStyleSheetLocation(Objects.requireNonNull(getClass().getResource("styles/news/" + source.replaceAll("\\s+", "").toLowerCase() + "style.css")).toString());
                     newsBorder.setCenter(newsScene); //set center as news scene

@@ -124,14 +124,4 @@ public class Zingnews extends News {
     public String getFileName(){
         return "src/advancednews/urlfiles/zingnewsurl.txt";
     }
-
-    public Duration getTimeSince(String dateTime) throws ParseException {
-        Scanner scanner = new Scanner(dateTime);
-        String day = scanner.findInLine("(\\d+/\\w+/\\d+)");
-        scanner = new Scanner(dateTime);
-        String time = scanner.findInLine("(\\d+:\\d+:?\\d+)");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy kk:mm");
-        Date date = dateFormat.parse(day + " " + time);
-        return Duration.between(date.toInstant(), Instant.now());
-    }
 }
