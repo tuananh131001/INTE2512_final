@@ -138,9 +138,13 @@ public class Vnexpress extends News {
         //changes all video attribute to a text with its link
         Elements videos = content.getElementsByAttributeValueMatching("id","video");
         for (Element video : videos){
-            String src = video.getElementsByAttributeValueMatching("src", "vnecdn").first().attr("src");
-            if (src != null) {
-                video.text("Video link: " + src);
+            Elements vid = video.getElementsByAttributeValueMatching("src", ".m3u8");
+            if (vid.size() > 0) {
+                String src = vid.first().attr("src");
+                video.clearAttributes();
+                if (src != null) {
+                    video.text("Video link: " + src);
+                }
             }
         }
 
