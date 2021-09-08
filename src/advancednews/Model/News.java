@@ -67,6 +67,7 @@ public class News {
         String day = scanner.findInLine("(\\d+/\\w+/\\d+)");
         if (day == null) day = scanner.findInLine("(\\d+ \\w+ \\d+)");
         if (day == null) day = scanner.findInLine("(\\d+/\\d+/\\d+)");
+        scanner = new Scanner(dateTime);
         String time = scanner.findInLine("(\\d+:\\d+:?\\d+)");
 
         // Parse time from website
@@ -78,8 +79,13 @@ public class News {
                 dateFormat = new SimpleDateFormat("dd MMM yyyy kk:mm:ss");
                 date = dateFormat.parse(day + " " + time);
             } catch (Exception e2) {
-                dateFormat = new SimpleDateFormat("dd/MM/yyyy kk:mm");
-                date = dateFormat.parse(day + " " + time);
+                try {
+                    dateFormat = new SimpleDateFormat("dd/MM/yyyy kk:mm");
+                    date = dateFormat.parse(day + " " + time);
+                } catch (Exception e3) {
+                    dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'+07:00'");
+                    date = dateFormat.parse(dateTime);
+                }
             }
         }
 

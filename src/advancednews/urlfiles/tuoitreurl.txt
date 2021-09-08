@@ -2,9 +2,9 @@ https://tuoitre.vn/rss/tin-moi-nhat.rss|New
 https://tuoitre.vn/tim-kiem.htm?keywords=covid|Covid
 https://tuoitre.vn/rss/thoi-su.rss|Politics
 https://tuoitre.vn/rss/kinh-doanh.rss|Business
-https://tuoitre.vn/rss/nhip-song-so.rss|Technology
+https://congnghe.tuoitre.vn|Technology
 https://tuoitre.vn/rss/suc-khoe.rss|Health
 https://tuoitre.vn/rss/the-thao.rss|Sports
 https://tuoitre.vn/rss/giai-tri.rss|Entertainment
 https://tuoitre.vn/rss/the-gioi.rss|World
-https://tuoitre.vn/rss/thu-gian.rss|Others
+https://tuoitre.vn/gia-that.htm|Others

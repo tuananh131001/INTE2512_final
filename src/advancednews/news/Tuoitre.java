@@ -1,30 +1,22 @@
 package advancednews.news;
 
+import advancednews.Model.Article;
+import advancednews.Model.News;
 import javafx.scene.image.Image;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import advancednews.Model.Article;
-import advancednews.Model.News;
-
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.Duration;
-import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.Scanner;
 
 public class Tuoitre extends News {
 
     @Override
     public ArrayList<Article> scrapeArticle(String url) throws IOException {
-        if (url == null) return new ArrayList<>();;
+        if (url == null) return new ArrayList<>();
         if (!url.contains("rss")) return scrapeArticleNonRss(url);
-        ArrayList<Article> newsList = new ArrayList<>();; //initialize return variable
+        ArrayList<Article> newsList = new ArrayList<>(); //initialize return variable
 
         Elements listArticle = new Elements(); //initialize article list
 
@@ -54,8 +46,8 @@ public class Tuoitre extends News {
     }
 
     public ArrayList<Article> scrapeArticleNonRss(String url) throws IOException {
-        if (url == null) return new ArrayList<>();;
-        ArrayList<Article> newsList = new ArrayList<>();; //initialize return variable
+        if (url == null) return new ArrayList<>();
+        ArrayList<Article> newsList = new ArrayList<>(); //initialize return variable
 
         Elements listArticle = new Elements(); //initialize article list
 
@@ -76,13 +68,13 @@ public class Tuoitre extends News {
                 if (imageurl != null && !imageurl.equals("")) {
                     image = new Image(imageurl);
                 }
-                String date = "";
                 try {
-                    date = Jsoup.connect(articleUrl).timeout(4000).get().getElementsByClass("date-time").first().ownText();
+                    element = Jsoup.connect(articleUrl).timeout(4000).get();
                 } catch (Exception e){
-                    System.out.println("skipping an article in tuoi tre..");
+                    System.out.println("skipping an article in Tuoitre..");
                     continue;
                 }
+                String date = element.getElementsByAttributeValueMatching("name", "pubdate").attr("content");
                 newsList.add(new Article(image, name, articleUrl, getTimeSince(date), "Tuoi Tre"));
                 if (newsList.size() >= 10) break;
             }
@@ -135,7 +127,7 @@ public class Tuoitre extends News {
         //changes all video attribute to a text with its link
         Elements videos = content.select("[data-src]");
         for (Element video : videos){
-            String videoUrl = null;
+            String videoUrl;
             try {
                 videoUrl = video.getElementsByAttributeValueMatching("data-src", "vcplayer").first().attr("data-src");
             } catch (NullPointerException E) {
