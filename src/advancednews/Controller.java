@@ -18,6 +18,7 @@ import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -359,11 +360,22 @@ public class Controller implements Initializable {
             pane.getChildren().add(replaceImage);
         }
 
+        // Article Title
         Label labelArticle = new Label(article.getTitleArticle());
         labelArticle.setWrapText(true);
         labelArticle.setFont(new Font("Arial", 18));
-        Label labelSource = new Label(article.getSource());
+
+        //Source Name and icon
+        Image sourceFavicon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("styles/icons/" + String.valueOf(article.getSource()).toLowerCase() + ".png")));
+        ImageView faviconImageView = new ImageView(sourceFavicon);
+        faviconImageView.setFitHeight(16);
+        faviconImageView.setFitWidth(16);
+
+        Text labelSource = new Text(article.getSource());
         labelSource.setFont(new Font("Arial Bold", 12));
+        HBox sourceNameHBox = new HBox(faviconImageView,labelSource);
+
+        //Time and date string
         String timeString = Long.toString(article.getTimeArticle().toDays());
         if (timeString.equals("0")) {
             timeString = Long.toString(article.getTimeArticle().toHours());
@@ -380,10 +392,10 @@ public class Controller implements Initializable {
 //        if (box.equals("vbox")) {
 //            labelTime.setPadding(new Insets(0,0,20,0));
 //        }
-
+        //Add all information in Vbox(Article)
         VBox vboxArticle = new VBox();
         vboxArticle.setSpacing(3);
-        vboxArticle.getChildren().addAll(labelArticle, labelSource, labelTime);
+        vboxArticle.getChildren().addAll(labelArticle, sourceNameHBox, labelTime);
         pane.getChildren().add(vboxArticle);
         try {
             pane.setOnMouseMoved(mouseEvent -> { //change cursor icon when mouse move to on the article
