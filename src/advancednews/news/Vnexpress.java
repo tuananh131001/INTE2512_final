@@ -104,7 +104,10 @@ public class Vnexpress extends News {
                 "container banner-folder box_category clearfix",
                 "section section_footer",
                 "header_new clearfix hidde-mobile",
-                "footer-content  width_common"
+                "footer-content  width_common",
+                "banner-ads",
+                "section page-detail top-detail section-bottom-detail",
+                "inner-popup"
         };
         for (String className : classesToRemove) {
             Elements remove = content.getElementsByClass(className);
@@ -116,7 +119,8 @@ public class Vnexpress extends News {
         String[] idToRemove = {
                 "to_top",
                 "supper_masthead",
-                "main_menu"
+                "main_menu",
+                "animation_container"
         };
         for (String idName : idToRemove){
             Element remove = content.getElementById(idName);
@@ -151,8 +155,7 @@ public class Vnexpress extends News {
         //remove all hyperlinks while keeping its content
         Elements hrefs = content.getElementsByAttribute("href");
         for (Element remove : hrefs){
-            remove.clearAttributes();
-            remove.tagName("p");
+            remove.removeAttr("href");
         }
 
         //attempt to remove all ads
