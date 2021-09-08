@@ -366,10 +366,13 @@ public class Controller implements Initializable {
         labelArticle.setFont(new Font("Arial", 18));
 
         //Source Name and icon
-        Image sourceFavicon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("styles/icons/" + String.valueOf(article.getSource()).toLowerCase() + ".png")));
+        ImageView faviconImageView = new ImageView( new Image(Objects.requireNonNull(getClass().getResourceAsStream("styles/icons/"
+                + article.getSource().toLowerCase() + ".png")), 16, 16, true, true) );
+
+/*        Image sourceFavicon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("styles/icons/" + String.valueOf(article.getSource()).toLowerCase() + ".png")));
         ImageView faviconImageView = new ImageView(sourceFavicon);
         faviconImageView.setFitHeight(16);
-        faviconImageView.setFitWidth(16);
+        faviconImageView.setFitWidth(16);*/
 
         Text labelSource = new Text(article.getSource());
         labelSource.setFont(new Font("Arial Bold", 12));

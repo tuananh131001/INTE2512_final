@@ -5,22 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="better createArticleElement">
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/INTE2512_final.iml" beforeDir="false" afterPath="$PROJECT_DIR$/INTE2512_final.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Model/Article.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Model/Article.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Model/News.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Model/News.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Vnexpress.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Vnexpress.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/urlfiles/tuoitreurl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/urlfiles/tuoitreurl.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/urlfiles/vnexpressUrl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/urlfiles/vnexpressUrl.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/module-info.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/advancednews/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/advancednews/Model/News.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/Model/News.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/advancednews/news/Tuoitre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/news/Tuoitre.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/advancednews/news/Vnexpress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/news/Vnexpress.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/advancednews/news/Zingnews.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/news/Zingnews.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/advancednews/urlfiles/tuoitreurl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/urlfiles/tuoitreurl.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/advancednews/urlfiles/vnexpressUrl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/urlfiles/vnexpressUrl.txt" afterDir="false" />
     </list>
     <list id="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" name="classes" comment="classes" />
     <option name="SHOW_DIALOG" value="false" />
@@ -95,6 +86,89 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="JavaFxApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="JavaFxApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="JavaFxApplication" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="JavaFxApplication" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="liberica-16" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="advancednews.Main" />
+      <module name="INTE2512_final" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="advancednews.Model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="16" />
+      <option name="MAIN_CLASS_NAME" value="sample.Main" />
+      <module name="INTE2512_final" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sample.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="16" />
+      <option name="MAIN_CLASS_NAME" value="sample.Main" />
+      <module name="INTE2512_final" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sample.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="16" />
+      <option name="MAIN_CLASS_NAME" value="sample.Main" />
+      <module name="INTE2512_final" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sample.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="DjangoTestsConfigurationType">
       <module name="JavaFxApplication" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -117,19 +191,6 @@
     </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="JavaFxApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="JavaFxApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="JavaFxApplication" />
-      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -234,76 +295,6 @@
       <option name="_new_target" value="&quot;&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
-    </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="liberica-16" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="advancednews.Main" />
-      <module name="INTE2512_final" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="advancednews.Model.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="16" />
-      <option name="MAIN_CLASS_NAME" value="sample.Main" />
-      <module name="INTE2512_final" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="sample.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="16" />
-      <option name="MAIN_CLASS_NAME" value="sample.Main" />
-      <module name="INTE2512_final" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="sample.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="16" />
-      <option name="MAIN_CLASS_NAME" value="sample.Main" />
-      <module name="INTE2512_final" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="sample.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="JavaFxApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="JavaFxApplication" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
     </configuration>
     <recent_temporary>
       <list>
@@ -793,8 +784,8 @@
     <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/INTE2512_final$Main.ic" NAME="Main Coverage Results" MODIFIED="1631009031021" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>advancednews.Model.*</FILTER>
+    <SUITE FILE_PATH="coverage/INTE2512_final$Main.ic" NAME="Main Coverage Results" MODIFIED="1628956485062" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>sample.*</FILTER>
     </SUITE>
   </component>
 </project>

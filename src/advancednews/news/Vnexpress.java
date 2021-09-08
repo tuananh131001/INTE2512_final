@@ -128,7 +128,8 @@ public class Vnexpress extends News {
                 "header",
                 "footer",
                 "form",
-                "iframe"
+                "iframe",
+                "svg"
         };
         for (String tagname : tagnameToRemove){
             Elements remove = content.getElementsByTag(tagname);
