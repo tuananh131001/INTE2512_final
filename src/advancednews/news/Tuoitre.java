@@ -14,9 +14,9 @@ public class Tuoitre extends News {
 
     @Override
     public ArrayList<Article> scrapeArticle(String url) throws IOException {
-        if (url == null) return new ArrayList<>();;
+        if (url == null) return new ArrayList<>();
         if (!url.contains("rss")) return scrapeArticleNonRss(url);
-        ArrayList<Article> newsList = new ArrayList<>();; //initialize return variable
+        ArrayList<Article> newsList = new ArrayList<>(); //initialize return variable
 
         Elements listArticle = new Elements(); //initialize article list
 
@@ -46,8 +46,8 @@ public class Tuoitre extends News {
     }
 
     public ArrayList<Article> scrapeArticleNonRss(String url) throws IOException {
-        if (url == null) return new ArrayList<>();;
-        ArrayList<Article> newsList = new ArrayList<>();; //initialize return variable
+        if (url == null) return new ArrayList<>();
+        ArrayList<Article> newsList = new ArrayList<>(); //initialize return variable
 
         Elements listArticle = new Elements(); //initialize article list
 
@@ -127,7 +127,7 @@ public class Tuoitre extends News {
         //changes all video attribute to a text with its link
         Elements videos = content.select("[data-src]");
         for (Element video : videos){
-            String videoUrl = null;
+            String videoUrl;
             try {
                 videoUrl = video.getElementsByAttributeValueMatching("data-src", "vcplayer").first().attr("data-src");
             } catch (NullPointerException E) {
