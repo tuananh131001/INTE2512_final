@@ -27,6 +27,7 @@ public class Article {
         return sourceArticle;
     }
 
+
     public Duration getTimeArticle(){ return timeArticle; }
 
     public String getSource() { return source; }
