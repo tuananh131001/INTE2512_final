@@ -3,10 +3,9 @@ package advancednews;
 import advancednews.Model.Article;
 import advancednews.Model.News;
 import advancednews.news.*;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
+import javafx.animation.*;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.Property;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -19,8 +18,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
@@ -215,7 +216,9 @@ public class Controller implements Initializable {
                 final double[] count = {0};
                 ArrayList<Thread> threads = new ArrayList<>();
                 progressBar.progressProperty().set(0);
-                final Animation[] progressAnimation = {increaseProgressBar(count, newsSize)};
+                final Animation[] progressAnimation = {
+                        createAnimation(0.5, progressBar.progressProperty(), ++count[0]/newsSize)
+                };
 
                 // Start running multiple threads to scrape
                 progressAnimation[0].play();
@@ -227,7 +230,7 @@ public class Controller implements Initializable {
 
                     // Synchronize threads and play progress bar
                     scrapeWebsite.setOnSucceeded(e -> {
-                        progressAnimation[0] = increaseProgressBar(count, newsSize);
+                        progressAnimation[0] = createAnimation(0.5, progressBar.progressProperty(), ++count[0]/newsSize);
                         progressAnimations.put(categoryName, new Pair<>( count[0] / newsSize, progressAnimation[0]));
                         synchronized (list) {
                             list.addAll(((ScrapeWebsite) e.getSource()).getValue());
@@ -250,14 +253,6 @@ public class Controller implements Initializable {
             }
             return list;
         }
-    }
-    // Increase progress bar each time scrape article
-    public Timeline increaseProgressBar(double[] count,int newsSize){
-        return new Timeline(
-                new KeyFrame(Duration.seconds(0.5),
-                        new KeyValue(progressBar.progressProperty(), ++count[0] / newsSize)
-                )
-        );
     }
 
     public static class ScrapeWebsite extends Task<ArrayList<Article>> {
@@ -313,8 +308,21 @@ public class Controller implements Initializable {
     // Create Article element HBox
     HBox createArticleElementHBox(List<Article> articles, int position){
         HBox hbox = new HBox();
-        hbox.setStyle("-fx-background-color: #ebe9e9; -fx-spacing: 10;");
         Pane pane = createArticleElement(articles, position, "hbox");
+        hbox.setStyle("-fx-background-color: #ebe9e9; -fx-spacing: 10;");
+        hbox.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/custombutton.css")).toString());
+        hbox.addEventFilter(MouseEvent.MOUSE_ENTERED, e -> {
+            ScaleTransition st = new ScaleTransition(Duration.millis(100), hbox);
+            st.setFromX(1); st.setFromY(1);
+            st.setToX(1.1); st.setToY(1.1);
+            st.play();
+        });
+        hbox.addEventFilter(MouseEvent.MOUSE_EXITED, e -> {
+            ScaleTransition st = new ScaleTransition(Duration.millis(100), hbox);
+            st.setFromX(1.1); st.setFromY(1.1);
+            st.setToX(1); st.setToY(1);
+            st.play();
+        });;
         hbox.getChildren().addAll(pane.getChildren());
         hbox.setOnMouseMoved(pane.getOnMouseMoved());
         hbox.setOnMouseClicked(pane.getOnMouseClicked());
@@ -326,6 +334,19 @@ public class Controller implements Initializable {
         VBox vbox = new VBox();
         Pane pane = createArticleElement(articles, position, "vbox");
         vbox.setStyle("-fx-background-color: #ebe9e9; -fx-min-height: 404;-fx-spacing: 5;");
+        vbox.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/custombutton.css")).toString());
+        vbox.addEventFilter(MouseEvent.MOUSE_ENTERED, e -> {
+            ScaleTransition st = new ScaleTransition(Duration.millis(100), vbox);
+            st.setFromX(1); st.setFromY(1);
+            st.setToX(1.05); st.setToY(1.05);
+            st.play();
+        });
+        vbox.addEventFilter(MouseEvent.MOUSE_EXITED, e -> {
+            ScaleTransition st = new ScaleTransition(Duration.millis(100), vbox);
+            st.setFromX(1.05); st.setFromY(1.05);
+            st.setToX(1); st.setToY(1);
+            st.play();
+        });;
         vbox.getChildren().addAll(pane.getChildren());
         vbox.setOnMouseMoved(pane.getOnMouseMoved());
         vbox.setOnMouseClicked(pane.getOnMouseClicked());
@@ -376,10 +397,6 @@ public class Controller implements Initializable {
         else timeString += " Day" + (timeString.equals("1")?"":"s") + " ago";
         Label labelTime = new Label(timeString);
         labelTime.setFont(new Font("Arial", 12));
-
-//        if (box.equals("vbox")) {
-//            labelTime.setPadding(new Insets(0,0,20,0));
-//        }
 
         VBox vboxArticle = new VBox();
         vboxArticle.setSpacing(3);
@@ -436,10 +453,7 @@ public class Controller implements Initializable {
             scrollDirection = deltaY;
 
             //setup animation for scroll
-            scrollAnimation = new Timeline(
-                    new KeyFrame(Duration.seconds(0.15),
-                            new KeyValue(scrollPaneFilters.vvalueProperty(), scrollDestination))
-            );
+            scrollAnimation = createAnimation(0.15, scrollPaneFilters.vvalueProperty(), scrollDestination);
 
             //reset destination and direction after finish scrolling
             scrollAnimation.setOnFinished(e -> {
@@ -508,6 +522,13 @@ public class Controller implements Initializable {
     void initPagination() {
         //make pagination to invisible until a categoryName is clicked
         page.setVisible(false);
+    }
+
+    Animation createAnimation(double duration, DoubleProperty property, double value){
+        return new Timeline(
+                new KeyFrame(Duration.seconds(duration),
+                        new KeyValue(property, value))
+        );
     }
 
     void initLoadingBar() {
