@@ -5,7 +5,6 @@ import advancednews.Model.News;
 import advancednews.news.*;
 import javafx.animation.*;
 import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.Property;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -22,7 +21,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
@@ -185,7 +183,7 @@ public class Controller implements Initializable {
         }
     };
 
-    public HBox addProcessBar() {
+    public VBox addProcessBar() {
         // Config progress bar size
         progressBar.setPrefSize(200, 20);
         progressBar.setProgress(0);
@@ -195,10 +193,16 @@ public class Controller implements Initializable {
         Text loading = new Text("Loading articles: ");
         loading.setFont(new Font("Segoe UI", 20));
 
-        // Return HBox contain progrerss bar
+        // Return HBox contain progress bar
         HBox hBox = new HBox(loading, progressBar, percentage);
         hBox.setAlignment(Pos.CENTER);
-        return hBox;
+        Text tipText = new Text("Tips: If articles don't appear after 15 seconds, please click Reload Category Button.");
+        tipText.setFont(new Font("Segoe UI", 14));
+
+        VBox processBarVbox = new VBox(hBox,tipText);
+        processBarVbox.setAlignment(Pos.CENTER);
+        processBarVbox.setSpacing(10);
+        return processBarVbox;
     }
 
     public class LoadNewsListTask extends Task<List<Article>> {
@@ -324,7 +328,7 @@ public class Controller implements Initializable {
             st.setFromX(1.1); st.setFromY(1.1);
             st.setToX(1); st.setToY(1);
             st.play();
-        });;
+        });
         hbox.getChildren().addAll(pane.getChildren());
         hbox.setOnMouseMoved(pane.getOnMouseMoved());
         hbox.setOnMouseClicked(pane.getOnMouseClicked());
@@ -348,7 +352,7 @@ public class Controller implements Initializable {
             st.setFromX(1.05); st.setFromY(1.05);
             st.setToX(1); st.setToY(1);
             st.play();
-        });;
+        });
         vbox.getChildren().addAll(pane.getChildren());
         vbox.setOnMouseMoved(pane.getOnMouseMoved());
         vbox.setOnMouseClicked(pane.getOnMouseClicked());
@@ -390,11 +394,6 @@ public class Controller implements Initializable {
         //Source Name and icon
         ImageView faviconImageView = new ImageView( new Image(Objects.requireNonNull(getClass().getResourceAsStream("styles/icons/"
                 + article.getSource().toLowerCase() + ".png")), 16, 16, true, true) );
-
-/*        Image sourceFavicon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("styles/icons/" + String.valueOf(article.getSource()).toLowerCase() + ".png")));
-        ImageView faviconImageView = new ImageView(sourceFavicon);
-        faviconImageView.setFitHeight(16);
-        faviconImageView.setFitWidth(16);*/
 
         Text labelSource = new Text(article.getSource());
         labelSource.setFont(new Font("Arial Bold", 12));
@@ -551,8 +550,5 @@ public class Controller implements Initializable {
         progressBar.autosize();
     }
 
-//    @FXML
-//    void onMouseMove(MouseEvent mouse) {
-//        mouse.setC
-//    }
+
 }
