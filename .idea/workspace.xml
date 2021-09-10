@@ -4,14 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="better createArticleElement">
+    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="change background co">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller$LoadNewsListTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller$LoadNewsListTask.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Model/Article.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Model/Article.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Model/News.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Model/News.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/mainwindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/mainwindow.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Vnexpress.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Vnexpress.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/advancednews/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/advancednews/news/Vnexpress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/news/Vnexpress.java" afterDir="false" />
     </list>
     <list id="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" name="classes" comment="classes" />
     <option name="SHOW_DIALOG" value="false" />
@@ -353,20 +353,7 @@
       <workItem from="1630554589683" duration="387000" />
       <workItem from="1630562721936" duration="766000" />
       <workItem from="1631012434305" duration="272000" />
-    </task>
-    <task id="LOCAL-00011" summary="prevented multiple button clicks to reload the same category">
-      <created>1628588720220</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1628588720220</updated>
-    </task>
-    <task id="LOCAL-00012" summary="blazing fast">
-      <created>1628592219288</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1628592219288</updated>
+      <workItem from="1631259578683" duration="2446000" />
     </task>
     <task id="LOCAL-00013" summary="blazing fast">
       <created>1628594375083</created>
@@ -697,7 +684,21 @@
       <option name="project" value="LOCAL" />
       <updated>1630166848477</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="clean code + nằm mơ">
+      <created>1631121715034</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1631121715034</updated>
+    </task>
+    <task id="LOCAL-00061" summary="change background co">
+      <created>1631260886598</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1631260886599</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -733,9 +734,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="changed button to togglebutton" />
-    <MESSAGE value="sadge" />
-    <MESSAGE value="QoL changes for Controller and News Class" />
     <MESSAGE value="added progress bar (it sucked)" />
     <MESSAGE value="big dick" />
     <MESSAGE value="Merge remote-tracking branch 'origin/duy' into duy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/sample/Controller.java" />
@@ -759,7 +757,9 @@
     <MESSAGE value="them *{font-family: sans-serif !important;}" />
     <MESSAGE value="better createArticleElement" />
     <MESSAGE value="fix layout" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix layout" />
+    <MESSAGE value="clean code + nằm mơ" />
+    <MESSAGE value="change background co" />
+    <option name="LAST_COMMIT_MESSAGE" value="change background co" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XDebuggerManager">
