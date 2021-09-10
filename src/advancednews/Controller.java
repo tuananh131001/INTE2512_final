@@ -176,6 +176,7 @@ public class Controller implements Initializable {
                 //setting up pagination
                 page.setPageCount((newsList.size() + 9) / 10);
                 page.setPageFactory(pageIndex -> createPage(pageIndex, newsList));
+                page.setStyle("-fx-background-color: #fffcf4;");
                 page.setCurrentPageIndex(0);
                 page.setVisible(true);
             });
