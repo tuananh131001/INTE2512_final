@@ -122,7 +122,7 @@ public class Nhandan extends News {
 
     @Override
     public String getFileName(){
-        return "src/advancednews/urlfiles/Nhandanurl.txt";
+        return "src/advancednews/urlfiles/nhandanurl.txt";
     }
 
     public java.time.Duration getTimeSince(String dateTime) throws ParseException {
