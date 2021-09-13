@@ -7,6 +7,7 @@ import javafx.animation.*;
 import javafx.beans.property.DoubleProperty;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -35,7 +36,7 @@ import java.util.*;
 
 public class Controller implements Initializable {
     @FXML
-    public ScrollPane scrollPaneFilters; //to create scoll pane with scroll bars
+    public ScrollPane scrollPaneFilters;
     @FXML
     private StackPane stackPane;
     @FXML
@@ -63,7 +64,7 @@ public class Controller implements Initializable {
     HashMap<String, Pair<Double, Animation>> progressAnimations;
     Text progressText;
 
-    //makes scroll smooth
+    //makes scroll smooth af
     Animation scrollAnimation = new Timeline();
     //makes the above thing work
     double scrollDestination;
@@ -80,7 +81,7 @@ public class Controller implements Initializable {
             newsScene = new WebView();
             engine = newsScene.getEngine();
 
-            //set up news scrapers
+            //setting up news scrapers
             newsHashMap = new LinkedHashMap<>();
             newsHashMap.put("VnExpress", new Vnexpress());
             newsHashMap.put("Tuoi Tre", new Tuoitre());
@@ -96,13 +97,13 @@ public class Controller implements Initializable {
             progressText = new Text();
 
             //init elements of the app
-            initPagination(); //set page-navigating features
-            initNewsBorder(); //set initial pane to display an article's content
-            initScrollBar(); //set scroll bar features
-            initMenuBar(); //set the category menu bar
-            initLoadingBar(); //set loading bar feature to inform the loading process
+            initPagination();
+            initNewsBorder();
+            initScrollBar();
+            initMenuBar();
+            initLoadingBar();
 
-            //defaults the program to run articles of the category "New" first
+            //defaults the program to run News articles first
             currentCategory = "New";
             ((ToggleButton) ((HBox) borderPane.getTop()).getChildren().get(0)).fire();
 
@@ -115,24 +116,27 @@ public class Controller implements Initializable {
     final EventHandler<ActionEvent> loadHandler = new EventHandler<>() {
         @Override
         public void handle(ActionEvent event) {
-            //initially, the pagination is set to be invisible in loading process
+            // Init button
             page.setVisible(false);
-
-            // Init category button
             ToggleButton button = (ToggleButton) event.getSource();
 
             //get categoryName
-            String category = button.getText(); //get the name of the chosen category based on the pressed button
-            currentCategory = category; //change the current category
+            String category = button.getText();
+            currentCategory = category;
 
-            //enable all category buttons to be pressed (except for the current one)
+            //enable all buttons
             Parent parent = button.getParent();
             for (Node ee : parent.getChildrenUnmodifiable()) {
                 ee.setDisable(false);
             }
 
-            //disable the current category button
+            //disable current button
             button.setDisable(true);
+
+            //remove intro text
+            if (stackPane.getChildren().size() >= 2) {
+                stackPane.getChildren().remove(1);
+            }
 
             //add progress bar in
             if (stackPane.getChildren().size() == 1) {
@@ -190,13 +194,12 @@ public class Controller implements Initializable {
         Text loading = new Text("Loading articles: ");
         loading.setFont(new Font("Segoe UI", 20));
 
-        // create HBox contain progress bar
+        // Return HBox contain progress bar
         HBox hBox = new HBox(loading, progressBar, percentage);
         hBox.setAlignment(Pos.CENTER);
-        Text tipText = new Text("If articles do not appear after 15 seconds, please click Reload Category Button");
+        Text tipText = new Text("Tips: If articles don't appear after 15 seconds, please click Reload Category Button.");
         tipText.setFont(new Font("Segoe UI", 14));
 
-        //create and return vbox contain progress bar and the tip text
         VBox processBarVbox = new VBox(hBox,tipText);
         processBarVbox.setAlignment(Pos.CENTER);
         processBarVbox.setSpacing(10);
@@ -259,10 +262,10 @@ public class Controller implements Initializable {
         }
     }
 
-    //function to scrape articles from website to a category, then return the list of articles
     public static class ScrapeWebsite extends Task<ArrayList<Article>> {
         String category;
         News news;
+
         ScrapeWebsite(String category, News news) {
             this.category = category;
             this.news = news;
@@ -280,26 +283,24 @@ public class Controller implements Initializable {
         }
     }
 
-    //create the overall displaying of articles in each page
+
     public HBox createPage(int pageIndex, List<Article> articles) {
         // Init container for page
-        HBox articleList = new HBox();  //to return
+        HBox articleList = new HBox();
         articleList.setStyle("-fx-alignment: CENTER; -fx-padding: 20 40 20 40; -fx-spacing: 20;");
-        // init separated containers
-        VBox vboxHighLight = new VBox();  //to store highlight articles
+        VBox vboxHighLight = new VBox();
         vboxHighLight.setSpacing(20);
-        VBox vboxList = new VBox(); //to store the remained articles
+        VBox vboxList = new VBox();
         vboxList.setSpacing(6);
 
-        // Scrape 10 articles based on the page index
-        int range = (pageIndex + 1) * 10 - 10; //to get the ordinal number (in the articles list) of the first article of this page
+
+        // Scrape 10 articles only
+        int range = (pageIndex + 1) * 10 - 10;
         for (int i = range; i < range + 10 && i < articles.size(); i++) {
-            //identify & create highlight article and add it to vboxHighLight container
             if (i%10 == 0 || i%10 == 1) {
                 VBox vbox = createArticleElementVBox(articles, i);
                 vboxHighLight.getChildren().add(vbox);
             }
-            //create normal article and add it to vboxList container
             else {
                 HBox hbox = createArticleElementHBox(articles, i);
                 vboxList.getChildren().add(hbox);
@@ -311,11 +312,10 @@ public class Controller implements Initializable {
         return articleList;
     }
 
-    // Create normal article element (HBox)
+    // Create Article element HBox
     HBox createArticleElementHBox(List<Article> articles, int position){
-        HBox hbox = new HBox(); //init container
-        Pane pane = createArticleElement(articles, position, "hbox"); //this pane contains the header information the article
-        //set displaying
+        HBox hbox = new HBox();
+        Pane pane = createArticleElement(articles, position, "hbox");
         hbox.setStyle("-fx-background-color: #ebe9e9; -fx-spacing: 10;");
         hbox.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/custombutton.css")).toString());
         hbox.addEventFilter(MouseEvent.MOUSE_ENTERED, e -> {
@@ -330,18 +330,16 @@ public class Controller implements Initializable {
             st.setToX(1); st.setToY(1);
             st.play();
         });
-
-        hbox.getChildren().addAll(pane.getChildren()); //get the information in the pane (the child elements of the pane)
-        hbox.setOnMouseMoved(pane.getOnMouseMoved()); //set effect when mouse moves into a pane area
-        hbox.setOnMouseClicked(pane.getOnMouseClicked()); //set action when mouse is clicked
+        hbox.getChildren().addAll(pane.getChildren());
+        hbox.setOnMouseMoved(pane.getOnMouseMoved());
+        hbox.setOnMouseClicked(pane.getOnMouseClicked());
         return hbox;
     }
 
-    // Create highlight article element VBox
+    // Create Article Element VBox
     VBox createArticleElementVBox(List<Article> articles, int position){
-        VBox vbox = new VBox(); //init container
-        Pane pane = createArticleElement(articles, position, "vbox"); //this pane contains the header information the article
-        //set displaying
+        VBox vbox = new VBox();
+        Pane pane = createArticleElement(articles, position, "vbox");
         vbox.setStyle("-fx-background-color: #ebe9e9; -fx-min-height: 404;-fx-spacing: 5;");
         vbox.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/custombutton.css")).toString());
         vbox.addEventFilter(MouseEvent.MOUSE_ENTERED, e -> {
@@ -356,19 +354,16 @@ public class Controller implements Initializable {
             st.setToX(1); st.setToY(1);
             st.play();
         });
-
-        vbox.getChildren().addAll(pane.getChildren()); //get the information in the pane (the child elements of the pane)
-        vbox.setOnMouseMoved(pane.getOnMouseMoved()); //set effect when mouse moves into a pane area
-        vbox.setOnMouseClicked(pane.getOnMouseClicked()); //set action when mouse is clicked
+        vbox.getChildren().addAll(pane.getChildren());
+        vbox.setOnMouseMoved(pane.getOnMouseMoved());
+        vbox.setOnMouseClicked(pane.getOnMouseClicked());
         return vbox;
     }
 
-    //create general pane for all article (contains the header information of an article)
     Pane createArticleElement(List<Article> articles, int position, String box){
         Pane pane = new Pane();
-        Article article = articles.get(position); //get the article
+        Article article = articles.get(position);
 
-        //set the image displaying for normal article
         if (article.getImageArticle() != null) {
             ImageView imageView = new ImageView(article.getImageArticle());
             if (box.equals("vbox")) {
@@ -379,10 +374,8 @@ public class Controller implements Initializable {
                 imageView.setFitWidth(150);
                 imageView.setFitHeight(100);
             }
-            pane.getChildren().add(imageView); //add image to pane
-        }
-        //set the image displaying for highlight article
-        else {
+            pane.getChildren().add(imageView);
+        } else {
             Label replaceImage = new Label("no image");
             if (box.equals("vbox")){
                 replaceImage.setMinSize(550,312);
@@ -391,7 +384,7 @@ public class Controller implements Initializable {
                 replaceImage.setMinSize(150,100);
             }
             replaceImage.setStyle("-fx-alignment: CENTER; -fx-background-color: #dddfe1;");
-            pane.getChildren().add(replaceImage); //add image to pane
+            pane.getChildren().add(replaceImage);
         }
 
         // Article Title
@@ -406,7 +399,6 @@ public class Controller implements Initializable {
         Text labelSource = new Text(article.getSource());
         labelSource.setFont(new Font("Arial Bold", 12));
         HBox sourceNameHBox = new HBox(faviconImageView,labelSource);
-        sourceNameHBox.setSpacing(2);
 
         //Time and date string
         String timeString = Long.toString(article.getTimeArticle().toDays());
@@ -422,22 +414,18 @@ public class Controller implements Initializable {
         Label labelTime = new Label(timeString);
         labelTime.setFont(new Font("Arial", 12));
 
-        VBox vboxArticle = new VBox(); //this vbox is to store title, source, time
-        vboxArticle.setSpacing(5);
+        VBox vboxArticle = new VBox();
+        vboxArticle.setSpacing(3);
         vboxArticle.getChildren().addAll(labelArticle, sourceNameHBox, labelTime);
-        pane.getChildren().add(vboxArticle); //add vbox to pane (already add image above)
-
-        //create functions of effect and action for this pane
+        pane.getChildren().add(vboxArticle);
         try {
-            //set effect when mouse is moved to a pane area
             pane.setOnMouseMoved(mouseEvent -> { //change cursor icon when mouse move to on the article
                 ((Pane) mouseEvent.getSource()).setCursor(Cursor.HAND);
             });
-            //set action when mouse is clicked (go to the article's content page)
             pane.setOnMouseClicked(mouseEvent -> {
                 try {
                     String source = article.getSource();
-                    Element content = newsHashMap.get(source).scrapeContent(article.getSourceArticle());
+                        Element content = newsHashMap.get(source).scrapeContent(article.getSourceArticle());
                     engine.loadContent(content.toString());
                     engine.setUserStyleSheetLocation(Objects.requireNonNull(getClass().getResource("styles/news/" + source.replaceAll("\\s+", "").toLowerCase() + "style.css")).toString());
                     newsBorder.setCenter(newsScene); //set center as news scene
@@ -494,10 +482,10 @@ public class Controller implements Initializable {
         });
     }
 
-    //create the menu of category
     void initMenuBar() {
-        ToggleGroup toggleGroup = new ToggleGroup(); //group of buttons (each category is a button)
-        HBox hbox = new HBox(); //container
+        //create a menu of categories
+        ToggleGroup toggleGroup = new ToggleGroup();
+        HBox hbox = new HBox();
         String[] ButtonNames = {
                 "New",
                 "Covid",
@@ -511,7 +499,6 @@ public class Controller implements Initializable {
                 "Others",
         };
 
-        //make each category to be a toggle button and add all of them to a togglegroup contained by a hbox
         for (String buttonName : ButtonNames) {
             ToggleButton button = new ToggleButton(buttonName);
             button.setToggleGroup(toggleGroup);
@@ -521,22 +508,19 @@ public class Controller implements Initializable {
             hbox.getChildren().add(button);
         }
 
-        //create button to reload program
         Button reloadButton = new Button("Reload Category");
         reloadButton.setStyle("-fx-pref-height: 29;");
-        //add this button to the hbox container
         Region region = new Region();
         HBox.setHgrow(region, Priority.ALWAYS);
         hbox.getChildren().addAll(region, reloadButton);
-        //set action (reload) for this button
+
         reloadButton.setOnAction(reloadCategory);
 
         hbox.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/custombutton.css")).toString());
 
-        borderPane.setTop(hbox); //add this menu bar to the main border pane
+        borderPane.setTop(hbox);
     }
 
-    //action for the reload button
     final EventHandler<ActionEvent> reloadCategory = actionEvent -> {
         HBox hBox = (HBox) ((Button) actionEvent.getSource()).getParent();
         for (Node node : hBox.getChildren()){
@@ -566,5 +550,6 @@ public class Controller implements Initializable {
     void initLoadingBar() {
         progressBar.autosize();
     }
+
 
 }

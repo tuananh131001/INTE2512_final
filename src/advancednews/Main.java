@@ -5,6 +5,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -22,8 +23,9 @@ public class Main extends Application {
 
         Scene scene = new Scene(root, 1000, height*0.7);
         primaryStage.setScene(scene);
-        scene.setFill(Color.TRANSPARENT);
-        primaryStage.setTitle("nicesu application verry pretty cute hihi");
+        scene.setFill(Color.web("#fcfaf6"));
+        primaryStage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("styles/icons/app.jpg"))));
+        primaryStage.setTitle("Open News");
         primaryStage.show();
         //code to close all windows when main windows exits
         primaryStage.setOnCloseRequest(e -> Platform.exit());
