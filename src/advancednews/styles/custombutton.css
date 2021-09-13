@@ -5,6 +5,7 @@
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-text-fill: #ffffff;
     -fx-pref-height: 30;
+    -fx-cursor: hand;
 }
 .toggle-button:focused {
     -fx-border-color: #070758;
@@ -27,6 +28,7 @@
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-text-fill: #ffffff;
     -fx-pref-height: 30;
+    -fx-cursor: hand;
 }
 .button:focused {
     -fx-border-color: #070758;
