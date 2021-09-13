@@ -1,6 +1,6 @@
 .pagination{
     -fx-font-family: "Segoe UI";
-    -fx-font-size: 20;
+    -fx-font-size: 17;
 }
 
 /* Remove spacing */
@@ -15,7 +15,7 @@
 .pagination > .pagination-control > .control-box > .right-arrow-button {
     -fx-background-insets: 0, 1;
     -fx-background-color: lightgray, #FAFAFA;
-    -fx-min-width: 60;
+    -fx-min-width: 40;
     -fx-min-height: 30;
 }
 
@@ -32,6 +32,6 @@
 .pagination > .pagination-control > .control-box > .number-button:selected,
 .pagination > .pagination-control > .control-box > .bullet-button:selected{
     -fx-background-insets: 0;
-    -fx-background-color: #58379A;
+    -fx-background-color: #070758;
     -fx-text-fill: white;
 }
