@@ -1,6 +1,6 @@
 # INTE2512_final
-INTE2512 - Final Group Project
-Team: Big City Boi
+!INTE2512 - Final Group Project
+!Team: Big City Boi
 Members:
 Nguyen Tuan Anh s3864077
 Tran Nguyen Ha Khanh s3877707
