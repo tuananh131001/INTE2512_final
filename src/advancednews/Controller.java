@@ -7,7 +7,6 @@ import javafx.animation.*;
 import javafx.beans.property.DoubleProperty;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -36,7 +35,7 @@ import java.util.*;
 
 public class Controller implements Initializable {
     @FXML
-    public ScrollPane scrollPaneFilters; //to create scoll pane with scroll bars
+    public ScrollPane scrollPaneFilters; //to create scroll pane with scroll bars
     @FXML
     private StackPane stackPane;
     @FXML
@@ -64,7 +63,7 @@ public class Controller implements Initializable {
     HashMap<String, Pair<Double, Animation>> progressAnimations;
     Text progressText;
 
-    //makes scroll smooth
+    //makes scroll smooth af
     Animation scrollAnimation = new Timeline();
     //makes the above thing work
     double scrollDestination;
@@ -81,7 +80,7 @@ public class Controller implements Initializable {
             newsScene = new WebView();
             engine = newsScene.getEngine();
 
-            //set up news scrapers
+            //setting up news scrapers
             newsHashMap = new LinkedHashMap<>();
             newsHashMap.put("VnExpress", new Vnexpress());
             newsHashMap.put("Tuoi Tre", new Tuoitre());
@@ -264,6 +263,7 @@ public class Controller implements Initializable {
     public static class ScrapeWebsite extends Task<ArrayList<Article>> {
         String category;
         News news;
+
         ScrapeWebsite(String category, News news) {
             this.category = category;
             this.news = news;
@@ -273,11 +273,11 @@ public class Controller implements Initializable {
         protected ArrayList<Article> call() {
             ArrayList<Article> list = new ArrayList<>();
             try{
-                list.addAll(news.scrapeWebsiteCategory(category).getArticleList());
+                list.addAll(news.scrapeWebsiteCategory(category).getArticleList()); //scrape news and add them to article list
             } catch (IOException e) {
                 System.out.println(e + " ScrapeWebsite");
             }
-            return list;
+            return list; //return article list
         }
     }
 
@@ -319,6 +319,8 @@ public class Controller implements Initializable {
         //set displaying
         hbox.setStyle("-fx-background-color: #ebe9e9; -fx-spacing: 10;");
         hbox.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/custombutton.css")).toString());
+
+        //set effect when mouse enter and exit an hbox
         hbox.addEventFilter(MouseEvent.MOUSE_ENTERED, e -> {
             ScaleTransition st = new ScaleTransition(Duration.millis(100), hbox);
             st.setFromX(1); st.setFromY(1);
@@ -333,7 +335,7 @@ public class Controller implements Initializable {
         });
 
         hbox.getChildren().addAll(pane.getChildren()); //get the information in the pane (the child elements of the pane)
-        hbox.setOnMouseMoved(pane.getOnMouseMoved()); //set effect when mouse moves into a pane area
+        hbox.setOnMouseMoved(pane.getOnMouseMoved()); //change cursor when mouse moves into an hbox
         hbox.setOnMouseClicked(pane.getOnMouseClicked()); //set action when mouse is clicked
         return hbox;
     }
@@ -345,6 +347,8 @@ public class Controller implements Initializable {
         //set displaying
         vbox.setStyle("-fx-background-color: #ebe9e9; -fx-min-height: 404;-fx-spacing: 5;");
         vbox.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/custombutton.css")).toString());
+
+        //set effect when mouse enter and exit an hbox
         vbox.addEventFilter(MouseEvent.MOUSE_ENTERED, e -> {
             ScaleTransition st = new ScaleTransition(Duration.millis(100), vbox);
             st.setFromX(1); st.setFromY(1);
@@ -357,38 +361,37 @@ public class Controller implements Initializable {
             st.setToX(1); st.setToY(1);
             st.play();
         });
-
-        vbox.getChildren().addAll(pane.getChildren()); //get the information in the pane (the child elements of the pane)
-        vbox.setOnMouseMoved(pane.getOnMouseMoved()); //set effect when mouse moves into a pane area
-        vbox.setOnMouseClicked(pane.getOnMouseClicked()); //set action when mouse is clicked
+        vbox.getChildren().addAll(pane.getChildren());
+        vbox.setOnMouseMoved(pane.getOnMouseMoved());
+        vbox.setOnMouseClicked(pane.getOnMouseClicked());
         return vbox;
     }
 
     //create general pane for all article (contains the header information of an article)
     Pane createArticleElement(List<Article> articles, int position, String box){
         Pane pane = new Pane();
-        Article article = articles.get(position); //get the article
+        Article article = articles.get(position);
 
-        //set the image displaying for normal article
+        //set the image displaying for article
         if (article.getImageArticle() != null) {
             ImageView imageView = new ImageView(article.getImageArticle());
-            if (box.equals("vbox")) {
+            if (box.equals("vbox")) { //for highlight news
                 imageView.setFitHeight(312);
                 imageView.setFitWidth(550);
             }
-            else {
+            else { //for normal news
                 imageView.setFitWidth(150);
                 imageView.setFitHeight(100);
             }
             pane.getChildren().add(imageView); //add image to pane
         }
-        //set the image displaying for highlight article
+        //create a replace if the article has no image
         else {
             Label replaceImage = new Label("no image");
-            if (box.equals("vbox")){
+            if (box.equals("vbox")){ //for highlight news
                 replaceImage.setMinSize(550,312);
             }
-            else {
+            else { //for normal news
                 replaceImage.setMinSize(150,100);
             }
             replaceImage.setStyle("-fx-alignment: CENTER; -fx-background-color: #dddfe1;");
@@ -407,7 +410,7 @@ public class Controller implements Initializable {
         Text labelSource = new Text(article.getSource());
         labelSource.setFont(new Font("Arial Bold", 12));
         HBox sourceNameHBox = new HBox(faviconImageView,labelSource);
-        sourceNameHBox.setSpacing(2);
+        sourceNameHBox.setSpacing(3);
 
         //Time and date string
         String timeString = Long.toString(article.getTimeArticle().toDays());
@@ -430,15 +433,16 @@ public class Controller implements Initializable {
 
         //create functions of effect and action for this pane
         try {
-            //set effect when mouse is moved to a pane area
-            pane.setOnMouseMoved(mouseEvent -> { //change cursor icon when mouse move to on the article
+            //change cursor icon when mouse move to on the article
+            pane.setOnMouseMoved(mouseEvent -> {
                 ((Pane) mouseEvent.getSource()).setCursor(Cursor.HAND);
             });
-            //set action when mouse is clicked (go to the article's content page)
+
+            //set action (go to the article's content page) when mouse is clicked
             pane.setOnMouseClicked(mouseEvent -> {
                 try {
                     String source = article.getSource();
-                        Element content = newsHashMap.get(source).scrapeContent(article.getSourceArticle());
+                    Element content = newsHashMap.get(source).scrapeContent(article.getSourceArticle());
                     engine.loadContent(content.toString());
                     engine.setUserStyleSheetLocation(Objects.requireNonNull(getClass().getResource("styles/news/" + source.replaceAll("\\s+", "").toLowerCase() + "style.css")).toString());
                     newsBorder.setCenter(newsScene); //set center as news scene
@@ -494,6 +498,7 @@ public class Controller implements Initializable {
             scrollAnimation.play();
         });
     }
+
 
     //create the menu of category
     void initMenuBar() {
@@ -567,5 +572,6 @@ public class Controller implements Initializable {
     void initLoadingBar() {
         progressBar.autosize();
     }
+
 
 }
