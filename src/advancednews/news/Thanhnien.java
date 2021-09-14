@@ -140,7 +140,8 @@ public class Thanhnien extends News {
                 "zone__content",
                 "site-footer",
                 "sidebar sidebar--col300",
-                "body--h"
+                "body--h",
+                "quote has-background"
         };
         for (String className : classesToRemove) {
             Elements remove = content.getElementsByClass(className);

@@ -130,7 +130,8 @@ public class Vnexpress extends News {
                 "footer-content  width_common",
                 "banner-ads",
                 "section page-detail top-detail section-bottom-detail",
-                "inner-popup"
+                "inner-popup",
+                "list-news gaBoxLinkDisplay"
         };
         for (String className : classesToRemove) {
             Elements remove = content.getElementsByClass(className);
