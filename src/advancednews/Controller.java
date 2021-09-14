@@ -105,7 +105,6 @@ public class Controller implements Initializable {
             //init web engine
             newsScene = new WebView();
             engine = newsScene.getEngine();
-            CookieHandler.setDefault(new CookieManager());
 
             //setting up news scrapers
             newsHashMap = new LinkedHashMap<>();
@@ -556,7 +555,6 @@ public class Controller implements Initializable {
 
         //create button to reload program
         Button reloadButton = new Button("Reload Category");
-        reloadButton.setStyle("-fx-pref-height: 29;");
         //add this button to the hbox container
         Region region = new Region();
         HBox.setHgrow(region, Priority.ALWAYS);

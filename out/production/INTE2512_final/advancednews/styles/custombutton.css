@@ -3,8 +3,9 @@
     -fx-background-radius: 0;
     -fx-background-color: transparent;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 13.5;
     -fx-text-fill: #ffffff;
-    -fx-pref-height: 30;
+    -fx-pref-height: 36;
     -fx-cursor: hand;
 }
 .toggle-button:focused {
@@ -26,8 +27,9 @@
     -fx-background-radius: 0;
     -fx-background-color: #070758;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 13.5;
     -fx-text-fill: #ffffff;
-    -fx-pref-height: 30;
+    -fx-min-height: 35;
     -fx-cursor: hand;
 }
 .button:focused {
