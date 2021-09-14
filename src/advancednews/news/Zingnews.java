@@ -102,7 +102,9 @@ public class Zingnews extends News {
                 "sidebar",
                 "sticky-header sticky-header--show",
                 "section article-news-background",
-                "z-widget-corona"
+                "z-widget-corona",
+                "right-side",
+                "section-more"
         };
         for (String className : classesToRemove) {
             Elements remove = content.getElementsByClass(className);
@@ -135,6 +137,21 @@ public class Zingnews extends News {
         for (String idName : idToRemove){
             Element remove = content.getElementById(idName);
             if (remove != null) remove.remove();
+        }
+
+        //changes all video attribute to a text with its link
+        Elements videos = content.getElementsByClass("video-player formatted");
+        for (Element video : videos){
+            video = video.parent();
+            Elements elements = video.getElementsByAttribute("src");
+            String videoUrl = null;
+            if (elements.size() > 0) {
+                videoUrl = elements.first().attr("src");
+            }
+            if (videoUrl == null) {
+                videoUrl = "could not found video URL.";
+            }
+            video.text("video link: " + videoUrl);
         }
         //return clean content
         return content;
