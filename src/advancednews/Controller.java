@@ -105,7 +105,6 @@ public class Controller implements Initializable {
             //init web engine
             newsScene = new WebView();
             engine = newsScene.getEngine();
-            CookieHandler.setDefault(new CookieManager());
 
             //setting up news scrapers
             newsHashMap = new LinkedHashMap<>();

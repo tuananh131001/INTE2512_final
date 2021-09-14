@@ -217,6 +217,12 @@ public class Thanhnien extends News {
             }
         }
 
+        //attempt to remove all ads
+        Elements ads = content.getElementsByAttributeValueMatching("class", "ads|flexbox|header_new|section_common|top-header");
+        for (Element remove : ads){
+            remove.remove();
+        }
+
         return content;
     }
 
