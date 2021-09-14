@@ -555,7 +555,6 @@ public class Controller implements Initializable {
 
         //create button to reload program
         Button reloadButton = new Button("Reload Category");
-        reloadButton.setStyle("-fx-pref-height: 29;");
         //add this button to the hbox container
         Region region = new Region();
         HBox.setHgrow(region, Priority.ALWAYS);
