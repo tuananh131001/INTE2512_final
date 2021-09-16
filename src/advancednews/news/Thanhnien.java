@@ -141,6 +141,8 @@ public class Thanhnien extends News {
                 "site-footer",
                 "sidebar sidebar--col300",
                 "body--h",
+                "social-icons",
+                "section section-category",
                 "quote has-background"
         };
         for (String className : classesToRemove) {
@@ -156,7 +158,8 @@ public class Thanhnien extends News {
                 "animation_container",
                 "dablewidget_1oVpGklP",
                 "dablewidget",
-                "abde"
+                "abde",
+                "OtherContentsBox"
         };
         for (String idName : idToRemove){
             Element remove = content.getElementById(idName);
@@ -165,7 +168,9 @@ public class Thanhnien extends News {
 
         String[] tagToRemove = {
 //                "nav",
-                "iframe"
+                "iframe",
+                "header",
+                "footer"
         };
         for (String tagName : tagToRemove){
             Elements remove = content.getElementsByTag(tagName);
@@ -247,9 +252,13 @@ public class Thanhnien extends News {
             try {
                 dateFormat = new SimpleDateFormat("dd MMM yyyy kk:mm:ss");
                 date = dateFormat.parse(day + " " + time);
-            } catch (Exception e2){
-                dateFormat = new SimpleDateFormat("dd/MM/yyyy kk:mm");
-                date = dateFormat.parse(day + " " + time);
+            } catch (Exception e2) {
+                try{
+                    dateFormat = new SimpleDateFormat("dd/MM/yyyy kk:mm");
+                    date = dateFormat.parse(day + " " + time);
+                } catch (Exception e4){
+                    return Duration.ZERO;
+                }
             }
         }
         return Duration.between(date.toInstant(), Instant.now());

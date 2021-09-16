@@ -184,7 +184,7 @@ public class Vnexpress extends News {
         }
 
         //attempt to remove all ads
-        Elements ads = content.getElementsByAttributeValueMatching("class", "ads|flexbox|header_new|section_common|top-header");
+        Elements ads = content.getElementsByAttributeValueMatching("class", "ads|flexbox|header_new|section_common|top-header|section page-detail bottom-detail");
         for (Element remove : ads){
             remove.remove();
         }
