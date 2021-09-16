@@ -47,6 +47,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.util.Duration;
@@ -57,6 +58,7 @@ import java.io.IOException;
 import java.net.CookieHandler;
 import java.net.CookieManager;
 import java.net.URL;
+import java.security.cert.PolicyNode;
 import java.util.*;
 
 public class Controller implements Initializable {
@@ -200,7 +202,15 @@ public class Controller implements Initializable {
                 page.setStyle("-fx-background-color: #fffcf4;");
                 page.setCurrentPageIndex(0);
                 page.setVisible(true);
+                if (newsList.size() == 0) {
+                    Text noInternetText = new Text("No internet connection.Please check your internet again.");
+                    noInternetText.setFill(Color.WHITE);
+                    noInternetText.setTextAlignment(TextAlignment.CENTER);
+                    noInternetText.setFont(Font.font ("Arial", 20));
+                    borderPane.setCenter(noInternetText);
+                }
             });
+
             //start task
             threadNews.start();
         }
@@ -286,7 +296,7 @@ public class Controller implements Initializable {
     }
 
     //function to scrape articles from website to a category, then return the list of articles
-    public static class ScrapeWebsite extends Task<ArrayList<Article>> {
+    public class ScrapeWebsite extends Task<ArrayList<Article>> {
         String category;
         News news;
 
@@ -301,7 +311,8 @@ public class Controller implements Initializable {
             try{
                 list.addAll(news.scrapeWebsiteCategory(category).getArticleList()); //scrape news and add them to article list
             } catch (IOException e) {
-                System.out.println(e + " ScrapeWebsite");
+                System.out.println("Cannot scrape " + e);
+                System.out.println("Please check your connection again");
             }
             return list; //return article list
         }
