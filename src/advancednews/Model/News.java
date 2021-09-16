@@ -106,8 +106,12 @@ public class News {
                     dateFormat = new SimpleDateFormat("dd/MM/yyyy kk:mm");
                     date = dateFormat.parse(day + " " + time);
                 } catch (Exception e3) {
-                    dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'+07:00'");
-                    date = dateFormat.parse(dateTime);
+                    try {
+                        dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'+07:00'");
+                        date = dateFormat.parse(dateTime);
+                    } catch (Exception e4){
+                        return Duration.ZERO;
+                    }
                 }
             }
         }
