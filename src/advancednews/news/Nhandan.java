@@ -157,8 +157,13 @@ public class Nhandan extends News {
         String day = scanner.findInLine("(\\d+-\\w+-\\d+)");
         scanner = new Scanner(dateTime);
         String time = scanner.findInLine("(\\d+:\\d+:?\\d+)");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy kk:mm");
-        Date date = dateFormat.parse(day + " " + time);
+        Date date;
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy kk:mm");
+            date = dateFormat.parse(day + " " + time);
+        } catch (Exception e4){
+            return Duration.ZERO;
+        }
         return Duration.between(date.toInstant(), Instant.now());
     }
 }
