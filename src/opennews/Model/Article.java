@@ -19,16 +19,41 @@
   https://stackoverflow.com/questions/21083945/how-to-avoid-not-on-fx-application-thread-currentthread-javafx-application-th
   https://stackoverflow.com/questions/541487/implements-runnable-vs-extends-thread-in-java?page=2&tab=votes#tab-top
   https://stackoverflow.com/questions/4691533/java-wait-for-thread-to-finish
-  https://stackoverflow.com/questions/13946372/adding-css-file-to-stylesheets-in-javafx
+  https://stackoverflow.com/questions/48048943/javafx-8-scroll-bar-css
 */
-module JavaFxApplication {
-    requires javafx.fxml;
-    requires javafx.controls;
-    requires javafx.graphics;
-    requires javafx.web;
-    requires org.jsoup;
-    requires javafx.media;
+package opennews.Model;
 
-    opens opennews;
-    opens opennews.Model;
+import javafx.scene.image.Image;
+
+import java.time.Duration;
+
+public class Article {
+    protected Image image;
+    protected String titleArticle;
+    protected String sourceArticle;
+    protected Duration timeArticle;
+    protected String source;
+
+    public Article(Image image, String titleArticle, String sourceArticle, Duration timeArticle, String source) {
+        this.image = image;
+        this.titleArticle = titleArticle;
+        this.sourceArticle = sourceArticle;
+        this.timeArticle = timeArticle;
+        this.source = source;
+    }
+
+    public String getTitleArticle() {
+        return titleArticle;
+    }
+
+    public String getSourceArticle() {
+        return sourceArticle;
+    }
+
+
+    public Duration getTimeArticle(){ return timeArticle; }
+
+    public String getSource() { return source; }
+
+    public Image getImageArticle() { return image; }
 }
