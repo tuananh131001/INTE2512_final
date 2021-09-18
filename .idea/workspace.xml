@@ -4,11 +4,62 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="what if there is no internet Part 2 :&gt;">
+    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="what if there is no internet Part 3 :&gt;">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller$LoadNewsListTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller$LoadNewsListTask.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/advancednews/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advancednews/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller$LoadNewsListTask.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Controller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Model/Article.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Model/Category.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/Model/News.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/mainwindow.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/news/Vnexpress.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/styles/custombutton.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/styles/mainwindow.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/styles/news/nhandanstyle.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/styles/news/thanhnienstyle.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/styles/news/tuoitrestyle.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/styles/news/vnexpressstyle.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/styles/news/zingnewsstyle.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/styles/scrollstyle.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/urlfiles/nhandanurl.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/urlfiles/thanhnienurl.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/urlfiles/tuoitreurl.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/urlfiles/vnexpressUrl.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/advancednews/urlfiles/zingnewsurl.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/module-info.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/Model/Article.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/Model/Article.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/Model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/Model/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/Model/News.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/Model/News.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/mainwindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/mainwindow.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/news/Nhandan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/news/Nhandan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/news/Thanhnien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/news/Thanhnien.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/news/Tuoitre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/news/Tuoitre.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/news/Vnexpress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/news/Vnexpress.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/news/Zingnews.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/news/Zingnews.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/styles/custombutton.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/styles/custombutton.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/styles/icons/app.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/styles/icons/app.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/styles/icons/nhan dan.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/styles/icons/nhan dan.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/styles/icons/thanh nien.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/styles/icons/thanh nien.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/styles/icons/tuoi tre.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/styles/icons/tuoi tre.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/styles/icons/vnexpress.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/styles/icons/vnexpress.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/styles/icons/zing news.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/styles/icons/zing news.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/styles/mainwindow.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/styles/mainwindow.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/styles/news/nhandanstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/styles/news/nhandanstyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/styles/news/thanhnienstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/styles/news/thanhnienstyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/styles/news/tuoitrestyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/styles/news/tuoitrestyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/styles/news/vnexpressstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/styles/news/vnexpressstyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/styles/news/zingnewsstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/styles/news/zingnewsstyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/styles/paginationSkin.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/styles/paginationSkin.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/styles/scrollstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/styles/scrollstyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/urlfiles/nhandanurl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/urlfiles/nhandanurl.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/urlfiles/thanhnienurl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/urlfiles/thanhnienurl.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/urlfiles/tuoitreurl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/urlfiles/tuoitreurl.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/urlfiles/vnexpressurl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/urlfiles/vnexpressurl.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advancednews/urlfiles/zingnewsurl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/urlfiles/zingnewsurl.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/module-info.java" afterDir="false" />
     </list>
     <list id="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" name="classes" comment="classes" />
     <option name="SHOW_DIALOG" value="false" />
@@ -112,11 +163,11 @@
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../../../../Program Files/BellSoft/LibericaJDK-16-Full" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="advancednews.Main" />
+      <option name="MAIN_CLASS_NAME" value="opennews.Main" />
       <module name="INTE2512_final" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="advancednews.Model.*" />
+          <option name="PATTERN" value="opennews.Model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -360,14 +411,7 @@
       <workItem from="1631878604021" duration="3391000" />
       <workItem from="1631954611032" duration="2236000" />
       <workItem from="1631957359978" duration="413000" />
-      <workItem from="1631958715323" duration="1000000" />
-    </task>
-    <task id="LOCAL-00016" summary="fixed counting bug">
-      <created>1628666706914</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1628666706914</updated>
+      <workItem from="1631958715323" duration="1347000" />
     </task>
     <task id="LOCAL-00017" summary="fixed dupe bug">
       <created>1628667788463</created>
@@ -705,7 +749,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631956736473</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="what if there is no internet Part 3 :&gt;">
+      <created>1631959741123</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1631959741123</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -741,7 +792,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Merge remote-tracking branch 'origin/duy' into duy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/sample/Controller.java" />
     <MESSAGE value="nice" />
     <MESSAGE value="defaulted the program to load news first&#10;updated url files&#10;updated covid scraping" />
     <MESSAGE value="defaulted the program to load news first&#10;updated url files&#10;updated covid scraping&#10;added Nhandan class" />
@@ -766,14 +816,15 @@
     <MESSAGE value="change background co" />
     <MESSAGE value="what if there is no internet :)" />
     <MESSAGE value="what if there is no internet Part 2 :&gt;" />
-    <option name="LAST_COMMIT_MESSAGE" value="what if there is no internet Part 2 :&gt;" />
+    <MESSAGE value="what if there is no internet Part 3 :&gt;" />
+    <option name="LAST_COMMIT_MESSAGE" value="what if there is no internet Part 3 :&gt;" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/advancednews/news/Thanhnien.java</url>
+          <url>file://$PROJECT_DIR$/src/opennews/news/Thanhnien.java</url>
           <line>204</line>
           <option name="timeStamp" value="101" />
         </line-breakpoint>
