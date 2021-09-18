@@ -55,7 +55,10 @@ import javafx.util.Pair;
 import org.jsoup.nodes.Element;
 
 import java.io.IOException;
+import java.net.ConnectException;
+import java.net.SocketException;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.*;
 
 public class Controller implements Initializable {
@@ -202,18 +205,9 @@ public class Controller implements Initializable {
                 // Check if program is connected to internet
                 if (newsList.size() == 0) {
                     //Initialise alert object for warning
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("No Internet");
-                    alert.setHeaderText("No internet connection.Please check your internet again.");
-                    alert.setContentText("Connect your device to Internet then press OK.Otherwise click X on top right to exit");
-                    Optional<ButtonType> result = alert.showAndWait();
+                    noInternetAlert();
                     // Handle for OK button
-                    if (result.isPresent() && (result.get() == ButtonType.OK)) {
-                        (((HBox) borderPane.getTop()).getChildren().get(0)).setDisable(false);
-                        ((ToggleButton) ((HBox) borderPane.getTop()).getChildren().get(0)).fire();
-                    } else {
-                        Platform.exit();
-                    }
+
                 }
             });
 
@@ -221,6 +215,21 @@ public class Controller implements Initializable {
             threadNews.start();
         }
     };
+
+    public void noInternetAlert(){
+        //Initialise alert object for warning
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("No Internet");
+        alert.setHeaderText("No internet connection.Please check your internet again.");
+        alert.setContentText("Connect your device to Internet then press OK.Otherwise click X on top right to exit");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && (result.get() == ButtonType.OK)) {
+            (((HBox) borderPane.getTop()).getChildren().get(0)).setDisable(false);
+            ((ToggleButton) ((HBox) borderPane.getTop()).getChildren().get(0)).fire();
+        } else {
+            Platform.exit();
+        }
+    }
 
     public VBox addProcessBar() {
         // Config progress bar size
@@ -490,13 +499,16 @@ public class Controller implements Initializable {
             pane.setOnMouseClicked(mouseEvent -> {
                 try {
                     String source = article.getSource();
+
                     Element content = newsHashMap.get(source).scrapeContent(article.getSourceArticle());
+
                     engine.loadContent(content.toString());
                     engine.setUserStyleSheetLocation(Objects.requireNonNull(getClass().getResource("styles/news/" + source.replaceAll("\\s+", "").toLowerCase() + "style.css")).toString());
                     newsBorder.setCenter(newsScene); //set center as news scene
                     stackPane.getChildren().add(newsBorder); //add the whole thing on top of the application
-                } catch (Exception e) {
-                    e.printStackTrace();
+                } catch (IOException e) {
+                   /* e.printStackTrace();*/
+                    noInternetAlert();
                 }
             });
         } catch (Exception e) {
