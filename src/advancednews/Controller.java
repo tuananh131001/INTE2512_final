@@ -28,6 +28,7 @@ import advancednews.Model.Article;
 import advancednews.Model.News;
 import advancednews.news.*;
 import javafx.animation.*;
+import javafx.application.Platform;
 import javafx.beans.property.DoubleProperty;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -47,7 +48,6 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.util.Duration;
@@ -55,10 +55,7 @@ import javafx.util.Pair;
 import org.jsoup.nodes.Element;
 
 import java.io.IOException;
-import java.net.CookieHandler;
-import java.net.CookieManager;
 import java.net.URL;
-import java.security.cert.PolicyNode;
 import java.util.*;
 
 public class Controller implements Initializable {
@@ -134,6 +131,7 @@ public class Controller implements Initializable {
             currentCategory = "New";
             ((ToggleButton) ((HBox) borderPane.getTop()).getChildren().get(0)).fire();
 
+
         } catch (Exception e) {
             System.out.println(e + " initialize");
         }
@@ -195,19 +193,27 @@ public class Controller implements Initializable {
                 if (stackPane.getChildren().size() >= 2) {
                     stackPane.getChildren().remove(1);
                 }
-
                 //setting up pagination
                 page.setPageCount((newsList.size() + 9) / 10);
                 page.setPageFactory(pageIndex -> createPage(pageIndex, newsList));
                 page.setStyle("-fx-background-color: #fffcf4;");
                 page.setCurrentPageIndex(0);
                 page.setVisible(true);
+                // Check if program is connected to internet
                 if (newsList.size() == 0) {
-                    Text noInternetText = new Text("No internet connection.Please check your internet again.");
-                    noInternetText.setFill(Color.WHITE);
-                    noInternetText.setTextAlignment(TextAlignment.CENTER);
-                    noInternetText.setFont(Font.font ("Arial", 20));
-                    borderPane.setCenter(noInternetText);
+                    //Initialise alert object for warning
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("No Internet");
+                    alert.setHeaderText("No internet connection.Please check your internet again.");
+                    alert.setContentText("Connect your device to Internet then press OK.Otherwise click X on top right to exit");
+                    Optional<ButtonType> result = alert.showAndWait();
+                    // Handle for OK button
+                    if (result.isPresent() && (result.get() == ButtonType.OK)) {
+                        (((HBox) borderPane.getTop()).getChildren().get(0)).setDisable(false);
+                        ((ToggleButton) ((HBox) borderPane.getTop()).getChildren().get(0)).fire();
+                    } else {
+                        Platform.exit();
+                    }
                 }
             });
 
@@ -233,7 +239,7 @@ public class Controller implements Initializable {
         tipText.setFont(new Font("Segoe UI", 14));
 
         //create and return vbox contain progress bar and the tip text
-        VBox processBarVbox = new VBox(hBox,tipText);
+        VBox processBarVbox = new VBox(hBox, tipText);
         processBarVbox.setAlignment(Pos.CENTER);
         processBarVbox.setSpacing(10);
         return processBarVbox;
@@ -257,7 +263,7 @@ public class Controller implements Initializable {
                 ArrayList<Thread> threads = new ArrayList<>();
                 progressBar.progressProperty().set(0);
                 final Animation[] progressAnimation = {
-                        createAnimation(0.5, progressBar.progressProperty(), ++count[0]/newsSize)
+                        createAnimation(0.5, progressBar.progressProperty(), ++count[0] / newsSize)
                 };
 
                 // Start running multiple threads to scrape
@@ -266,12 +272,12 @@ public class Controller implements Initializable {
                     // Scape and put in threads
                     ScrapeWebsite scrapeWebsite = new ScrapeWebsite(categoryName, news);
                     Thread thread = new Thread(scrapeWebsite);
-                    progressAnimations.put(categoryName, new Pair<>( count[0] / newsSize, progressAnimation[0]));
+                    progressAnimations.put(categoryName, new Pair<>(count[0] / newsSize, progressAnimation[0]));
 
                     // Synchronize threads and play progress bar
                     scrapeWebsite.setOnSucceeded(e -> {
-                        progressAnimation[0] = createAnimation(0.5, progressBar.progressProperty(), ++count[0]/newsSize);
-                        progressAnimations.put(categoryName, new Pair<>( count[0] / newsSize, progressAnimation[0]));
+                        progressAnimation[0] = createAnimation(0.5, progressBar.progressProperty(), ++count[0] / newsSize);
+                        progressAnimations.put(categoryName, new Pair<>(count[0] / newsSize, progressAnimation[0]));
                         synchronized (list) {
                             list.addAll(((ScrapeWebsite) e.getSource()).getValue());
                         }
@@ -283,7 +289,7 @@ public class Controller implements Initializable {
                     threads.add(thread);
                 }
                 // Synchronized threads
-                for (Thread thread : threads){
+                for (Thread thread : threads) {
                     synchronized (this) {
                         thread.join();
                     }
@@ -296,7 +302,7 @@ public class Controller implements Initializable {
     }
 
     //function to scrape articles from website to a category, then return the list of articles
-    public class ScrapeWebsite extends Task<ArrayList<Article>> {
+    public static class ScrapeWebsite extends Task<ArrayList<Article>> {
         String category;
         News news;
 
@@ -308,11 +314,12 @@ public class Controller implements Initializable {
         @Override
         protected ArrayList<Article> call() {
             ArrayList<Article> list = new ArrayList<>();
-            try{
+            try {
                 list.addAll(news.scrapeWebsiteCategory(category).getArticleList()); //scrape news and add them to article list
             } catch (IOException e) {
                 System.out.println("Cannot scrape " + e);
                 System.out.println("Please check your connection again");
+
             }
             return list; //return article list
         }
@@ -333,7 +340,7 @@ public class Controller implements Initializable {
         int range = (pageIndex + 1) * 10 - 10; //to get the ordinal number (in the articles list) of the first article of this page
         for (int i = range; i < range + 10 && i < articles.size(); i++) {
             //identify & create highlight article and add it to vboxHighLight container
-            if (i%10 == 0 || i%10 == 1) {
+            if (i % 10 == 0 || i % 10 == 1) {
                 VBox vbox = createArticleElementVBox(articles, i);
                 vboxHighLight.getChildren().add(vbox);
             }
@@ -345,12 +352,12 @@ public class Controller implements Initializable {
         }
 
         // Add all articles to articleList and return
-        articleList.getChildren().addAll(vboxHighLight,vboxList);
+        articleList.getChildren().addAll(vboxHighLight, vboxList);
         return articleList;
     }
 
     // Create normal article element (HBox)
-    HBox createArticleElementHBox(List<Article> articles, int position){
+    HBox createArticleElementHBox(List<Article> articles, int position) {
         HBox hbox = new HBox(); //init container
         Pane pane = createArticleElement(articles, position, "hbox"); //this pane contains the header information the article
         //set displaying
@@ -360,14 +367,18 @@ public class Controller implements Initializable {
         //set effect when mouse enter and exit an hbox
         hbox.addEventFilter(MouseEvent.MOUSE_ENTERED, e -> {
             ScaleTransition st = new ScaleTransition(Duration.millis(100), hbox);
-            st.setFromX(1); st.setFromY(1);
-            st.setToX(1.1); st.setToY(1.1);
+            st.setFromX(1);
+            st.setFromY(1);
+            st.setToX(1.1);
+            st.setToY(1.1);
             st.play();
         });
         hbox.addEventFilter(MouseEvent.MOUSE_EXITED, e -> {
             ScaleTransition st = new ScaleTransition(Duration.millis(100), hbox);
-            st.setFromX(1.1); st.setFromY(1.1);
-            st.setToX(1); st.setToY(1);
+            st.setFromX(1.1);
+            st.setFromY(1.1);
+            st.setToX(1);
+            st.setToY(1);
             st.play();
         });
 
@@ -378,7 +389,7 @@ public class Controller implements Initializable {
     }
 
     // Create highlight article element VBox
-    VBox createArticleElementVBox(List<Article> articles, int position){
+    VBox createArticleElementVBox(List<Article> articles, int position) {
         VBox vbox = new VBox(); //init container
         Pane pane = createArticleElement(articles, position, "vbox"); //this pane contains the header information the article
         //set displaying
@@ -388,14 +399,18 @@ public class Controller implements Initializable {
         //set effect when mouse enter and exit an hbox
         vbox.addEventFilter(MouseEvent.MOUSE_ENTERED, e -> {
             ScaleTransition st = new ScaleTransition(Duration.millis(100), vbox);
-            st.setFromX(1); st.setFromY(1);
-            st.setToX(1.05); st.setToY(1.05);
+            st.setFromX(1);
+            st.setFromY(1);
+            st.setToX(1.05);
+            st.setToY(1.05);
             st.play();
         });
         vbox.addEventFilter(MouseEvent.MOUSE_EXITED, e -> {
             ScaleTransition st = new ScaleTransition(Duration.millis(100), vbox);
-            st.setFromX(1.05); st.setFromY(1.05);
-            st.setToX(1); st.setToY(1);
+            st.setFromX(1.05);
+            st.setFromY(1.05);
+            st.setToX(1);
+            st.setToY(1);
             st.play();
         });
         vbox.getChildren().addAll(pane.getChildren());
@@ -405,7 +420,7 @@ public class Controller implements Initializable {
     }
 
     //create general pane for all article (contains the header information of an article)
-    Pane createArticleElement(List<Article> articles, int position, String box){
+    Pane createArticleElement(List<Article> articles, int position, String box) {
         Pane pane = new Pane();
         Article article = articles.get(position);
 
@@ -415,8 +430,7 @@ public class Controller implements Initializable {
             if (box.equals("vbox")) { //for highlight news
                 imageView.setFitHeight(312);
                 imageView.setFitWidth(550);
-            }
-            else { //for normal news
+            } else { //for normal news
                 imageView.setFitWidth(150);
                 imageView.setFitHeight(100);
             }
@@ -425,11 +439,10 @@ public class Controller implements Initializable {
         //create a replace if the article has no image
         else {
             Label replaceImage = new Label("no image");
-            if (box.equals("vbox")){ //for highlight news
-                replaceImage.setMinSize(550,312);
-            }
-            else { //for normal news
-                replaceImage.setMinSize(150,100);
+            if (box.equals("vbox")) { //for highlight news
+                replaceImage.setMinSize(550, 312);
+            } else { //for normal news
+                replaceImage.setMinSize(150, 100);
             }
             replaceImage.setStyle("-fx-alignment: CENTER; -fx-background-color: #dddfe1;");
             pane.getChildren().add(replaceImage); //add image to pane
@@ -441,12 +454,12 @@ public class Controller implements Initializable {
         labelArticle.setFont(new Font("Arial", 18));
 
         //Source Name and icon
-        ImageView faviconImageView = new ImageView( new Image(Objects.requireNonNull(getClass().getResourceAsStream("styles/icons/"
-                + article.getSource().toLowerCase() + ".png")), 16, 16, true, true) );
+        ImageView faviconImageView = new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream("styles/icons/"
+                + article.getSource().toLowerCase() + ".png")), 16, 16, true, true));
 
         Text labelSource = new Text(article.getSource());
         labelSource.setFont(new Font("Arial Bold", 12));
-        HBox sourceNameHBox = new HBox(faviconImageView,labelSource);
+        HBox sourceNameHBox = new HBox(faviconImageView, labelSource);
         sourceNameHBox.setSpacing(3);
 
         //Time and date string
@@ -455,11 +468,9 @@ public class Controller implements Initializable {
             timeString = Long.toString(article.getTimeArticle().toHours());
             if (timeString.equals("0")) {
                 timeString = Long.toString(article.getTimeArticle().toMinutes());
-                timeString += " Minute" + (timeString.equals("1")?"":"s") + " ago";
-            }
-            else timeString += " Hour" + (timeString.equals("1")?"":"s") + " ago";
-        }
-        else timeString += " Day" + (timeString.equals("1")?"":"s") + " ago";
+                timeString += " Minute" + (timeString.equals("1") ? "" : "s") + " ago";
+            } else timeString += " Hour" + (timeString.equals("1") ? "" : "s") + " ago";
+        } else timeString += " Day" + (timeString.equals("1") ? "" : "s") + " ago";
         Label labelTime = new Label(timeString);
         labelTime.setFont(new Font("Arial", 12));
 
@@ -581,7 +592,7 @@ public class Controller implements Initializable {
     //action for the reload button
     final EventHandler<ActionEvent> reloadCategory = actionEvent -> {
         HBox hBox = (HBox) ((Button) actionEvent.getSource()).getParent();
-        for (Node node : hBox.getChildren()){
+        for (Node node : hBox.getChildren()) {
             if (currentCategory.equals(node.getId())) {
                 threadsHash.put(node.getId(), null);
                 for (News news : newsHashMap.values()) {
@@ -595,10 +606,11 @@ public class Controller implements Initializable {
 
     void initPagination() {
         //make pagination to invisible until a categoryName is clicked
+
         page.setVisible(false);
     }
 
-    Animation createAnimation(double duration, DoubleProperty property, double value){
+    Animation createAnimation(double duration, DoubleProperty property, double value) {
         return new Timeline(
                 new KeyFrame(Duration.seconds(duration),
                         new KeyValue(property, value))
