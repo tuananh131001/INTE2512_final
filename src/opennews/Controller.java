@@ -59,6 +59,7 @@ import java.net.URL;
 import java.util.*;
 
 public class Controller implements Initializable {
+    //Init FXML elements
     @FXML
     public ScrollPane scrollPaneFilters; //to create scroll pane with scroll bars
     @FXML
@@ -70,18 +71,16 @@ public class Controller implements Initializable {
 
     BorderPane newsBorder = new BorderPane(); // make a pane for news and exit button
 
+    //Init Web Engine and Web View package
     private WebEngine engine;
-
     private WebView newsScene;
 
     //current article list being viewed
     protected List<Article> newsList;
-
     protected ProgressBar progressBar = new ProgressBar();
 
     //initializing website scrapers
     LinkedHashMap<String, News> newsHashMap;
-
     HashMap<String, Thread> threadsHash;
 
     //makes scroll bar smooth
@@ -90,6 +89,7 @@ public class Controller implements Initializable {
 
     //makes scroll smooth af
     Animation scrollAnimation = new Timeline();
+
     //makes the above thing work
     double scrollDestination;
     double scrollDirection;
@@ -212,7 +212,7 @@ public class Controller implements Initializable {
             threadNews.start();
         }
     };
-
+    //Function Alert no internet no return
     public void noInternetAlert() {
         //Initialise alert object for warning
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -220,6 +220,8 @@ public class Controller implements Initializable {
         alert.setHeaderText("No internet connection.Please check your internet again.");
         alert.setContentText("Connect your device to Internet then press OK.Otherwise click X on top right to exit");
         Optional<ButtonType> result = alert.showAndWait();
+
+        //Check condition when OK will reload category else will exit program
         if (result.isPresent() && (result.get() == ButtonType.OK)) {
             (((HBox) borderPane.getTop()).getChildren().get(0)).setDisable(false);
             ((ToggleButton) ((HBox) borderPane.getTop()).getChildren().get(0)).fire();
@@ -254,7 +256,7 @@ public class Controller implements Initializable {
     public class LoadNewsListTask extends Task<List<Article>> {
         // init categoryName
         String categoryName;
-
+        //Construction
         LoadNewsListTask(String category) {
             this.categoryName = category;
         }
@@ -307,11 +309,13 @@ public class Controller implements Initializable {
         }
     }
 
-    //function to scrape articles from website to a category, then return the list of articles
+    //Class  scrape articles from website to a category, then return the list of articles
     public static class ScrapeWebsite extends Task<ArrayList<Article>> {
+        // Init local variable
         String category;
         News news;
 
+        //Construction
         ScrapeWebsite(String category, News news) {
             this.category = category;
             this.news = news;
@@ -319,13 +323,13 @@ public class Controller implements Initializable {
 
         @Override
         protected ArrayList<Article> call() {
-            ArrayList<Article> list = new ArrayList<>();
+            ArrayList<Article> list = new ArrayList<>(); //init list
             try {
                 list.addAll(news.scrapeWebsiteCategory(category).getArticleList()); //scrape news and add them to article list
             } catch (IOException e) {
+                //Print to console the error website
                 System.out.println("Cannot scrape " + e);
                 System.out.println("Please check your connection again");
-
             }
             return list; //return article list
         }
@@ -370,7 +374,7 @@ public class Controller implements Initializable {
         hbox.setStyle("-fx-background-color: #ebe9e9; -fx-spacing: 10;");
         hbox.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/custombutton.css")).toString());
 
-        //set effect when mouse enter and exit an hbox
+        //set effect when mouse enter and exit a HBox
         hbox.addEventFilter(MouseEvent.MOUSE_ENTERED, e -> {
             ScaleTransition st = new ScaleTransition(Duration.millis(100), hbox);
             st.setFromX(1);
@@ -462,7 +466,6 @@ public class Controller implements Initializable {
         //Source Name and icon
         ImageView faviconImageView = new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream("styles/icons/"
                 + article.getSource().toLowerCase() + ".png")), 16, 16, true, true));
-
         Text labelSource = new Text(article.getSource());
         labelSource.setFont(new Font("Arial Bold", 12));
         HBox sourceNameHBox = new HBox(faviconImageView, labelSource);
@@ -488,9 +491,7 @@ public class Controller implements Initializable {
         //create functions of effect and action for this pane
         try {
             //change cursor icon when mouse move to on the article
-            pane.setOnMouseMoved(mouseEvent -> {
-                ((Pane) mouseEvent.getSource()).setCursor(Cursor.HAND);
-            });
+            pane.setOnMouseMoved(mouseEvent -> ((Pane) mouseEvent.getSource()).setCursor(Cursor.HAND));
 
             //set action (go to the article's content page) when mouse is clicked
             pane.setOnMouseClicked(mouseEvent -> {
@@ -592,7 +593,7 @@ public class Controller implements Initializable {
         hbox.getChildren().addAll(region, reloadButton);
         //set action (reload) for this button
         reloadButton.setOnAction(reloadCategory);
-
+        //Styling the HBox
         hbox.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/custombutton.css")).toString());
 
         borderPane.setTop(hbox); //add this menu bar to the main border pane
@@ -601,12 +602,14 @@ public class Controller implements Initializable {
     //action for the reload button
     final EventHandler<ActionEvent> reloadCategory = actionEvent -> {
         HBox hBox = (HBox) ((Button) actionEvent.getSource()).getParent();
+        // Iterator each category compares and chooses the correct category then reload that category
         for (Node node : hBox.getChildren()) {
             if (currentCategory.equals(node.getId())) {
                 threadsHash.put(node.getId(), null);
                 for (News news : newsHashMap.values()) {
                     news.resetCategory(node.getId());
                 }
+                //Set node off then make it enable
                 node.setDisable(false);
                 ((ToggleButton) node).fire();
             }
@@ -615,17 +618,17 @@ public class Controller implements Initializable {
 
     void initPagination() {
         //make pagination to invisible until a categoryName is clicked
-
         page.setVisible(false);
     }
 
+    //Function to create animation for progress bar and return the timeline
     Animation createAnimation(double duration, DoubleProperty property, double value) {
         return new Timeline(
                 new KeyFrame(Duration.seconds(duration),
                         new KeyValue(property, value))
         );
     }
-
+    // Create loading bar function
     void initLoadingBar() {
         progressBar.autosize();
     }

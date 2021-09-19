@@ -33,6 +33,7 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Vnexpress extends News {
 
@@ -48,7 +49,7 @@ public class Vnexpress extends News {
             for (Element articleElement : articleElementList) {
                 String urlArticle = articleElement.child(3).ownText(); //Link of the article
                 String titleArticle = articleElement.child(0).ownText(); // Title of the article
-                String date = articleElement.getElementsByTag("Pubdate").first().ownText();
+                String date = Objects.requireNonNull(articleElement.getElementsByTag("Pubdate").first()).ownText();
                 Image image = null;
                 Document description = Jsoup.parse(articleElement.child(1).ownText());
                 String imageurl = description.getElementsByTag("img").attr("src");
@@ -75,6 +76,7 @@ public class Vnexpress extends News {
         try{
             for (Element articleElement : articleElementList){
                 if (articleElement.getElementsByClass("thumb-art").size() == 0) continue;
+                //image
                 Element element = articleElement.getElementsByTag("img").first();
                 String imageurl = null;
                 Image image = null;
@@ -83,9 +85,13 @@ public class Vnexpress extends News {
                 if (imageurl != null && !imageurl.equals("")) {
                     image = new Image(imageurl);
                 }
+                //title
                 element = articleElement.getElementsByClass("title-news").first();
+                assert element != null;
                 String titleArticle = element.child(0).ownText();
+                //Url
                 element = articleElement.getElementsByTag("a").first();
+                assert element != null;
                 String urlArticle = element.attr("href");
                 try {
                     element = Jsoup.connect(urlArticle).timeout(4000).get();
@@ -93,6 +99,7 @@ public class Vnexpress extends News {
                     System.out.println("skipping an article in vnexpress..");
                     continue;
                 }
+                //Date
                 String date = element.getElementsByAttributeValueMatching("name", "pubdate").attr("content");
                 Article article = new Article(image, titleArticle, urlArticle, getTimeSince(date), "VnExpress");
                 articleList.add(article);
@@ -169,7 +176,7 @@ public class Vnexpress extends News {
         for (Element video : videos){
             Elements vid = video.getElementsByAttributeValueMatching("src", ".m3u8");
             if (vid.size() > 0) {
-                String src = vid.first().attr("src");
+                String src = Objects.requireNonNull(vid.first()).attr("src");
                 video.clearAttributes();
                 if (src != null) {
                     video.text("Video link: " + src);

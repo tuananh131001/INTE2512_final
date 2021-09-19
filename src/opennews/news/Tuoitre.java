@@ -32,6 +32,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Tuoitre extends News {
 
@@ -58,7 +59,7 @@ public class Tuoitre extends News {
                 if (imageurl != null) {
                     image = new Image(imageurl);
                 }
-                String date = article.getElementsByTag("Pubdate").first().ownText();
+                String date = Objects.requireNonNull(article.getElementsByTag("Pubdate").first()).ownText();
                 newsList.add(new Article(image, name, articleUrl, getTimeSince(date),"Tuoi Tre"));
                 if (newsList.size() >= 10) break;
             }
@@ -82,8 +83,11 @@ public class Tuoitre extends News {
         //for each article, get its url, description and url
         try {
             for (Element article : listArticle) {
-                String name = article.getElementsByClass("title-news").first().child(0).ownText();
+                //Title
+                String name = Objects.requireNonNull(article.getElementsByClass("title-news").first()).child(0).ownText();
+                //Url
                 String articleUrl = "https://tuoitre.vn/" + article.getElementsByTag("a").attr("href");
+                //Image
                 Image image = null;
                 String imageurl = null;
                 Element element = article.getElementsByTag("img").first();
@@ -97,7 +101,9 @@ public class Tuoitre extends News {
                     System.out.println("skipping an article in Tuoitre..");
                     continue;
                 }
+                //Time
                 String date = element.getElementsByAttributeValueMatching("name", "pubdate").attr("content");
+                //Add article
                 newsList.add(new Article(image, name, articleUrl, getTimeSince(date), "Tuoi Tre"));
                 if (newsList.size() >= 10) break;
             }
@@ -152,7 +158,7 @@ public class Tuoitre extends News {
         for (Element video : videos){
             String videoUrl;
             try {
-                videoUrl = video.getElementsByAttributeValueMatching("data-src", "vcplayer").first().attr("data-src");
+                videoUrl = Objects.requireNonNull(video.getElementsByAttributeValueMatching("data-src", "vcplayer").first()).attr("data-src");
             } catch (NullPointerException E) {
                 break;
             }

@@ -23,21 +23,21 @@
 */
 package opennews.news;
 
+import javafx.scene.image.Image;
 import opennews.Model.Article;
 import opennews.Model.News;
-import javafx.scene.image.Image;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Thanhnien extends News {
@@ -56,13 +56,13 @@ public class Thanhnien extends News {
         try {
             for (Element articleElement : articleElementList) {
                 String titleArticle = articleElement.child(0).ownText(); // Title of the article
-                String date = articleElement.getElementsByTag("Pubdate").first().ownText();
+                String date = Objects.requireNonNull(articleElement.getElementsByTag("Pubdate").first()).ownText();
                 Image image = null;
                 Document description = Jsoup.parse(articleElement.child(1).ownText());
                 String urlArticle = description.getElementsByTag("a").attr("href"); //Link of the article
-                String imageurl = description.getElementsByTag("img").attr("src");
-                if (imageurl != null && !imageurl.equals("")) {
-                    image = new Image(imageurl);
+                String imageUrl = description.getElementsByTag("img").attr("src");
+                if (imageUrl != null && !imageUrl.equals("")) {
+                    image = new Image(imageUrl);
                 }
                 Article article = new Article(image, titleArticle, urlArticle, getTimeSince(date), "Thanh Nien");
                 articleList.add(article);
@@ -85,8 +85,11 @@ public class Thanhnien extends News {
         // Loop into article Element
         try {
             for (Element articleElement : articleElementList) {
-                String name = articleElement.getElementsByClass("story__title").first().ownText();
+                //Get title
+                String name = Objects.requireNonNull(articleElement.getElementsByClass("story__title").first()).ownText();
+                //Get url
                 String articleUrl = "https://thanhnien.vn/" + articleElement.getElementsByTag("a").attr("href");
+                //Get image
                 Image image = null;
                 String imageurl = null;
                 Element element = articleElement.getElementsByTag("img").first();
@@ -94,14 +97,16 @@ public class Thanhnien extends News {
                 if (imageurl != null && !imageurl.equals("")) {
                     image = new Image(imageurl);
                 }
+                //Get time
                 String date;
                 try {
                     Document document = Jsoup.connect(articleUrl).timeout(4000).get();
-                    date = document.getElementsByTag("time").first().ownText();
+                    date = Objects.requireNonNull(document.getElementsByTag("time").first()).ownText();
                 } catch (Exception e) {
                     System.out.println("skipping an article in Thanh Nien..");
                     continue;
                 }
+                //Add article
                 articleList.add(new Article(image, name, articleUrl, getTimeSince(date), "Thanh Nien"));
                 if (articleList.size() >= 10) break;
             }
@@ -165,7 +170,8 @@ public class Thanhnien extends News {
             Element remove = content.getElementById(idName);
             if (remove != null) remove.remove();
         }
-
+        
+        //Remove tag element
         String[] tagToRemove = {
 //                "nav",
                 "iframe",
@@ -184,25 +190,6 @@ public class Thanhnien extends News {
                 video.text("Video link: " + videoUrl);
             }
         }
-        String pattern =
-                "(((ht|f)tp(s?)\\:\\/\\/|~\\/|\\/)|www.)" +
-                        "(\\w+:\\w+@)?(([-\\w]+\\.)+(com|org|net|gov" +
-                        "|mil|biz|info|mobi|name|aero|jobs|museum" +
-                        "|travel|[a-z]{2}))(:[\\d]{1,5})?" +
-                        "(((\\/([-\\w~!$+|.,=]|%[a-f\\d]{2})+)+|\\/)+|\\?|#)?" +
-                        "((\\?([-\\w~!$+|.,*:]|%[a-f\\d{2}])+=?" +
-                        "([-\\w~!$+|.,*:=]|%[a-f\\d]{2})*)" +
-                        "(&(?:[-\\w~!$+|.,*:]|%[a-f\\d{2}])+=?" +
-                        "([-\\w~!$+|.,*:=]|%[a-f\\d]{2})*)*)*" +
-                        "(#([-\\w~!$+|.,*:=]|%[a-f\\d]{2})*)?\\b" + "mp4";
-
-        String[] videosTest = content.select("[id^=videoavatar]").toString().split(pattern);
-
-        for(String line:videosTest)
-        {
-            System.out.println(line);
-        }
-
 
         //remove all hyperlinks while keeping its content
         Elements hrefs = content.getElementsByAttribute("href");
@@ -237,7 +224,7 @@ public class Thanhnien extends News {
         return "src/opennews/urlfiles/thanhnienurl.txt";
     }
 
-    public Duration getTimeSince(String dateTime) throws ParseException {
+    public Duration getTimeSince(String dateTime) {
         Scanner scanner = new Scanner(dateTime);
         String day = scanner.findInLine("(\\d+ \\w+ \\d+)");
         if (day == null) day = scanner.findInLine("(\\d+/\\d+/\\d+)");
@@ -245,6 +232,7 @@ public class Thanhnien extends News {
         String time = scanner.findInLine("(\\d+:\\d+:?\\d+)");
         SimpleDateFormat dateFormat;
         Date date;
+        // Get the time with condition format
         try {
             dateFormat = new SimpleDateFormat("dd MM yyyy kk:mm:ss");
             date =  dateFormat.parse(day + " " + time);
@@ -261,6 +249,8 @@ public class Thanhnien extends News {
                 }
             }
         }
+        
+        //Return duration
         return Duration.between(date.toInstant(), Instant.now());
     }
 }

@@ -28,12 +28,14 @@ import javafx.scene.image.Image;
 import java.time.Duration;
 
 public class Article {
+    //Article variables
     protected Image image;
     protected String titleArticle;
     protected String sourceArticle;
     protected Duration timeArticle;
     protected String source;
 
+    //Construction of an article class
     public Article(Image image, String titleArticle, String sourceArticle, Duration timeArticle, String source) {
         this.image = image;
         this.titleArticle = titleArticle;
@@ -42,6 +44,7 @@ public class Article {
         this.source = source;
     }
 
+    // Getters
     public String getTitleArticle() {
         return titleArticle;
     }

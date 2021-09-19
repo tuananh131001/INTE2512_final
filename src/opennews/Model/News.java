@@ -28,16 +28,19 @@ import org.jsoup.nodes.Element;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Scanner;
 
 public class News {
-
+    // Variable of class News
     private final HashMap<String, Category> categories = new HashMap<>();
 
+    // Method scape article from a link and return list of article
     public ArrayList<Article> scrapeArticle(String url) throws IOException {
         return new ArrayList<>();
     }
@@ -69,16 +72,18 @@ public class News {
         return categoryElement;
     }
 
-
+    // FUnction scrape content from a url and return that website element
     public Element scrapeContent(String url) throws IOException {
         return Jsoup.parse(Jsoup.connect(url).get().toString());
     }
 
+    // Function get file name
     public String getFileName() {
         return "";
     }
 
-    public Duration getTimeSince(String dateTime) throws ParseException {
+    // Function get time from an article and return duration
+    public Duration getTimeSince(String dateTime) {
         // Init variable
         SimpleDateFormat dateFormat;
         Date date;
@@ -120,6 +125,7 @@ public class News {
         return Duration.between(date.toInstant(), Instant.now());
     }
 
+    //Function reset category
     public void resetCategory(String category) {
         categories.put(category, null);
     }

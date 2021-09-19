@@ -26,22 +26,23 @@ package opennews.Model;
 import java.util.ArrayList;
 
 public class Category {
+    //Category variable
     protected ArrayList<Article> articleList;
     protected String categoryName;
     protected String categoryUrl;
 
-
+    //Constructor for category class
     public Category(String categoryName) {
         this.categoryName = categoryName;
         this.articleList = new ArrayList<>();
         this.categoryUrl = "";
     }
-
+    //Setter
     public void setArticleList(ArrayList<Article> articleList) {
         this.articleList = articleList;
     }
 
-
+    //Getter
     public ArrayList<Article> getArticleList() {
         return articleList;
     }
