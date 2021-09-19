@@ -34,6 +34,7 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Objects;
 
 public class Zingnews extends News {
 
@@ -59,10 +60,12 @@ public class Zingnews extends News {
         //for each article, get its url, description and url
         try {
             for (Element article : listArticle) {
+                //Name
                 String name = article.getElementsByClass("article-title").text();
                 if (hs.contains(name)) continue;
                 hs.add(name);
-                String articleUrl = "https://zingnews.vn" + article.getElementsByTag("a").first().attr("href");
+                //Image
+                String articleUrl = "https://zingnews.vn" + Objects.requireNonNull(article.getElementsByTag("a").first()).attr("href");
                 Image image = null;
                 String imageurl = null;
                 Element element = article.getElementsByTag("img").first();
@@ -77,10 +80,12 @@ public class Zingnews extends News {
                     System.out.println("Zing News : Image link is error");
 
                 }
-                String date = article.getElementsByClass("date").first().ownText();
+                //Time
+                String date = Objects.requireNonNull(article.getElementsByClass("date").first()).ownText();
                 Elements elements = article.getElementsByClass("time");
                 String time = "";
-                if (elements.size() > 0) time = elements.first().ownText();
+                if (elements.size() > 0) time = Objects.requireNonNull(elements.first()).ownText();
+                //Add article
                 newsList.add(new Article(image, name, articleUrl, getTimeSince(date + " " + time),"Zing News"));
                 if (newsList.size() >= 10) break;
             }
@@ -143,10 +148,11 @@ public class Zingnews extends News {
         Elements videos = content.getElementsByClass("video-player formatted");
         for (Element video : videos){
             video = video.parent();
+            assert video != null;
             Elements elements = video.getElementsByAttribute("src");
             String videoUrl = null;
             if (elements.size() > 0) {
-                videoUrl = elements.first().attr("src");
+                videoUrl = Objects.requireNonNull(elements.first()).attr("src");
             }
             if (videoUrl == null) {
                 videoUrl = "could not found video URL.";
@@ -157,6 +163,7 @@ public class Zingnews extends News {
         return content;
     }
 
+    //Get urls from zing news
     @Override
     public String getFileName(){
         return "src/opennews/urlfiles/zingnewsurl.txt";

@@ -62,17 +62,21 @@ public class Nhandan extends News {
         //for each article, get its url, description and url
         try {
             for (Element article : listArticle) {
+                //Get title
                 String name = article.getElementsByTag("a").first().attr("title");
                 if (hs.contains(name)) continue;
                 hs.add(name);
+                //Get article url
                 String articleUrl = "https://nhandan.vn" + article.getElementsByTag("a").attr("href");
                 Image image = null;
                 String imageurl = null;
+                // Get image
                 Element element = article.getElementsByTag("img").first();
                 if (element != null) imageurl = element.attr("data-src");
                 if (imageurl != null && !imageurl.equals("")) {
                     image = new Image(imageurl);
                 }
+                // Get date of article
                 Elements dateElements;
                 try {
                      dateElements = Jsoup.connect(articleUrl).timeout(4000).get().getElementsByAttributeValueMatching("class", "box-date");
@@ -90,6 +94,7 @@ public class Nhandan extends News {
                     if (dateElements.size() > 0) dateElement = dateElements.get(0);
                     if (dateElement != null && dateElement.hasText()) date = dateElement.ownText();
                 }
+                // Add to list the article object
                 newsList.add(new Article(image, name, articleUrl, getTimeSince(date),"Nhan Dan"));
                 if (newsList.size() >= 10) break;
             }
@@ -146,24 +151,28 @@ public class Nhandan extends News {
         //return clean content
         return content;
     }
-
+    //Get url function for nhan dan
     @Override
     public String getFileName(){
         return "src/opennews/urlfiles/nhandanurl.txt";
     }
 
+    //Function get time return duration
     public java.time.Duration getTimeSince(String dateTime) throws ParseException {
+        //Init variable
         Scanner scanner = new Scanner(dateTime);
         String day = scanner.findInLine("(\\d+-\\w+-\\d+)");
         scanner = new Scanner(dateTime);
         String time = scanner.findInLine("(\\d+:\\d+:?\\d+)");
         Date date;
+        //Try catch get date follow format then return zero
         try {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy kk:mm");
             date = dateFormat.parse(day + " " + time);
         } catch (Exception e4){
             return Duration.ZERO;
         }
+        //return duration
         return Duration.between(date.toInstant(), Instant.now());
     }
 }

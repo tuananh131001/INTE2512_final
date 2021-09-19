@@ -40,15 +40,16 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
+        //Load scene from FXML file
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("mainwindow.fxml")));
-
         double height = Screen.getPrimary().getBounds().getHeight();
-
         Scene scene = new Scene(root, 1000, height*0.7);
+        // Styling scene
         primaryStage.setScene(scene);
         scene.setFill(Color.web("#fcfaf6"));
         primaryStage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("styles/icons/app.jpg"))));
         primaryStage.setTitle("Open News");
+        //Show scene
         primaryStage.show();
         //code to close all windows when main windows exits
         primaryStage.setOnCloseRequest(e -> Platform.exit());
