@@ -63,7 +63,7 @@ public class Nhandan extends News {
         try {
             for (Element article : listArticle) {
                 //Get title
-                String name = article.getElementsByTag("a").first().attr("title");
+                String name = Objects.requireNonNull(article.getElementsByTag("a").first()).attr("title");
                 if (hs.contains(name)) continue;
                 hs.add(name);
                 //Get article url
