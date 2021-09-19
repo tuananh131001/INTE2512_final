@@ -158,7 +158,7 @@ public class Nhandan extends News {
     }
 
     //Function get time return duration
-    public java.time.Duration getTimeSince(String dateTime) throws ParseException {
+    public java.time.Duration getTimeSince(String dateTime) {
         //Init variable
         Scanner scanner = new Scanner(dateTime);
         String day = scanner.findInLine("(\\d+-\\w+-\\d+)");

@@ -32,6 +32,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Tuoitre extends News {
 
@@ -58,7 +59,7 @@ public class Tuoitre extends News {
                 if (imageurl != null) {
                     image = new Image(imageurl);
                 }
-                String date = article.getElementsByTag("Pubdate").first().ownText();
+                String date = Objects.requireNonNull(article.getElementsByTag("Pubdate").first()).ownText();
                 newsList.add(new Article(image, name, articleUrl, getTimeSince(date),"Tuoi Tre"));
                 if (newsList.size() >= 10) break;
             }
@@ -83,7 +84,7 @@ public class Tuoitre extends News {
         try {
             for (Element article : listArticle) {
                 //Title
-                String name = article.getElementsByClass("title-news").first().child(0).ownText();
+                String name = Objects.requireNonNull(article.getElementsByClass("title-news").first()).child(0).ownText();
                 //Url
                 String articleUrl = "https://tuoitre.vn/" + article.getElementsByTag("a").attr("href");
                 //Image
@@ -157,7 +158,7 @@ public class Tuoitre extends News {
         for (Element video : videos){
             String videoUrl;
             try {
-                videoUrl = video.getElementsByAttributeValueMatching("data-src", "vcplayer").first().attr("data-src");
+                videoUrl = Objects.requireNonNull(video.getElementsByAttributeValueMatching("data-src", "vcplayer").first()).attr("data-src");
             } catch (NullPointerException E) {
                 break;
             }

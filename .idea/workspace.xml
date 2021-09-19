@@ -4,18 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="official name of the program">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="0d56946d-56ac-4ec9-93cf-3ddf84c983b8" name="Default Changelist" comment="comment code">
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/opennews/Controller$LoadNewsListTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/opennews/Controller$LoadNewsListTask.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/opennews/Controller$ScrapeWebsite.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/opennews/Controller$ScrapeWebsite.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/opennews/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/opennews/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/opennews/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/opennews/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/opennews/Model/Article.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/opennews/Model/Article.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/opennews/Model/Category.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/opennews/Model/Category.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/opennews/Model/News.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/opennews/Model/News.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/opennews/news/Nhandan.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/opennews/news/Nhandan.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/opennews/news/Thanhnien.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/opennews/news/Thanhnien.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/opennews/news/Tuoitre.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/opennews/news/Tuoitre.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/opennews/news/Vnexpress.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/opennews/news/Vnexpress.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/INTE2512_final/opennews/news/Zingnews.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/INTE2512_final/opennews/news/Zingnews.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/opennews/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/opennews/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/opennews/Model/Article.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/Model/Article.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/opennews/Model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/Model/Category.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/opennews/Model/News.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/Model/News.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/opennews/news/Nhandan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/news/Nhandan.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/opennews/news/Thanhnien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/news/Thanhnien.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/opennews/news/Tuoitre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/news/Tuoitre.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/opennews/news/Vnexpress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/news/Vnexpress.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/opennews/news/Zingnews.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/opennews/news/Zingnews.java" afterDir="false" />
     </list>
     <list id="a68e952a-1b2c-4ddc-9e72-6e7cc0333613" name="classes" comment="classes" />
     <option name="SHOW_DIALOG" value="false" />
@@ -368,14 +375,7 @@
       <workItem from="1631954611032" duration="2236000" />
       <workItem from="1631957359978" duration="413000" />
       <workItem from="1631958715323" duration="2184000" />
-      <workItem from="1632042179303" duration="1573000" />
-    </task>
-    <task id="LOCAL-00018" summary="smooooooooooooooth">
-      <created>1628676170604</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1628676170604</updated>
+      <workItem from="1632042179303" duration="1887000" />
     </task>
     <task id="LOCAL-00019" summary="smooooooooooooooth">
       <created>1628679096912</created>
@@ -713,7 +713,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631960152633</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="comment code">
+      <created>1632043895587</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1632043895587</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -749,7 +756,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="defaulted the program to load news first&#10;updated url files&#10;updated covid scraping" />
     <MESSAGE value="defaulted the program to load news first&#10;updated url files&#10;updated covid scraping&#10;added Nhandan class" />
     <MESSAGE value="defaulted the program to load news first&#10;updated url files&#10;updated covid scraping&#10;added Nhandan class&#10;CSS WORKS NOW POGGERS" />
     <MESSAGE value="fixed nhandan date getting scraper" />
@@ -774,7 +780,8 @@
     <MESSAGE value="what if there is no internet Part 2 :&gt;" />
     <MESSAGE value="what if there is no internet Part 3 :&gt;" />
     <MESSAGE value="official name of the program" />
-    <option name="LAST_COMMIT_MESSAGE" value="official name of the program" />
+    <MESSAGE value="comment code" />
+    <option name="LAST_COMMIT_MESSAGE" value="comment code" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XDebuggerManager">

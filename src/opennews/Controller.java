@@ -491,9 +491,7 @@ public class Controller implements Initializable {
         //create functions of effect and action for this pane
         try {
             //change cursor icon when mouse move to on the article
-            pane.setOnMouseMoved(mouseEvent -> {
-                ((Pane) mouseEvent.getSource()).setCursor(Cursor.HAND);
-            });
+            pane.setOnMouseMoved(mouseEvent -> ((Pane) mouseEvent.getSource()).setCursor(Cursor.HAND));
 
             //set action (go to the article's content page) when mouse is clicked
             pane.setOnMouseClicked(mouseEvent -> {

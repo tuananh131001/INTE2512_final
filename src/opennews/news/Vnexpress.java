@@ -87,9 +87,11 @@ public class Vnexpress extends News {
                 }
                 //title
                 element = articleElement.getElementsByClass("title-news").first();
+                assert element != null;
                 String titleArticle = element.child(0).ownText();
                 //Url
                 element = articleElement.getElementsByTag("a").first();
+                assert element != null;
                 String urlArticle = element.attr("href");
                 try {
                     element = Jsoup.connect(urlArticle).timeout(4000).get();
@@ -174,7 +176,7 @@ public class Vnexpress extends News {
         for (Element video : videos){
             Elements vid = video.getElementsByAttributeValueMatching("src", ".m3u8");
             if (vid.size() > 0) {
-                String src = vid.first().attr("src");
+                String src = Objects.requireNonNull(vid.first()).attr("src");
                 video.clearAttributes();
                 if (src != null) {
                     video.text("Video link: " + src);

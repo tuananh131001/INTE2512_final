@@ -23,21 +23,21 @@
 */
 package opennews.news;
 
+import javafx.scene.image.Image;
 import opennews.Model.Article;
 import opennews.Model.News;
-import javafx.scene.image.Image;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Thanhnien extends News {
@@ -56,7 +56,7 @@ public class Thanhnien extends News {
         try {
             for (Element articleElement : articleElementList) {
                 String titleArticle = articleElement.child(0).ownText(); // Title of the article
-                String date = articleElement.getElementsByTag("Pubdate").first().ownText();
+                String date = Objects.requireNonNull(articleElement.getElementsByTag("Pubdate").first()).ownText();
                 Image image = null;
                 Document description = Jsoup.parse(articleElement.child(1).ownText());
                 String urlArticle = description.getElementsByTag("a").attr("href"); //Link of the article
@@ -86,7 +86,7 @@ public class Thanhnien extends News {
         try {
             for (Element articleElement : articleElementList) {
                 //Get title
-                String name = articleElement.getElementsByClass("story__title").first().ownText();
+                String name = Objects.requireNonNull(articleElement.getElementsByClass("story__title").first()).ownText();
                 //Get url
                 String articleUrl = "https://thanhnien.vn/" + articleElement.getElementsByTag("a").attr("href");
                 //Get image
@@ -101,7 +101,7 @@ public class Thanhnien extends News {
                 String date;
                 try {
                     Document document = Jsoup.connect(articleUrl).timeout(4000).get();
-                    date = document.getElementsByTag("time").first().ownText();
+                    date = Objects.requireNonNull(document.getElementsByTag("time").first()).ownText();
                 } catch (Exception e) {
                     System.out.println("skipping an article in Thanh Nien..");
                     continue;
@@ -224,7 +224,7 @@ public class Thanhnien extends News {
         return "src/opennews/urlfiles/thanhnienurl.txt";
     }
 
-    public Duration getTimeSince(String dateTime) throws ParseException {
+    public Duration getTimeSince(String dateTime) {
         Scanner scanner = new Scanner(dateTime);
         String day = scanner.findInLine("(\\d+ \\w+ \\d+)");
         if (day == null) day = scanner.findInLine("(\\d+/\\d+/\\d+)");

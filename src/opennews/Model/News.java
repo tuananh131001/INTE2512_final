@@ -81,7 +81,7 @@ public class News {
     }
 
     // Function get time from an article and return duration
-    public Duration getTimeSince(String dateTime) throws ParseException {
+    public Duration getTimeSince(String dateTime) {
         // Init variable
         SimpleDateFormat dateFormat;
         Date date;
