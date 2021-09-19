@@ -160,6 +160,11 @@ public class Controller implements Initializable {
             //disable the current category button
             button.setDisable(true);
 
+            //remove article pane if there is any :)
+            if (stackPane.getChildren().size() >= 2) {
+                stackPane.getChildren().remove(1);
+            }
+
             //add progress bar in
             if (stackPane.getChildren().size() == 1) {
                 stackPane.getChildren().add(addProcessBar());
