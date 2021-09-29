@@ -1,6 +1,6 @@
 # INTE2512_final
-INTE2512 - Final Group Project  
 OPEN NEWS - A Simple News Reader
+
 Team: Big City Boi  
 Members:  
 Nguyen Tuan Anh s3864077  
