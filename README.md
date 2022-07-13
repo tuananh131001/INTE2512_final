@@ -1,5 +1,6 @@
 # INTE2512_final
-OPEN NEWS - A Simple News Reader
+OPEN NEWS - A Simple News Reader  
+![Uploading image.png…]()
 
 Team: Big City Boi  
 Members:  
