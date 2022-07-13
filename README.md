@@ -1,6 +1,6 @@
 # INTE2512_final
-OPEN NEWS - A Simple News Reader  
-![Uploading image.png…]()
+OPEN NEWS - A Simple News Reader    
+![image](https://user-images.githubusercontent.com/67695658/178662828-ff1d16e7-3934-45ad-81f7-7da284e58716.png)
 
 Team: Big City Boi  
 Members:  
